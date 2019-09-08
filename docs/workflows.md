@@ -1,5 +1,5 @@
 # Workflows
-Documentation for [workflows](https://shuffler.io/workflows)
+Documentation for workflows
 
 # Table of contents
 * [About](#about)
@@ -106,10 +106,8 @@ You should now be receiving an email with the data specified in the "email_1" no
 
 #### Add json 
 
-### Export 
-### Import 
-### Copy 
-### Delete
+### Export, Import, Copy and Delete
+All these four actions are available to you in the [workflows](https://shuffler.io/workflows) view while logged in.
 
 ## Examples
 Test
@@ -118,3 +116,4 @@ Test
 Test
 
 ## API
+Test
