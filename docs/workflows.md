@@ -64,6 +64,7 @@ Now that you have a working example workflow, lets move onto something a little 
 4. Add an email node and set the recipient to be the data from "Repeat back to me" in our testing node
 5. Test!
 6. Schedule the email to be sent every 15 minutes to your supplied email.
+7. TBD: JSON parsing 
 
 #### Change testing action 
 Once changed, you will see a new item, [arguments](https://shuffler.io/docs/argument), which can be of a few different sorts, including but not limited to: static values, data from other nodes, internal variables, global variables and more. 
@@ -76,8 +77,34 @@ To change the argument to be the argument we supply when executing, click the "a
 Click save, then "execute", and you should see the result pop like below.
 ![Repeat success](https://github.com/frikky/shuffle-docs/blob/master/assets/repeat-success.png)
 
-#### Add a new node!
-Its 
+#### A new action node!
+As you now have a working example where we leverage actions, its time to add another node. Find the "Email" node in the app view (on the left hand side), and drag it into the view together with our old node. These will automatically connect, as that is a standard procedure for the second node added.
+
+![Email connected](https://github.com/frikky/shuffle-docs/blob/master/assets/email-connected.png)
+
+As can be seen whenever the email node is selected, it takes three arguments; recipient, subject and body. As previously, we want to set the recipient to whatever our old node, "testing_1", returns. This means we do the same as previously:
+1. Click "action" above the recipient argument
+2. This field now has another argument that it did not previously have, namely one of the nodes it has access to data from. Choose "testing_1", if you didn't change our first nodes name.
+
+Feel free to fill whatever you want into the subject and body field (and recipients too if you want). Click save, fill the "Execution Argument" to the email you want to send to, before clicking execute. Check your email inbox, and you should see an email.
+
+![Edit email](https://github.com/frikky/shuffle-docs/blob/master/assets/edit-email.png)
+![Email success](https://github.com/frikky/shuffle-docs/blob/master/assets/email-success.png)
+
+#### Email scheduling trigger
+With our newly created workflow for sending email, we now want a way to send the email every 15 minutes (or more often / less often). Close to the bottom left, there is a button, [Triggers](https://shuffler.io/docs/triggers), where you find all the available triggers. As with apps, these are draggable, but one keen difference is that they're (currently) always attached to the starting node of your workflow.
+
+![Trigger added](https://github.com/frikky/shuffle-docs/blob/master/assets/trigger-added.png)
+
+A quick note about triggers: they need to be started and stopped. That means you need to configure them through the available arguments (Cron and Execution Argument) in this case, before clicking the "Start" button. The default schedule for schedules is every 15 minutes, but if you want to edit it, [click here to get a converter](http://www.cronmaker.com).
+
+As triggers are used to run an entire workflow, they usually handle the "Execution Argument" somehow. Schedules has its own field you can fill here, where you again fill your email address, before clicking the "Start" button.
+
+You should now be receiving an email with the data specified in the "email_1" node based on the schedule trigger you just made.
+
+![Schedule started](https://github.com/frikky/shuffle-docs/blob/master/assets/schedule-started.png)
+
+#### Add json 
 
 ### Export 
 ### Import 
