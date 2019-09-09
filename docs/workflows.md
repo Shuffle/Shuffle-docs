@@ -2,30 +2,29 @@
 Documentation for workflows
 
 # Table of contents
-* [About](#about)
-* [Workflow control](#control)
+* [Introduction](#introduction)
+* [How-to](#control)
 * [Create](#create)
 * [Edit](#edit)
 * [Save](#save)
 * [Execute](#execute)
 * [Delete](#delete)
-* [Examples](#examples)
 * [Testing](#testing)
 * [API](#api)
+* [Examples](#examples)
 
+## Introduction
+Workflows are the backbone of any SOAR solution, empowering users to automate their daily tasks by simple drag-and-drop. Workflow use [apps](/docs/apps) and [triggers](/docs/triggers), created by the us and the community to make simple integrations between tools. Workflows have access to run both [on-premise and in the cloud](/docs/hybrid), meaning it can integrate with any solution available to you. Read on if you would like to learn more about how to create, test and automate your tasks. Workflows are based on how workflows are treated in [NSA's WALKOFF](https://github.com/nsacyber/WALKOFF), but is entirely rewritten.
 
-## About
-Workflows are the backbone of any SOAR solution, empowering users to automate their daily tasks by simple drag-and-drop. Workflow use [apps](https://shuffler.io/docs/apps) and [triggers](https://shuffler.io/docs/triggers), created by the us and the community to make simple integrations between tools. Workflows have access to run both [on-premise and in the cloud](/docs/hybrid), meaning it can integrate with any solution available to you. Read on if you would like to learn more about how to create, test and automate your tasks. Workflows are based on how workflows are treated in [NSA's WALKOFF](https://github.com/nsacyber/WALKOFF), but is entirely rewritten.
-
-## Control
-The control of workflows is described below as a walkthrough from zero to hero.
+## How-to
+The following section describes one way to create a basic workflow. A continued, more advanced version of the following steps can be found at the bottom of this article.
 
 ### Create
-Once logged in, creating a workflow can be done by going to the [workflows](https://shuffler.io/workflows) dashboard and clicking the "New workflow" button. This will create a popup window, where you have to fill in the name, and optionally, the description for your workflow. When this is filled, click the "submit" button, and you will be redirected to your newly generated workflow. 
+Once logged in, creating a workflow can be done by going to the [workflows](/workflows) dashboard and clicking the "New workflow" button. This will create a popup window, where you have to fill in the name, and optionally, the description for your workflow. When this is filled, click the "submit" button, and you will be redirected to your newly generated workflow. 
 
 ![Create workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/create-workflow.PNG?raw=true)
 
-If you lose your way and want to edit it at a later point, it can always be found at [https://shuffler.io/workflows](https://shuffler.io/workflows).
+If you lose your way and want to edit it at a later point, it can always be found at [/workflows](/workflows).
 
 ![Edit workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/edit-workflow.PNG?raw=true)
 
@@ -34,7 +33,7 @@ Once your workflow is created, you will be presented with the following view, wh
 
 ![New workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/new-workflow.PNG?raw=true)
 
-Workflows are entirely based on [apps](https://shuffler.io/docs/apps), [triggers](https://shuffler.io/docs/triggers), [variables](https://shuffler.io/docs/variables) and [conditions](https://shuffler.io/docs/conditions). All of these except conditions can be seen in the bottom left corner of the screen, and are items that are avidly used within any workflow. Apps and triggers are draggable, where apps make up the actions that are ran, while triggers chooses what the workflow as a whole does. 
+Workflows are entirely based on [apps](/docs/apps), [triggers](/docs/triggers), [variables](/docs/variables) and [conditions](/docs/conditions). All of these except conditions can be seen in the bottom left corner of the screen, and are items that are avidly used within any workflow. Apps and triggers are draggable, where apps make up the actions that are ran, while triggers chooses what the workflow as a whole does. 
 
 To run your first workflow, find the workflow "Testing" on the left hand side, and drag it into the view. This will create a clickable node, which you can freely edit.  
 
@@ -52,11 +51,24 @@ Now that your workflow is saved, its time to execute. There is a button in the b
 
 ![Node execute success](https://github.com/frikky/shuffle-docs/blob/master/assets/node-execute-success.PNG?raw=true)
 
-If you want to see all your previous executions, you can go back to [workflows](https://shuffler.io/workflows), click the name of your workflow (in our case Example workflow), and see the status and result of all previous executions.
+If you want to see all your previous executions, you can go back to [workflows](/workflows), click the name of your workflow (in our case Example workflow), and see the status and result of all previous executions.
 
 ![Execution view](https://github.com/frikky/shuffle-docs/blob/master/assets/execution-view.PNG?raw=true)
 
-### Further edits - send email on a schedule
+If you want to test more, go to the bottom of this article [How-to continuation](#how-to).
+
+### Export, Import, Copy and Delete
+All these four actions are available to you in the [workflows](/workflows) view while logged in.
+
+## API
+TBD 
+
+
+
+
+
+
+## How-to continuation - send email on a schedule
 Now that you have a working example workflow, lets move onto something a little more advanced. We will perform the following actions:
 1. Change action in our testing node from "Hello world" to "Repeat back to me" 
 2. Set the input for "Repeat back to me" to be the argument we supply when executing
@@ -67,7 +79,7 @@ Now that you have a working example workflow, lets move onto something a little 
 7. TBD: JSON parsing 
 
 #### Change testing action 
-Once changed, you will see a new item, [arguments](https://shuffler.io/docs/argument), which can be of a few different sorts, including but not limited to: static values, data from other nodes, internal variables, global variables and more. 
+Once changed, you will see a new item, [arguments](/docs/argument), which can be of a few different sorts, including but not limited to: static values, data from other nodes, internal variables, global variables and more. 
 ![Change action repeat](https://github.com/frikky/shuffle-docs/blob/master/assets/change-action-repeat.PNG?raw=true)
 
 To change the argument to be the argument we supply when executing, click the "action" button next to our new node, and "Execution argument" will automatically show up. Below you can see us running the node with the argument "This is a test" 
@@ -92,7 +104,7 @@ Feel free to fill whatever you want into the subject and body field (and recipie
 ![Email success](https://github.com/frikky/shuffle-docs/blob/master/assets/email-success.PNG?raw=true)
 
 #### Email scheduling trigger
-With our newly created workflow for sending email, we now want a way to send the email every 15 minutes (or more often / less often). Close to the bottom left, there is a button, [Triggers](https://shuffler.io/docs/triggers), where you find all the available triggers. As with apps, these are draggable, but one keen difference is that they're (currently) always attached to the starting node of your workflow.
+With our newly created workflow for sending email, we now want a way to send the email every 15 minutes (or more often / less often). Close to the bottom left, there is a button, [Triggers](/docs/triggers), where you find all the available triggers. As with apps, these are draggable, but one keen difference is that they're (currently) always attached to the starting node of your workflow.
 
 ![Trigger added](https://github.com/frikky/shuffle-docs/blob/master/assets/trigger-added.PNG?raw=true)
 
@@ -106,14 +118,3 @@ You should now be receiving an email with the data specified in the "email_1" no
 
 #### Add json 
 
-### Export, Import, Copy and Delete
-All these four actions are available to you in the [workflows](https://shuffler.io/workflows) view while logged in.
-
-## Examples
-Test
-
-## Testing
-Test
-
-## API
-Test
