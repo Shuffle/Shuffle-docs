@@ -10,6 +10,8 @@ Documentation for how to get integrate onpremise and cloud
 ## Introduction
 A hybrid solution in Shuffle terms means that you will have access to run all workflows on in your own environment. Our integration is easy to set up, and gives access for your cloud solutions to talk to your on-premise solutions in near realtime. As described in [workflows](/docs/workflows) and [apps](/docs/apps), all actions can be set to run in the environment of your choice. The environments are defined by you (except cloud), and can be in multiple locations. 
 
+![logos-hybrid](https://github.com/frikky/shuffle-docs/blob/master/assets/logos-hybrid.PNG?raw=true)
+
 ## About
 The hybrid solution, Orborus, is a docker container that runs batch jobs for your company, looking for jobs assigned to the execution environment you have assigned to it. It polls for new executions on a regular basis, and creates a worker for each workflow execution. It works together with a cloud worker to finish every workflow in a timely manner, and if it doesn't tries to give a reason as to why.
 

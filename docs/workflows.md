@@ -16,6 +16,8 @@ Documentation for workflows
 ## Introduction
 Workflows are the backbone of any SOAR solution, empowering users to automate their daily tasks by simple drag-and-drop. Workflow use [apps](/docs/apps) and [triggers](/docs/triggers), created by the us and the community to make simple integrations between tools. Workflows have access to run both [on-premise and in the cloud](/docs/hybrid), meaning it can integrate with any solution available to you. Read on if you would like to learn more about how to create, test and automate your tasks. Workflows are based on how workflows are treated in [NSA's WALKOFF](https://github.com/nsacyber/WALKOFF), but is entirely rewritten.
 
+![logos-all](https://github.com/frikky/shuffle-docs/blob/master/assets/logos-all.PNG?raw=true)
+
 ## How-to
 The following section describes one way to create a basic workflow. A continued, more advanced version of the following steps can be found at the bottom of this article.
 
