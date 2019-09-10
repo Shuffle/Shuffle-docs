@@ -60,6 +60,19 @@ If you want to test more, go to the bottom of this article [How-to continuation]
 ### Export, Import, Copy and Delete
 All these four actions are available to you in the [workflows](/workflows) view while logged in.
 
+#### Variables
+TBD - Workflow variables, unencrypted
+
+### Authentication
+TBD - Implemented, but not documented.
+* Sharing
+* Read/write
+* Execute
+
+### Pricing 
+TBD - Calculated per executing, app and trigger 
+<!--App authentication-->
+
 ## API
 TBD 
 
