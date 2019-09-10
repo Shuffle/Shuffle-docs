@@ -33,7 +33,7 @@ Once your workflow is created, you will be presented with the following view, wh
 
 ![New workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/new-workflow.PNG?raw=true)
 
-Workflows are entirely based on [apps](/docs/apps), [triggers](/docs/triggers), [variables](/docs/variables) and [conditions](/docs/conditions). All of these except conditions can be seen in the bottom left corner of the screen, and are items that are avidly used within any workflow. Apps and triggers are draggable, where apps make up the actions that are ran, while triggers chooses what the workflow as a whole does. 
+Workflows are entirely based on [apps](/docs/apps), [triggers](/docs/triggers), [variables](/docs/apps#variables) and [conditions](/docs/conditions). All of these except conditions can be seen in the bottom left corner of the screen, and are items that are avidly used within any workflow. Apps and triggers are draggable, where apps make up the actions that are ran, while triggers chooses what the workflow as a whole does. 
 
 To run your first workflow, find the workflow "Testing" on the left hand side, and drag it into the view. This will create a clickable node, which you can freely edit.  
 
@@ -60,6 +60,8 @@ If you want to test more, go to the bottom of this article [How-to continuation]
 ### Export, Import, Copy and Delete
 All these four actions are available to you in the [workflows](/workflows) view while logged in.
 
+#### Apps
+#### Triggers
 #### Variables
 TBD - Workflow variables, unencrypted
 
