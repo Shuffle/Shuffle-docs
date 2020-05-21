@@ -3,7 +3,7 @@ Documentation for apps
 
 # Table of contents
 * [Introduction](#introduction)
-* [How they work](#howtheywork)
+* [How they work](#how they work)
 * [Actions](#actions)
 * [Development](#development)
 * [API](#api)
