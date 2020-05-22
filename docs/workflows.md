@@ -1,5 +1,7 @@
 # Workflows
-Documentation for workflows
+Documentation for workflows. 
+
+**PS: some of this migth NOT work on the CLOUD version.**
 
 # Table of contents
 * [Introduction](#introduction)
@@ -126,6 +128,7 @@ Here's how to create and use a variable:
 
 4. Use the variable in an action or condition
 ![variable-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-4.png?raw=true)
+
 
 ## Passing values
 Passing values is what makes a solution like Shuffle work. It allows you to pass value from app X to app Y seemlessly. There are currently a couple of different ways to pass values between nodes, that also applies for conditions.
