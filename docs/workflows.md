@@ -10,14 +10,14 @@ Documentation for workflows
 * [Execute](#execute)
 * [Delete](#delete)
 * [Nodes](#nodes)
-* [Starting node](#starting node)
+* [Starting node](#starting_node)
 * [Variables](#variables)
-* [Execution argument](#execution argument)
-* [Passing values](#passing values between nodes)
-* [Parsing JSON](#parsing json)
+* [Execution argument](#execution_argument)
+* [Passing values](#passing_values_between_nodes)
+* [Parsing JSON](#parsing_json)
 * [Authentication](#authentication)
 * [API](#api)
-* [How-to continuation (CLOUD)](#how-to continuation)
+* [How-to continuation (CLOUD)](#how-to_continuation)
 
 ## Introduction
 Workflows are the backbone of Shuffle, empowering you to automate your daily tasks by with a simple interface. Workflows use [apps](/docs/apps), [triggers](/docs/triggers), [conditions](/docs/conditions) and [variables](/docs/apps/#variables) to make powerful automations in no time. 
