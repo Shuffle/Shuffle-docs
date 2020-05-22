@@ -3,89 +3,290 @@ Documentation for workflows
 
 # Table of contents
 * [Introduction](#introduction)
-* [How-to](#control)
+* [The Basics](#basics)
 * [Create](#create)
 * [Edit](#edit)
 * [Save](#save)
 * [Execute](#execute)
 * [Delete](#delete)
-* [Testing](#testing)
+* [Nodes](#nodes)
+* [Starting node](#starting node)
+* [Variables](#variables)
+* [Execution argument](#execution argument)
+* [Passing values](#passing values between nodes)
+* [Parsing JSON](#parsing json)
+* [Authentication](#authentication)
 * [API](#api)
-* [Examples](#examples)
+* [How-to continuation (CLOUD)](#how-to continuation)
 
 ## Introduction
-Workflows are the backbone of any SOAR solution, empowering users to automate their daily tasks by simple drag-and-drop. Workflow use [apps](/docs/apps) and [triggers](/docs/triggers), created by the us and the community to make simple integrations between tools. Workflows have access to run both [on-premise and in the cloud](/docs/hybrid), meaning it can integrate with any solution available to you. Read on if you would like to learn more about how to create, test and automate your tasks. Workflows are based on how workflows are treated in [NSA's WALKOFF](https://github.com/nsacyber/WALKOFF), but is entirely rewritten.
+Workflows are the backbone of Shuffle, empowering you to automate your daily tasks by with a simple interface. Workflows use [apps](/docs/apps), [triggers](/docs/triggers), [conditions](/docs/conditions) and [variables](/docs/apps/#variables) to make powerful automations in no time. 
 
-![logos-all](https://github.com/frikky/shuffle-docs/blob/master/assets/logos-all.PNG?raw=true)
+If you would like to learn more about how to create, test and automate your tasks, read on. 
 
-## How-to
-The following section describes one way to create a basic workflow. A continued, more advanced version of the following steps can be found at the bottom of this article.
+## Basics
+The following section describes a basic workflow. 
 
 ### Create
-Once logged in, creating a workflow can be done by going to the [workflows](/workflows) dashboard and clicking the "New workflow" button. This will create a popup window, where you have to fill in the name, and optionally, the description for your workflow. When this is filled, click the "submit" button, and you will be redirected to your newly generated workflow. 
+Once logged in, creating a workflow can be done by going to the [workflows](/workflows) dashboard and clicking the "New" button next to "Workflows". It will ask you for a name and description. These can be changed at any time. 
 
 ![Create workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/create-workflow.PNG?raw=true)
 
-If you lose your way and want to edit it at a later point, it can always be found at [/workflows](/workflows).
+If you lose your way or want to edit it at a later point, it can always be found at [/workflows](/workflows).
 
 ![Edit workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/edit-workflow.PNG?raw=true)
 
 ### Edit
-Once your workflow is created, you will be presented with the following view, which we will explain in the following section. 
+Once a workflow is created, you will be presented with the following view: 
 
 ![New workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/new-workflow.PNG?raw=true)
 
-Workflows are entirely based on [apps](/docs/apps), [triggers](/docs/triggers), [variables](/docs/apps#variables) and [conditions](/docs/conditions). All of these except conditions can be seen in the bottom left corner of the screen, and are items that are avidly used within any workflow. Apps and triggers are draggable, where apps make up the actions that are ran, while triggers chooses what the workflow as a whole does. 
+Workflows are entirely based on [apps](/docs/apps), [triggers](/docs/triggers), [variables](/docs/apps#variables) and [conditions](/docs/conditions). You have access to all of these in the bottom left of the screen. Apps and triggers are draggable, meaning you can drag and drop them into the main window. 
 
-To run your first workflow, find the workflow "Testing" on the left hand side, and drag it into the view. This will create a clickable node, which you can freely edit.  
+To run your first workflow, find the app "Testing" on the left hand side, and drag it into the view. This will create a clickable node, which you can freely edit.  
 
 ![First node](https://github.com/frikky/shuffle-docs/blob/master/assets/first-node.PNG?raw=true)
 
-If you clicked the node, you are now presented with a new view on the right hand side containing information about the node you are currently viewing. Herein you can specify exactly how the node is to behave, which in our example case has the name "testing_1", will be running in the cloud and will be running the action "Hello world". If the app has more than one action, the latter item is clickable, and you can choose whichever action best presents what you want to perform. Please note that this node is now also considered the "starting node", meaning that any execution will start at this point.
+Clicking the node presents you with a new view. This is the view to configure the node. In our example case, the default name should be "testing_1", running with the environment "Shuffle" (default). 
+
+The default action for the "Testing" app is "hello_world". This can be changed by clicking the dropdown menu. More about editing an app's actions can be found [here](#edit actions)
 
 ![Node action options](https://github.com/frikky/shuffle-docs/blob/master/assets/node-action-options.PNG?raw=true)
 
-#### Save 
-Now that we have a working workflow, click the "save" button in the upper left corner of your screen, which will present with a notification at the bottom of the screen that saving is in progress. Saving is required to make your latest edits available for execution.
+### Save 
+Now that we have a working workflow, click the "save" button next to the big play button (or click CTRL+S). This presents you with a notification at the bottom of the screen that saving is in progress. Saving is required to make your latest edits available for execution.
 
-#### Execute
-Now that your workflow is saved, its time to execute. There is a button in the bottom left corner, which you can execute your workflow with. Once clicked, this will start execution at your "starting" node, indicated by a round icon with a turquoise border. Whether successful or not, you will be presented with another notification indicating that the node has executed.
+### Execute
+With a saved workflow, you can now execute. The big orange play button will execute for you. Once clicked, this will start execution at your [starting node](#starting node), indicated by a round icon with a turquoise border. Whether successful or not, you will be presented with another notification indicating that the node has executed.
 
 ![Node execute success](https://github.com/frikky/shuffle-docs/blob/master/assets/node-execute-success.PNG?raw=true)
 
-If you want to see all your previous executions, you can go back to [workflows](/workflows), click the name of your workflow (in our case Example workflow), and see the status and result of all previous executions.
+If you want to see all your previous executions, you can go back to [workflows](/workflows), click the name of your workflow (in our case Example workflow), and see the status and result of all previous executions in detail.
 
 ![Execution view](https://github.com/frikky/shuffle-docs/blob/master/assets/execution-view.PNG?raw=true)
 
 If you want to test more, go to the bottom of this article [How-to continuation](#how-to).
 
-### Export, Import, Copy and Delete
-All these four actions are available to you in the [workflows](/workflows) view while logged in.
+## Nodes 
+Nodes are the draggable parts from the left-side view - apps and triggers. Whenever you click of these, you will get the view on the right side of the screen with configurations. Apps are standardized, while triggers are all different. 
 
-#### Apps
-#### Triggers
-#### Variables
-TBD - Workflow variables, unencrypted
+Most nodes use values that you can pass to them. These can be text specified by you (pencil icon), [an app result](#passing values) or from [variables](#variables)(heart icon).
 
-### Authentication
-TBD - Implemented, but not documented.
-* Sharing
-* Read/write
-* Execute
+![argument-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/argument-example-1.png?raw=true)
 
-### Pricing 
-TBD - Calculated per executing, app and trigger 
-<!--App authentication-->
+### Starting node
+The starting node is circular with a turquoise border. This node is the FIRST ACTION in an execution. The starting node is NOT a trigger, but rather the first action that a trigger sends data to. The starting node can be changed by clicking a different node, then the "SET STARTNODE" button in the top-right corner.
+
+## Conditions 
+Conditions use the same format as nodes, with the view popping up on the right side. To add a condition, you need to have a branch/line in the view, meaning you need at least two nodes. This line itself, is what will run the condition for you. Branches can use the same valeus as other nodes, meaning they can parse variables from previous node results.
+
+PS: Conditions are currently only AND, not OR, meaning you would need multiple branches to get OR.
+
+1. Click a branch / line
+![conditions-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-1.png?raw=true)
+
+2. Click "New condition"
+![conditions-example-2](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-2.png?raw=true)
+
+3. Configure the condition. Choose the value(s) you're looking for, and use the center piece ("DOES NOT EQUAL" in this example) to modify what you want. In the case of this image, it would NOT run, because "hello" (left side) equals "hello" (right side)
+![conditions-example-3](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-3.png?raw=true)
+
+4. Here's another example, where it would run IF the [execution argument](#execution argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
+![conditions-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-4.png?raw=true)
+
+5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing values))
+![conditions-example-5](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-5.png?raw=true)
+
+## Execution argument
+The execution argument is what makes it possible for triggers to work. This is the argument that the whole execution is ran with. Manual executions can also have an execution argument. In essence, the execution argument can be anything - json, list, string, number. It's up to you.
+
+![execution-argument-1](https://github.com/frikky/shuffle-docs/blob/master/assets/execution-argument-1.png?raw=true)
+
+The execution argument acts like a node, meaning you can use its value anywhere.
+
+## Variables
+Workflow variables are reusable datapoints. These are typically used for specific APIkeys, URL's or usernames. 
+
+Here's some things to keep in mind when using workflow variables:
+* They are shared with everyone with access to the workflow 
+* They are unencrypted
+* They are only accessible to the workflow you're in.
+
+We are working on a way to have encrypted global variables to be used for passwords and global APIkeys (and more) with IAM, but that might take a while to implement properly.
+
+Here's how to create and use a variable:
+1. Click "Variables" in the bottom left corner.
+![variable-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-1.png?raw=true)
+
+2. Click "Make a new workflow variable"
+![variable-example-2](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-2.png?raw=true)
+
+3. Write a name, description and value for the variable.
+![variable-example-3](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-3.png?raw=true)
+
+4. Use the variable in an action or condition
+![variable-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-4.png?raw=true)
+
+## Passing values
+Passing values is what makes a solution like Shuffle work. It allows you to pass value from app X to app Y seemlessly. There are currently a couple of different ways to pass values between nodes, that also applies for conditions.
+
+* Use the "Data from previous actions" 
+* Use the "static data" field
+
+Using a previous action, you get a selection of all previous nodes, as well as the execution argument.
+
+If you use the "static data" field (pencil), you have to write it out yourself. 
+* "$testing_1" will get the data from the node "testing_1"
+* "$exec" will get the execution argument. 
+
+PS: it still only works with PREVIOUS nodes. This method is also error prone.
+
+### Parsing JSON
+Parsing JSON is essential to be able to get API data. Shuffle uses it's own schema, which seems to work quite well. 
+
+$ 					= identifier for a previous node / execution argument 
+$exec 			= execution argument chosen
+$exec.name  = you choose the argument "name" from the execution argument
+
+The first text after $ will always be the name of the previous node. If you add "." ($exec.name), it will look for "name" as a json value under "exec". If the node doesn't exist, it will just write $exec.name straight up.
+
+Say you send the following data as our [execution argument](#execution argument):
+```
+execution_argument = {
+	"name": "this is some data",
+	"description": "Cool description",
+	"extra": {
+		"writer": "Fredrik"
+	}
+}
+```
+
+1. How would we go about getting "name" (execution_argument["name"])
+2. How do we get "writer" under "extra" (execution_argument["extra"]["writer"]? 
+
+* Action argument:
+1. 
+![json-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/json-example-1.png?raw=true)
+
+2. 
+![json-example-2](https://github.com/frikky/shuffle-docs/blob/master/assets/json-example-2.png?raw=true)
+
+* Static data:
+I've put both questions into one. Maybe you catch my drift.
+![json-example-3](https://github.com/frikky/shuffle-docs/blob/master/assets/json-example-3.png?raw=true)
+
+### Examples
+1. We have two nodes, and want "testing_2" to use the data from "testing_1". With "testing_2" selected, choose "testing_1" as data source.
+![passing-values-1](https://github.com/frikky/shuffle-docs/blob/master/assets/passing-values-1.png?raw=true)
+
+2. The same exact configuration, but using a static value.
+![passing-values-2](https://github.com/frikky/shuffle-docs/blob/master/assets/passing-values-2.png?raw=true)
+
+3. Using the execution argument from 2 items (testing_1 and execution argument). The execution argument is defined to be "Hey this is cool" as seen in the bottom left.
+![passing-values-3](https://github.com/frikky/shuffle-docs/blob/master/assets/passing-values-3.png?raw=true)
+
+Result for #3:
+![passing-values-4](https://github.com/frikky/shuffle-docs/blob/master/assets/passing-values-4.png?raw=true)
+
+## Passing values - lists
+Lists are a different ballgame, but are really important to a SOAR solution. One simple reason would be: what if you have some alerts you want from system X to system Y? That will most likely be a list. 
+
+PS: lists currently use all items (may 2020), and can't be limited to a few. This will change.
+
+In the same way a node is identified by $, a list is identified by #. Say we have the following json data, and we want parse the "users" list. The node name is repeat_list (more below in example.
+```
+repeat_list = {
+	"users": [{
+		"name": "fredrik",
+		"username": "@frikky",
+		"id": "12345"
+	},
+	{
+		"name": "moomo",
+		"username": "shuffle user 2",
+		"id": "23456"
+	}]
+}
+```
+
+To get all the "ids" from the list, we would write:
+* $exec.users.#.id
+
+Explanation:
+1. $repeat_list = execution_argument
+2. .users 			= "users" in the json data 
+3. .# 					= the list identifier. This means we want to check the list.
+4. .id 					= get all the IDs
+
+Return: ["12345", "23456"]
+
+### Examples
+Let's use the example above in a real test.
+
+1. We define a node, repeat_list, that gives us the list we defined above.
+![values-passing-list-1](https://github.com/frikky/shuffle-docs/blob/master/assets/values-passing-list-1.png?raw=true)
+
+2. We define a second node that returns the ID's as described above.
+![values-passing-list-2](https://github.com/frikky/shuffle-docs/blob/master/assets/values-passing-list-2.png?raw=true)
+
+3. Check the results.
+![values-passing-list-3](https://github.com/frikky/shuffle-docs/blob/master/assets/values-passing-list-3.png?raw=true)
+
+4. To build upon what we just created, we want to recreate the data described above as such:
+```
+{
+	"ids": ["12345", "23456"],
+	"names": ["fredrik", "moomo"],
+	"usernames": ["@frikky", "shuffle user 2"]
+}
+```
+
+This should work:
+```
+{
+		"ids": $repeat_list.users.#.id,
+		"names": $repeat_list.users.#.name,
+		"usernames": $repeat_list.users.#.username
+}
+```
+
+PS: Shuffle might throw you a JSON error for this, but that's expected behavior.
+
+Here, we build the json we want ourselves. This is powerful, as we can basically define whatever data we want.
+![values-passing-list-4](https://github.com/frikky/shuffle-docs/blob/master/assets/values-passing-list-4.png?raw=true)
+
+## Authentication
+Authetication is important for Shuffle and all API related software. The reason being that you can't connect to other services without authentication.
+
+There are a few forms of authentication in Shuffle workflows:
+* Authentication to other apps
+* Authentication to execute a workflow
+
+### App Authentication
+As a user, authentication to an app should be pretty straight forward: Fill in some fields. These fields are usually the first arguments, including the endpoint URL, and will be required (orange circle). 
+
+Here's and example for TheHive:
+![thehive-authentication-1](https://github.com/frikky/shuffle-docs/blob/master/assets/thehive-authentication-1.png?raw=true)
+
+If the app is generated using the App Creator in Shuffle, that uses OpenAPI, this should be consistent.
+
+PS: If an app is self-made, this might not be the case, as the creator defines it.
+
+**Advice: Use a workflow variable to control this**
+
+### Workflow authentication
+For each workflow execution, Shuffle generates a random authorization key that has to be used to interact with the execution itself. This is automated and here for informational reasons
+
+In short: If you're not an admin and not a specific worker running the execution, you shouldn't be able to tamper with an execution.
 
 ## API
-TBD 
+TBD - The API exists, but isn't documented yet. 
 
 
 
 
-
-
-## How-to continuation - send email on a schedule
+# PS: Below is a CLOUD SPECIFIC example
+## How-to continuation
 Now that you have a working example workflow, lets move onto something a little more advanced. We will perform the following actions:
 1. Change action in our testing node from "Hello world" to "Repeat back to me" 
 2. Set the input for "Repeat back to me" to be the argument we supply when executing

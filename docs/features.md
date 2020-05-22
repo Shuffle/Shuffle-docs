@@ -32,10 +32,7 @@ Most of our playbooks will be defined based on Mitre Att&ck, and use the latest 
 With OpenAPI in mind, we started building out Shuffle. OpenAPI is a specification used to standardize the way web services talk to each other. In other words, we already have many hundred integrations available, just not loaded for every user yet. [Contact us for more info](/docs/contact)
 
 ### Mitre Att&ck
-With security being one of our specialities, we landed our thoughts on leveraging the framework to the most of it capabilities, both in detection engineering and threat hunting. 
-
-## Staff training 
-With our knowledge of your detection engineering scope, we can help you focus your training on what really matters. Don't know where to start? [Contact us](/contact)
+With security being one of our specialities, we are building capabilities to leverage Mitre Att&ck to help with detection and hunting. It's hard to get started when the framework doesn't know anything about your environment.. But what if it did?
 
 ## Self documenting, reporting and compliance
 Stuck manually giving information to your boss, your auditors or colleagues? Don't worry, we got it covered. We can quickly check whether you fill most or all the required complaince needs for your SOC. This can be anything from GDPR to PCI-DSS.
