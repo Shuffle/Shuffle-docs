@@ -1,5 +1,7 @@
-# Hybrid
+# Hybrid 
 Documentation for how to get integrate onpremise and cloud 
+
+PS: This has nothing to do with the Open-Source version for now (23.05.2020)
 
 # Table of contents
 * [Introduction](#introduction)

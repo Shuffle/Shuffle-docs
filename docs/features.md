@@ -3,11 +3,11 @@ Describes the features we already have or plan to build.
 
 # Table of contents
 * [Introduction](#introduction)
-* [Automation builder](#automation builder)
-* [App builder](#app builder)
-* [Default playbooks](#Default playbooks)
-* [Open frameworks](#Open frameworks)
-* [Automated compliance](#Automated compliance)
+* [Automation builder](#automation_builder)
+* [App builder](#app_builder)
+* [Default playbooks](#default_playbooks)
+* [Open frameworks](#open_frameworks)
+* [Automated compliance](#automated_compliance)
 
 ## Introduction
 With the problems described in [our about page](/docs/about) in mind, these are some of the features we want to help solve. With part of our overall goal being to move the bottom part of the security industry into the upper echelon, a lot needs to be automated, but that's not enough. You also need to build working implementations, do staff training in the service itself,
