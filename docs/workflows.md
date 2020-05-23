@@ -12,6 +12,7 @@ Documentation for workflows.
 * [Execute](#execute)
 * [Delete](#delete)
 * [Nodes](#nodes)
+* [Conditions](#conditions)
 * [Starting node](#starting_node)
 * [Variables](#variables)
 * [Execution argument](#execution_argument)
@@ -72,7 +73,7 @@ If you want to test more, go to the bottom of this article [How-to continuation]
 ## Nodes 
 Nodes are the draggable parts from the left-side view - apps and triggers. Whenever you click of these, you will get the view on the right side of the screen with configurations. Apps are standardized, while triggers are all different. 
 
-Most nodes use values that you can pass to them. These can be text specified by you (pencil icon), [an app result](#passing values) or from [variables](#variables)(heart icon).
+Most nodes use values that you can pass to them. These can be text specified by you (pencil icon), [an app result](#passing_values) or from [variables](#variables)(heart icon).
 
 ![argument-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/argument-example-1.png?raw=true)
 
@@ -96,7 +97,7 @@ PS: Conditions are currently only AND, not OR, meaning you would need multiple b
 4. Here's another example, where it would run IF the [execution argument](#execution argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
 ![conditions-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-4.png?raw=true)
 
-5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing values))
+5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing_values))
 ![conditions-example-5](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-5.png?raw=true)
 
 ## Execution argument
