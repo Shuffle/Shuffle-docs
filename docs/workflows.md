@@ -16,7 +16,7 @@ Documentation for workflows.
 * [Starting node](#starting_node)
 * [Variables](#variables)
 * [Execution argument](#execution_argument)
-* [Passing values](#passing_values_between_nodes)
+* [Passing values](#passing_values)
 * [Parsing JSON](#parsing_json)
 * [Authentication](#authentication)
 * [API](#api)
