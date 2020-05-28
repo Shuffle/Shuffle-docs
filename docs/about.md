@@ -8,6 +8,7 @@ More in the blogposts below.
 
 ## Blogposts
 * [Introducing Shuffle](https://medium.com/security-operation-capybara/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12)
+* [Getting started with Shuffle](https://medium.com/@Frikkylikeme/getting-started-with-shuffle-an-open-source-soar-platform-part-2-1d7c67a64244)
 
 ## Problems Shuffle solves 
 These included, but were not limited to (no specific order):
