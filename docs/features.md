@@ -1,11 +1,12 @@
 # Features 
 Describes the features we already have or plan to build. 
 
-There are two versions:
 SaaS: [Shuffle Cloud](https://shuffler.io)
 Open Source: [Shuffle onprem](https://github.com/frikky/shuffle)
 
 These have slightly different features, with active development focused on the Open Source version for now.
+
+[Contact us](https://shuffler.io/contact) for more info
 
 # Table of contents
 * [Introduction](#introduction)
