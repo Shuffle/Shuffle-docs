@@ -284,9 +284,7 @@ For each workflow execution, Shuffle generates a random authorization key that h
 In short: If you're not an admin and not a specific worker running the execution, you shouldn't be able to tamper with an execution.
 
 ## API
-TBD - The API exists, but isn't documented yet. 
-
-
+[Click here to see the Workflow API](/docs/api#workflows)
 
 
 # PS: Below is a CLOUD SPECIFIC example

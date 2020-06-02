@@ -117,4 +117,4 @@ Required permissions (either or):
 ![Apps view 8](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-8.png?raw=true)
 
 ## API 
-TBD
+[Click here to see the App API](/docs/api#apps)
