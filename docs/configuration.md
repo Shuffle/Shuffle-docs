@@ -7,6 +7,7 @@ Documentation for configuring Shuffle.
 * [Introduction](#introduction)
 * [Updating Shuffle](#updating_shuffle)
 * [HTTPS](#https)
+* [Database](#database)
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
 * [App Debugging](#app_debugging)
@@ -15,8 +16,12 @@ Documentation for configuring Shuffle.
 ## Introduction
 With Shuffle being Open Sourced, there is a need for a place to read about configuration. There are quite a few options, and this article aims to delve into those.
 
+Shuffle is based on Docker and is started using docker-compose with configuration items in a .env file. .env has the configuration items to be used for default environment changes, database locations, port forwarding, github locations and more. 
+
 ## Updating Shuffle
 As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure as possible, do this as much as you please.
+
+**PS: Default database location has been changed from /etc/shuffle to ./etc/shuffle, meaning you might need to change it**
 
 While being in the main repository:
 ```
@@ -25,6 +30,11 @@ git pull
 docker-compose pull
 docker-compose up
 ```
+
+## Database
+The Shuffle database has a single configuration right now: it's location. The location was initially /etc/shuffle, but is now ./etc/shuffle to not have permission errors.
+
+To modify the database location, change "DB_LOCATION" in .env (root dir) to your new location.
 
 ## HTTPS
 HTTPS is enabled by default on port 3443 with a self-signed certificate for localhost. If you would like to change this, the only way (currently) is to add configure and rebuild the frontend. If you don't have HTTPS enabled, check [updating shuffle](#updating_shuffle) to get the latest configuration.
