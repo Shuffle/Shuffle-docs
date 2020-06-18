@@ -18,6 +18,7 @@ Documentation for workflows.
 * [Execution argument](#execution_argument)
 * [Passing values](#passing_values)
 * [Parsing JSON](#parsing_json)
+* [Casting values](#casting_values)
 * [Authentication](#authentication)
 * [API](#api)
 * [How-to continuation (CLOUD)](#how-to_continuation)
@@ -258,6 +259,19 @@ PS: Shuffle might throw you a JSON error for this, but that's expected behavior.
 
 Here, we build the json we want ourselves. This is powerful, as we can basically define whatever data we want.
 ![values-passing-list-4](https://github.com/frikky/shuffle-docs/blob/master/assets/values-passing-list-4.png?raw=true)
+
+## Casting values
+There are a multitude of reasons casting to exist. This might be that you want a string to be a number, in upper or lowercase or even a list. To do this, casting was implemented in the App SDK. Here are the currently existing casting methods:
+
+| Operation | Input type | Example | Return value | Return type | Alias | Note  |
+| --------- | ------- |------- | ------------ | ----------- | ---- | ----- | 
+| number()  | string | number(10) | 10 | integer | int() | String to int casting |
+| lower()   | string | lower(HELLO) | hello | string | | Makes a string lowercase |
+| upper()   | string | upper(hello) | HELLO | string | | Makes a string uppercase |
+| trim()    | string | trim( hello ) | hello | string | strip() | Removes whitespace around a string |
+| split()   | string | split(hello you) | [hello,you] | list | | Splits a list by whitespace. Will have options in the future | 
+| length()  | string | length(hello)  | 5 | integer | len() | Returns the length of a string |
+| parse()   | list, string | parse(["hey", "how", "are", "you"], 1:2) | how are | string | | Uses python slice annotaion after list: https://stackoverflow.com/questions/509211/understanding-slice-notation |
 
 ## Authentication
 Authetication is important for Shuffle and all API related software. The reason being that you can't connect to other services without authentication.
