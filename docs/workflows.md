@@ -14,8 +14,9 @@ Documentation for workflows.
 * [Nodes](#nodes)
 * [Conditions](#conditions)
 * [Starting node](#starting_node)
-* [Variables](#variables)
 * [Execution argument](#execution_argument)
+* [Workflow Variables](#workflow_variables)
+* [Execution variables](#execution_variables)
 * [Passing values](#passing_values)
 * [Parsing JSON](#parsing_json)
 * [Casting values](#casting_values)
@@ -107,18 +108,24 @@ The execution argument is what makes it possible for triggers to work. This is t
 ![execution-argument-1](https://github.com/frikky/shuffle-docs/blob/master/assets/execution-argument-1.png?raw=true)
 
 The execution argument acts like a node, meaning you can use its value anywhere.
+Fieldname: $exec
 
-## Variables
-Workflow variables are reusable datapoints. These are typically used for specific APIkeys, URL's or usernames. 
+## Workflow Variables
+Workflow variables is static reusable data decided before an execution. These are typically used for APIkeys, URL's or usernames. [Click here to see Executio variables](/docs/workflows#execution_variables)
 
-Here's some things to keep in mind when using workflow variables:
-* They are shared with everyone with access to the workflow 
+Some things to keep in mind when using workflow variables:
+* They are set BEFORE an execution
 * They are unencrypted
+* They are shared with everyone with access to the workflow 
 * They are only accessible to the workflow you're in.
 
-We are working on a way to have encrypted global variables to be used for passwords and global APIkeys (and more) with IAM, but that might take a while to implement properly.
+Use-case:
+* Save URLs, API keys and more.
 
-Here's how to create and use a variable:
+PS: We are working on a way to have encrypted global variables to be used for passwords and global APIkeys (and more) with IAM, but that might take a while to implement properly.
+
+**How to create and use a workflow variable:**
+
 1. Click "Variables" in the bottom left corner.
 ![variable-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-1.png?raw=true)
 
@@ -131,6 +138,38 @@ Here's how to create and use a variable:
 4. Use the variable in an action or condition
 ![variable-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-4.png?raw=true)
 
+## Execution Variables
+Execution variables work the same way as Workflow Variables, except they HAVE to be set during execution. These are temporary datapoints that will not be saved anywhere. They work by taking the RESULT of an action of your choosing (examples below), done with a single click. If you're looking for static data, [click here to see Workflow variables](/docs/workflows#workflow_variables)
+
+Some things to keep in mind using execution variables:
+* They are set DURING execution
+* They are used during execution
+* They are unencrypted
+
+Use-case:
+* E.g. basic multi-tenancy
+
+**How to create, use and check execution variables:**
+
+1. Click "Variables" in the bottom left corner.
+![variable-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-1.png?raw=true)
+
+2. Click "New execution variable".
+![variable-example-5](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-5.png?raw=true)
+
+3. Choose a unique name. It only requires a name as the variable is set DURING execution, in this case "Testing"
+![variable-example-6](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-6.png?raw=true)
+
+4. Now click an existing action and choose the variable. This will set the RESULT of the action to the execution variable. 
+![variable-example-7](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-7.png?raw=true)
+
+5. Add another node and USE the variable. The variable can also be used by typing "$testing" in the "Static data" textfield. The repeated value in this case will be the value from the "Hello World" node set in step 4.
+![variable-example-8](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-8.png?raw=true)
+
+6. If you're unsure whether the value is set during execution or not, check the results. The last three results are available in the web UI, and can be seen by clicking the variable on the left side.
+![variable-example-9](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-9.png?raw=true)
+![variable-example-10](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-10.png?raw=true)
+
 
 ## Passing values
 Passing values is what makes a solution like Shuffle work. It allows you to pass value from app X to app Y seemlessly. There are currently a couple of different ways to pass values between nodes, that also applies for conditions.
@@ -141,7 +180,7 @@ Passing values is what makes a solution like Shuffle work. It allows you to pass
 Using a previous action, you get a selection of all previous nodes, as well as the execution argument.
 
 If you use the "static data" field (pencil), you have to write it out yourself. 
-* "$testing_1" will get the data from the node "testing_1"
+* "$testing_1" will get the data from the node "testing_1" OR variable "testing_1"
 * "$exec" will get the execution argument. 
 
 PS: it still only works with PREVIOUS nodes. This method is also error prone.
@@ -301,8 +340,7 @@ In short: If you're not an admin and not a specific worker running the execution
 [Click here to see the Workflow API](/docs/api#workflows)
 
 
-# PS: Below is a CLOUD SPECIFIC example
-## How-to continuation
+# CLOUD SPECIFIC example
 Now that you have a working example workflow, lets move onto something a little more advanced. We will perform the following actions:
 1. Change action in our testing node from "Hello world" to "Repeat back to me" 
 2. Set the input for "Repeat back to me" to be the argument we supply when executing
