@@ -7,6 +7,7 @@ Documentation for Shuffle API v1.0
 * [Responses](#responses)
 * [Workflows](#workflows)
 * [Apps](#apps)
+* [Users](#users)
 
 ## Introduction
 Shuffle is a platform to build and execute [workflows](/docs/workflows) to help with automation and reduce burnout. It's built with an API structure in mind, and everything done has an API endpoint. The listed API's are built and generated with our own [OpenAPI creator](/docs/apps#create_openapi_app). All API's listed will use the https://shuffler.io endpoint, but you can change it for your local instance.
@@ -211,7 +212,7 @@ Example: {"search": "secure"} will match both "secureworks" and "Cisco openVuln"
 Methods: POST
 
 ```
-curl https://shuffler.io/api/v1/apps/search -H "Authorization: Bearer APIKEY" `{"search": "APPNAME"}`
+curl https://shuffler.io/api/v1/apps/search -H "Authorization: Bearer APIKEY" -d '{"search": "APPNAME"}'
 ```
 
 **Success response** 
@@ -222,3 +223,84 @@ curl https://shuffler.io/api/v1/apps/search -H "Authorization: Bearer APIKEY" `{
 
 ### Download REMOTE apps
 Describes how to download remote apps from a Github repository, including private ones.
+
+## Users 
+Below are the endpoints related to user creation, editing, listing, apikey generation and more. 
+
+**PS: These are NOT accurate for https://shuffler.io yet.**
+
+### List users
+Lists all available users. Requires admin rights.
+
+Methods: GET
+
+```
+curl https://shuffler.io/api/v1/users -H "Authorization: Bearer APIKEY" 
+```
+
+**Success response** 
+List of users
+
+### Register a new user 
+Registers a user based on the username and password provided. If it's the first user, it can be done by anyone, otherwise only admins.
+
+Methods: POST
+
+```
+curl https://shuffler.io/api/v1/users/register -H "Authorization: Bearer APIKEY" -d '{"username": "username", "password": "P@ssw0rd"}'
+```
+
+
+**Success response** 
+```
+{"success": true}
+```
+
+### Update a user
+Updates a user. Requires admin rights. 
+
+Supported fields: 
+* username 
+* role (admin/user)
+
+Methods: PUT
+
+```
+curl https://shuffler.io/api/v1/users/register -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "user"}'
+```
+
+
+**Success response** 
+```
+{"success": true}
+```
+
+### Deactivates a user
+Deactivates a user. This exists instead of a deletion method. Requires admin rights.
+
+Method: DELETE 
+
+```
+curl -XDELETE https://shuffler.io/api/v1/users/{userid} -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"success": true}
+```
+
+### Get new apikey
+Re-generates a new apikey. Requires admin for POST. GET changes YOUR apikey. The API-key will always be 36 in length ([uuid](https://en.wikipedia.org/wiki/Universally_unique_identifier))
+
+Methods: GET, POST (admin)
+
+```
+curl https://shuffler.io/api/v1/users/generateapikey -H "Authorization: Bearer APIKEY" -d '{"user_id": "id"}
+```
+
+
+**Success response** 
+```
+{"success": true, "username": "username", "verified": false, "apikey": "new apikey"}
+```
