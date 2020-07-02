@@ -30,7 +30,7 @@ docker pull frikky/shuffle:worker
 docker-compose down
 git pull
 docker-compose pull
-docker-compose up
+docker-compose up -d
 ```
 
 ## Database
