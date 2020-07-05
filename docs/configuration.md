@@ -6,6 +6,7 @@ Documentation for configuring Shuffle.
 # Table of contents
 * [Introduction](#introduction)
 * [Updating Shuffle](#updating_shuffle)
+* [Proxy Configuration](#proxy_configuration)
 * [HTTPS](#https)
 * [Database](#database)
 * [Debugging](#debugging)
@@ -32,6 +33,24 @@ git pull
 docker-compose pull
 docker-compose up -d
 ```
+
+## Proxy configuration
+Proxies are another requirement to many enterprises, hence it's an important feature to support. There are two places where proxies can be implemented:
+* Shuffle Backend: Connects to Github and Dockerhub.
+* Shuffle Orborus: Connects to Dockerhub and Shuffle Backend.
+
+**PS: Orborus settings are also set for Worker and Apps**
+
+To configure these, there are two options:
+* Individual containers
+* Globally for Docker
+
+### Individual containers
+To set up proxies in individual containers, open docker-compose.yml and add the following lines with your proxy settings (http://my-proxy.com:8080 in my case):
+![Proxy containers](https://github.com/frikky/shuffle-docs/blob/master/assets/proxy_containers.png?raw=true)
+
+### Global Docker proxy configuration
+Follow this guide from Docker: https://docs.docker.com/network/proxy/
 
 ## Database
 The Shuffle database has a single configuration right now: it's location. The location was initially /etc/shuffle, but is now ./etc/shuffle to not have permission errors. To fix the issue, type ./shuffle-database
