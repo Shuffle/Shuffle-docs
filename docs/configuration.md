@@ -39,7 +39,7 @@ Proxies are another requirement to many enterprises, hence it's an important fea
 * Shuffle Backend: Connects to Github and Dockerhub.
 * Shuffle Orborus: Connects to Dockerhub and Shuffle Backend.
 
-**PS: Orborus settings are also set for Worker and Apps**
+**PS: Orborus settings are also set for the Worker**
 
 To configure these, there are two options:
 * Individual containers
