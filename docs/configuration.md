@@ -45,7 +45,7 @@ To configure these, there are two options:
 * Individual containers
 * Globally for Docker
 
-### Individual containers
+### Individual container proxy
 To set up proxies in individual containers, open docker-compose.yml and add the following lines with your proxy settings (http://my-proxy.com:8080 in my case):
 ![Proxy containers](https://github.com/frikky/shuffle-docs/blob/master/assets/proxy-containers.png?raw=true)
 
