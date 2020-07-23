@@ -19,6 +19,15 @@ With Shuffle being Open Sourced, there is a need for a place to read about confi
 
 Shuffle is based on Docker and is started using docker-compose with configuration items in a .env file. .env has the configuration items to be used for default environment changes, database locations, port forwarding, github locations and more. 
 
+## Installing Shuffle
+Check out the [installation guide](https://github.com/frikky/shuffle/blob/master/install-guide.md), however if you're on linux:
+
+```
+git clone https://github.com/frikky/Shuffle
+cd Shuffle
+docker-compose up -d
+```
+
 ## Updating Shuffle
 As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure as possible, do this as much as you please.
 
@@ -45,12 +54,15 @@ To configure these, there are two options:
 * Individual containers
 * Globally for Docker
 
-### Individual container proxy
-To set up proxies in individual containers, open docker-compose.yml and add the following lines with your proxy settings (http://my-proxy.com:8080 in my case):
-![Proxy containers](https://github.com/frikky/shuffle-docs/blob/master/assets/proxy-containers.png?raw=true)
-
 ### Global Docker proxy configuration
 Follow this guide from Docker: https://docs.docker.com/network/proxy/
+
+### Individual container proxy
+To set up proxies in individual containers, open docker-compose.yml and add the following lines with your proxy settings (http://my-proxy.com:8080 in my case).
+
+**PS: Make sure to use uppercase letters, and not lowercase (HTTP_PROXY, NOT http_proxy)**
+
+![Proxy containers](https://github.com/frikky/shuffle-docs/blob/master/assets/proxy-containers.png?raw=true)
 
 ## Database
 The Shuffle database has a single configuration right now: it's location. The location was initially /etc/shuffle, but is now ./etc/shuffle to not have permission errors. To fix the issue, type ./shuffle-database

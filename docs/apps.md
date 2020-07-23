@@ -8,6 +8,8 @@ PS: App creation and searching is for the on-premise version.
 * [How they work](#how_they_work)
 * [Actions](#actions)
 * [Arguments](#arguments)
+* [Downloading apps](#updating_apps)
+* [Updating apps](#updating_apps)
 * [Searching for apps](#searching_for_apps)
 * [Create OpenAPI app](#create_openapi_app)
 * [Edit OpenAPI app](#edit_openapi_app)
@@ -43,6 +45,17 @@ Arguments are the variables used to perform an action. Arguments with an orange 
 You can see what parameters and action has by going to /apps, selecting an app and then the action.
 
 ![Apps view 3](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-3.png?raw=true)
+
+## Updating apps 
+**PS: This only applies to onprem**
+Going to /apps, there exists a button called "Download from Github" which by default will download apps from the directory https://github.com/frikky/shuffle-apps. You can type in your own repository along with authentication options if applicable.
+
+![Apps view 11](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-11.png?raw=true)
+
+When the modal opens, there are two buttons:
+* Submit - Downloads and builds NEW apps
+* Force update - Downloads and builds ALL apps
+* Cancel - Closes the modal with no action
 
 ## Searching for apps
 When you set up Shuffle for the first time, it should provide you with 15-20 existing Apps. These are gathered from [shuffle-apps](https://github.com/frikky/shuffle-apps), and will grow over time. 
