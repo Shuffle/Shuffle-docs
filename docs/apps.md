@@ -67,7 +67,7 @@ Searching for apps is done by going to /apps and writing your search term. In th
 A goal for Shuffle is to make it possible to search outside the apps you currently have. This is an [open issue](https://github.com/frikky/Shuffle/issues/24) as of 23.05.2020, but will be worked on.
 
 ## Create OpenAPI app
-TBD: Finish this. 
+[Further documentation: App Creation](/docs/app_creation)
 
 
 If you have an OpenAPI config:

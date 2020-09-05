@@ -8,6 +8,7 @@ Documentation for configuring Shuffle.
 * [Updating Shuffle](#updating_shuffle)
 * [Proxy Configuration](#proxy_configuration)
 * [HTTPS](#https)
+* [Kubernetes](#kubernetes)
 * [Database](#database)
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
@@ -64,11 +65,6 @@ To set up proxies in individual containers, open docker-compose.yml and add the 
 
 ![Proxy containers](https://github.com/frikky/shuffle-docs/blob/master/assets/proxy-containers.png?raw=true)
 
-## Database
-The Shuffle database has a single configuration right now: it's location. The location was initially /etc/shuffle, but is now ./etc/shuffle to not have permission errors. To fix the issue, type ./shuffle-database
-
-To modify the database location, change "DB_LOCATION" in .env (root dir) to your new location. 
-
 ## HTTPS
 HTTPS is enabled by default on port 3443 with a self-signed certificate for localhost. If you would like to change this, the only way (currently) is to add configure and rebuild the frontend. If you don't have HTTPS enabled, check [updating shuffle](#updating_shuffle) to get the latest configuration.
 
@@ -84,6 +80,19 @@ After changing certificates, you can rebuild the entire frontend by running (./f
 ```
 ./run.sh
 ```
+
+## Kubernetes  
+Shuffle use with Kubernetes is now possible due to help from our contributors. This has not extensively been tested, so please reach out to @frikkylikeme if you're having execution issues.
+
+### Configuring Kubernetes:
+To configure Kubernetes, you need to specify a single environment variable for Orborus: RUNNING_MODE. By setting the environment variable RUNNING_MODE=kubernetes, execution should work as expected!
+
+## Database
+The Shuffle database has a single configuration right now: it's location. The location was initially /etc/shuffle, but is now ./etc/shuffle to not have permission errors. To fix the issue, type ./shuffle-database
+
+To modify the database location, change "DB_LOCATION" in .env (root dir) to your new location. 
+
+
 
 ## Debugging
 As Shuffle has a lot of individual parts, debugging can be quite tricky. To get started, here's a list of the different parts, with the latter three being modular / location independant.
