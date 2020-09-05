@@ -36,8 +36,6 @@ As long as you use Docker, updating Shuffle is pretty straight forward. To make 
 
 While being in the main repository:
 ```
-docker pull frikky/shuffle:app_sdk
-docker pull frikky/shuffle:worker
 docker-compose down
 git pull
 docker-compose pull
