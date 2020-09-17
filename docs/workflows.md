@@ -108,7 +108,13 @@ The execution argument is what makes it possible for triggers to work. This is t
 ![execution-argument-1](https://github.com/frikky/shuffle-docs/blob/master/assets/execution-argument-1.png?raw=true)
 
 The execution argument acts like a node, meaning you can use its value anywhere.
-Fieldname: $exec
+These are the different names for it: 
+* $exec
+* $trigger
+* $webhook
+* $schedule
+* $userinput
+* $email_trigger
 
 ## Workflow Variables
 Workflow variables is static reusable data decided before an execution. These are typically used for APIkeys, URL's or usernames. [Click here to see Executio variables](/docs/workflows#execution_variables)
