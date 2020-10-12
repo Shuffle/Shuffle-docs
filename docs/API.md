@@ -203,6 +203,14 @@ Methods: GET
 curl https://shuffler.io/api/v1/apps -H "Authorization: Bearer APIKEY"
 ```
 
+### Delete an app 
+Deletes an app if you have access to delete it.
+
+Methods: DELETE
+
+```
+curl -XDELETE https://shuffler.io/api/v1/apps/{app_id} -H "Authorization: Bearer APIKEY"
+```
 
 ### Search existing apps 
 Returns a list of apps that are hidden in the backend, e.g. OpenAPI apps loaded from [Security API's](https://github.com/frikky/OpenAPI-security-definitions). Requires the search parameter. 
