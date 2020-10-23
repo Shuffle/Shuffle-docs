@@ -30,9 +30,7 @@ docker-compose up -d
 ```
 
 ## Updating Shuffle
-As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure as possible, do this as much as you please.
-
-**PS: Default database location has been changed from /etc/shuffle to ./shuffle-database, meaning you might need to change it**
+As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure and up to date as possible, do this as much as you please.
 
 While being in the main repository:
 ```
@@ -40,7 +38,11 @@ docker-compose down
 git pull
 docker-compose pull
 docker-compose up -d
+docker pull frikky/shuffle:app_sdk
+docker pull frikky/shuffle:worker
 ```
+
+**PS: This will NOT update your apps, meaning they may be outdated. To update your apps, go to /apps and click both buttons in the top right corner (reload apps locally & Download from Github)**
 
 ## Proxy configuration
 Proxies are another requirement to many enterprises, hence it's an important feature to support. There are two places where proxies can be implemented:
