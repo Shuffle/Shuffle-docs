@@ -1,4 +1,4 @@
-# API 
+# Architecture
 Documentation to understand the Shuffle architecture and thoughts behind choices. Important to understand if you want to contribute.
 
 TBD: Add images, and describe architecture properly
@@ -32,3 +32,4 @@ The reason behind the usage of Golang is simple: Stability. Bash scripts and Pyt
 | app sdk  | Python | Used by Apps to talk to the backend |
 
 ## Architecture overview
+![Architecture](https://github.com/frikky/shuffle-docs/blob/master/assets/shuffle_architecture.png?raw=true)

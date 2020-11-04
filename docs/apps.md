@@ -1,5 +1,5 @@
 # Apps
-Documentation for apps
+Documentation for apps. If you'd like to make an app using Python3, [check out this guide](/docs/app_creation)
 
 PS: App creation and searching is for the on-premise version.
 
@@ -46,7 +46,7 @@ You can see what parameters and action has by going to /apps, selecting an app a
 
 ![Apps view 3](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-3.png?raw=true)
 
-## Updating apps 
+## Updating apps remotely
 **PS: This only applies to onprem**
 Going to /apps, there exists a button called "Download from Github" which by default will download apps from the directory https://github.com/frikky/shuffle-apps. You can type in your own repository along with authentication options if applicable.
 
@@ -67,26 +67,28 @@ Searching for apps is done by going to /apps and writing your search term. In th
 A goal for Shuffle is to make it possible to search outside the apps you currently have. This is an [open issue](https://github.com/frikky/Shuffle/issues/24) as of 23.05.2020, but will be worked on.
 
 ## Create OpenAPI app
-[Further documentation: App Creation](/docs/app_creation)
-
-
-If you have an OpenAPI config:
+**If you have an OpenAPI config already**
 * Click the "Generate from OpenAPI", paste the URL or data for your OpenAPI specification, then validate, before submitting. This should show you the app creator.
 ...
 
-From scratch:
-* Click the "Create from scratch" button, then use the editor.
+**If you want to create an app**
+* Click the "Create from scratch" button, then [use the editor.](/docs/apps#edit_openapi_app)
+
+[Further app creation documentation (Python3)](/docs/app_creation)
 
 ![Apps view 5](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-5.png?raw=true)
+
+## Edit OpenAPI app
+Creating or editing an app in Shuffle is made to be as simple as possible
+
+Prerequisite knowledge:
+* HTTP - POST, GET etc.
 
 App creator:
 * Add name, description, authentication, endpoint etc..
 * Create Actions.
 * Save.
 ![Apps view 6](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-6.png?raw=true)
-
-## Edit OpenAPI app
-TBD: Finish this.
 
 If you've created an app using the editor, or uploaded an OpenAPI specification, it's changeable. Find the app you created by searching for it, then click the "Edit app" button as seen below. You can also delete it.
 
@@ -98,9 +100,9 @@ Required permissions (either or):
 TBD
 
 ## Create custom app 
-TBD: Create for Shuffle. 
+TBD: This is not finished. 
 
-Since Shuffle is based on WALKOFF, [their guide works for app development](https://walkoff.readthedocs.io/en/latest/apps.html). 
+Since Shuffle is based on WALKOFF, [their guide works for app development](https://walkoff.readthedocs.io/en/latest/apps.html). Further reading will later be available [here](/docs/app_creation)
 
 If you end up using WALKOFF, you need to make ONE edit: 
 - Change the first line to: FROM frikky/shuffle:app_sdk as base
@@ -119,7 +121,7 @@ If you have a repository (private or public) of custom apps for Shuffle (or WALK
 3. Hit submit. If it's unsuccessful, it will throw an error, otherwise show a loading icon. This means it's working on getting your apps.
 
 ## Delete app 
-PS May 2020: There is nothing stopping you from deleting an app that is used by a workflow right now. This might be destructive.
+**PS: May 2020: There is nothing stopping you from deleting an app that is used by a workflow right now. This is a destructive action, and will make some workflows using the app unusable.**
 
 Deleting an app is done by searching for it in /apps. 
 
