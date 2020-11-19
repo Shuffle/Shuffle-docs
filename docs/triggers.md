@@ -11,7 +11,7 @@ Documentation for triggers, running workflow executions
 * [API](#api)
 
 ## Introduction
-Triggers are the operators used to run a [workflow](/docs/workflow) execution automatically. They are connected to a node/action in the workflow - usually the starting node. Triggers usually take an execution argument that will be used to execute the workflow in question.
+Triggers are the operators used to execute a [workflow](/docs/workflow) automatically. They are connected to a actions within workflows - often the starting node. Triggers usually take an execution argument that will be used to execute the workflow in question.
 
 This image shows a simple workflow with two triggers: Webhook & Scheduler. 
 ![logos-triggers](https://github.com/frikky/shuffle-docs/blob/master/assets/logos-triggers.png?raw=true)
@@ -76,10 +76,18 @@ Schedules on-prem are ran on the webserver itself. Rather than cron, it uses a s
 ![Triggers-view-3](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-3.png?raw=true)
 
 ### User input
-TBD: Cloud only 
+The user input node is a way to temporarily pause an execution until someone MANUALLY clicks something. This can currently be through Email and SMS, but we will introduce many other options, including chat systems and running other workflows.
+
+The point of the node is to wait for manual approval before running some automation. E.g. management approval for new scan schedule. E.g. analyst approval for cleanup up a host. 
+
+![User input node Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-4.png?raw=true)
+
+* Email		- What emails do you want to send the workflow information to?
+* SMS 		- What numbers do you want to send the workflow information to?
+
+When the email/sms is sent, it will look like the image below. We will optimize this over time to reflect everything from Shuffle, but during our initial proof of concept, this is for you to understand. You will get to answer: yes or no? If you answer yes, the workflow execution will continue from where it left off. If you answer no, it will be stopped. This action can be sent to multiple people, but the link will only work once.
+![User input email Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-5.png?raw=true)
+
 
 ### Email
 TBD: Cloud only 
-
-## API 
-TBD: Will come.
