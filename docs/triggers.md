@@ -8,7 +8,6 @@ Documentation for triggers, running workflow executions
 * [Schedule](#schedule)
 * [User Input](#user_input)
 * [Email](#email)
-* [API](#api)
 
 ## Introduction
 Triggers are the operators used to execute a [workflow](/docs/workflow) automatically. They are connected to a actions within workflows - often the starting node. Triggers usually take an execution argument that will be used to execute the workflow in question.
@@ -21,18 +20,18 @@ Triggers, along side apps and variables, can be found on the left hand side, in 
 
 ![Triggers-view-1](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-1.png?raw=true)
 
-Triggers are developed for and by Shuffle specifically to give the user access to multiple ways to run a workflow. There are currently (23.05.2020) four triggers - two for on-prem and 4 for cloud plus the REST api.
+Triggers are developed for and by Shuffle specifically to give the user access to multiple ways to run a workflow. There are currently five ways to execute workflows:
 
-Cloud: Webhook, User Input, Schedule, Email, Rest API
-Onprem: Webhook, Schedule, Rest API
+* Cloud: Webhook, User Input, Schedule, Email, Rest API
+* Onprem: Webhook, User Input, Schedule, Rest API
 
-There are currently three triggers, with a fifth "hidden" one:
-* Webhook 		- Handle realtime HTTP requests from anywhere
-* Schedule 		- Runs your workflow on a schedule
+There are currently four triggers, with a fifth "hidden" one:
+* Webhook 		- Handle realtime HTTP requests from anywhere. 
+* Schedule 		- Runs your workflow on a schedule. Cronjob or seconds.
+* User Input 	- Waits for user input before continuing. You can answer yes/no.
 * Rest API 		- Essentially a trigger from either: 1. Another workflow. 2. Any third party software
 
 Cloud only:
-* User Input 	- Waits for user input before continuing. 
 * Email 			- 23.05.2020: Can listen to office365 incoming mails
 
 ### Webhook
@@ -88,6 +87,5 @@ The point of the node is to wait for manual approval before running some automat
 When the email/sms is sent, it will look like the image below. We will optimize this over time to reflect everything from Shuffle, but during our initial proof of concept, this is for you to understand. You will get to answer: yes or no? If you answer yes, the workflow execution will continue from where it left off. If you answer no, it will be stopped. This action can be sent to multiple people, but the link will only work once.
 ![User input email Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-5.png?raw=true)
 
-
 ### Email
-TBD: Cloud only 
+Cloud only for now. Can handle OAuth2 with Office365, but will get Google Workspaces as well. Will be accessible on-premises at some point.
