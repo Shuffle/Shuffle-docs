@@ -1,8 +1,6 @@
 # Architecture
 Documentation to understand the Shuffle architecture and thoughts behind choices. Important to understand if you want to contribute.
 
-TBD: Add images, and describe architecture properly
-
 # Table of contents
 * [Introduction](#introduction)
 * [Frameworks](#frameworks)

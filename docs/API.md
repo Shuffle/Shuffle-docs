@@ -1,5 +1,5 @@
 # API 
-Documentation for Shuffle API v1.0
+Documentation for Shuffle API v1.0. 
 
 # Table of contents
 * [Introduction](#introduction)
@@ -8,6 +8,7 @@ Documentation for Shuffle API v1.0
 * [Workflows](#workflows)
 * [Apps](#apps)
 * [Users](#users)
+* [Organizations](#organizations)
 
 ## Introduction
 Shuffle is a platform to build and execute [workflows](/docs/workflows) to help with automation and reduce burnout. It's built with an API structure in mind, and everything done has an API endpoint. The listed API's are built and generated with our own [OpenAPI creator](/docs/apps#create_openapi_app). All API's listed will use the https://shuffler.io endpoint, but you can change it for your local instance.
@@ -312,3 +313,8 @@ curl https://shuffler.io/api/v1/users/generateapikey -H "Authorization: Bearer A
 ```
 {"success": true, "username": "username", "verified": false, "apikey": "new apikey"}
 ```
+
+## Organizations 
+Below are the endpoints related to organization creation, editing, listing, apikey generation and more. 
+
+**TBD**

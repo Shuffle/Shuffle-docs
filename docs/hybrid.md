@@ -1,7 +1,7 @@
-# Hybrid 
-Documentation for how to get integrate onpremise and cloud 
+# Hybrid - OUTDATED
+If you'd like to learn about hybrid setup, [check out environments in the admin page](/docs/admin#environments). 
 
-PS: This has nothing to do with the Open-Source version for now (23.05.2020)
+PS: This is outdated (20.11.2020)
 
 # Table of contents
 * [Introduction](#introduction)
