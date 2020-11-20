@@ -39,7 +39,7 @@ git pull
 docker-compose pull
 docker-compose up -d
 docker pull frikky/shuffle:app_sdk
-docker pull frikky/shuffle:worker
+docker pull ghcr.io/frikky/shuffle-worker:0.8.0
 ```
 
 **PS: This will NOT update your apps, meaning they may be outdated. To update your apps, go to /apps and click both buttons in the top right corner (reload apps locally & Download from Github)**
