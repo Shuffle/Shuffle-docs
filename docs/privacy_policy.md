@@ -26,10 +26,14 @@ Valid as of this file's [last release on Github](https://github.com/frikky/shuff
 ## External Social Media Platforms 
 * Twitter and Linkedin widgets
 
+## Payment processor
+We use the third party payment processor [Stripe](https://stripe.com/us/privacy). We do not retain any of the information provided to them during a transaction.
+
 ## External Platforms 
 1. Sendgrid: Emails used for email 
 2. Twilio: Phone numbers used for SMS
 3. Github: Apps and Workflows shared by our users
+4. Stripe: Payments
 
 ## User Data Management
 * Collected data: Email addresses, Domains, Organization names
