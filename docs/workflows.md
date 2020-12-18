@@ -1,8 +1,6 @@
 # Workflows
 Documentation for workflows. 
 
-**PS: some of this migth NOT work on the CLOUD version.**
-
 # Table of contents
 * [Introduction](#introduction)
 * [The Basics](#basics)
