@@ -115,7 +115,7 @@ My app expects 4 arguments, that I consider privileged information that should b
 
 My first argument is a string called "planType". In my workflow if the office365 account I have is Enterprise, I'd populate that, and it would get sent to the app to use.
 * name: case sensitive authentication argument name
-* description: The description shoulds common values for this argument
+* description: The description should display common values for this argument
 * example: The example is a placeholder syntax in absence of a value in user interface. 
 * required: specifies whether it is mandatory to run the app
 * schema: The type of variable can be specified, string is the only one tested but ideally any type could be used here. You can do type casting in your app from string later.
