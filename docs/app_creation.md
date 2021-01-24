@@ -20,10 +20,10 @@ The premise behind all apps that run in Shuffle, is that they each run in an iso
 
 ## Why create a custom app?
 There are many prebuilt apps in Shuffle, and all complete some action. There may an integration you need that doesn't exist yet. This guide will walk you through the process.
-Always remember the key components of the app:<br>
-	* What functions are available in the app?
-	* What arguments are needed for the app to function? - e.g. authentication arguments, json data structure arguments.
-	* What is the output of this function, and what are we doing with that resulting data? e.g. send an email, create a ticket, send to another app for conditional 		processing.
+Always remember the key components of the app:
+* What functions are available in the app?
+* What arguments are needed for the app to function? - e.g. authentication arguments, json data structure arguments.
+* What is the output of this function, and what are we doing with that resulting data? e.g. send an email, create a ticket, send to another app for conditional 		processing.
 	
 	
 
@@ -62,7 +62,7 @@ With our 3 elements in mind, lets build the script on your own. This example is 
 
 Build your python functions with the expected arguments, and ensure it returns the expected output. Once the code works in your environment, you can then integrate into Shuffle apps directory to integrate as an app.
 
-With your App built, we must build a directory structure, some metadata files, and modify a base app.py file to run your code.
+With your python script built, we must build a directory structure, some metadata files, and modify a base app.py file to run your code from Shuffle.
 In your shuffle server, there is a shuffle-apps directory, typically under the top level dir where you cloned the github repo.
 
 /Shuffle/shuffle-apps/
@@ -78,8 +78,146 @@ The directory structure under the app folder should match the expected above.
 The above will make your app folder, and copy the template files from python-playground to your app, you will modify these shortly.
 Now using winscp, or some other method, upload your python app to the /src/ directory of your apps folder.
 
+Now that your app's .py script is uploaded under /Shuffle/shuffle-apps/office365mgmt/src, you'll tell Shuffle how to use it.
+
+We will modify 3 files:
+* api.yaml
+* requirements.txt -- Specify any modules that your app uses, which will be installed via pip
+* src/app.py -- The base app that is called by Shuffle, which in turn will call your python script's functions
+
+### api.yaml
+
+api.yaml is what provides shuffle information about your app. Here we define your apps name, description, author info, actions (functions available), and the paremeters that each function takes.
+
+I will show you the office365mgmt app settings, but feel free to explore other apps api.yaml to see other obscure options.
+
+* name: Office365 Mgt Api -- This is your apps display name as seen in Shuffle GUI. You can put whitespace here, but _ may be better
+* description: Some description -- Your apps description that will display in Shuffle GUI
+* contact_info: If you are maintaining this, please share your details with users
+
+Code Snippet
+```
+app_version: 1.0.0
+name: Office365 Mgt API
+description: Collect AzureActiveDirectory,Exchange,Sharepoint,General, DLP audit logs
+contact_info:
+  name: "@RobertEvans"
+  url: https://shuffler.io
+  email: rob.evans512@gmail.com
+```
+#### Authentication
+
+The next section for me is authentication, my app needs some data to obtain an api token. Not all apps need this step, but if yours requires a key, secret, or password, it is recommended to use a specialized "authentication" declaration in api.yaml, so those credentials are stored safely, and not displayed in cleartext in your Shuffle workflow.
+
+Here I define that my app requires authentication, and a list of parameters, which is a list of arguments specified by -name. The name value can be anything your want, but note this is the name of the argument when passed to app.py, and ultimately your app.
+
+My app expects 4 arguments, that I consider privileged information that should be stored as an authentication object. When this app is run, this credential object once configured in Shuffle will be sent to the app to use.
+
+My first argument is a string called "planType". In my workflow if the office365 account I have is Enterprise, I'd populate that, and it would get sent to the app to use.
+* name: case sensitive authentication argument name
+* description: The description shoulds common values for this argument
+* example: The example is a placeholder syntax in absence of a value in user interface. 
+* required: specifies whether it is mandatory to run the app
+* schema: The type of variable can be specified, string is the only one tested but ideally any type could be used here. You can do type casting in your app from string later.
+```
+authentication:
+  required: true
+  parameters:
+    - name: planType
+      description: Enterprise, GCC , GCCHigh, DoD
+      example: "Enterprise"
+      required: true
+      schema:
+        type: string
+    - name: tenantID
+      description: xxxx-xxxx-xxxx-xxxx
+      example: "xxxx-xxxx-xxxx-xxxx"
+      required: true
+      schema:
+        type: string
+    - name: clientID
+      description: xxxx-xxxx-xxxx-xxxx
+      example: "xxxx-xxxx-xxxx-xxxx"
+      required: true
+      schema:
+        type: string
+    - name: clientSecret
+      description: xxxx-xxxx-xxxx-xxxx
+      example: "*****"
+      required: true
+      schema:
+        type: string
+	
+```
+
+#### Actions
+
+```
+actions:
+  - name: run_o365poller
+    description: Run office365 audit poller for defined interval
+    parameters:
+      - name: json_data
+        description: The JSON to handle
+        required: false
+        multiline: true
+        example: 'No args for now, insert credentials and get returned data'
+        schema:
+          type: string
+      - name: PollInterval
+        description: The selected python function to run
+        required: true
+        multiline: true
+        example: '1'
+        options:
+          - poll_10min
+          - poll_23hours
+        schema:
+          type: string
+    returns:
+      schema:
+        type: string
+large_image: data:image/png;base64,
+Here is a excerpt of the template code:
+```
+app_version: 1.0.0
+name: Python3 playground
+description: A test app made for you to personally change the code
+contact_info:
+  name: "@frikkylikeme"
+  url: https://shuffler.io
+  email: frikky@shuffler.io
+actions:
+  - name: run_python_script
+    description: Runs a python script defined by YOU
+    parameters:
+      - name: json_data
+        description: The JSON to handle
+        required: true
+        multiline: true
+        example: '{"data": "testing"}'
+        schema:
+          type: string
+      - name: function_to_execute
+        description: The selected python function to run
+        required: true
+        multiline: true
+        example: '1'
+        options:
+          - function_1
+          - function_2
+        schema:
+          type: string
+    returns:
+      schema:
+        type: string
+large_image: data:image/jpg;base64,/9j/4AAQSkZJR
+```
 
 
+### requirements.txt
+
+### src/app.py
 
 
 
