@@ -10,9 +10,22 @@ Documentation for app creation.
 * [App editor](#app_editor)
 
 ## Introduction
-Apps in Shuffle are based on the same format as [WALKOFF](https://walkoff.readthedocs.io/en/master/apps.html) with minor differences. Most of the documentation below will therefore be close to their approach.
+Apps are how you complete work in Shuffle. At a high level, you define a Workflow that starts based on a schedule, or some expected event (webhook received, etc), and that in turn runs one or more apps. An app takes input (argument data to act on, credentials, etc), uses that to complete some data, and returns resulting data to Shuffle to store, display, or feed into another app for further processsing.
+
+The underlying design of Apps in Shuffle are based on [WALKOFF](https://walkoff.readthedocs.io/en/master/apps.html) with minor differences. Most of the documentation below will therefore be close to their approach.
 
 [More about apps](/docs/apps)
+
+The premise behind all apps that run in Shuffle, is that they each run in an isolated Docker container, for security purposes. When you provide arguments to an app in a Shuffle workflow, when the workflow is run, and your app is reached, it is launched as a new container, given the argument data, and the container destroyed when completed.
+
+## Why create a custom app?
+There are many prebuilt apps in Shuffle, and all complete some action. There may an integration you need that doesn't exist yet. This guide will walk you through the process.
+Always remember the key components of the app:
+	What functions are available in the app?
+	What arguments are needed for the app to function? - e.g. authentication arguments, json data structure arguments.
+	What is the output of this function, and what are we doing with that resulting data? e.g. send an email, create a ticket, send to another app for conditional processing.
+	
+	
 
 ## Manual 
 The minimal directory structure for a Shuffle application is as follows:
