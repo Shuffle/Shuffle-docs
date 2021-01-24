@@ -152,6 +152,17 @@ authentication:
 
 #### Actions
 
+Actions are "where the action happens". These define the functions of your app, the args it accepts, and the options available (static list of values for a given arg).
+* name: the python function name
+* description: string description of the function
+* parameters: The args the function accepts, note this is in addition to the authentication args specified above.
+
+Note that one value, json_data, seems to be sent even if I don't need it, so I account for it, although it is unused at this time. You could send a json object here.
+This app has 1 function (action) called run_o365poller. This app only pulls logs, so it is limited.
+
+The app's single function takes 2 args (including the 4 from the authentication included above for every function), which is a string json_data arg, and string PollInterval.
+The PollInterval string arg has a dropdown selection in GUI, listed by options, of poll_10min or poll_23hours. This is one method to give clients a limited set of options for arg values. The json_data structure, although unused, can insert any value from a prior app or input.
+
 ```
 actions:
   - name: run_o365poller
@@ -177,60 +188,103 @@ actions:
     returns:
       schema:
         type: string
-large_image: data:image/png;base64,
+```
+
+#### Logos
+The app's logo can be encoded here using a base64 encoded representation of the image, listed after large_image, see example below, but omitted for brevity:
+```
+large_image: data:image/jpg;base64,/9j/4AAQSkZJR
 Here is a excerpt of the template code:
 ```
-app_version: 1.0.0
-name: Python3 playground
-description: A test app made for you to personally change the code
-contact_info:
-  name: "@frikkylikeme"
-  url: https://shuffler.io
-  email: frikky@shuffler.io
-actions:
-  - name: run_python_script
-    description: Runs a python script defined by YOU
-    parameters:
-      - name: json_data
-        description: The JSON to handle
-        required: true
-        multiline: true
-        example: '{"data": "testing"}'
-        schema:
-          type: string
-      - name: function_to_execute
-        description: The selected python function to run
-        required: true
-        multiline: true
-        example: '1'
-        options:
-          - function_1
-          - function_2
-        schema:
-          type: string
-    returns:
-      schema:
-        type: string
-large_image: data:image/jpg;base64,/9j/4AAQSkZJR
-```
-
 
 ### requirements.txt
+This is your standard python module list that will get installed on Docker container launch
 
 ### src/app.py
 
+Now that your api.yaml file is modified, there is a base app.py script that is called from Shuffle when your app is run. This script will receive the configured arguments and options configured in your Shuffle workflow for the given app.
+
+You must handle this appropriately and pass the arguments to the appropriate function. Note that we can handle this many ways. 
+You can:
+* Build your entire app into app.py, and expand with logic to run the right function requested
+* Put minimal code in app.py to call your python script app.py calls office365poller.py (imported into app.py)
+
+When our o365 app is called, Shuffle assumes that app.py has an inherited class object containing a function matching the ones in our api.yaml file.
+
+1. Shuffle workflow starts
+2. Your configured app is called
+3. app.py's PythonPlayground.run() function is called. This then runs the selected function name and supplies the arguments. 
+4. We then parse the arguments, and run the appropriate function calling our script.
+
+This is where many things are possible, I'll post the code below, but will describe it in detail.
+
+```
+class PythonPlayground(AppBase):
+    __version__ = "1.0.0"
+    app_name = "Office365_Mgt_API"  # this needs to match "name" in api.yaml
+
+    def __init__(self, redis, logger, console_logger=None):
+        """
+        Each app should have this __init__ to set up Redis and logging.
+        :param redis:
+        :param logger:
+        :param console_logger:
+        """
+        super().__init__(redis, logger, console_logger)
+
+    def run_me_1(self, planType,tenantID,clientID,clientSecret):
+        #Poll last 10 min Office365
+        #Parse json_data with key value data
+        #planType = json_data['planType']
+        #tenantID = json_data['tenantID']
+        #clientID = json_data['clientID']
+        #clientSecret = json_data['clientSecret']
+        pollInterval = 10 #Assume minutes
+        return office365poller.pollOffice(planType,tenantID,clientID,clientSecret,pollInterval)
+
+    def run_me_2(self,planType,tenantID,clientID,clientSecret):
+        #Poll last 23 horus or 1380 min Office365
+        #Parse json_data with key value data
+        #planType = json_data['planType']
+        #tenantID = json_data['tenantID']
+        #clientID = json_data['clientID']
+        #clientSecret = json_data['clientSecret']
+        pollInterval = 1380 #Assume minutes
+        return office365poller.pollOffice(planType,tenantID,clientID,clientSecret,pollInterval)
 
 
-### Old Development Instructions
-These instructions will indicate how to make an app for Virustotal and make it available in Shuffle. We recommend building them following our step by step instructions. 
+    def run_me_3(self, json_data):
+        return "Ran function 3"
 
-1. Setup
+    # Write your data inside this function
+    async def run_o365poller(self, planType,tenantID,clientID,clientSecret, PollInterval,json_data):
+        # It comes in as a string, so needs to be set to JSON
+        try:
+            #json_data = json.loads(json_data)
+            #We are not using json_data structure at this time, getting creds directly
+            pass
+        except json.decoder.JSONDecodeError as e:
+            return "Couldn't decode json: %s" % e
 
-Start by developing your app and its functions in a standalone script outside of WALKOFF – this way you can get basic functionality down before dealing with WALKOFF.
+        # These are functions
+        switcher = {
+            "poll_10min" : self.run_me_1,
+            "poll_23hours" : self.run_me_2,
+        }
 
-Note: all functions that you expect to turn into actions must be written for asyncio (i.e. async def function_name())
+        func = switcher.get(PollInterval, lambda: "Invalid function")
+        return func(planType,tenantID,clientID,clientSecret)
 
-EXAMPLE: Below is example code that can be used to interact with VirusTotal’s Api as a standalone script
+if __name__ == "__main__":
+    asyncio.run(PythonPlayground.run(), debug=True)
+```
+
+Our app's api.yaml specifies we have a function called "run_o365poller" that accepts our 4 authentication args + 2 additional args (unused json_dat and PollInterval), all string values.
+
+In order for the app to run, app.py must have an async function the same name as each function in api.yaml. We only have one above. Note that I intentionally left some commented json handling in place to show other ways to get args, you could send a json structure into the function for parsing, but should only be done for non privileged info. The authentication data comes in as separate args.
+
+Lastly, ensure your script returns the data you require, after mine is processed, I return a singular json array, with one json object per log entry. Another app will be written to parse this and take some action on this data, or it could simply be expanded on this app. 
+
 
 ## App Editor
 TBD: Finish app editor: OpenAPI
