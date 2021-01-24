@@ -48,11 +48,11 @@ Shuffle
 ### Development Instructions
 
 In our example, we are going to develop an app that connects to an api for office365, pulls some log data, and returns it as a json data structure.
-We first think about the 3 primary elements:
-	What actions / functions will we create?
-		We will have a function to poll the last 10 minutes of audit logs from the office api
-		We will have a funtion to poll the last 23 hours of audit logs from the office api -- testing only purposes
-	What arguments are needed for the app to run?
+We first think about the 3 primary elements:<br>
+	<t>What actions / functions will we create?<br>
+		<t><t>We will have a function to poll the last 10 minutes of audit logs from the office api<br>
+		<t><t>We will have a funtion to poll the last 23 hours of audit logs from the office api -- testing only purposes<br>
+	<t>What arguments are needed for the app to run?<br>
 		We need some arguments for authentication (Based on office365 authentication, we have planType,tenantID,clientID,clientSecret)
 		Note that your app may also receive json_data structure arg as part of a prior app action, you are note limited here.
 	What is the output data?
@@ -74,7 +74,7 @@ cd /Shuffle/shuffle-apps
 mkdir office365mgmt
 cp -R /Shuffle/shuffle-apps/python-playground/* .
 ```
-The directory structure under the app folder such match the expected above.
+The directory structure under the app folder should match the expected above.
 The above will make your app folder, and copy the template files from python-playground to your app, you will modify these shortly.
 Now using winscp, or some other method, upload your python app to the /src/ directory of your apps folder.
 
