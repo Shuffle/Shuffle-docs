@@ -49,14 +49,14 @@ Shuffle
 
 In our example, we are going to develop an app that connects to an api for office365, pulls some log data, and returns it as a json data structure.
 We first think about the 3 primary elements:<br>
-	* What actions / functions will we create?<br>
-		** We will have a function to poll the last 10 minutes of audit logs from the office api<br>
-		** We will have a funtion to poll the last 23 hours of audit logs from the office api -- testing only purposes<br>
-	* What arguments are needed for the app to run?<br>
-		** We need some arguments for authentication (Based on office365 authentication, we have planType,tenantID,clientID,clientSecret)
-		** Note that your app may also receive json_data structure arg as part of a prior app action, you are note limited here.
-	* What is the output data?
-		We expect a json data structure that contains one audit log entry per json object.
+* What actions / functions will we create?
+	* We will have a function to poll the last 10 minutes of audit logs from the office api
+	* We will have a funtion to poll the last 23 hours of audit logs from the office api -- testing only purposes
+* What arguments are needed for the app to run?
+	* We need some arguments for authentication (Based on office365 authentication, we have planType,tenantID,clientID,clientSecret)
+	* Note that your app may also receive json_data structure arg as part of a prior app action, you are note limited here.
+* What is the output data?
+	* We expect a json data structure that contains one audit log entry per json object.
 
 With our 3 elements in mind, lets build the script on your own. This example is python3, but some additional work would allow any app type/language. For now the expectation is that you would build this in python3.
 
