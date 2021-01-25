@@ -3,9 +3,9 @@ Documentation for app creation.
 
 # Table of contents
 * [Introduction](#introduction)
-* [Why create a custom app?](## Why create a custom app?)
+* [Why create a custom app?](#whycustom)
 * [Manual creation (python3.7)](#manual)
-* [Development Instructions](#Development Instructions)
+* [Development Instructions](#devinstructions)
 * [App editor](#app_editor)
 
 ## Prerequisites
@@ -20,7 +20,7 @@ The underlying design of Apps in Shuffle are based on [WALKOFF](https://walkoff.
 
 The premise behind all apps that run in Shuffle, is that they each run in an isolated Docker container, for security purposes. You provide arguments to an app in a Shuffle workflow, and when the workflow is run, your app is reached in the control flow, it will be launched as a new container. Shuffle then sends the apps argument data, and the container destroyed when the app's work is completed.
 
-## Why create a custom app?
+## Why create a custom app? <a name="whycustom"></a>
 There are many prebuilt apps in Shuffle, and all complete some action. There may be an integration you need that doesn't exist yet. This guide will walk you through the process.
 Always remember the key components of the app:
 * What functions are available in the app?
@@ -47,7 +47,7 @@ Shuffle
 	+-- another_app_2
 ```
 
-### Development Instructions
+### Development Instructions <a name="devinstructions"></a>
 
 In our example, we are going to develop an app that connects to an api for office365, pulls some log data, and returns it as a json data structure.
 We first think about the 3 primary elements:<br>
