@@ -1,12 +1,11 @@
 # Apps
 Documentation for app creation. 
 
-**PS: This is not finished, but is based on [WALKOFF](https://walkoff.readthedocs.io/en/master/apps.html). We will document it before 1.0 launch.**
-
 # Table of contents
 * [Introduction](#introduction)
+* [Why create a custom app?](## Why create a custom app?)
 * [Manual creation (python3.7)](#manual)
-* [Development Instructions](#development_instructions)
+* [Development Instructions](#Development Instructions)
 * [App editor](#app_editor)
 
 ## Prerequisites
