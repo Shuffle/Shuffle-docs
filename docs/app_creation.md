@@ -74,6 +74,7 @@ First make your app folder, note this folder should not contain spaces.
 ```
 cd /Shuffle/shuffle-apps
 mkdir office365mgmt
+cd office365mgmt
 cp -R /Shuffle/shuffle-apps/python-playground/* .
 ```
 The directory structure under the app folder should match the expected above.
