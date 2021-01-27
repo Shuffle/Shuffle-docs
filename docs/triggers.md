@@ -5,6 +5,7 @@ Documentation for triggers, running workflow executions
 * [Introduction](#introduction)
 * [About](#about)
 * [Webhook](#webhook)
+* [Shuffle Subflow](#subflow)
 * [Schedule](#schedule)
 * [User Input](#user_input)
 * [Email](#email)
@@ -57,9 +58,10 @@ Test it! Say your URI is: https://shuffler.io/functions/webhooks/webhook_336a7aa
 curl -XPOST https://shuffler.io/functions/webhooks/webhook_336a7aa2-e785-47cc-85f4-31a4ab5b28b8 --data '{"test": "testing"}'
 ```
 
-### Schedule 
-**Cloud**
+### Subflow 
+**TBD**
 
+### Schedule 
 Schedules are based on [google's cloud scheduler](https://cloud.google.com/scheduler/) and are schedules that run based on [cron](https://en.wikipedia.org/wiki/Cron). It takes two arguments - the schedule you want to run it on and the Execution argument used in the workflow. A simple cron converter can be found [here](https://en.wikipedia.org/wiki/Cron). When you are ready to run, click "start". 
 
 **On-prem**

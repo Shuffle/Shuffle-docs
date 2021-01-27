@@ -227,7 +227,7 @@ curl https://shuffler.io/api/v1/apps/search -H "Authorization: Bearer APIKEY" -d
 
 **Success response** 
 ```
-{"success": true, "reason": [{apps here}]
+{"success": true, "reason": [{apps here}]}
 ```
 
 
@@ -306,7 +306,7 @@ Re-generates a new apikey. Requires admin for POST. GET changes YOUR apikey. The
 Methods: GET, POST (admin)
 
 ```
-curl https://shuffler.io/api/v1/users/generateapikey -H "Authorization: Bearer APIKEY" -d '{"user_id": "id"}
+curl https://shuffler.io/api/v1/users/generateapikey -H "Authorization: Bearer APIKEY" -d '{"user_id": "id"}'
 ```
 
 

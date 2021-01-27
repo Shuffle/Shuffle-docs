@@ -6,15 +6,15 @@ Focus for Shuffle has moved to an entirely open ecosystem. This includes, but is
 
 ## Roadmap
 This roadmap is meant more as a guide than as the exact order of operations.
-**Current version: 0.8.1**
+**Current version: 0.8.56**
 
 * 0.1 - 0.5: Created basic features for automation, as well as use cases and frontend. This was before the project was open sourced.
 * 0.6 - Usability: High focus on the workflow and app editor, as well as bugfixing after open sourcing. 
 * 0.7 - Improve: First larger release of Shuffle. Focus on users, schedules, app authentication and a better overview in general through the admin view.
-* **0.8 - Integrate (current):** Hybrid cloud features and 
-* 0.9 - Features: Search engine for apps, workflows and other important items. File control possiblities available.
-* 1.0 - Launch: Categorized apps, proper use-cases, dashboard control and a real tutorial 
-* 1.1 - Business: Reporting, Risk transparency, manager focus
+* **0.8 - Integrate (current):** Hybrid cloud features and file control 
+* 0.9 - Features: Search engine for apps, workflows, executions etc. AWS (S3 & Lambda), GCP (Storage & Functions) integrations.
+* 1.0 - Launch: Categorized apps, proper use-cases, dashboard control and a real tutorial. 
+* 1.1 - Business: Reporting, Risk transparency (manager focus)
 * 1.2 - OSS: [Open Source tool expansion](https://twitter.com/shuffleio/status/1322913024617844737?s=20)
 
 ## Blogposts
