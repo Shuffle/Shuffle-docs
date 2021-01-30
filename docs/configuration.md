@@ -12,8 +12,6 @@ Documentation for configuring Shuffle.
 * [Database](#database)
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
-* [App Debugging](#app_debugging)
-* [OpenAPI Debugging](#openapi_debugging)
 
 ## Introduction
 With Shuffle being Open Sourced, there is a need for a place to read about configuration. There are quite a few options, and this article aims to delve into those.
@@ -180,11 +178,3 @@ docker logs -f CONTAINER_ID # The CONTAINER_ID found in the previous worker logs
 As you will notice, app logs can be quite verbose (optional in a later build). In essence, if you see "RUNNING NORMAL EXECUTION" in the end, there's a 99.9% chance that it worked, otherwise some issue might have occurred. 
 
 Please [notify me](https://twitter.com/frikkylikeme) if you need help debugging app executions ASAP, as I've done a lot of it, but it's more tricky than the other steps.
-
-TBD: Finish app debugging properly
-
-### App debugging
-TBD - this is the process of checking MANUAL [app creation](/docs/apps#create_custom_app)
-
-### OpenAPI debugging
-TBD - this is the process of checking potential [OpenAPI app bugs](/docs/apps#create_openapi_app)
