@@ -6,6 +6,7 @@ Documentation for app creation.
 * [Why create a custom app?](#whycustom)
 * [Manual creation (python3.7)](#manual)
 * [Development Instructions](#devinstructions)
+* [Hot Loading Your App](#hotloading)
 * [App editor](#app_editor)
 
 ## Prerequisites
@@ -294,6 +295,15 @@ I have the function below, as specified in my api.yaml, that accepts the args I 
    # Write your data inside this function
     async def run_o365poller(self, planType,tenantID,clientID,clientSecret, PollInterval,json_data):
 ```
+
+## Hotloading your app <a name="hotloading"></a>
+Once your app has been tested, you've created the necessary metadata files and directory structure under your shuffle-apps folder, there is no need to restart your containers!
+
+Shuffle has an app hot reloading feature in the GUI. Go to Apps on the top left hand tool bar of the GUI, and then look for a Double Arrow refresh.
+Give the system 20 or so seconds, and you'll see a pop up saying it was successful.
+
+Once complete, any workflows you have that use the existing app, you'll have to delete old versions of the app and re-add them in the workflow.
+
 
 ## App Editor
 TBD: Finish app editor: OpenAPI
