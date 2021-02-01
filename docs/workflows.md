@@ -83,7 +83,9 @@ The starting node is circular with a turquoise border. This node is the FIRST AC
 ## Conditions 
 Conditions use the same format as nodes, with the view popping up on the right side. To add a condition, you need to have a branch/line in the view, meaning you need at least two nodes. This line itself, is what will run the condition for you. Branches can use the same valeus as other nodes, meaning they can parse variables from previous node results.
 
-PS: Conditions are currently only AND, not OR, meaning you would need multiple branches to get OR.
+**PS: Conditions are currently only AND, not OR, meaning you would need multiple branches to get OR.**
+
+**PS: Conditions can NOT handle loops right now ($variable.#). Use the [Filter App action](#conditions_loop) to learn more.**
 
 1. Click a branch / line
 ![conditions-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-1.png?raw=true)
@@ -99,6 +101,10 @@ PS: Conditions are currently only AND, not OR, meaning you would need multiple b
 
 5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing_values))
 ![conditions-example-5](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-5.png?raw=true)
+
+## Condition Loops
+- TBD: Show usage of the Shuffle action to filter loops.
+- App: "Shuffle Tools", Action: "Filter List" 
 
 ## Execution argument
 The execution argument is what makes it possible for triggers to work. This is the argument that the whole execution is ran with. Manual executions can also have an execution argument. In essence, the execution argument can be anything - json, list, string, number. It's up to you.
