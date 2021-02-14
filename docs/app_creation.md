@@ -3,10 +3,13 @@ Documentation for app creation.
 
 # Table of contents
 * [Introduction](#introduction)
-* [Why create a custom app?](#whycustom)
+* [Why create a custom app?](#why_create_a_custom_app)
 * [Manual creation (python3.7)](#manual)
-* [Development Instructions](#devinstructions)
-* [Reloading Your App](#hotloading)
+* [Development Instructions](#dev_instructions)
+* [Defining Authentication](#authentication)
+* [Defining Actions](#actions)
+* [Adding a Logo](#logo)
+* [Reloading Your App](#hotloading_your_app)
 * [Debugging](#debugging)
 
 ## Prerequisites
@@ -21,14 +24,12 @@ The underlying design of Apps in Shuffle are based on [WALKOFF](https://walkoff.
 
 The premise behind all apps that run in Shuffle, is that they each run in an isolated Docker container, for security purposes. You provide arguments to an app in a Shuffle workflow, and when the workflow is run, your app is reached in the control flow, it will be launched as a new container. Shuffle then sends the apps argument data, and the container destroyed when the app's work is completed.
 
-## Why create a custom app? <a name="whycustom"></a>
+## Why create a custom app?
 There are many prebuilt apps in Shuffle, and all complete some action. There may be an integration you need that doesn't exist yet. This guide will walk you through the process.
 Always remember the key components of the app:
 * What functions are available in the app?
 * What arguments are needed for the app to function? - e.g. authentication arguments, json data structure arguments.
 * What is the output of this function, and what are we doing with that resulting data? e.g. send an email, create a ticket, send to another app for conditional 		processing.
-	
-	
 
 ## Manual 
 The minimal directory structure for a Shuffle application is as follows:
@@ -48,7 +49,7 @@ Shuffle
 	+-- another_app_2
 ```
 
-### Development Instructions <a name="devinstructions"></a>
+### Development Instructions 
 
 In our example, we are going to develop an app that connects to an api for office365, pulls some log data, and returns it as a json data structure.
 We first think about the 3 primary elements:<br>
@@ -109,6 +110,7 @@ contact_info:
   url: https://shuffler.io
   email: rob.evans512@gmail.com
 ```
+
 #### Authentication
 
 The next section for me is authentication, my app needs some data to obtain an api token. Not all apps need this step, but if yours requires a key, secret, or password, it is recommended to use a specialized "authentication" declaration in api.yaml, so those credentials are stored safely, and not displayed in cleartext in your Shuffle workflow.
@@ -296,7 +298,7 @@ I have the function below, as specified in my api.yaml, that accepts the args I 
     async def run_o365poller(self, planType,tenantID,clientID,clientSecret, PollInterval,json_data):
 ```
 
-## Hotloading your app <a name="hotloading"></a>
+## Hotloading your app 
 Once your app has been tested, you've created the necessary metadata files and directory structure under your shuffle-apps folder, there is no need to restart your containers!
 
 Shuffle has an app hot reloading feature in the GUI. Go to Apps on the top left hand tool bar of the GUI, and then look for a Double Arrow refresh.

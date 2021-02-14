@@ -23,7 +23,8 @@ for dirname in os.listdir(basedir):
         for item in data:
             if item.startswith("#"):
                 if curitem:
-                    to_upload.append(wrappeditem)
+                    if wrappeditem["title"] != "Table of contents":
+                        to_upload.append(wrappeditem)
                     
                 # Priority based on title
                 title = " ".join(item.split("# ")[1:])
