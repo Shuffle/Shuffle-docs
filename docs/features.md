@@ -1,4 +1,4 @@
-# Features 
+# Shuffle Features 
 Describes the features we already have or plan to build. 
 
 SaaS: [Shuffle Cloud](https://shuffler.io)

@@ -1,4 +1,4 @@
-# API 
+# Shuffle API 
 Documentation for Shuffle API v1.0. 
 
 # Table of contents

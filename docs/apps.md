@@ -1,4 +1,4 @@
-# Apps
+# Shuffle Apps
 Documentation for apps. If you'd like to make an app using Python3, [check out this guide](/docs/app_creation)
 
 PS: App creation and searching is for the on-premise version.

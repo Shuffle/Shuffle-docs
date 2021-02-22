@@ -1,4 +1,4 @@
-# Architecture
+# Shuffle Architecture
 Documentation to understand the Shuffle architecture and thoughts behind choices. Important to understand if you want to contribute.
 
 # Table of contents

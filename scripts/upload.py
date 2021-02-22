@@ -30,7 +30,7 @@ for dirname in os.listdir(basedir):
                             ret = requests.get(wrappeditem["ref_url"])
                             #print("RET: %d - %s" % (ret.status_code, wrappeditem["ref_url"]))
                             if ret.status_code != 200:
-                                print("SKIPPING %s" % wrappeditem["ref_url"])
+                                print("SKIPPING %s (doesn't exist)" % wrappeditem["ref_url"])
                                 break
                             else:
                                 validurls.append(wrappeditem["ref_url"])

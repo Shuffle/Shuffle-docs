@@ -1,4 +1,4 @@
-# App Creation
+# Shuffle App Creation
 Documentation for app creation. 
 
 # Table of contents
