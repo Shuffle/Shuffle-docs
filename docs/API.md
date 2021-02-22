@@ -5,11 +5,11 @@ Documentation for Shuffle API v1.0.
 * [Introduction](#introduction)
 * [Authentication](#authentication)
 * [Responses](#responses)
-* [Workflows](#workflows)
-* [Apps](#apps)
-* [Users](#users)
+* [Workflows](#workflow_api)
+* [Apps](#app_api)
+* [Users](#user_api)
+* [Files](#file_api)
 * [Organizations - TBD](#organizations)
-* [Files - TBD](#files)
 
 ## Introduction
 Shuffle is a platform to build and execute [workflows](/docs/workflows) to help with automation and reduce burnout. It's built with an API structure in mind, and everything done has an API endpoint. The listed API's are built and generated with our own [OpenAPI creator](/docs/apps#create_openapi_app). All API's listed will use the https://shuffler.io endpoint, but you can change it for your local instance.
@@ -58,7 +58,7 @@ Shuffle responses follow the response codes listed below. The data you can expec
 
 
 
-## Workflows
+## Workflow API
 Workflows are used to execute your automations, and has endpoints related to creation, triggers, saving and deleting, aborting and listing.
 
 ### List all workflows
@@ -186,7 +186,7 @@ curl https://shuffler.io/api/v1/workflows/{workflow_id}/executions/{execution_id
 
 
 
-## Apps 
+## App API
 Apps are the building blocks used in [workflows](/docs/apps#workflows), as they contain the actions to be executed. First of all, there are two types of apps:
 
 * Generated from OpenAPI
@@ -234,7 +234,7 @@ curl https://shuffler.io/api/v1/apps/search -H "Authorization: Bearer APIKEY" -d
 ### Download REMOTE apps
 Describes how to download remote apps from a Github repository, including private ones.
 
-## Users 
+## User API
 Below are the endpoints related to user creation, editing, listing, apikey generation and more. 
 
 **PS: These are NOT accurate for https://shuffler.io yet.**
@@ -315,12 +315,101 @@ curl https://shuffler.io/api/v1/users/generateapikey -H "Authorization: Bearer A
 {"success": true, "username": "username", "verified": false, "apikey": "new apikey"}
 ```
 
-## Organizations 
-Below are the endpoints related to organization creation, editing, listing and more. 
+
+## File API
+Below are the endpoints related to file creation, uploading, downloading, listing and more. This API is available to Python apps by using self.set_files(files) and self.get_file(file_id)
+
+### Create a file
+Creating a file is necessary before uploading one. This is to prepare the file location which is always per-organization only. Use "global" for the workflow_id if it's not associated with one.
+
+Methods: POST 
+
+```
+curl https://shuffler.io/api/v1/files/create -H "Authorization: Bearer APIKEY" -d '{"filename": "file.txt", "org_id": "your_organization", "workflow_id": "workflow_id"}'
+```
+
+
+**Success response** 
+```
+{"success": true, "id": "e19cffe4-e2da-47e9-809e-904f5cb03687"}
+```
+
+### Upload a file
+Uploads a file to an ID created with the "Create a file" API function. This is only possible once and can't be overwritten.
+
+Methods: POST 
+
+```
+curl http://localhost:5001/api/v1/files/{file_id}/upload -H "Authorization: Bearer db0373c6-1083-4dec-a05d-3ba73f02ccd4" -F 'shuffle_file=@./your_file/file_path/with_a_file.txt'
+```
+
+
+**Success response** 
+```
+{"success": true, "id": "e19cffe4-e2da-47e9-809e-904f5cb03687"}
+```
+
+### Download a file
+Gets the file CONTENT of a file 
+
+Methods: GET 
+
+```
+curl https://shuffler.io/api/v1/files/{file_id}/content -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+THIS IS SOME TEXT INSIDE A TEXTFILE HELLO :)
+```
+
+### Get file meta data
+Gets metadata for a file, as well as some security relevant info like MD5 and Sha256 sum. 
+
+Methods: POST 
+
+```
+curl https://shuffler.io/api/v1/files/{file_id} -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"id":"e19cffe4-e2da-47e9-809e-904f5cb03687","type":"","created_at":1614015359,"updated_at":1614015521,"meta_access_at":0,"last_downloaded":0,"description":"","expires_at":"","status":"active","filename":"file.txt","url":"","org_id":"b199646b-16d2-456d-9fd6-b9972e929466","workflow_id":"global","workflows":null,"download_path":"shuffle-files/b199646b-16d2-456d-9fd6-b9972e929466/global/e19cffe4-e2da-47e9-809e-904f5cb03687","md5_sum":"3917d8dbd72e73a2db92ad5bb6544940","sha256_sum":"3f25c3613d658ecdd7ee9b7777193ffb084ebe43e641f6daa3c3181f0b631c08","filesize":1061,"duplicate":false,"subflows":null}
+```
+
+### Delete a file
+Deletes a file. The file meta is left intact, but the file itself is removed from existence. Status is changed to "deleted".
+
+Methods: DELETE
+
+```
+curl -XDELETE https://shuffler.io/api/v1/files/{file_id} -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"success": true}
+```
+
+## Organization API
+Below are the endpoints related to organization creation, editing, listing and more. These will probably not be live until 1.0.0.
 
 **TBD**
 
-## Files 
-Below are the endpoints related to file creation, uploading, downloading, listing and more. 
 
-**TBD**
+
+
+
+
+
+
+
+
+
+
+
+
+
