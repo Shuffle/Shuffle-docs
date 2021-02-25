@@ -12,6 +12,9 @@ Documentation for app creation.
 * [Reloading Your App](#hotloading_your_app)
 * [Debugging](#debugging)
 
+## Process
+Want to know how to decide whether to make something new? Checkout the [process document](https://github.com/frikky/shuffle-docs/blob/master/handbook/engineering/app_development.md)
+
 ## Prerequisites
 We assume you have a base understanding of Python 3.x (3.7+ used)
 
