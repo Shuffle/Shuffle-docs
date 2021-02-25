@@ -178,3 +178,18 @@ docker logs -f CONTAINER_ID # The CONTAINER_ID found in the previous worker logs
 As you will notice, app logs can be quite verbose (optional in a later build). In essence, if you see "RUNNING NORMAL EXECUTION" in the end, there's a 99.9% chance that it worked, otherwise some issue might have occurred. 
 
 Please [notify me](https://twitter.com/frikkylikeme) if you need help debugging app executions ASAP, as I've done a lot of it, but it's more tricky than the other steps.
+
+## Hybrid docker image handling 
+We currently don't have a Docker Registry for Shuffle, meaning you need some minor configuration to get Orborus running remotely with the right containers. This only applies to containers not on dockerhub, as we automatically push PYTHON containers there when updated (not OpenAPI)
+
+Here's an example of how to handle this with two different servers and Docker
+```
+ssh user@10.0.0.1
+docker save frikky/shuffle:wazuh_api_rest_1.0.0 > wazuh.tar
+exit
+scp -3 centos@10.0.0.1:/home/user/wazuh.tar centos@10.0.0.2:/home/user/wazuh.tar
+ssh user@10.0.0.2
+docker load wazuh.tar
+```
+
+TBD: We'll make this an API-call for ContainerD later.
