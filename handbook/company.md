@@ -47,6 +47,8 @@ This is an outline of Shuffle in 2021 and onwards. Our previous goals were simpl
 * Create design for the new tutorial / introduction
 * Make expanded documentation for most-used apps, including example use-cases
 * Create a good strategy for what apps to make in order, and what is necessary
+* Make it easy to understand what we're building next (in order)
+* Make apps with special authentication work with the App Creator (oAuth2 etc)
 
 #### Q2
 **Objectives**
@@ -56,7 +58,7 @@ This is an outline of Shuffle in 2021 and onwards. Our previous goals were simpl
 
 **Key Results**
 TBD
-* Add a search engine for our apps and documentation
 
 **Todos**
 * Make the phishing workflow REALLY easy to use with Gmail 
+* Polish support process

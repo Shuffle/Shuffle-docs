@@ -9,14 +9,16 @@ Our target market are the people running [security operation centers](https://di
 
 ## Categories
 We have defined eight (8) main categories of tools that are necessary to tackle any cybersecurity threat. They are as follows:
-1. Communication 		- Any way to chat; WhatsApp, SMS, Email etc. 
-2. Case Management	- The central hub for operation teams.
-3. SIEM							- Search engine for logs in an enterprise. Used to find evil.
-4. Assets 					- Discover endpoint information. Vulnerabilities, owners, departments etc.
-5. IAM  						- Access Management. Active Directory, Google Workspaces, Single Sign-on etc.
-6. Intelligence 		- Typically a vendor explaining what you should be looking for.
-7. Network					- Anything BETWEEN your connected devices. Firewalls, WAF, Switches, Bluetooth...
-8. Eradication 			- Control machines directly to eradicate evil. Hard and undefined (EDR & AV)
+1. [Communication](https://github.com/frikky/Shuffle-apps/issues/26) 		- Any way to chat; WhatsApp, SMS, Email etc. 
+2. [Case Management](https://github.com/frikky/Shuffle-apps/issues/22)	- The central hub for operation teams.
+3. [SIEM](https://github.com/frikky/Shuffle-apps/issues/21)							- Search engine for logs in an enterprise. Used to find evil.
+4. [Assets](https://github.com/frikky/Shuffle-apps/issues/25) 					- Discover endpoint information. Vulnerabilities, owners, departments etc.
+5. [IAM](https://github.com/frikky/Shuffle-apps/issues/86)  						- Access Management. Active Directory, Google Workspaces, Single Sign-on etc.
+6. [Intelligence](https://github.com/frikky/Shuffle-apps/issues/24) 		- Typically a vendor explaining what you should be looking for.
+7. [Network](https://github.com/frikky/Shuffle-apps/issues/27)					- Anything BETWEEN your connected devices. Firewalls, WAF, Switches, Bluetooth...
+8. [Eradication](https://github.com/frikky/Shuffle-apps/issues/23) 			- Control machines directly to eradicate evil. Hard and undefined (EDR & AV)
+
+![Shuffle-workflow-categories](https://github.com/frikky/shuffle-workflows/blob/master/images/categories_circle_dark.png)
 
 ### Difficulty of creation 
 The categories above are sorted as per their percieved difficulty to understand and build for, from easiest to hardest. This doesn't just include the platforms individually, but how they're integrated with other platforms. If you're new to security, we highly encourage starting in range 1-5, but if you wan't a challenge - move on :)
