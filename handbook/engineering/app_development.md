@@ -57,3 +57,7 @@ Someone from the Shuffle team will validate the app you submitted and accept it.
 
 ## Credits
 We want YOU to get the credits for what you create and celebrate you. This means you'll be highlighted when the app is published on shuffler.io as well (if you want).
+
+## Learnings
+* Always use the latest version of API's 
+* Files aren't obvious. Read the documentation here
