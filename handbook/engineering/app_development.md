@@ -39,10 +39,11 @@ Last but not least; make sure to document every step and have fun :D
 	* Other options (please share)
 4. Discover: Get access to their API documentation, and search for OpenAPI/Swagger if possible.
 5. Decide: if you should make it with the App Creator or Python. Always use the App Creator when possible. There are certain authentication mechanisms we can't do with Shuffle yet, but which we may have long-term (oAuth2, AWS boto3 timestamps etc.)
-6. Creation: This is where we rely on your expertise for ease of use. Remember that we're making this for non-developers, and less mandatory fields is always better. Don't forget:
-	* Add examples to the API-call 
-	* Write down anything that was confusing. It may be useful.
-	* Simplify
+6. Creation: This is where we rely on your expertise for ease of use. Remember that we're making this for non-developers, and less mandatory fields is always better. IMPORTANT:
+	* Make it simple to use.
+	* Add example responses to the API-calls 
+	* Add references to original documentation (urls)
+	* Write down anything of importance. It may be useful to others.
 7. **TEST**: This is an increasingly important step as we get more integrations on our hand. Don't just test it individually, but test it with other apps in a Workflow. Example: try to syncronize data from what you made with a case management system. Or send a webhook to Shuffle which adds data to it. KEEP these use-cases and make them clear - they can be shared as test-examples.
 8. Document: Throughout the process, we expect you to document steps. In most cases, we want it in Markdown format. [Here's a very simple example](https://github.com/frikky/security-openapis/blob/master/docs/discord.md) This may seem tedious, but is EXTREMELY important to keep everyone else up to speed with what you do. 
 9. Sharing: Congrats, you're done! All your hard work can now be shared with the world, and we're all that tiny bit more secure. Sharing can be done by:
