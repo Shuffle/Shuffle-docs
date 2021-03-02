@@ -19,6 +19,7 @@ Documentation for workflows.
 * [Parsing JSON](#parsing_json)
 * [Casting values](#casting_values)
 * [Authentication](#authentication)
+* [Handling files](#file_handling)
 * [API](#api)
 * [How-to continuation (CLOUD)](#how-to_continuation)
 
@@ -346,8 +347,88 @@ For each workflow execution, Shuffle generates a random authorization key that h
 
 In short: If you're not an admin and not a specific worker running the execution, you shouldn't be able to tamper with an execution.
 
+## File Handling
+This section is dedicated to file handling in workflows. Files have always had a special place in security, which also means in automation, meaning this needs to be a fully developed solution to handle that. We've approached it from the standpoint of "what do you need as a security professional", and added basic features like timestamps and hashes.
+
+Files are handled in the backend of Shuffle through our API, which is fully accessible to apps. It's also possible to use the app creator to make file download actions. 
+
+### Useful file handling info 
+* Files are handled using their ID. This is a reference to the file, and is automatically generated.
+* Other useful fields: md5/sha256, Filename, Filesize, organization, origin workflow, created time, status...
+* We will add S3 buckets and other storage mechanisms later.
+* [File API can be found here](/docs/API#files)
+* They're typically identified by the field "File_id"
+
+A file can be in one of four statuses 
+* Created 		- The meta is prepared, but no file upload has been started. The ID is ready to handle a file.
+* Uploading 	- A file upload has started. No other file can be uploaded from this point.
+* Active 			- This means the file exists, and the data can't be changed.
+* Deleted 		- The file has been deleted through Shuffle, retaining the metadata.
+
+### Learn to use files 
+To get familiar with files, go to the /admin view under the "files" tab and upload a file of your liking. With a file uploaded to our system, click the File ID icon on the far right side in the view to copy the ID. This is our reference to it for our workflow. Files are typically created and used within apps themselves, but this is good for testing.
+
+![workflow-files-1](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-1.png?raw=true)
+
+Next up, we'll use the file we just got in a workflow. To do this, we recommend using the "Shuffle Tools" app. This has the following functionality:
+* Get file value 			 - print file content
+* Download remote file - wget, download from URL
+* Get file meta 			 - used for getting file metadata
+* Delete file 				 - deletes the file content from disk. Meta persists.
+
+**PS: If you need to create a file directly, the "Testing" app has this functionality"**
+
+Here's a simple workflow where we show the file's value (EICAR), as well as the metadata provided by Shuffle:
+![workflow-files-2](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-2.png?raw=true)
+![workflow-files-3](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-3.png?raw=true)
+
+As seen above, this returns most of the data required related to files. This is the basis of how we do anything with files in Shuffle, and by using the API, we allow the possibility of connecting with other apps. 
+
+Good examples of other apps that use the file upload API are Yara (for rule testing) and TheHive (for data uploads). 
+
+### Upload file API with the app creator
+Next up, we'll show you an example of how an app action can be made that can handle files. Here, we'll use virustotal as an example. First, start by going to the /apps view, and clicking "Edit App" on the Virustotal (or wanted app).
+
+You'll then see a view like this, where we can add an action.
+
+![workflow-files-4](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-4.png?raw=true)
+
+Next up, click "New Action" to add a new one.
+![workflow-files-5](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-5.png?raw=true)
+
+As we're gonna upload a file, it requires us to use a POST request, which is where we see the new action - "Enable Fileupload". Click it, then enter "file" as seen in the image below. 
+
+![workflow-files-6-virustotal](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-6.png?raw=true)
+
+At the same time, copy the curl request into the "URL path" field, and see it convert the curl statement into the path we want.
+![workflow-files-7-virustotal](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-7.png?raw=true)
+
+As you save it, you'll also see this tiny icon representing that it handles files. 
+![workflow-files-8-virustotal](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-8.png?raw=true)
+
+With all that done, it's time to build it, and use it in a workflow. As you can see below, it shows the "File_id" field, telling you it wants a file.
+![workflow-files-9-virustotal](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-9.png?raw=true)
+
+Having ran it, we get the correct response, as expected from their documentation;
+![workflow-files-10-virustotal](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-10.png?raw=true)
+
+And with that, we're done with the basic part of files in Shuffle. If something is unclear, please tell us.
+
 ## API
-[Click here to see the Workflow API](/docs/api#workflows)
+[Click here to see the Workflow API](/docs/API#workflows)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # CLOUD SPECIFIC example

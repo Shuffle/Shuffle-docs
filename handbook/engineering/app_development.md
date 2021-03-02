@@ -61,3 +61,4 @@ We want YOU to get the credits for what you create and celebrate you. This means
 ## Learnings
 * Always use the latest version of API's 
 * Files aren't obvious. Read the documentation here
+* What are artifacts? Explain this better (documentation?)

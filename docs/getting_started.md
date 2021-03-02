@@ -13,3 +13,13 @@ Getting started with Shuffle
 ## First workflow
 
 ![Hello world gif](https://github.com/frikky/shuffle-docs/blob/master/assets/Shuffle-hello-world.gif?raw=true)
+
+## Learn about Shuffle
+Here's a training session we did on Shuffle.
+
+- 00:00 - 00:30: Introduction to Shuffle and what we're building
+- 00:30 - 02:00: Feature walkthrough of organizations, app creator and workflows
+- 02:00 - end: Real-time demo, creating use-cases for attendees
+
+[![Shuffle the SOC walkthrough](https://img.youtube.com/vi/PNuXCixYwDc/0.jpg)](https://www.youtube.com/watch?v=PNuXCixYwDc)
+
