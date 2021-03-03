@@ -3,6 +3,8 @@ Getting started with Shuffle
 
 # Table of contents
 * [Introduction](#introduction)
+* [First workflow](#first_workflow)
+* [Learn about Shuffle](#learn_about_shuffle)
 
 ## Introduction
 * [1. Introducing Shuffle - an Open Source SOAR platform](https://medium.com/security-operation-capybara/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12)
