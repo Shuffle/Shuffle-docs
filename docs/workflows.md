@@ -85,7 +85,6 @@ The starting node is circular with a turquoise border. This node is the FIRST AC
 Conditions use the same format as nodes, with the view popping up on the right side. To add a condition, you need to have a branch/line in the view, meaning you need at least two nodes. This line itself, is what will run the condition for you. Branches can use the same valeus as other nodes, meaning they can parse variables from previous node results.
 
 **PS: Conditions are currently only AND, not OR, meaning you would need multiple branches to get OR.**
-
 **PS: Conditions can NOT handle loops right now ($variable.#). Use the [Filter App action](#conditions_loop) to learn more.**
 
 1. Click a branch / line
@@ -104,8 +103,44 @@ Conditions use the same format as nodes, with the view popping up on the right s
 ![conditions-example-5](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-5.png?raw=true)
 
 ## Condition Loops
-- TBD: Show usage of the Shuffle action to filter loops.
-- App: "Shuffle Tools", Action: "Filter List" 
+**PS: Condition with Loops can be avoided if you use the "Subflow" trigger to run each item of a list in a [subflow](/docs/triggers#subflow). That however does require running new workflows, hence more CPU and RAM**
+
+In this section, we'll be exploring how to use conditions for loops. As explained above, this is done using the "Filter List" action of the "Shuffle Tools" app. The goal if this app is to filter what DOES and DOESN'T fit your criteria within a list. This app action has the same functionality as a normal condition. These conditions are based on the "filter" mechanism of arrays in Javascript.
+
+Take the example of the list below. How would we use the app to only find the section that IS malicious (where "malicious" = true)?
+```
+[{"ip": "1.2.3.4", "malicious": true}, {"ip": "4.3.2.1", "malicious": false}, {"ip": "1.2.3.5", "malicious": true}]
+```
+
+1. Create a node that can handles the list.
+![condition-loop-1](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-1.png?raw=true)
+
+2. Add another node that uses the "Filter List" action
+![condition-loop-2](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-2.png?raw=true)
+
+3. Add the right information to the fields. The first field is the list itself. 
+**PS: DONT add # here. Pass the entire list, not one at a time.**
+```
+input_list: The ENTIRE list that we want to filter. In our case; "$repeat_list" 
+field: The field we want to validate. In our case this is "malicious" as we want to see if malicious is true or false
+check: How do you want to validate? In this case, we want it to check if EQUALS. Other options: Larger than, Less than, Is Empty, Contains, Starts With, Ends With, Files by extension
+value: the value we want the value to be. In our case, it's "true" as we only want it to be true.
+opposite: want to make it opposite? "equals" becomes "NOT equals" and "Larger than" becomes "Less than" etc.
+```
+![condition-loop-3](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-3.png?raw=true)
+
+4. Get the output! The data is returned as such:
+```
+{
+	"success": True,
+	"valid": [..],
+	"invalid": [..]
+}
+```
+
+The "valid" field will match our criteria, while the "invalid" part has everything that doesn't. In our case (below), there are 2 that ARE malicious, and 1 that isn't.
+![condition-loop-4](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-4.png?raw=true)
+
 
 ## Execution argument
 The execution argument is what makes it possible for triggers to work. This is the argument that the whole execution is ran with. Manual executions can also have an execution argument. In essence, the execution argument can be anything - json, list, string, number. It's up to you.
@@ -244,6 +279,8 @@ Result for #3:
 ![passing-values-4](https://github.com/frikky/shuffle-docs/blob/master/assets/passing-values-4.png?raw=true)
 
 ## Passing values - lists
+**PS: If you deal with MULTIPLE loops, please pass each element to a sub-workflow using the [Shuffle Workflow](/docs/triggers#subflow)**
+
 Lists are a different ballgame, but are really important to a SOAR solution. One simple reason would be: what if you have some alerts you want from system X to system Y? That will most likely be a list. 
 
 PS: lists currently use all items (may 2020), and can't be limited to a few. This will change.
@@ -439,7 +476,6 @@ Now that you have a working example workflow, lets move onto something a little 
 4. Add an email node and set the recipient to be the data from "Repeat back to me" in our testing node
 5. Test!
 6. Schedule the email to be sent every 15 minutes to your supplied email.
-7. TBD: JSON parsing 
 
 #### Change testing action 
 Once changed, you will see a new item, [arguments](/docs/argument), which can be of a few different sorts, including but not limited to: static values, data from other nodes, internal variables, global variables and more. 

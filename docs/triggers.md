@@ -59,13 +59,46 @@ curl -XPOST https://shuffler.io/functions/webhooks/webhook_336a7aa2-e785-47cc-85
 ```
 
 ### Subflow 
-**TBD**
+Subflows is a trigger made to run workflows within other workflows. There's further a "parent/child" element to it where there's always a reference to where the execution came from. This can also run a subflow within itself or be recursive (infinite loops).
+
+Purposes we'll cover:
+* Create standard workflows that can be used within other workflows. E.g. checking an IoC in a standardized way every time.
+* Handle loops well. This is to avoid multiple nested for-loops and instead make a new workflow to handle it. E.g. list of emails with list of attachments with list of sub-attachments (e.g. Zip).
+
+Requirements:
+* shuffle-subflow app. This is automatically installed.
+
+[Here are the known missing features for subflows](https://github.com/frikky/Shuffle/issues/223)
+
+#### Example
+1. Drag a subflow into the PARENT view from the left side and click it
+![Triggers-subflow-1](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-1.png?raw=true)
+
+2. Choose a workflow to run. This will use the STARTNODE as default, which can be changed. The red workflow is the one you're currently working on.
+![Triggers-subflow-2](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-2.png?raw=true)
+
+3. We'll decide a startnode and the information to send to the subflow. In our case, we'll use the list below, and send one item at a time with the IP to be searched for in Virustotal. The data with the list is named Repeat_list in our case, hence we use $Repeat_list.#
+```
+[{"ip": "1.2.3.4", "malicious": true}, {"ip": "4.3.2.1", "malicious": false}, {"ip": "1.2.3.5", "malicious": true}]
+```
+![Triggers-subflow-3](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-3.png?raw=true)
+
+4. It's time we explore the results. In total, this should execute FOUR times: 1 for the first workflow and once for EACH of the objects in the list.
+![Triggers-subflow-4](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-4.png?raw=true)
+
+5. Here's a view of the total workflows. Notice how three of them have a different icon? This is because they are subflows. PS: It will always show the maximum amount of nodes in the workflow, whether it's a subflow or not.
+![Triggers-subflow-5](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-5.png?raw=true)
+
+6. Exploring the subflows, we find that the IP's have been searched for in Virustotal, and that we have a reference to the parent. Clicking the reference will take you to the parent execution.
+![Triggers-subflow-6](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-6.png?raw=true)
+
 
 ### Schedule 
-Schedules are based on [google's cloud scheduler](https://cloud.google.com/scheduler/) and are schedules that run based on [cron](https://en.wikipedia.org/wiki/Cron). It takes two arguments - the schedule you want to run it on and the Execution argument used in the workflow. A simple cron converter can be found [here](https://en.wikipedia.org/wiki/Cron). When you are ready to run, click "start". 
-
 **On-prem**
 Schedules on-prem are ran on the webserver itself. Rather than cron, it uses a scheduler that runs it every X seconds. This will become more sophisticated over time. Schedules persists in the database even when you turn off Shuffle, so don't be afraid to update.
+
+**Cloud**
+Schedules are based on [google's cloud scheduler](https://cloud.google.com/scheduler/) and are schedules that run based on [cron](https://en.wikipedia.org/wiki/Cron). It takes two arguments - the schedule you want to run it on and the Execution argument used in the workflow. A simple cron converter can be found [here](https://en.wikipedia.org/wiki/Cron). When you are ready to run, click "start". 
 
 #### Example
 1. Drag a schedule into the view from the left side
