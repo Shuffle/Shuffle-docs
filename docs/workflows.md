@@ -359,6 +359,7 @@ There are a multitude of reasons casting to exist. This might be that you want a
 | split()   | string | split(hello you) | [hello,you] | list | | Splits a list by whitespace. Will have options in the future | 
 | length()  | string | length(hello)  | 5 | integer | len() | Returns the length of a string |
 | parse()   | list, string | parse(["hey", "how", "are", "you"], 1:2) | how are | string | | Uses python slice annotaion after list: https://stackoverflow.com/questions/509211/understanding-slice-notation |
+| join()   	| list, string | parse(["hey", "how", "are", "you"], .) | hey.how.are.you | string | | Uses the join() functionality to make an array into a string that's split based on the value provided. Can be used to e.g. put IoCs in a document as a list directly |
 
 ## Authentication
 Authetication is important for Shuffle and all API related software. The reason being that you can't connect to other services without authentication.
