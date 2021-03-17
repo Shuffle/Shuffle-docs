@@ -123,4 +123,4 @@ When the email/sms is sent, it will look like the image below. We will optimize 
 ![User input email Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-5.png?raw=true)
 
 ### Email
-Cloud only for now. Can handle OAuth2 with Office365, but will get Google Workspaces as well. Will be accessible on-premises at some point.
+TBD: This has been made to work with both cloud and hybrid version of Shuffle. Can't work 100% onprem because webhooks from Office365 and Google Workspaces can't reach your host.
