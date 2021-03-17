@@ -7,8 +7,10 @@ App development is at the heart of how we grow. Without apps, Shuffle as a produ
 ## Who we're building for
 Our target market are the people running [security operation centers](https://digitalguardian.com/blog/what-security-operations-center-soc). These exist around the world and at the frontlines, stopping bad behavior from malicious actors trying to cause harm. This means they're always on their toes - which in turn means they don't have much time for process and automation. That's where Shuffle comes in. We make it as simple as possible to get their existing platforms up and running, which giving them actionable advice on how to improve their defenses. Cybersecurity isn't a competition.
 
-## Categories
-We have defined eight (8) main categories of tools that are necessary to tackle any cybersecurity threat. They are as follows:
+## Security Categories 
+We have defined eight (8) [main categories as per our category framework](https://github.com/frikky/shuffle-docs/blob/master/handbook/engineering/security_category_framework.md), that are necessary to tackle any cybersecurity threat. 
+
+They are as follows:
 1. [Communication](https://github.com/frikky/Shuffle-apps/issues/26) 		- Any way to chat; WhatsApp, SMS, Email etc. 
 2. [Case Management](https://github.com/frikky/Shuffle-apps/issues/22)	- The central hub for operation teams.
 3. [SIEM](https://github.com/frikky/Shuffle-apps/issues/21)							- Search engine for logs in an enterprise. Used to find evil.
@@ -53,10 +55,30 @@ Last but not least; make sure to document every step and have fun :D
 	Python: Make a pull request to the [shuffle-apps](https://github.com/frikky/shuffle-apps/compare) repository. 
 
 ## What happens next?
-Someone from the Shuffle team will validate the app you submitted and accept it. The last part may become possible through https://shuffler.io at some point.
+Someone from the Shuffle team will validate the app you submitted and accept it. The last part may become possible through https://shuffler.io at some point. This can be read about further in the [testing documentation](https://github.com/frikky/shuffle-docs/blob/master/handbook/engineering/testing.md)
+
+The next steps below further outlines what we do from the app management side. 
+
+## App process manager  
+As more people make and share apps, we need a proper process for preparing AND validating them. Below are some things that we want for each app long-term, to make sure we have good references for everything. These tasks are typically done by the person that chooses what apps should be made next. 
+
+### Preparation
+* Work with Workflow creators to define what our next actions should be 
+* Get access to the individual platforms for us. This means that we need to know where we can get easy access, and where we can't. 
+* Move data around in the project on Github to track where how we're doing. Close and open issues as needed (requires project access).
+* Create an issue for each of the platforms mentioned in the categories issues
+* Have an overarching place where we can track ALL apps. Not excel / sheets. If we can make the [testing](https://github.com/frikky/shuffle-docs/blob/master/handbook/engineering/testing.md) process good enough, this can be done using Shuffle itself. Here's some of the things we want to add to the tracking of each app on Github:
+	- The issue related to the app and their parent issue (SIEM > Splunk)
+	- URL to their API documentation 
+	- URL to the integration we've created (shuffler.io AND on Github)
+	- URL to the documentation (shuffler.io AND on Github)
+	- Rate how hard the API is to use as a developer on a scale of 1-6. 
+	- Answer: does the tool have webhook or queue capabilities?
+* Write and learn about each of the 8 tool categories, and their sub categories 
+* Rewrite this process as per how we're working now vs. how we have been working
 
 ## Credits
-We want YOU to get the credits for what you create and celebrate you. This means you'll be highlighted when the app is published on shuffler.io as well (if you want).
+We want YOU to get the credits for what you create and celebrate you. This means you'll be highlighted when the app is published on shuffler.io as well (if you want). This can be down to the granular level of "actions". This will long-term be reflected with your user on Github.
 
 ## Learnings
 * Always use the latest version of API's 

@@ -45,8 +45,17 @@ Why is it done this way? Because that's what the Open Source backend of Shuffle 
 
 Now, how do we translate this into a CI/CD pipeline? That's exactly what we need to figure out..
 
-### Workflows 
+### Workflow execution
+TBD
+
 ### App SDK 
+TBD: There are different versions with different operating systems. Should probably move it to it's own repo.
+
 ### Orborus 
+TBD
+
 ### Backend 
+TBD
+
 ### Frontend
+TBD
