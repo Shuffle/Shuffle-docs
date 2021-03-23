@@ -72,7 +72,7 @@ As more people make and share apps, we need a proper process for preparing AND v
 	- URL to their API documentation 
 	- URL to the integration we've created (shuffler.io AND on Github)
 	- URL to the documentation (shuffler.io AND on Github)
-	- Rate how hard the API is to use as a developer on a scale of 1-6. 
+	- Are special access rights required?
 	- Answer: does the tool have webhook or queue capabilities?
 * Write and learn about each of the 8 tool categories, and their sub categories 
 * Rewrite this process as per how we're working now vs. how we have been working
