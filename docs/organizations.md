@@ -4,7 +4,7 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 # Table of contents
 * [Introduction](#introduction)
 * [Organization Overview](#organization_overview)
-* [Cloud Syncronization](#cloud_sync)
+* [Cloud Syncronization](#cloud_syncronization)
 * [Data collection](#data_collection)
 * [Pricing](#pricing)
 * [User Management](#user_management)
