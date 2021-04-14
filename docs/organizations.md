@@ -56,9 +56,11 @@ Setting up cloud syncronization requires two things:
 ![Cloud sync local features](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-6.png?raw=true)
 
 ### Hybrid Features 
-Updated 20.11.2020
+Updated 10.04.2020
 
-There are many features that make Shuffle easier to use. These are mainly related to accessibility, scalability and collaboration - in that order. For the initial release (v0.8) of Shuffle, we've decided to focus entirely on accessibility. Every feature comes with some of the same basic features, so that you know what you're getting into.
+Want to try it out? [Send us an email](mailto:frikky@shuffler.io)
+
+There are many features that make Shuffle more usable. These are mainly related to accessibility, scalability and collaboration - in that order. For the initial release (v0.8) of Shuffle, we've decided to focus entirely on accessibility. Every feature comes with some of the same basic features, so that you know what you're getting into.
 
 **These basic features are**
 * Activation (true or false)
@@ -72,7 +74,7 @@ There are many features that make Shuffle easier to use. These are mainly relate
 * Collaboration	 - Gives access to shared workflows, apps and general searching. This is to make it possible to learn from each other.
 * Scalability 	 - Gives access to use our hardware and servers, e.g. through cloud executions. 
 
-You can see most of our currently planned features on https://shuffler.io/pricing.
+You can see most of our currently planned features on [https://shuffler.io/pricing](https://shuffler.io/pricing).
 
 #### Activation
 Activation tells you whether the feature is active. It's indicated by the red or green mark next to the feature on the admin page.

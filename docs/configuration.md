@@ -49,6 +49,7 @@ Shuffle is by default configured to be easy to start using. This means we've had
 
 **Here are the things we'll dive into**
 - [Servers](#servers)
+- [Hybrid access](#hybrid_configuration)
 - [Environment Variables](#environment_variables)
 - [Redundancy](#redundancy)
 - [Proxies](#proxy_configuration)
@@ -69,6 +70,9 @@ Runs all workflows - CPU heavy. If you do a lot of file transfers or memory anal
 - CPU: 4vCPU
 - RAM: 4Gb
 - Disk: 10Gb (SSD)
+
+### Hybrid Configuration
+If you want to try using Hybrid Shuffle, giving you access to cloud executions, failovers and backups - [Email us](mailto:frikky@shuffler.io)
 
 ### Environment Variables
 Shuffle has a few toggles that makes it straight up faster, but which removes a lot of the checks that are being done during your first tries of Shuffle.
