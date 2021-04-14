@@ -6,12 +6,14 @@ Documentation for configuring Shuffle.
 # Table of contents
 * [Introduction](#introduction)
 * [Updating Shuffle](#updating_shuffle)
+* [Production readiness](#production_readiness)
 * [Proxy Configuration](#proxy_configuration)
 * [HTTPS](#https)
 * [Kubernetes](#kubernetes)
 * [Database](#database)
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
+* [Known Bugs](#known_bugs)
 
 ## Introduction
 With Shuffle being Open Sourced, there is a need for a place to read about configuration. There are quite a few options, and this article aims to delve into those.
@@ -37,10 +39,54 @@ git pull
 docker-compose pull
 docker-compose up -d
 docker pull frikky/shuffle:app_sdk
-docker pull ghcr.io/frikky/shuffle-worker:0.8.0
+docker pull ghcr.io/frikky/shuffle-worker:0.8.73
 ```
 
 **PS: This will NOT update your apps, meaning they may be outdated. To update your apps, go to /apps and click both buttons in the top right corner (reload apps locally & Download from Github)**
+
+## Production readiness
+Shuffle is by default configured to be easy to start using. This means we've had to make some tradeoffs which can be enabled/disabled to make it easier to use the first time. This part outlines a lot of what's necessary to make Shuffle security, availability and scalability better.
+
+**Here are the things we'll dive into**
+- [Servers](#servers)
+- [Environment Variables](#environment_variables)
+- [Redundancy](#redundancy)
+- [Proxies](#proxy_configuration)
+
+### Servers 
+When setting up Shuffle for production, we always recommend using a minimum of two servers (VMs). This is because you don't want your executions to clog the webserver, which again clogs the executions (orborus). You can put Orborus on multiple servers with different environments to ensure better availability, or [talk to us about Kubernetes/Swarm](https://shuffler.io/contact)
+
+**Webserver**
+The webserver is where your users and our API is. It is RAM heavy as we're doing A LOT of caching to ensure scalability.
+- Services: Frontend, Backend, Database
+- CPU: 2vCPU 
+- RAM: 8Gb
+- Disk: 100Gb (SSD)
+
+**Orborus**
+Runs all workflows - CPU heavy. If you do a lot of file transfers or memory analysis, make sure to add RAM accordingly.
+- Services: Orborus, Worker, Apps
+- CPU: 4vCPU
+- RAM: 4Gb
+- Disk: 10Gb (SSD)
+
+### Environment Variables
+Shuffle has a few toggles that makes it straight up faster, but which removes a lot of the checks that are being done during your first tries of Shuffle.
+
+Database:
+```
+_JAVA_OPTIONS="-Xmx6g" # Where the "6g" means 6Gb of RAM. This is important to ensure the database keeps caching. If this is not set, you may lose your progress as you scale.
+```
+
+Orborus:
+```
+CLEANUP=true 	# Cleans up all containers after they're done. This is necessary to help Docker scale. Default=false
+HTTP_PROXY= 	# Configures a HTTP proxy to use when talking to the Shuffle Backend
+HTTPs_PROXY= 	# Configures a HTTPS proxy when speaking to the Shuffle Backend
+```
+
+### Redundancy
+TBD: We have yet to decide how this should be implemented for Shuffle. Per now, you may configure multiple instances with a load balancer, but there's no easy way to syncronize data between them to ensure they're in the same place.
 
 ## Proxy configuration
 Proxies are another requirement to many enterprises, hence it's an important feature to support. There are two places where proxies can be implemented:
@@ -52,6 +98,7 @@ Proxies are another requirement to many enterprises, hence it's an important fea
 To configure these, there are two options:
 * Individual containers
 * Globally for Docker
+
 
 ### Global Docker proxy configuration
 Follow this guide from Docker: https://docs.docker.com/network/proxy/
@@ -193,3 +240,5 @@ docker load wazuh.tar
 ```
 
 TBD: We'll make this an API-call for ContainerD later.
+
+## Known Bugs
