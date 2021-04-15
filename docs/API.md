@@ -245,7 +245,7 @@ Lists all available users. Requires admin rights.
 Methods: GET
 
 ```
-curl https://shuffler.io/api/v1/users -H "Authorization: Bearer APIKEY" 
+curl https://shuffler.io/api/v1/users/getusers -H "Authorization: Bearer APIKEY" 
 ```
 
 **Success response** 
@@ -276,7 +276,7 @@ Supported fields:
 Methods: PUT
 
 ```
-curl https://shuffler.io/api/v1/users/register -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "user"}'
+curl https://shuffler.io/api/v1/users/updateuser -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "user"}'
 ```
 
 
