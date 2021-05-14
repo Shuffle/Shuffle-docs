@@ -67,17 +67,17 @@ This directory contains a list of folders, one per app in Shuffle. The minimal d
 ```
 Shuffle
 +-- shuffle-apps
-	+-- app_name (virustotal)
-		+-- version_number (1.0.0)
-			|-- api.yml   				# Has the full app configuration - must match app.py
-			|-- Dockerfile				# Contains Shuffle build instructions
+  +-- app_name (virustotal)
+    +-- version_number (1.0.0)
+      |-- api.yml           # Has the full app configuration - must match app.py
+      |-- Dockerfile        # Contains Shuffle build instructions
       |-- docs.md           # Your documentation of this app in markdown format
-			|-- requirements.txt 	# Extra packages to be used by the app
-			+-- src 							
-				+-- app.py 					# The base python file for everything related to your application
-				+-- yourcustom_app.py				# More complex apps can have an entire directory stucture, imported and called by app.py
-	+-- another_app_1
-	+-- another_app_2
+      |-- requirements.txt  # Extra packages to be used by the app
+      +-- src 							
+        +-- app.py          # The base python file for everything related to your application
+        +-- yourcustom_app.py		# More complex apps can have an entire directory stucture, imported and called by app.py
+  +-- another_app_1
+  +-- another_app_2
 ```
 
 There is a template app called python-playground that we will clone and edit.
