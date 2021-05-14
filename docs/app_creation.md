@@ -7,6 +7,7 @@ Documentation for app development with Python (as opposed to creating them with 
 * [Development Instructions](#development-instructions)
   * [Directory structure](#directory-structure)
   * [Authentication/actions/logo in api.yaml](#apiyaml)
+  * [App documentation](#docsmd)
   * [Python dependencies](#requirementstxt)
   * [src/app.py](#srcapppy)
 * [Hotloading Your App](#hotloading-your-app)
@@ -52,6 +53,7 @@ With our 3 elements in mind, you can build the script on your own. This example 
 
 Build your Python functions with the expected arguments, and ensure they return the expected output. Once the code works in your environment, you can then integrate it into Shuffle's apps directory to integrate as an app.
 
+Don't forget to document your app in the docs.md file in each version's directory (see below)!
 
 ### Directory structure
 
@@ -69,6 +71,7 @@ Shuffle
 		+-- version_number (1.0.0)
 			|-- api.yml   				# Has the full app configuration - must match app.py
 			|-- Dockerfile				# Contains Shuffle build instructions
+      |-- docs.md           # Your documentation of this app in markdown format
 			|-- requirements.txt 	# Extra packages to be used by the app
 			+-- src 							
 				+-- app.py 					# The base python file for everything related to your application
@@ -91,8 +94,9 @@ The above will make your app folder and copy the template files from python-play
 
 Now that your app's .py script is uploaded under /Shuffle/shuffle-apps/office365mgmt/src, you'll tell Shuffle how to use it.
 
-We will modify 3 files:
+We will modify 4 files:
 * api.yaml
+* docs.md
 * requirements.txt -- Specify any modules that your app uses, which will be installed via pip
 * src/app.py -- The base app that is called by Shuffle, which in turn will call your python script's functions
 
@@ -208,6 +212,8 @@ The app's logo can be encoded here using a base64 encoded representation of the 
 large_image: data:image/jpg;base64,/9j/4AAQSkZJR
 
 ```
+### docs.md
+Use this file to document your app. This includes any prerequisites for using it as well as what the actions are for and how specific data objects are handled. Until we have created a nice documentation template, [here's an example](https://github.com/frikky/security-openapis/blob/master/docs/discord.md) you can use.
 
 ### requirements.txt
 This is your standard python module list that will get installed on Docker container launch
