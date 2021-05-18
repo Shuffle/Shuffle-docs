@@ -57,6 +57,13 @@ Shuffle is by default configured to be easy to start using. This means we've had
 ### Servers 
 When setting up Shuffle for production, we always recommend using a minimum of two servers (VMs). This is because you don't want your executions to clog the webserver, which again clogs the executions (orborus). You can put Orborus on multiple servers with different environments to ensure better availability, or [talk to us about Kubernetes/Swarm](https://shuffler.io/contact)
 
+**Orborus**
+Runs all workflows - CPU heavy. If you do a lot of file transfers or memory analysis, make sure to add RAM accordingly.
+- Services: Orborus, Worker, Apps
+- CPU: 4vCPU
+- RAM: 4Gb
+- Disk: 10Gb (SSD)
+
 **Webserver**
 The webserver is where your users and our API is. It is RAM heavy as we're doing A LOT of caching to ensure scalability.
 - Services: Frontend, Backend, Database
@@ -64,12 +71,113 @@ The webserver is where your users and our API is. It is RAM heavy as we're doing
 - RAM: 8Gb
 - Disk: 100Gb (SSD)
 
+#### Docker configuration 
+These are the Docker configurations for the different servers. 
+PS: The data below is based on [this docker-compose file](https://github.com/frikky/Shuffle/blob/master/docker-compose.yml)
+
 **Orborus**
-Runs all workflows - CPU heavy. If you do a lot of file transfers or memory analysis, make sure to add RAM accordingly.
-- Services: Orborus, Worker, Apps
-- CPU: 4vCPU
-- RAM: 4Gb
-- Disk: 10Gb (SSD)
+This is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the Shuffle backend location. This can be modified to reduce or increase load, to add proxies, change backend environment to execute and much more. 
+
+**PS**: By default, the environments (executions) are NOT authenticated.
+
+```
+version: '3'
+services:
+  orborus:
+    #build: ./functions/onprem/orborus
+    image: ghcr.io/frikky/shuffle-orborus:0.8.80
+    container_name: shuffle-orborus
+    hostname: shuffle-orborus
+    networks:
+      - shuffle
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - BASE_URL=http://SHUFFLE-BACKEND:BACKEND-PORT
+      - SHUFFLE_APP_SDK_VERSION=0.8.80
+      - SHUFFLE_WORKER_VERSION=0.8.80
+      - ORG_ID=Shuffle
+      - ENVIRONMENT_NAME=Shuffle
+      - DOCKER_API_VERSION=1.40
+      - SHUFFLE_ORBORUS_EXECUTION_TIMEOUT=600
+      - SHUFFLE_BASE_IMAGE_NAME=frikky
+      - SHUFFLE_BASE_IMAGE_REGISTRY=ghcr.io
+      - SHUFFLE_BASE_IMAGE_TAG_SUFFIX="-0.8.60"
+      - HTTP_PROXY=""
+      - HTTPS_PROXY=""
+      - SHUFFLE_PASS_WORKER_PROXY=false
+      - SHUFFLE_PASS_APP_PROXY=false
+      - CLEANUP=true
+    restart: unless-stopped
+networks:
+  shuffle:
+    driver: bridge
+```
+
+**Webserver**
+The webserver should run the Frontend, Backend and Database. Here's the docker-compose. Make sure [THIS .env file](https://github.com/frikky/Shuffle/blob/master/.env) exists as well.
+
+```
+version: '3'
+services:
+  frontend:
+    image: ghcr.io/frikky/shuffle-frontend:0.8.80
+    container_name: shuffle-frontend
+    hostname: shuffle-frontend
+    ports:
+      - "${FRONTEND_PORT}:80"
+      - "${FRONTEND_PORT_HTTPS}:443"
+    networks:
+      - shuffle
+    environment:
+      - BACKEND_HOSTNAME=${BACKEND_HOSTNAME}
+    restart: unless-stopped
+    depends_on:
+      - backend
+  backend:
+    image: ghcr.io/frikky/shuffle-backend:0.8.80
+    container_name: shuffle-backend
+    hostname: ${BACKEND_HOSTNAME}
+    # Here for debugging:
+    ports:
+      - "${BACKEND_PORT}:5001"
+    networks:
+      - shuffle
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock 
+      - ${SHUFFLE_APP_HOTLOAD_LOCATION}:/shuffle-apps     
+      - ${SHUFFLE_FILE_LOCATION}:/shuffle-files
+    environment:
+      - DATASTORE_EMULATOR_HOST=shuffle-database:8000
+      - SHUFFLE_APP_HOTLOAD_FOLDER=/shuffle-apps
+      - SHUFFLE_FILE_LOCATION=/shuffle-files
+      - ORG_ID=${ORG_ID}
+      - SHUFFLE_APP_DOWNLOAD_LOCATION=${SHUFFLE_APP_DOWNLOAD_LOCATION}
+      - SHUFFLE_DOWNLOAD_AUTH_BRANCH=${SHUFFLE_DOWNLOAD_AUTH_BRANCH}
+      - SHUFFLE_DEFAULT_USERNAME=${SHUFFLE_DEFAULT_USERNAME}
+      - SHUFFLE_DEFAULT_PASSWORD=${SHUFFLE_DEFAULT_PASSWORD}
+      - SHUFFLE_DEFAULT_APIKEY=${SHUFFLE_DEFAULT_APIKEY}
+      - SHUFFLE_APP_FORCE_UPDATE=${SHUFFLE_APP_FORCE_UPDATE}
+      - HTTP_PROXY=${SHUFFLE_HTTP_PROXY}
+      - HTTPS_PROXY=${SHUFFLE_HTTPS_PROXY}
+    restart: unless-stopped
+    depends_on:
+      - database
+  database:
+    image: frikky/shuffle:database
+    container_name: shuffle-database
+    hostname: shuffle-database
+    networks:
+      - shuffle
+    environment:
+    -  _JAVA_OPTIONS="-Xmx2g"
+    restart: unless-stopped
+    volumes:
+      - ${DB_LOCATION}:/etc/shuffle
+networks:
+  shuffle:
+    driver: bridge
+```
 
 ### Hybrid Configuration
 If you want to try using Hybrid Shuffle, giving you access to cloud executions, failovers and backups - [Email us](mailto:frikky@shuffler.io)
@@ -91,6 +199,8 @@ HTTPs_PROXY= 	# Configures a HTTPS proxy when speaking to the Shuffle Backend
 
 ### Redundancy
 TBD: We have yet to decide how this should be implemented for Shuffle. Per now, you may configure multiple instances with a load balancer, but there's no easy way to syncronize data between them to ensure they're in the same place.
+
+A good place to start is this blogpost by one of our contributors: https://azgaviperr.github.io/3-nodes-swarm/DockerSwarm/Stacks/Shuffler/
 
 ## Proxy configuration
 Proxies are another requirement to many enterprises, hence it's an important feature to support. There are two places where proxies can be implemented:

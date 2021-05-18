@@ -23,6 +23,8 @@ Apps are how you complete work in Shuffle. At a high level, you define a Workflo
 
 The underlying design of Apps in Shuffle are based on [WALKOFF](https://walkoff.readthedocs.io/en/master/apps.html) with minor differences. Most of the documentation below will therefore be close to their approach.
 
+**PS: There is no way of creating a Python app easily in the cloud yet**
+
 [More about apps](/docs/apps)
 
 The premise behind all apps that run in Shuffle, is that they each run in an isolated Docker container, for security purposes. You provide arguments to an app in a Shuffle workflow, and when the workflow is run, your app is reached in the control flow, it will be launched as a new container. Shuffle then sends the apps argument data, and the container destroyed when the app's work is completed.
