@@ -39,7 +39,6 @@ git pull
 docker-compose pull
 docker-compose up -d
 docker pull frikky/shuffle:app_sdk
-docker pull ghcr.io/frikky/shuffle-worker:0.8.73
 ```
 
 **PS: This will NOT update your apps, meaning they may be outdated. To update your apps, go to /apps and click both buttons in the top right corner (reload apps locally & Download from Github)**
@@ -72,11 +71,17 @@ The webserver is where your users and our API is. It is RAM heavy as we're doing
 - Disk: 100Gb (SSD)
 
 #### Docker configuration 
-These are the Docker configurations for the different servers. 
+These are the Docker configurations for the different servers. To use them, put the files in files called docker-compose.yml, and run 
+```
+docker-compose up -d
+``` 
+
+to start the containers.
+
 PS: The data below is based on [this docker-compose file](https://github.com/frikky/Shuffle/blob/master/docker-compose.yml)
 
 **Orborus**
-This is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the Shuffle backend location. This can be modified to reduce or increase load, to add proxies, change backend environment to execute and much more. 
+Below is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the Shuffle backend location. It can be modified to reduce or increase load, to add proxies, change backend environment to execute and much more. 
 
 **PS**: By default, the environments (executions) are NOT authenticated.
 
@@ -85,7 +90,7 @@ version: '3'
 services:
   orborus:
     #build: ./functions/onprem/orborus
-    image: ghcr.io/frikky/shuffle-orborus:0.8.80
+    image: ghcr.io/frikky/shuffle-orborus:0.8.92
     container_name: shuffle-orborus
     hostname: shuffle-orborus
     networks:
@@ -94,8 +99,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - BASE_URL=http://SHUFFLE-BACKEND:BACKEND-PORT
-      - SHUFFLE_APP_SDK_VERSION=0.8.80
-      - SHUFFLE_WORKER_VERSION=0.8.80
+      - SHUFFLE_APP_SDK_VERSION=0.8.90
+      - SHUFFLE_WORKER_VERSION=0.8.90
       - ORG_ID=Shuffle
       - ENVIRONMENT_NAME=Shuffle
       - DOCKER_API_VERSION=1.40
@@ -187,12 +192,12 @@ Shuffle has a few toggles that makes it straight up faster, but which removes a 
 
 Database:
 ```
-_JAVA_OPTIONS="-Xmx6g" # Where the "6g" means 6Gb of RAM. This is important to ensure the database keeps caching. If this is not set, you may lose your progress as you scale.
+_JAVA_OPTIONS="-Xmx6g" # Where the "6g" means 6Gb of RAM. It's important as to ensure the database keeps caching. If this is not set, you may lose your progress as you scale.
 ```
 
 Orborus:
 ```
-CLEANUP=true 	# Cleans up all containers after they're done. This is necessary to help Docker scale. Default=false
+CLEANUP=true 	# Cleans up all containers after they're done. Necessary to help Docker scale. Default=false
 HTTP_PROXY= 	# Configures a HTTP proxy to use when talking to the Shuffle Backend
 HTTPs_PROXY= 	# Configures a HTTPS proxy when speaking to the Shuffle Backend
 ```

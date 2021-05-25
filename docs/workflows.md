@@ -16,6 +16,7 @@ Documentation for workflows.
 * [Workflow Variables](#workflow_variables)
 * [Execution variables](#execution_variables)
 * [Passing values](#passing_values)
+* [Passing lists](#passing_lists)
 * [Parsing JSON](#parsing_json)
 * [Casting values](#casting_values)
 * [Authentication](#authentication)
@@ -278,14 +279,25 @@ I've put both questions into one. Maybe you catch my drift.
 Result for #3:
 ![passing-values-4](https://github.com/frikky/shuffle-docs/blob/master/assets/passing-values-4.png?raw=true)
 
-## Passing values - lists
-**PS: If you deal with MULTIPLE loops, please pass each element to a sub-workflow using the [Shuffle Workflow](/docs/triggers#subflow)**
+## Passing lists
+**PS: If you deal with MULTIPLE loops (loop within a loop), please pass each element to a sub-workflow using the [Shuffle Workflow](/docs/triggers#subflow)**
 
-Lists are a different ballgame, but are really important to a SOAR solution. One simple reason would be: what if you have some alerts you want from system X to system Y? That will most likely be a list. 
+Lists are a different ballgame, but are really important to a SOAR solution. One simple reason would be: what if you have some alerts you want from system X to system Y? That will most likely be a list.
 
-PS: lists currently use all items (may 2020), and can't be limited to a few. This will change.
+In the same way a node is identified by $, a list is identified by #. Say we have the following json data, and we want parse the "users" list. The node name is repeat_list (more below in example). 
 
-In the same way a node is identified by $, a list is identified by #. Say we have the following json data, and we want parse the "users" list. The node name is repeat_list (more below in example.
+**Usage**:
+```
+				= Without #, it DOESNT loop the data.
+.# 			= Loops the entire list
+.#0 		= Runs ONLY the first element of the list 
+.#1 		= Runs ONLY the second element of the list
+.#0-1 	= Runs the first AND second element of the list
+.#.data = Runs the entire list, and gets the JSON key "data" from each item
+.#0.data = Runs ONLY the first element, and gets the JSON key "data" from it 
+```
+
+
 ```
 repeat_list = {
 	"users": [{
