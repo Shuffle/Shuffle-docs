@@ -1,10 +1,9 @@
 # Shuffle Features 
 Describes the features we already have or plan to build. 
 
-SaaS: [Shuffle Cloud](https://shuffler.io)
-Open Source: [Shuffle onprem](https://github.com/frikky/shuffle)
-
-These have slightly different features, with active development focused on the Open Source version for now.
+* SaaS: [Shuffle Cloud](https://shuffler.io)
+* Open Source: [Shuffle onprem](https://github.com/frikky/shuffle)
+- Hybrid: [Shuffle Hybrid](/docs/configuration#hybrid_configuration)
 
 [Contact us](https://shuffler.io/contact) for more info
 
