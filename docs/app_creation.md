@@ -78,7 +78,7 @@ Creating or editing an app in Shuffle is made to be as simple and fast as possib
 * Name: The app's name. Visible to everyone.
 * Description: A description for the app.
 * Image: An image for the app - should be square.
-* Base URL: The BASE URL for the app. Example: https://shuffler.io
+* Base URL: The BASE URL for the app. Example: https://shuffler.io. Should NOT end with a /
 * Authentication: Authentication for the REST API.
 	- No authentication: Means no authentication for the user
 	- API key: An API-key to be put in a header or query 
@@ -105,21 +105,51 @@ If you want extra variables added to the required authentication, you can add th
 ![Apps view 14](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-14.png?raw=true)
 
 ## Actions
-Actions are the meat of how apps actually work. They providem
+Actions are the meat of how apps actually work. The action part of the app creator provides the ability to control each individual endpoint very specifically. 
+
+Action List information:
+- Click an existing action to edit it
+- Click "Copy" on the right side to duplicate the action
+- Click "Delete" on the right side to delete the action
+- If there is an error mark in the action, it won't be built into the app.
+
+Here's what it entails:
+* Name: The name you want the user to see. We recommend using a VERB at the start of it, e.g. "Get tickets"
+* Description: Further explain what the action is for.
+* Request - Dropdown: GET, POST, PUT, PATCH, DELETE, HEAD, CONNECT. Choose what kind of request to make.
+* URL path: The path to use with the base URL. 
+	-	 Must EITHER start with / (path) or be a full URL to have a custom endpoint. 
+	- Use {variable} to make a REQUIRED variable
+	- TIP: If you have a CURL example, paste it in here and we'll try to autofill everything 
+* New query button: Add a query to the request. The user can add more queries from the workflow.
+	- Can be set to be required/not required
+* Headers: Add headers for the request. 
+	- Editable by users from the workflow view
+* Request body: the body to send
+	- Only available in POST, PUT, PATCH
+	- The data you put here is used as a placeholder for the user to edit
+	- Add ${variable_name} to it to add a variable. This makes it so the user CANT see the whole body, JUST the variables
+* Example response: An example response from the endpoint. This is important to ensure usability of the action is easy. 
+	- Used by autocompletion methods in Shuffle. Also shown as example to the user
 
 ![Apps view 13](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-13.png?raw=true)
 
-## Building 
+#### File upload
+You can add a file upload parameter to POST requests
+
+![Apps view 15](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-15.png?raw=true)
+
+### Building 
 Building the app is as straight forward as clicking the "Save" button. This builds the Docker image, and makes the app available in the App and Workflow UI for your organization to use. We recommend building often to ensure you avoid losing any progress. 
 
 **PS: The first time you build an app, it may take up to a few minutes. Do NOT update the app while it's building, as your progress will may be lost.**
 
-## Testing
+### Testing
 When building is done, you may want to test the app that you've built. This can currently be done by creating or editing a workflow, before finding the app in the left sidebar as you've always used apps.
 
 **PS: We are adding functionality for testing each app directly within the app creator**
 
-## Editing an app 
+### Editing an app 
 You may want to change an app later. This can be done by using the /apps UI to find the app, selecting the app, then clicking the "Edit" button. 
 ![Apps view 7](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-7.png?raw=true)
 
