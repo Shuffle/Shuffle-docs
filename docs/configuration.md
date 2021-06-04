@@ -255,22 +255,22 @@ To configure Kubernetes, you need to specify a single environment variable for O
 To modify the database location, change "DB_LOCATION" in .env (root dir) to your new location. 
 
 ### Database indexes (opensearch)
-workflowapp
-workflowexecution
-workflowapp
-workflow
-apikey
-app_execution_values
-environments
-files
-hooks
-openapi3
-organizations
-schedules
-sessions
-syncjobs
-trigger_auth
-workflowappauth
+- workflowapp
+- workflowexecution
+- workflowapp
+- workflow
+- apikey
+- app_execution_values
+- environments
+- files
+- hooks
+- openapi3
+- organizations
+- schedules
+- sessions
+- syncjobs
+- trigger_auth
+- workflowappauth
 
 ## Debugging
 As Shuffle has a lot of individual parts, debugging can be quite tricky. To get started, here's a list of the different parts, with the latter three being modular / location independant.
