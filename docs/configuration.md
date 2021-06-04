@@ -248,15 +248,29 @@ After changing certificates, you can rebuild the entire frontend by running (./f
 ## Kubernetes  
 Shuffle use with Kubernetes is now possible due to help from our contributors. This has not extensively been tested, so please reach out to @frikkylikeme if you're having execution issues.
 
-### Configuring Kubernetes:
+### Configuring Kubernetes
 To configure Kubernetes, you need to specify a single environment variable for Orborus: RUNNING_MODE. By setting the environment variable RUNNING_MODE=kubernetes, execution should work as expected!
 
 ## Database
-The Shuffle database has a single configuration right now: it's location. The location was initially /etc/shuffle, but is now ./etc/shuffle to not have permission errors. To fix the issue, type ./shuffle-database
-
 To modify the database location, change "DB_LOCATION" in .env (root dir) to your new location. 
 
-
+### Database indexes (opensearch)
+workflowapp
+workflowexecution
+workflowapp
+workflow
+apikey
+app_execution_values
+environments
+files
+hooks
+openapi3
+organizations
+schedules
+sessions
+syncjobs
+trigger_auth
+workflowappauth
 
 ## Debugging
 As Shuffle has a lot of individual parts, debugging can be quite tricky. To get started, here's a list of the different parts, with the latter three being modular / location independant.

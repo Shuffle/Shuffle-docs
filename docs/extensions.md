@@ -5,6 +5,7 @@ This is documentation for integrating and sending data from third-party services
 * [Introduction](#introduction)
 * [Wazuh](#wazuh)
 * [TheHive](#thehive)
+* [Logz.io](#logzio)
 
 ## Introduction
 From the start, Shuffle has been a platform about integrations. We've focused on making them as open and usable as possible, but were missing one part; inbound data. The general way Shuffle handles this has been through third-party API's, where we poll for data on a schedule. There are however some cases where this doesn't do the trick. That's what extensions are. 
@@ -161,3 +162,5 @@ In TheHive, create a new case, or add a comment to an existing case. This will t
 
 # Cortex 
 TBD: Responder 
+
+# Logzio 

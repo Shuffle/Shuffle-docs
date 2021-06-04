@@ -1,8 +1,6 @@
 # Shuffle Apps
 Documentation for apps. If you'd like to make an app using Python3, [check out this guide](/docs/app_creation)
 
-PS: App creation and searching is for the on-premise version.
-
 # Table of contents
 * [Introduction](#introduction)
 * [How they work](#how_they_work)
@@ -11,10 +9,7 @@ PS: App creation and searching is for the on-premise version.
 * [Downloading apps](#updating_apps)
 * [Updating apps](#updating_apps)
 * [Searching for apps](#searching_for_apps)
-* [Create OpenAPI app](#create_openapi_app)
-* [Edit OpenAPI app](#edit_openapi_app)
-* [Create custom app](#create_custom_app)
-* [Upload custom app](#upload_custom_app)
+* [Creating apps](#creating_apps)
 * [Delete app](#delete_app)
 * [API](#api)
 
@@ -58,15 +53,19 @@ When the modal opens, there are two buttons:
 * Cancel - Closes the modal with no action
 
 ## Searching for apps
-When you set up Shuffle for the first time, it should provide you with 15-20 existing Apps. These are gathered from [shuffle-apps](https://github.com/frikky/shuffle-apps), and will grow over time. 
-
-Searching for apps is done by going to /apps and writing your search term. In the example below, we searched for "TheHive", which ends in TheHive being shown. 
+When you set up Shuffle for the first time, it should provide you with >100 existing Apps. These are gathered from [shuffle-apps](https://github.com/frikky/shuffle-apps), and will grow over time. Searching for apps is done by going to /apps and writing your search term. In the example below, we searched for "TheHive", which ends in TheHive being shown. 
 
 ![Apps view 4](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-4.png?raw=true)
 
 A goal for Shuffle is to make it possible to search outside the apps you currently have. This is an [open issue](https://github.com/frikky/Shuffle/issues/24) as of 23.05.2020, but will be worked on.
 
-## Create OpenAPI app
+**PS: Extended search can be done using the [shuffler search-engine](https://shuffler.io/search)**
+
+## Create apps
+Apps in Shuffle can be made using the App Creator or with Python directly.
+
+Read more about how to make an app [here](/docs/app_creation)
+
 **If you have an OpenAPI config already**
 * Click the "Generate from OpenAPI", paste the URL or data for your OpenAPI specification, then validate, before submitting. This should show you the app creator.
 ...
@@ -74,7 +73,6 @@ A goal for Shuffle is to make it possible to search outside the apps you current
 **If you want to create an app**
 * Click the "Create from scratch" button, then [use the editor.](/docs/apps#edit_openapi_app)
 
-[Further app creation documentation (Python3)](/docs/app_creation)
 
 ![Apps view 5](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-5.png?raw=true)
 
@@ -100,8 +98,6 @@ Required permissions (either or):
 TBD
 
 ## Create custom app 
-TBD: This is not finished. 
-
 Since Shuffle is based on WALKOFF, [their guide works for app development](https://walkoff.readthedocs.io/en/latest/apps.html). Further reading will later be available [here](/docs/app_creation)
 
 If you end up using WALKOFF, you need to make ONE edit: 

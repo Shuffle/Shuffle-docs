@@ -3,42 +3,128 @@ Documentation for app development with Python (as opposed to creating them with 
 
 ## Table of contents
 * [Introduction](#introduction)
-* [Why create a custom app?](#why-create-a-custom-app)
-* [Development Instructions](#development-instructions)
+	* [Why create a custom app?](#why-create-a-custom-app)
+	* [Python or the App creator](#python-or-the-app-creator)
+	* [How apps are built](#how-apps-are-built)
+* [App Creator Instructions](#app-creator-instructions)
+	* [Getting started](#getting-started)
+	* [UI overview](#UI-overview)
+	* [Authentication](#authentication)
+	* [Actions](#actions)
+	* [Building](#building)
+	* [Testing](#testing)
+	* [Editing an app](#editing-an-app)
+* [Python Instruction](#python-instructions)
   * [Directory structure](#directory-structure)
+  * [Utility functions](#utility-functions)
   * [Authentication/actions/logo in api.yaml](#apiyaml)
   * [App documentation](#docsmd)
   * [Python dependencies](#requirementstxt)
   * [src/app.py](#srcapppy)
-* [Hotloading Your App](#hotloading-your-app)
-* [Debugging](#debugging)
+	* [Hotloading Your App](#hotloading-your-app)
+* [Publishing your app](#publishing-your-app)
+* [Debugging apps](#debugging)
+* [FAQ](#faq)
 
 ## App development process
-This page is about how to (technically) develop a new Shuffle app. Want to know how to decide whether to make something new? Checkout the [process document](https://github.com/frikky/shuffle-docs/blob/master/handbook/engineering/app_development.md) and then come back here.
+This page is about how to develop a new Shuffle app. Want to know how to decide whether to make something new? Checkout the [process document](https://github.com/frikky/shuffle-docs/blob/master/handbook/engineering/app_development.md) and then come back here.
 
 ## Prerequisites
-We assume you have a base understanding of Python 3.x (3.7+ used).
+* App creator: Understanding of HTTP
+* Python app: Base understanding of Python 3.x
 
 ## Introduction
-Apps are how you complete work in Shuffle. At a high level, you define a Workflow that starts based on a schedule, or some expected event (webhook received, etc), and that in turn runs one or more apps. An app takes input (argument data to act on, credentials, etc), uses that to complete some work, and returns resulting data to Shuffle to store, display, or feed into another app for further processsing.
+Apps are how work is done in Shuffle. They receive a piece of data, whether JSON or string, performs some action, then returns data back to the user. Apps are mostly community-made, and we aim to support that the best way we can. We allow apps to be made as Swagger/OpenAPI specifications using the app creator OR directly with Python. Each app contains multiple actions, which again can have multiple parameters. More about apps and [how they work here](/docs/apps).
+
+The premise behind all apps that run in Shuffle, is that they each run in an isolated Docker container, for control, security and scalability. You provide arguments to an app in a Shuffle workflow, and when the workflow is run, your app is reached in the control flow, it will be launched as a new container. Shuffle then sends the apps argument data, and the container destroyed when the app's work is completed.
 
 The underlying design of Apps in Shuffle are based on [WALKOFF](https://walkoff.readthedocs.io/en/master/apps.html) with minor differences. Most of the documentation below will therefore be close to their approach.
 
-**PS: There is no way of creating a Python app easily in the cloud yet**
+**PS: There is no way of creating a Python app easily for the cloud yet. Apps released on Github will eventually be available on https://shuffler.io too.**
 
 [More about apps](/docs/apps)
 
-The premise behind all apps that run in Shuffle, is that they each run in an isolated Docker container, for security purposes. You provide arguments to an app in a Shuffle workflow, and when the workflow is run, your app is reached in the control flow, it will be launched as a new container. Shuffle then sends the apps argument data, and the container destroyed when the app's work is completed.
-
 ## Why create a custom app?
-There are many prebuilt apps in Shuffle, and all complete some action. There may be an integration you need that doesn't exist yet. This guide will walk you through the process.
-Always remember the key components of the app:
-* What functions are available in the app?
-* What arguments are needed for the app to function? - e.g. authentication arguments, json data structure arguments.
-* What is the output of this function, and what are we doing with that resulting data? e.g. send an email, create a ticket, send to another app for conditional 		processing.
+There are many prebuilt apps in Shuffle, all performing unique actions. There may however be an integration you need that doesn't exist yet. You may either make this yourself or commision this to be made [through Shuffle](https://shuffler.io/contact) - we're always looking to expand our repository of apps!
 
+## Python or the App Creator
+A normal question we get asked all the time - should I use the app creator or Python directly? Find out by answering these questions (will be expanded):
+```
+1. Is the app a HTTP API? 	Use the App Creator.
+2. Does the app need to perform custom actions? Use Python.
+```
 
-## Development Instructions
+## How apps are built
+When you build an app in Shuffle, it goes through a validation process before building the app. This process ends in a fully working Docker Image containing your apps, pointing to the original app specification to ensure users can use it in the front-end as well.
+
+## App Creator Instructions
+The app creator in Shuffle is built to handle any integration for HTTP apps you may think of. It's based on OpenAPI, and will generate the app using the Python SDK in the background. 
+
+[Here's an example from a workshop](https://youtu.be/PNuXCixYwDc?t=7822)
+
+### Getting started
+**If you have an OpenAPI config already**
+* Click the "Generate from OpenAPI", paste the URL or data for your OpenAPI specification, then validate, before submitting. This should show you the app creator.
+...
+
+**If you want to create an app**
+* Click the "Create from scratch" button, then [use the editor.](/docs/app_creation#edit_openapi_app)
+
+### UI overview 
+Creating or editing an app in Shuffle is made to be as simple and fast as possible. These are a few of the main main things in the UI.
+
+![Apps view 6](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-6.png?raw=true)
+
+* Name: The app's name. Visible to everyone.
+* Description: A description for the app.
+* Image: An image for the app - should be square.
+* Base URL: The BASE URL for the app. Example: https://shuffler.io
+* Authentication: Authentication for the REST API.
+	- No authentication: Means no authentication for the user
+	- API key: An API-key to be put in a header or query 
+	- Bearer Auth: Wants a "Bearer token" from the user. Uses the "Authorization" header field.
+	- Basic Auth: Uses Basic auth. Requires username and password from a user.
+	- Oauth2: TBD
+* Extra configuration items: These are extra headers or queries the user HAS to provide when using the app.
+* Actions: Where you add the paths for each endpoint.
+* Categories: The category the app belongs to. Nothing fitting? Set it to "Other"
+* Tags: Add 1-5 tags that seem to fit. 
+
+## Authentication
+#There are many ways to authenticate Shuffle apps. The most important thing is to understand how authentication is reflected in a Workflow. Let's use "GreyNoise" as an example.
+
+GreyNoise uses the URL "https://api.greynoise.io" and authentication type of "API key" with the header "key". 
+![Apps view 8](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-8.png?raw=true)
+
+When authenticating this app in a workflow, we will therefore see two fields - "API key" and "URL". As you can see, the URL is auto-filled, but editable, as some services have configurable URL's.
+- 
+![Apps view 12](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-12.png?raw=true)
+
+If you want extra variables added to the required authentication, you can add them with the "Extra configuration items". The defined header or query will then be added to every request from the user.
+
+![Apps view 14](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-14.png?raw=true)
+
+## Actions
+Actions are the meat of how apps actually work. They providem
+
+![Apps view 13](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-13.png?raw=true)
+
+## Building 
+Building the app is as straight forward as clicking the "Save" button. This builds the Docker image, and makes the app available in the App and Workflow UI for your organization to use. We recommend building often to ensure you avoid losing any progress. 
+
+**PS: The first time you build an app, it may take up to a few minutes. Do NOT update the app while it's building, as your progress will may be lost.**
+
+## Testing
+When building is done, you may want to test the app that you've built. This can currently be done by creating or editing a workflow, before finding the app in the left sidebar as you've always used apps.
+
+**PS: We are adding functionality for testing each app directly within the app creator**
+
+## Editing an app 
+You may want to change an app later. This can be done by using the /apps UI to find the app, selecting the app, then clicking the "Edit" button. 
+![Apps view 7](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-7.png?raw=true)
+
+## Python Instructions
+Apps using Python can do pretty much anything you can do on a computer. As an example, most utility functions of Shuffle itself are written with as functions of Python in the app "Shuffle-Tools"
 
 In our example, we are going to develop an app that connects to an API for Office365, pulls some log data and returns it as a JSON data structure.
 We first think about the 3 primary elements:<br>
@@ -56,6 +142,55 @@ With our 3 elements in mind, you can build the script on your own. This example 
 Build your Python functions with the expected arguments, and ensure they return the expected output. Once the code works in your environment, you can then integrate it into Shuffle's apps directory to integrate as an app.
 
 Don't forget to document your app in the docs.md file in each version's directory (see below)!
+
+### Utility functions
+The Python SDK has a couple of utility functions and data you can utilize. These are as follows:
+
+```
+# Basic data 
+self.url									# The URL to interact with for file and cache control
+self.base_url							# The URL to send results to. MAY point to a Worker.
+self.action								# The current action being executed
+self.authorization				# The authorization key for current execution
+self.current_execution_id	# The current execution ID
+self.full_execution				# All data for current execution
+self.start_time						# The start time for this function
+
+# Utility functions
+self.get_file(file_id) 			# Get a file from the backend 			(v0.8.60+)
+self.set_files(file_id) 		# SETS multiple files, returns ids	(v0.8.60+)
+self.get_cache(key, value)	# Get an item from key:value store 	(v0.8.97+)
+self.set_cache(key, value)	# SETS cache in the key:value store (v0.8.97+)
+```
+
+Example file API usage:
+```
+filedata = [{"filename": "test.txt", "data": "this is the data in the file"}]
+fileret = self.set_files(filedata)
+
+file_id = ""
+if len(fileret) > 0:
+	file_id = fileret[0]
+	filedata = self.get_file(file_id)
+	print(filedata)
+	# > [{"filename": "test.txt", "data": "this is the data in the file"}]
+```
+
+Example cache API usage:
+```
+value = "THIS IS SOME DATA I WANT TO CACHE"
+key = "cache_key"
+
+cacheret = self.set_cache(key, value)
+if cacheret["success"] == True:
+	cache_get_ret = self.get_cache(key)
+	print(cache_get_ret)
+	# > {
+	#		"key": "cache_key", 
+	#		"value": "THIS IS SOME DATA I WANT TO CACHE"
+	#	}
+```
+
 
 ### Directory structure
 
@@ -121,6 +256,7 @@ contact_info:
   url: https://shuffler.io
   email: rob.evans512@gmail.com
 ```
+
 
 #### Authentication
 
@@ -320,6 +456,25 @@ Give the system 20 or so seconds, and you'll see a pop up saying it was successf
 
 Once complete, any workflows you have that use the existing app, you'll have to delete old versions of the app and re-add them in the workflow.
 
+## Publishing your app
+Just made an app and want others to get access to it? Here's how to get it in the hands of everyone:
+
+**OpenAPI:**
+OpenAPI apps are by design very easy to build and share - both inside and outside the Shuffle ecosystem.
+1. Go to /apps in your instance (cloud/onprem)
+2. Find the app you've just made!  
+3. Click publish.
+
+![App Creator](https://github.com/frikky/shuffle-docs/blob/master/assets/app_creator-1.png?raw=true)
+
+**Python:**
+After making an app in Python, here's the steps to get it to everyone 
+1. Fork the Shuffle-apps repo: [https://github.com/frikky/shuffle-apps](https://github.com/frikky/shuffle-apps)
+2. Download your forked repo
+3. Copy your new app to the folder
+4. Make a pull request to the [original repo](https://github.com/frikky/shuffle-apps)!
+
+Both of these methods makes your app highlighted on https://shuffler.io to be used by hundreds if not thousands of organizations.
 
 ## Debugging
 As Shuffle has a lot of individual parts, debugging can be quite tricky. To get started, here's a list of the different parts, with the latter three being modular / location-independent.
@@ -407,3 +562,55 @@ docker logs -f CONTAINER_ID # The CONTAINER_ID found in the previous worker logs
 As you will notice, app logs can be quite verbose (optional in a later build). In essence, if you see "RUNNING NORMAL EXECUTION" in the end, there's a 99.9% chance that it worked, otherwise some issue might have occurred.
 
 Please [notify me](https://twitter.com/frikkylikeme) if you need help debugging app executions ASAP, as I've done a lot of it, but it's more tricky than the other steps.
+
+## FAQ
+```
+Q:  What is multiline? how is that represented when filling out the values?
+A: Multiline means the field will be larger and easier to use in the UI. E.g. you can use newlines.
+```
+
+```
+Q:  Are there different schema types other than string? 
+A: The only schema type is currently string, but we'll migrate to at least have number, list, bool and object later. You can put whatever there - it's not used.
+```
+
+```
+Q:  How do the options function? does defining it automatically prevent user input? or can there be both? 
+A: The first option is always chosen (at least that's the point). Make an empty entry if it should be blank by default
+```
+
+```
+Q:  Would it be possible to alter the yaml format to be able to group actions into sections? this could also provide a way to section stuff in the UI presentation so it's not one giant list of actions
+A: Yep, categorization will come. Not possible right now, but if you add a field like "category" to each action, we could incorporate that right away in the backend
+```
+
+```
+Q:  What are the possible return schema types? 
+A: Return schema: You can return it pretty much however you want and we'll make it into a string. Follows same as #2: We'll start using specific casting later
+```
+
+```
+Q:  What's the difference in using the UI app + action creation process vs manually creating the files? 
+A: UI App creator can only make Rest API's with specific actions. It generates the python code and api.yaml in the backend / docker image
+```
+
+```
+Q:  In app creation UI, what's a query? 
+A: Query = parameter = whatever is at the end of urls after ?: https://shuffler.io/?query=this
+```
+
+```
+Q:  In app creation UI, what are the extra configuration items used for? examples? also, middle input box has example text cut off partway through.
+A: Extra config was added recently (last 2 weeks) and was added to make it possible to e.g. add headers to all actions at once, as well as extra "required" parameters. It's not finished - this is just the start stage. If you add a name in there, it will be required to fill out as authentication mechanism from the user
+```
+
+```
+Q:  In app creation UI, in the "New action" popup, what are queries? 
+A: Fixed the links for new releases! The documentation is generally not very good for the app creator yet (lots todo here: https://github.com/frikky/shuffle-docs/issues)
+```
+
+```
+Q:  How does Shuffle handle refresh tokens?
+A: We don't yet (June 2021). The best way around this is to refresh every time.
+```
+
