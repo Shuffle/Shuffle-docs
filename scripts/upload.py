@@ -12,13 +12,20 @@ for dirname in os.listdir(basedir):
     if "md" not in dirname:
         continue
 
+    if ".swo" in dirname or ".swp" in dirname:
+        continue
+
     to_upload = []
     filename = "".join(dirname.split(".")[0:-1])
     fileread = "%s/%s" % (basedir, dirname)
 
     #print("Reading %s" % dirname)
     with open(fileread, "r") as tmp:
-        data = tmp.read().split("\n")
+        try:
+            data = tmp.read().split("\n")
+        except UnicodeDecodeError as e:
+            print("Error loading %s: %s" % (dirname, e))
+            continue
     
         wrappeditem = {}
         curitem = ""

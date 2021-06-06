@@ -11,6 +11,7 @@ Documentation for configuring Shuffle.
 * [HTTPS](#https)
 * [Kubernetes](#kubernetes)
 * [Database](#database)
+* [Docker Version error](#docker_version_error)
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
 * [Known Bugs](#known_bugs)
@@ -271,6 +272,18 @@ To modify the database location, change "DB_LOCATION" in .env (root dir) to your
 - syncjobs
 - trigger_auth
 - workflowappauth
+
+## Docker Version error
+Shuffle runs using Docker in every step, from the frontend to the workers and apps. For certain systems however, it requires manual configuration of the version of Docker you're running. This has a self-correcting feature to it within Orborus > v0.8.98, but before then you'll have to manually correct for it.
+
+```
+Error getting containers: Error response from daemon: client version 1.40 is too new. Maximum supported API version is 1.35
+```
+
+To fix this issue, we need to set the version from 1.40 down to 1.35 in the Shuffle enviornment. This can be done by opening the docker-compose.yml file, then changing environment variable "DOCKER_API_VERSION" from 1.40 to 1.35 for the "orborus" service as seen below, then restarting Shuffle.
+
+![Error with Docker version](https://github.com/frikky/shuffle-docs/blob/master/assets/configuration-error-1.png?raw=true)
+
 
 ## Debugging
 As Shuffle has a lot of individual parts, debugging can be quite tricky. To get started, here's a list of the different parts, with the latter three being modular / location independant.
