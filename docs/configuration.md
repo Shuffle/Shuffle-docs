@@ -272,6 +272,10 @@ To modify the database location, change "DB_LOCATION" in .env (root dir) to your
 - syncjobs
 - trigger_auth
 - workflowappauth
+- users
+- workflowqueue-* 
+
+PS: workflowqueue-* is based on the environment used for execution.
 
 ## Docker Version error
 Shuffle runs using Docker in every step, from the frontend to the workers and apps. For certain systems however, it requires manual configuration of the version of Docker you're running. This has a self-correcting feature to it within Orborus > v0.8.98, but before then you'll have to manually correct for it.
