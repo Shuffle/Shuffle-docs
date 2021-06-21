@@ -91,7 +91,7 @@ version: '3'
 services:
   orborus:
     #build: ./functions/onprem/orborus
-    image: ghcr.io/frikky/shuffle-orborus:0.8.92
+    image: ghcr.io/frikky/shuffle-orborus:latest
     container_name: shuffle-orborus
     hostname: shuffle-orborus
     networks:
@@ -101,7 +101,7 @@ services:
     environment:
       - BASE_URL=http://SHUFFLE-BACKEND:BACKEND-PORT
       - SHUFFLE_APP_SDK_VERSION=0.8.90
-      - SHUFFLE_WORKER_VERSION=0.8.90
+      - SHUFFLE_WORKER_VERSION=latest
       - ORG_ID=Shuffle
       - ENVIRONMENT_NAME=Shuffle
       - DOCKER_API_VERSION=1.40
@@ -127,7 +127,7 @@ The webserver should run the Frontend, Backend and Database. Here's the docker-c
 version: '3'
 services:
   frontend:
-    image: ghcr.io/frikky/shuffle-frontend:0.8.80
+    image: ghcr.io/frikky/shuffle-frontend:latest
     container_name: shuffle-frontend
     hostname: shuffle-frontend
     ports:
@@ -141,7 +141,7 @@ services:
     depends_on:
       - backend
   backend:
-    image: ghcr.io/frikky/shuffle-backend:0.8.80
+    image: ghcr.io/frikky/shuffle-backend:latest
     container_name: shuffle-backend
     hostname: ${BACKEND_HOSTNAME}
     # Here for debugging:
@@ -153,33 +153,41 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock 
       - ${SHUFFLE_APP_HOTLOAD_LOCATION}:/shuffle-apps     
       - ${SHUFFLE_FILE_LOCATION}:/shuffle-files
+      #- ${SHUFFLE_OPENSEARCH_CERTIFICATE_FILE}:/shuffle-files/es_certificate
+    env_file: .env 
     environment:
-      - DATASTORE_EMULATOR_HOST=shuffle-database:8000
       - SHUFFLE_APP_HOTLOAD_FOLDER=/shuffle-apps
       - SHUFFLE_FILE_LOCATION=/shuffle-files
-      - ORG_ID=${ORG_ID}
-      - SHUFFLE_APP_DOWNLOAD_LOCATION=${SHUFFLE_APP_DOWNLOAD_LOCATION}
-      - SHUFFLE_DOWNLOAD_AUTH_BRANCH=${SHUFFLE_DOWNLOAD_AUTH_BRANCH}
-      - SHUFFLE_DEFAULT_USERNAME=${SHUFFLE_DEFAULT_USERNAME}
-      - SHUFFLE_DEFAULT_PASSWORD=${SHUFFLE_DEFAULT_PASSWORD}
-      - SHUFFLE_DEFAULT_APIKEY=${SHUFFLE_DEFAULT_APIKEY}
-      - SHUFFLE_APP_FORCE_UPDATE=${SHUFFLE_APP_FORCE_UPDATE}
-      - HTTP_PROXY=${SHUFFLE_HTTP_PROXY}
-      - HTTPS_PROXY=${SHUFFLE_HTTPS_PROXY}
     restart: unless-stopped
     depends_on:
-      - database
-  database:
-    image: frikky/shuffle:database
-    container_name: shuffle-database
-    hostname: shuffle-database
+      - opensearch 
+  opensearch:
+    image: opensearchproject/opensearch:1.0.0-beta1
+    hostname: shuffle-opensearch
+    container_name: shuffle-opensearch
+    environment:
+      - bootstrap.memory_lock=true 
+      - "OPENSEARCH_JAVA_OPTS=-Xms1024m -Xmx1024m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+      - opendistro_security.disabled=true
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - cluster.name=shuffle-cluster
+      - node.name=shuffle-opensearch
+      - discovery.seed_hosts=shuffle-opensearch
+      - cluster.initial_master_nodes=shuffle-opensearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536 # maximum number of open files for the OpenSearch user, set to at least 65536 on modern systems
+        hard: 65536
+    volumes:
+      - ${DB_LOCATION}:/usr/share/opensearch/data:rw
+    ports:
+      - 9200:9200
     networks:
       - shuffle
-    environment:
-    -  _JAVA_OPTIONS="-Xmx2g"
     restart: unless-stopped
-    volumes:
-      - ${DB_LOCATION}:/etc/shuffle
 networks:
   shuffle:
     driver: bridge
@@ -191,16 +199,29 @@ If you want to try using Hybrid Shuffle, giving you access to cloud executions, 
 ### Environment Variables
 Shuffle has a few toggles that makes it straight up faster, but which removes a lot of the checks that are being done during your first tries of Shuffle.
 
-Database:
-```
-_JAVA_OPTIONS="-Xmx6g" # Where the "6g" means 6Gb of RAM. It's important as to ensure the database keeps caching. If this is not set, you may lose your progress as you scale.
-```
-
 Orborus:
 ```
-CLEANUP=true 	# Cleans up all containers after they're done. Necessary to help Docker scale. Default=false
-HTTP_PROXY= 	# Configures a HTTP proxy to use when talking to the Shuffle Backend
-HTTPs_PROXY= 	# Configures a HTTPS proxy when speaking to the Shuffle Backend
+# Cleans up all containers after they're done. Necessary to help Docker scale. Default=false
+CLEANUP=true 	
+
+# Cleans up any containers related to Shuffle that have been up for more than 600 seconds. 
+SHUFFLE_ORBORUS_EXECUTION_TIMEOUT=600 
+
+# Decides the max amount of workflows to concurrenly run. Defaults to 10. 
+# Example math: 10 workflows * WITH 10 apps / second = 110 containers per second. 
+# We recommend starting with 10 and going higher as need be.
+SHUFFLE_ORBORUS_EXECUTION_CONCURRENCY=10 
+
+# Configures a HTTP proxy to use when talking to the Shuffle Backend
+HTTP_PROXY= 	
+# Configures a HTTPS proxy when speaking to the Shuffle Backend
+HTTPs_PROXY= 	
+
+# Decides if the Worker should use the same proxy as Orborus (HTTP_PROXY). Default=true
+SHUFFLE_PASS_WORKER_PROXY=true
+
+# Decides if the Apps should use the same proxy as Orborus (HTTP_PROXY). Default=false
+SHUFFLE_PASS_WORKER_PROXY=true
 ```
 
 ### Redundancy
