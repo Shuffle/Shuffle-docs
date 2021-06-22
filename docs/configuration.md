@@ -358,6 +358,8 @@ Change the part that says "APIKEY" to your actual API key from the previous step
 curl -XPOST -v localhost:5001/api/v1/migrate_database -H 'Authorization: Bearer APIKEY'
 ```
 
+![Migration-2](https://github.com/frikky/shuffle-docs/blob/master/assets/migration-2.png?raw=true)
+
 ### 5. Change database back to Opensearch 
 Let's reverse step 1 by choosing elastic as main database
 ```
