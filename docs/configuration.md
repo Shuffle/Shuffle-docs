@@ -12,6 +12,7 @@ Documentation for configuring Shuffle.
 * [Kubernetes](#kubernetes)
 * [Database](#database)
 * [Docker Version error](#docker_version_error)
+* [Database migration](#database_migration)
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
 * [Known Bugs](#known_bugs)
@@ -297,6 +298,75 @@ To modify the database location, change "DB_LOCATION" in .env (root dir) to your
 - workflowqueue-* 
 
 PS: workflowqueue-* is based on the environment used for execution.
+
+## Database migration
+With the change from 0.8 to 0.9 we're changing databases from Google's Datastore to Opensearch. This has to be done due to unforeseen errors with Datastore, including issues with scale, search and debugging. The next section will detail how you can go about migrating from 0.8.X to 0.9.0 without losing access to your workflows, apps, organizations, triggers, users etc. 
+
+**Indexes not being migrated**:
+- workflowexecutions
+- app_execution_values
+- files
+- sessions
+- syncjobs
+- trigger_auth
+- workflowqueue
+
+```
+Before you start:
+If you have data of the same kind in the same index within Opensearch, these will be overwritten. 
+Example: you have the user "admin" in the index "users" within Opensearch and Datastore; this will be overwritten with the version that's in Datastore.
+```
+
+**Requirements**:
+- Admin user in Shuffle using Datastore 
+- An available Elasticsearch / Opensearch database.
+
+### 1. Set main database to be Datastore
+```
+- 1. Open .env 
+- 2. Scroll down and look for "SHUFFLE_ELASTIC"
+- 3. Set it to false; SHUFFLE_ELASTIC=false
+```
+
+### 2. Set up Datastore and Opensearch 
+In order to run the migration, we have to run both databases at once, connected to Shuffle. This means to run both containers at the same time in the Docker-compose file like the image below, before restarting.
+
+```
+docker-compose down
+## EDIT FILE
+docker-compose pull 
+docker-compose up 		# PS: Notice that we don't add -d here. This to make it easier to follow the logs. It's ok as we'll stop the instance later.
+```
+
+![Migration-1](https://github.com/frikky/shuffle-docs/blob/master/assets/migration-1.png?raw=true)
+
+### 3. Find your API-key!
+Now that you have both databases set up, we need to find the API-key. 
+```
+1. http://localhost:3000/settings 	# You may need to log in 
+2. Copy the API-key
+3. Go to next step
+```
+
+### 4. Run the migration!
+We'll now run a curl command that starts the migration. It shouldn't take more than a few seconds, max a few minutes at scale.
+
+PS: This is NOT a destructive action. It just reads data from one place and moves it to the other. The server will restart after it has finished.
+
+Change the part that says "APIKEY" to your actual API key from the previous step.
+```
+curl -XPOST -v localhost:5001/api/v1/migrate_database -H 'Authorization: Bearer APIKEY'
+```
+
+### 5. Change database back to Opensearch 
+Let's reverse step 1 by choosing elastic as main database
+```
+- 1. Open .env 
+- 2. Scroll down and look for "SHUFFLE_ELASTIC"
+- 3. Set it to false; SHUFFLE_ELASTIC=true
+```
+
+Got any issue? Ask on [discord](https://discord.gg/B2CBzUm) or [Contact us](/contact). 
 
 ## Docker Version error
 Shuffle runs using Docker in every step, from the frontend to the workers and apps. For certain systems however, it requires manual configuration of the version of Docker you're running. This has a self-correcting feature to it within Orborus > v0.8.98, but before then you'll have to manually correct for it.

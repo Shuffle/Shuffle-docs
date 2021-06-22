@@ -294,6 +294,8 @@ In the same way a node is identified by $, a list is identified by #. Say we hav
 .#0-1 	= Runs the first AND second element of the list
 .#.data = Runs the entire list, and gets the JSON key "data" from each item
 .#0.data = Runs ONLY the first element, and gets the JSON key "data" from it 
+.#max.data = Runs ONLY the LAST element, and gets the JSON key "data" from it 
+.#min-max = Runs ALL elements. Same as just # or #0-max
 ```
 
 
