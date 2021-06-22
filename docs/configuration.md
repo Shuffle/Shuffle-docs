@@ -83,7 +83,7 @@ to start the containers.
 PS: The data below is based on [this docker-compose file](https://github.com/frikky/Shuffle/blob/master/docker-compose.yml)
 
 **Orborus**
-Below is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the Shuffle backend location. It can be modified to reduce or increase load, to add proxies, change backend environment to execute and much more. 
+Below is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the Shuffle backend location. It can be modified to reduce or increase load, to add proxies, change backend environment to execute and much more. See [environment variables](#environment_variables) for all options.
 
 **PS**: By default, the environments (executions) are NOT authenticated.
 
@@ -110,10 +110,6 @@ services:
       - SHUFFLE_BASE_IMAGE_NAME=frikky
       - SHUFFLE_BASE_IMAGE_REGISTRY=ghcr.io
       - SHUFFLE_BASE_IMAGE_TAG_SUFFIX="-0.8.60"
-      - HTTP_PROXY=""
-      - HTTPS_PROXY=""
-      - SHUFFLE_PASS_WORKER_PROXY=false
-      - SHUFFLE_PASS_APP_PROXY=false
       - CLEANUP=true
     restart: unless-stopped
 networks:
@@ -122,8 +118,13 @@ networks:
 ```
 
 **Webserver**
-The webserver should run the Frontend, Backend and Database. Here's the docker-compose. Make sure [THIS .env file](https://github.com/frikky/Shuffle/blob/master/.env) exists as well.
+The webserver should run the Frontend, Backend and Database. Make sure [THIS .env file](https://github.com/frikky/Shuffle/blob/master/.env) exists in the same folder. Further, make sure that Opensearch the right access:
+```
+sudo sysctl -w vm.max_map_count=262144 			# https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
+sudo chown 1000:1000 -R shuffle-database 		# Requires for Opensearch 
+```
 
+docker-compose.yml:
 ```
 version: '3'
 services:
