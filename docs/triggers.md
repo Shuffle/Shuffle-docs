@@ -43,7 +43,13 @@ HTTP Method(s):
 
 PS: Data in the POST request will be the execution argument.
 
-#### Example
+#### Authentication
+In later versions of Shuffle, you further have access to an authentication field. This field is based on the headers of the request, and any header added to this field will be **REQUIRED** from the sender of the webhook.
+
+One header for each line. In the image below, the request would need to contain the headers "authorization" and "authorization2" with the exact valus specified.
+![Triggers-view-6](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-6.png?raw=true)
+
+#### Webhook Example
 To start using webhooks, you should have a service that supports webhooks (e.g. the two above mentioned). If you just want to test, you can also use cron.
 
 Once you have a service ready:
@@ -70,7 +76,21 @@ Requirements:
 
 [Here are the known missing features for subflows](https://github.com/frikky/Shuffle/issues/223)
 
-#### Example
+#### Extra subflow information 
+- Subflows can be in the same Workflow. When selecting, it will show up as red.
+
+![Triggers-subflow-7](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-7.png?raw=true)
+
+- Parent nodes of the subflow trigger show up as red. When using these, make sure you stop the workflow. We will add a warning for this, as it can run you out of resources easily.
+
+![Triggers-subflow-8](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-8.png?raw=true)
+
+- After choosing a subflow - if you right-click the subflow node in the workflow UI, it will import the subflow. When saving, this will NOT be a part of the workflow. 
+- PS: We will make this part of the workflow visual and non-interactive at a later stage.
+
+![Triggers-subflow-9](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-9.png?raw=true)
+
+#### Subflow Example
 1. Drag a subflow into the PARENT view from the left side and click it
 ![Triggers-subflow-1](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-1.png?raw=true)
 
@@ -100,7 +120,7 @@ Schedules on-prem are ran on the webserver itself. Rather than cron, it uses a s
 **Cloud**
 Schedules are based on [google's cloud scheduler](https://cloud.google.com/scheduler/) and are schedules that run based on [cron](https://en.wikipedia.org/wiki/Cron). It takes two arguments - the schedule you want to run it on and the Execution argument used in the workflow. A simple cron converter can be found [here](https://en.wikipedia.org/wiki/Cron). When you are ready to run, click "start". 
 
-#### Example
+#### Schedule Example
 1. Drag a schedule into the view from the left side
 2. Click the schedule
 3. Type in the amount of seconds between execution (down to every 1 second)
