@@ -17,6 +17,7 @@ Documentation for apps. If you'd like to make an app using Python3, [check out t
 	* [Importing apps](#importing_apps)
 	* [Publishing apps](#publishing_apps)
 	* [Activating apps](#activating_apps)
+	* [Importing remote apps](#importing_remote_apps)
 * [API](#api)
 
 ## Introduction
@@ -148,8 +149,6 @@ If you want an app activated in your LOCAL environment, see [importing apps](#im
 
 ![Apps view activation 19](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-19.png?raw=true)
 
-## Create custom apps 
-[Learn about app creation](/docs/app_creation)
 
 ## Publishing apps 
 All apps can be published. Published apps are available to EVERYONE using Shuffle, as long as they activate it. This means if you publish an app, it is searchable AND sharable with others. The process for Python and the App Creator are different, as can be seen below. 
@@ -164,8 +163,12 @@ All apps can be published. Published apps are available to EVERYONE using Shuffl
 
 **PS:** To remove a public app, [contact us](https://shuffler.io/contact)
 
+## Create custom apps 
+[Learn about app creation](/docs/app_creation)
 
-## Share custom app 
+## Importing remote apps
+**NOT CLOUD**
+
 If you have a repository (private or public) of custom apps for Shuffle (or WALKOFF), Shuffle can load all the apps by using the "Download from URL" button in the /apps view.
 
 1. Click the "Download from URL" button
@@ -177,7 +180,7 @@ If you have a repository (private or public) of custom apps for Shuffle (or WALK
 3. Hit submit. If it's unsuccessful, it will throw an error, otherwise show a loading icon. This means it's working on getting your apps.
 
 ## Delete app 
-**PS: May 2020: There is nothing stopping you from deleting an app that is used by a workflow right now. This is a destructive action, and will make some workflows using the app unusable.**
+**PS: There is nothing stopping you from deleting an app that is used by a workflow. This is a destructive action, and will make some workflows using the app unusable.**
 
 Deleting an app is done by searching for it in /apps. 
 
