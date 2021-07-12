@@ -4,13 +4,19 @@ Documentation for apps. If you'd like to make an app using Python3, [check out t
 # Table of contents
 * [Introduction](#introduction)
 * [How they work](#how_they_work)
-* [Actions](#actions)
-* [Arguments](#arguments)
-* [Downloading apps](#updating_apps)
-* [Updating apps](#updating_apps)
-* [Searching for apps](#searching_for_apps)
-* [Creating apps](#creating_apps)
-* [Delete app](#delete_app)
+	* [Actions](#actions)
+	* [Arguments](#arguments)
+	* [Searching for apps](#searching_for_apps)
+* [Creating apps](#create_custom_apps)
+	* [Downloading apps](#downloading_apps)
+	* [Updating apps remotely](#updating_apps_remotely)
+	* [Delete app](#delete_app)
+* [Finding more apps](#finding_apps)
+	* [Testing apps](#testing_apps)
+	* [Downloading apps](#downloading_apps)
+	* [Importing apps](#importing_apps)
+	* [Publishing apps](#publishing_apps)
+	* [Activating apps](#activating_apps)
 * [API](#api)
 
 ## Introduction
@@ -97,15 +103,69 @@ Required permissions (either or):
 ![Apps view 7](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-7.png?raw=true)
 TBD
 
-## Create custom app 
-Since Shuffle is based on WALKOFF, [their guide works for app development](https://walkoff.readthedocs.io/en/latest/apps.html). Further reading will later be available [here](/docs/app_creation)
 
-If you end up using WALKOFF, you need to make ONE edit: 
-- Change the first line to: FROM frikky/shuffle:app_sdk as base
+## Finding apps 
+If the app you're looking for exists, it will be available on [https://shuffler.io](https://shuffler.io) or [Github](https://github.com/frikky/shuffle-apps). Apps available on the Shuffle website, can further be clicked then exported or tested directly.
 
-This will make it use Shuffle's app SDK, rather than Shuffle's.
+![Apps view search 16](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-16.png?raw=true)
 
-## Upload custom app 
+## Testing apps 
+After you've found a public or private app on [https://shuffler.io](https://shuffler.io/apps/c051cc46559dd040d963e0cdf19b7d9b), it's possible to test it directly. The view you get access to has the fully featured app included, meaning you won't need to build a workflow to test it.
+
+**Options:**
+- Selecting Actions
+- Configuring the action
+- Executing the action
+- Exploring the result
+
+![Apps view search 16](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-16.png?raw=true)
+
+## Downloading apps 
+Apps can be downloaded or exported from your local instance or [https://shuffler.io](https://shuffler.io) as long as it's either your private app, or a public one AND is OpenAPI. If you find the "download" icon in any part of Shuffle, that means the item is exportable.
+
+![Apps view activation 18](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-18.png?raw=true)
+
+## Importing apps
+If you have an OpenAPI specification, either exported from Shuffle or otherwise, it can be imported in the [/apps](https://shuffler.io/apps) view. You need to be logged in.
+
+Supported filetypes:
+- .json
+- .yaml
+
+The options for importing are:
+- URL: A URL to the file on the internet
+- Upload: A local file on your filesystem
+- Drag & drop: A local file on your filesystem. Drop it anywhere in the /apps view.
+
+![Apps view activation 17](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-17.png?raw=true)
+
+## Activating apps 
+Any public app can be activated, giving you access to a copy of the original app. This app is editable, meaning you can change the configuration of the app in it's entirety in your own Organization. Activation can be done by first [Finding the app](#finding_apps), then clicking the "Activate App" in the top right corner. If successful, you should se a notification that it's been activated.
+
+Once an app is activated, you can use it within any Workflow, and find it under /apps. If you can already see the app under the /apps view, it means the app is already enabled. You need to be logged in. 
+
+If you want an app activated in your LOCAL environment, see [importing apps](#importing_apps)
+
+![Apps view activation 19](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-19.png?raw=true)
+
+## Create custom apps 
+[Learn about app creation](/docs/app_creation)
+
+## Publishing apps 
+All apps can be published. Published apps are available to EVERYONE using Shuffle, as long as they activate it. This means if you publish an app, it is searchable AND sharable with others. The process for Python and the App Creator are different, as can be seen below. 
+
+**Python**:
+- App publishing with python can only be done with Github (for now). Make a pull request for [shuffle-apps](https://github.com/frikky/shuffle-apps). 
+
+**App Creator**:
+- To publish an app, find an app that you made and own, which is unique, and change "Sharing" to "public" as per the image below.
+
+![Apps view 20](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-20.png?raw=true)
+
+**PS:** To remove a public app, [contact us](https://shuffler.io/contact)
+
+
+## Share custom app 
 If you have a repository (private or public) of custom apps for Shuffle (or WALKOFF), Shuffle can load all the apps by using the "Download from URL" button in the /apps view.
 
 1. Click the "Download from URL" button
