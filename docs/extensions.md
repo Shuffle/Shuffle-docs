@@ -3,9 +3,9 @@ This is documentation for integrating and sending data from third-party services
 
 # Table of contents
 * [Introduction](#introduction)
-* [Wazuh](#wazuh)
-* [TheHive](#thehive)
-* [Logz.io](#logzio)
+* [Wazuh Webhook](#wazuh)
+* [TheHive Webhook](#thehive)
+* [Logz.io Webhook](#logzio)
 
 ## Introduction
 From the start, Shuffle has been a platform about integrations. We've focused on making them as open and usable as possible, but were missing one part; inbound data. The general way Shuffle handles this has been through third-party API's, where we poll for data on a schedule. There are however some cases where this doesn't do the trick. That's what extensions are. 
@@ -162,7 +162,51 @@ In TheHive, create a new case, or add a comment to an existing case. This will t
 
 ![Extend Shuffle with TheHive 3](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_3.png?raw=true)
 
+# Logzio 
+**1. Create a Workflow which will receive alerts**
+This one is pretty easily explained. Go to Shuffle an make a new Workflow.
+
+**2. Add a Webhook to the workflow**
+Add a webhook and find the Webhook URL. Remember to start the Webhook!
+
+![Extend Shuffle with Wazuh](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
+
+Copy the URL and keep it for the next steps
+![Extend Shuffle with Wazuh 2](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_2.png?raw=true)
+
+**3. Configure Logz.io forwarding**
+After logging into app.logz.io, hover Settings Icon > Settings > click Notifications Endpoint. This will make all rules send alerts to the assigned webhook target.
+
+![Extend Shuffle with Logz.io](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_4.png?raw=true)
+
+Once in the notification endpoint view, click "Add Endpoint". Configure the following elements:
+* Type: Custom
+* Name: Shuffle (or some other identifier)
+* URL: The Webhook URL from step 2
+* Method: POST
+* Data (should be autofilled): 
+```
+{
+    "alert_title": "{{alert_title}}",
+    "alert_description": "{{alert_description}}",
+    "alert_severity": "{{alert_severity}}",
+    "alert_event_samples": "{{alert_samples}}"
+}
+```
+
+Custom data will be parsed into the field "alert_event_samples"
+
+![Extend Shuffle with Logz.io 2](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_5.png?raw=true)
+
+**4. Test the integration**
+Click "Run the test" at the bottom before saving. This allows for it to send a sample payload to Shuffle.
+
+If the data payload is configured as in step 3, the custom data will be available as such:
+```
+$exec.alert_event_samples
+```
+
+![Extend Shuffle with Logz.io 3](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_6.png?raw=true)
+
 # Cortex 
 TBD: Responder 
-
-# Logzio 
