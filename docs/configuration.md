@@ -23,7 +23,7 @@ With Shuffle being Open Sourced, there is a need for a place to read about confi
 Shuffle is based on Docker and is started using docker-compose with configuration items in a .env file. .env has the configuration items to be used for default environment changes, database locations, port forwarding, github locations and more. 
 
 ## Installing Shuffle
-Check out the [installation guide](https://github.com/frikky/shuffle/blob/master/install-guide.md), however if you're on linux:
+Check out the [installation guide](https://github.com/frikky/shuffle/blob/master/.github/install-guide.md), however if you're on linux:
 
 ```
 git clone https://github.com/frikky/Shuffle
