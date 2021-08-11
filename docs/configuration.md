@@ -164,13 +164,13 @@ services:
     depends_on:
       - opensearch 
   opensearch:
-    image: opensearchproject/opensearch:1.0.0-beta1
+    image: opensearchproject/opensearch:1.0.0
     hostname: shuffle-opensearch
     container_name: shuffle-opensearch
     environment:
       - bootstrap.memory_lock=true 
       - "OPENSEARCH_JAVA_OPTS=-Xms1024m -Xmx1024m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
-      - opendistro_security.disabled=true
+			- plugins.security.disabled=true
       - cluster.routing.allocation.disk.threshold_enabled=false
       - cluster.name=shuffle-cluster
       - node.name=shuffle-opensearch
@@ -185,8 +185,6 @@ services:
         hard: 65536
     volumes:
       - ${DB_LOCATION}:/usr/share/opensearch/data:rw
-    ports:
-      - 9200:9200
     networks:
       - shuffle
     restart: unless-stopped
