@@ -187,10 +187,11 @@ self.full_execution				# All data for current execution
 self.start_time						# The start time for this function
 
 # Utility functions
-self.get_file(file_id) 			# Get a file from the backend 			(v0.8.60+)
-self.set_files(file_id) 		# SETS multiple files, returns ids	(v0.8.60+)
-self.get_cache(key, value)	# Get an item from key:value store 	(v0.8.97+)
-self.set_cache(key, value)	# SETS cache in the key:value store (v0.8.97+)
+self.get_file(file_id) 							# Get a file from the backend 			(v0.8.60+)
+self.set_files(file_id) 						# SETS multiple files, returns ids	(v0.8.60+)
+self.get_file_namespace(namespace) 	# Get ALL files for a namespace 		(v0.9.11+)
+self.get_cache(key, value)					# Get an item from key:value store 	(v0.8.97+)
+self.set_cache(key, value)					# SETS cache in the key:value store (v0.8.97+)
 ```
 
 Example file API usage:
