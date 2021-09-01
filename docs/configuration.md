@@ -11,6 +11,7 @@ Documentation for configuring Shuffle.
 * [HTTPS](#https)
 * [Kubernetes](#kubernetes)
 * [Database](#database)
+* [Network Configuration](#network_configuration)
 * [Docker Version error](#docker_version_error)
 * [Database migration](#database_migration)
 * [Debugging](#debugging)
@@ -272,6 +273,80 @@ Shuffle use with Kubernetes is now possible due to help from our contributors. T
 
 ### Configuring Kubernetes
 To configure Kubernetes, you need to specify a single environment variable for Orborus: RUNNING_MODE. By setting the environment variable RUNNING_MODE=kubernetes, execution should work as expected!
+
+## Network configuration 
+In most enterprise environments, Shuffle will be behind multiple firewalls, proxies and other networking equipment. If this is the case, below are the requirements to make Shuffle work anywhere. The most common issue has to do with downloads from Alpine linux during runtime.
+
+**PS:** If external connections are blocked, you may further have issues running Apps. Read more about [manual image transfers here](#manual_docker_image_transfers).
+
+### Domain Whitelisting
+These URL's are used to get Shuffle up and running. Whitelisting them for the Shuffle services should make all processes work seemlessly.  
+
+PS: We do intend to make this JUST https://shuffler.io in the future.
+
+```
+# Can be closed after install with working Workflows
+shuffler.io  	# Initial setup & future app/workflow sync 
+github.com		# Downloading apps, workflows and documentation
+
+# Should stay open
+dl-cdn.alpinelinux.org		# Building apps in realtime.  
+hub.docker.com						# Downloads apps if they don't exist locally. 
+```
+
+### Proxy settings
+The main proxy issues may arise with the "Backend", along with 3the "Orborus" container, which runs workflows. This has to do with how this server can contact the backend (Orborus), along with how apps can be downloaded (Worker), down to how apps engage with external systems (Apps). 
+
+Environment variables to be sent to the Orborus container:
+```
+# Configures a HTTP proxy to use when talking to the Shuffle Backend
+HTTP_PROXY= 	
+# Configures a HTTPS proxy when speaking to the Shuffle Backend
+HTTPs_PROXY= 	
+
+# Decides if the Worker should use the same proxy as Orborus (HTTP_PROXY). Default=true
+SHUFFLE_PASS_WORKER_PROXY=true
+
+# Decides if the Apps should use the same proxy as Orborus (HTTP_PROXY). Default=false
+SHUFFLE_PASS_WORKER_PROXY=true
+```
+
+Environment variables for the Backend container:
+```
+# A proxy to be used if Opensearch / Elasticsearch (database) is behind a proxy. 
+SHUFFLE_OPENSEARCH_PROXY
+
+# Configures a HTTP proxy for external downloads
+HTTP_PROXY= 	
+# Configures a HTTPS proxy for external downloads
+HTTPs_PROXY= 	
+```
+
+### Manual Docker image transfers
+In certain cases you may not have access to download or build images at all. If that's the case, you'll need to manually transfer them to the appropriate server. If the image to transfer is an app, it should be moved to the "Orborus" server. Otherwise; backend server. 
+
+```
+# 1. Download the image you want. Go to [hub.docker.com](https://hub.docker.com/r/frikky/shuffle/tags?page=1&ordering=last_updated) and find the image. Download with docker pull. E.g. for Shuffle-tools:
+docker pull frikky/shuffle:shuffle-tools_1.1.0
+
+# 2. Save the image to a file to be transferred. 
+docker save frikky/shuffle:shuffle-tools_1.1.0 > shuffle_tools.tar
+
+# 3. Transfer the file to a remote server
+scp shuffle_tools.tar username@<server>:/path/to/destination/shuffle_tools.tar
+
+# 4. Log into the remote server and find the repository
+ssh username@<server>
+cd /path/to/destination #same path as above
+
+# 5. Load the file!
+docker load shuffle_tools.tar
+
+## All done!
+
+# Transfer between 2 remote hosts:
+#scp -3 centos@10.0.0.1:/home/user/wazuh.tar centos@10.0.0.2:/home/user/wazuh.tar
+```
 
 ## Database
 To modify the database location, change "DB_LOCATION" in .env (root dir) to your new location. 
