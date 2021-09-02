@@ -288,10 +288,11 @@ PS: We do intend to make this JUST https://shuffler.io in the future.
 # Can be closed after install with working Workflows
 shuffler.io  	# Initial setup & future app/workflow sync 
 github.com		# Downloading apps, workflows and documentation
+pkg-containers.githubusercontent.com # Downloads from Github Container registry (ghcr.io)
 
 # Should stay open
 dl-cdn.alpinelinux.org		# Building apps in realtime.  
-hub.docker.com						# Downloads apps if they don't exist locally. 
+registry.hub.docker.com 	# Downloads apps if they don't exist locally. 
 ```
 
 ### Proxy settings
