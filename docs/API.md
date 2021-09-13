@@ -12,10 +12,11 @@ Documentation for Shuffle API v1.0.
 * [Organizations - TBD](#organizations)
 
 ## Introduction
-Shuffle is a platform to build and execute [workflows](/docs/workflows) to help with automation and reduce burnout. It's built with an API structure in mind, and everything done has an API endpoint. The listed API's are built and generated with our own [OpenAPI creator](/docs/apps#create_openapi_app). All API's listed will use the https://shuffler.io endpoint, but you can change it for your local instance.
+Shuffle is a platform to build and execute [workflows](/docs/workflows) to help with automation and reduce burnout. It's built with an API structure in mind, and everything done has an API endpoint. The listed API's are built and generated with our own [OpenAPI creator](/docs/apps#create_openapi_app). All API's listed are for both versions of Shuffle (cloud/onprem), unless otherwise specified. Our OpenAPI specification can be [downloaded here](https://shuffler.io/apps/edaa73d40238ee60874a853dc3ccaa6f). Below are the base URL's for the API.
 
-**Cloud:**: https://shuffler.io/api/v1
-**Onprem:**: https://<endpoint>:<port>/api/v1
+**Cloud:** https://shuffler.io/api/v1
+
+**Onprem:** https://<endpoint>:<port>/api/v1
 
 <b>PS:</b> API's are due to change before the full release, but nothing major at this point.
 
