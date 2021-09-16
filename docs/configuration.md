@@ -200,6 +200,16 @@ If you want to try using Hybrid Shuffle, giving you access to cloud executions, 
 ### Environment Variables
 Shuffle has a few toggles that makes it straight up faster, but which removes a lot of the checks that are being done during your first tries of Shuffle.
 
+Backend:
+```
+# Set the encryption key to ensure all app authentication is being encrypted. If this is NOT defined, we do not encrypt your apps. If this is defined, all authentications - both old and new will start using this key.
+# Do NOT lose this key if specified, as that means you will need to reset all keys.
+
+SHUFFLE_ENCRYPTION_MODIFIER=YOUR KEY HERE
+
+# PS: Encryption is available from Shuffle backend version >=0.9.17
+```
+
 Orborus:
 ```
 # Cleans up all containers after they're done. Necessary to help Docker scale. Default=false
