@@ -45,17 +45,14 @@ Why is it done this way? Because that's what the Open Source backend of Shuffle 
 
 Now, how do we translate this into a CI/CD pipeline? That's exactly what we need to figure out..
 
-### Workflow execution
-TBD
+### Workflow execution (Orborus, Workers & App SDK)
+TBD: Have multiple complex workflows ran automatically in a test build for every new version of Shuffle. These should test e.g. newly built apps, app sdk functionality like conditions and JSON parsing, Liquid formatting, loops and more.
 
 ### App SDK 
 TBD: There are different versions with different operating systems. Should probably move it to it's own repo.
 
-### Orborus 
-TBD
-
 ### Backend 
-TBD
+TBD: Run a test for whether API's return data as expected in a test environment.
 
 ### Frontend
-TBD
+TBD: Run tests for whether each view and component works, and can reach out to the backend properly. 
