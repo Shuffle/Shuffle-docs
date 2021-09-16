@@ -7,6 +7,12 @@ App development is at the heart of how we grow. Without apps, Shuffle as a produ
 ## Who we're building for
 Our target market are the people running [security operation centers](https://digitalguardian.com/blog/what-security-operations-center-soc). These exist around the world and at the frontlines, stopping bad behavior from malicious actors trying to cause harm. This means they're always on their toes - which in turn means they don't have much time for process and automation. That's where Shuffle comes in. We make it as simple as possible to get their existing platforms up and running, which giving them actionable advice on how to improve their defenses. Cybersecurity isn't a competition.
 
+## Documentation sources
+* [App creation with Shuffle](https://shuffler.io/docs/app_creation)
+* [Shuffle Architecture](https://shuffler.io/docs/architecture)
+* [Shuffle Extensions](https://shuffler.io/docs/extensions)
+* [Workflow documentation](https://shuffler.io/docs/workflows)
+
 ## Security Categories 
 We have defined eight (8) [main categories as per our category framework](https://github.com/frikky/shuffle-docs/blob/master/handbook/engineering/security_category_framework.md), that are necessary to tackle any cybersecurity threat. 
 
@@ -31,7 +37,7 @@ We want to make security a more collaborative space, but everyones trying to loc
 Create a new app with HTTP here: 			[https://shuffler.io/apps](https://shuffler.io/apps)
 Learn about Python App Creation here: [https://shuffler.io/docs/app_creation](https://shuffler.io/docs/app_creation)
 
-Last but not least; make sure to document every step and have fun :D
+Last but not least; make sure to document every step as Markdown in a README.md file! This is then added to Shuffle's UI in order to make documentation easily available to our users.
 
 ## Basic Process
 1. [Find an app of interest in the todo](https://github.com/frikky/Shuffle-apps/projects/1) that hasn't been made yet.
@@ -77,7 +83,7 @@ As more people make and share apps, we need a proper process for preparing AND v
 * Write and learn about each of the 8 tool categories, and their sub categories 
 * Rewrite this process as per how we're working now vs. how we have been working
 
-## Credits
+## App Credits
 We want YOU to get the credits for what you create and celebrate you. This means you'll be highlighted when the app is published on shuffler.io as well (if you want). This can be down to the granular level of "actions". This will long-term be reflected with your user on Github.
 
 ## Learnings

@@ -24,7 +24,7 @@ The reason behind the usage of Golang is simple: Stability. Bash scripts and Pyt
 | ---- | ---------- | ---- |
 | Frontend | ReactJS | Cytoscape graphs & Material design |
 | Backend  | Golang | Rest API that connects all the different parts |
-| Database | Google Datastore | Has all non-volatile information. Will probably move to elastic or similar. |
+| Database | Opensearch | A scalable, NoSQL database used as document store fo everything. |
 | Orborus  | Golang | Runs workers in a specific environment to connect locations |
 | Worker   | Golang | Deploys Apps to run Actions defined in a workflow |
 | app sdk  | Python | Used by Apps to talk to the backend |
