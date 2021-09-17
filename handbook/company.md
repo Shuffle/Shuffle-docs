@@ -20,12 +20,13 @@ With a good partnership, and a few early adopters, 2021 will be the year we star
 This is an outline of Shuffle in 2021 and onwards. Our previous goals were simple, but didn't have the substance of what we will develop when.
 
 ### 2021
-#### Q1
 **Objectives**
 * Get early adopters 
 * Release new major version of Shuffle 
 * Improve SEO and Website usability
 * Create a baseline of simple use-cases
+* Have 6 happy customers
+* Release Shuffle v1.0.0
 
 **Key Results**
 * Get 3 operation centers to use Shuffle for automation
@@ -37,7 +38,7 @@ This is an outline of Shuffle in 2021 and onwards. Our previous goals were simpl
 * Have a framework available to explain what we do
 
 **Todos**
-* Make the phishing workflow REALLY easy to use and implement with Office365 
+* Make the phishing workflow REALLY easy to use and implement with Office365 and gmail
 * Have a search engine for our apps and documentation
 * Add a new workflow explorer view 
 * Make shuffler.io workflows "event-driven"
@@ -49,16 +50,3 @@ This is an outline of Shuffle in 2021 and onwards. Our previous goals were simpl
 * Create a good strategy for what apps to make in order, and what is necessary
 * Make it easy to understand what we're building next (in order)
 * Make apps with special authentication work with the App Creator (oAuth2 etc)
-
-#### Q2
-**Objectives**
-* Have 6 happy customers
-* Make the Workflow baseline migrate-able to any tool
-* Release Shuffle v1.0.0
-
-**Key Results**
-TBD
-
-**Todos**
-* Make the phishing workflow REALLY easy to use with Gmail 
-* Polish support process
