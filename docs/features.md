@@ -20,7 +20,6 @@ Describes the features included with Shuffle.
 * [Built-in Documentation](#built-in_documentation)
 * [Automation Triggers](#triggers_of_all_kinds)
 * [SSO and MFA](#sso_and_mfa)
-
 * [Marketplace](#marketplace)
 * [Mitre Att&ck](#mitre_auto-tagging)
 * [Development AI](#development_ai)
