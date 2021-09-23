@@ -9,11 +9,22 @@ Describes the features included with Shuffle.
 
 # Table of contents
 * [Introduction](#introduction)
-* [Automation builder](#automation_builder)
-* [App builder](#app_builder)
-* [Default playbooks](#default_playbooks)
-* [Open frameworks](#open_frameworks)
-* [Automated compliance](#automated_compliance)
+* [Best in class App Creator](#best_in_class_app_creator)
+* [The workflow designer](#the_workflow_designer)
+* [Default use-cases](#standard_workflows_and_apps)
+* [Cloud and Open Source](#local,_hosted,_cloud_and_hybrid)
+* [Multi-Org for free](#multi-tenancy_and_multi-org)
+* [File analysis](#file_storage)
+* [Key Value Store](#key_value_store)
+* [Encrypted Authentication Storage](#encrypted_authentication_storage)
+* [Built-in Documentation](#built-in_documentation)
+* [Automation Triggers](#triggers_of_all_kinds)
+* [SSO and MFA](#sso_and_mfa)
+
+* [Marketplace](#marketplace)
+* [Mitre Att&ck](#mitre_auto-tagging)
+* [Development AI](#development_ai)
+* [Reporting, RBA & dashboards](#dashboards)
 
 ## Introduction
 With the problems described in [our about page](/docs/about) in mind, this document describes the features we have and will be implementing to ensure **anyone** can build on the Shuffle platform. Shuffle is not to only be used by developers, but by anyone curious about automation.
@@ -23,7 +34,7 @@ Our app creator is how we can promise to build apps within hours and days, rathe
 
 Our goal with the App Creator is to incentives as many security companies as possible to share their API's, and to keep the largest repository of integrations out there.
 
-![app creator](https://github.com/frikky/shuffle-docs/blob/master/assets/features-1.png?raw=true)
+![app creator](https://github.com/frikky/Shuffle/raw/master/frontend/src/assets/img/github_shuffle_img.png)
 
 ## The workflow designer 
 Our workflow designer is the part of Shuffle that makes it all fit together. Together with the [App creator](/apps/new) and our default apps (HTTP & Shuffle Toolbox), it gives you access to unlimited automation possibilities, ensuring anyone can learn to automate anything with just a few hours of practice.
@@ -50,7 +61,7 @@ Shuffle allows for a user to have multiple Organizations associated with a User 
 ## Multiple environments
 Have multiple datacenters with physical barriers for connections? No problem - we've built a way for a single workflow to run scripts in multiple locations. Environments are divided by Organization, but still allowing for resource sharing if necessary.
 
-## File storage
+## File storage 
 What is a security system that can't handle files? Not very useful. The good news? We can. If you want to connect Shuffle to your favorite sandbox, or upload and analyze an email with Yara - we can do it all.
 
 What more? We also support namespaces, allowing for the download of a full namespace as a single bundle. What does this mean? You can e.g. control all your rules from a single place. 
@@ -69,7 +80,7 @@ Having a good storage solution isn't enough. What if the server itself gets brea
 
 ![Shuffle encrypted authentication storage](https://github.com/frikky/shuffle-docs/blob/master/assets/features-7.png?raw=true)
 
-## Built in Documentation
+## Built-in Documentation
 What is a system that isn't documented well? A not so useful system. That's why we've ensured that our apps get documented, which is available at the click of a button from within the Workflow UI - right next to the authentication process.
 
 ![Shuffle documentation everywhere](https://github.com/frikky/shuffle-docs/blob/master/assets/features-8.png?raw=true)
