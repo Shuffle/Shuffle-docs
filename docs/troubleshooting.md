@@ -1,5 +1,5 @@
 # Troubleshooting
-Documentation for troubleshooting known issues in Shuffle.
+Documentation for troubleshooting and debugging known issues in Shuffle.
 
 # Table of contents
 * [Force stop executions](#how_to_stop_executions_in_loop)
@@ -37,18 +37,18 @@ curl -XDELETE http://172.21.0.4:9200/workflowqueue-shuffle
 ![image](https://user-images.githubusercontent.com/21691729/124939209-d5694580-e000-11eb-8025-e2d475432e1b.png)
 ![image](https://user-images.githubusercontent.com/21691729/124939333-ec0f9c80-e000-11eb-9e56-5fbd06c7bfe3.png)
 Give permissions to shuffle-database folder
-````
+```
 sudo chown 1000:1000 -R shuffle-database
-````
+```
 
 ## Recover admin user
 1. docker exec to get bash session into opensearch container "docker exec -it "container id" bash
 
 2. pump curl results of users index into user.log file curl -X GET "localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d'
 {
-	    "query": {
-				        "match_all": {}
-								    }
+	"query": {
+		"match_all": {}
+	}
 }
 ' > users.log
 

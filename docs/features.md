@@ -1,9 +1,9 @@
 # Shuffle Features 
-Describes the features we already have or plan to build. 
+Describes the features included with Shuffle.
 
-* SaaS: [Shuffle Cloud](https://shuffler.io)
+* SaaS: [Shuffle Cloud](https://shuffler.io/pricing)
 * Open Source: [Shuffle onprem](https://github.com/frikky/shuffle)
-- Hybrid: [Shuffle Hybrid](/docs/configuration#hybrid_configuration)
+* Hybrid: [Shuffle Hybrid](/docs/configuration#hybrid_configuration)
 
 [Contact us](https://shuffler.io/contact) for more info
 
@@ -16,39 +16,104 @@ Describes the features we already have or plan to build.
 * [Automated compliance](#automated_compliance)
 
 ## Introduction
-With the problems described in [our about page](/docs/about) in mind, these are some of the features we want to help solve. With part of our overall goal being to move the bottom part of the security industry into the upper echelon, a lot needs to be automated, but that's not enough. You also need to build working implementations, do staff training in the service itself,
+With the problems described in [our about page](/docs/about) in mind, this document describes the features we have and will be implementing to ensure **anyone** can build on the Shuffle platform. Shuffle is not to only be used by developers, but by anyone curious about automation.
 
-To tackle these issues, we give you an Open Ecosystem, leveraging OpenAPI and Mitre Att&ck. With the use of OpenAPI, we hope that the rest of the community can join us in further specifying it for their services. Future looking services all specify this for their services, but IT and security companies seem to lack behind.
+## Best in class App Creator
+Our app creator is how we can promise to build apps within hours and days, rather than weeks. It's a easy to use, but yet powerful way to easily interact with other platforms' API's. It allows for app creation based on Swagger/OpenAPI, and can handle authentication for any HTTP method. The best part? You can export those apps as OpenAPI, meaning our apps aren't tied to Shuffle itself. 
 
-## Automation builder - workflows
-Our automation builder is the tool that makes it all fit together. It gives you access to unlimited automation possibilities together with the [App builder](/apps/new), while also giving you an overview of bad and good automation options.
+Our goal with the App Creator is to incentives as many security companies as possible to share their API's, and to keep the largest repository of integrations out there.
+
+![app creator](https://github.com/frikky/shuffle-docs/blob/master/assets/features-1.png?raw=true)
+
+## The workflow designer 
+Our workflow designer is the part of Shuffle that makes it all fit together. Together with the [App creator](/apps/new) and our default apps (HTTP & Shuffle Toolbox), it gives you access to unlimited automation possibilities, ensuring anyone can learn to automate anything with just a few hours of practice.
 
 ![Automation-builder](https://github.com/frikky/shuffle-docs/blob/master/assets/shuffle-workflow-1.png?raw=true)
 
-## App builder
-The app builder is a simple way to connect to another web service. It's based on OpenAPI and can therefore be shared among your colleagues simply, whether or not you choose to use Shuffle in the future. Your developers will love you for this in both the short and longrun. 
+## Standard workflows and apps
+Shuffle comes pre-packaged with a [large amount of apps](https://github.com/frikky/shuffle-apps) and [workflows](https://github.com/frikky/shuffle-workflows), making it both easy to start using and extend. This, together with our [Marketplace](#marketplace) is what will bring security to new heights.
 
-Our apps can also be built from scratch however. If you know how to code, or are interested in learning more, [please read on here](/docs/apps).
+## Local, hosted, cloud and Hybrid
+Shuffle's focus has and will always be on Open Source and collaboration. With this in mind, we are tirelessly building out features and fixing bugs for the [Open Source](https://github.com/frikky/shuffle), before testing, migrating and deploying it across our user- and customerbase. 
 
-![App-builder](https://github.com/frikky/shuffle-docs/blob/master/assets/app-builder-example-1.png?raw=true)
+- [Shuffle cloud](https://shuffler.io) is a custom solution with mostly the same codebase, but is Micro-service oriented through Google Cloud Functions.
+- [The local and hosted](https://github.com/frikky/shuffle) version of Shuffle is the one hosted on Github, and comes out of the box with no limitations.
+- [Shuffle Hybrid](#hybrid_configuration) is another variant, allow for the local and cloud version to work together. This will further allow for connections between Shuffle instances in the future.
 
-## Default playbooks = compliance
-Default playbooks give you access to start off the bat. Whether you just want to take the service for a spin or have a working implementation in mind, we want to support you usng these playbooks. To further develop your ecosystem, you can build custom ones (with the capabilities to do anything), use one playbook inside another playbook, which are also self-documenting.
+![Cloud organizations](https://github.com/frikky/shuffle-docs/blob/master/assets/features-3.png?raw=true)
 
-Most of our playbooks will be defined based on Mitre Att&ck, and use the latest in threat hunting to make testing as easy as possible. With this in mind, we also build towards what kind of compliance requirements you might have.
+## Multi-tenancy and Multi-org
+Shuffle allows for a user to have multiple Organizations associated with a User and vice versa. Organizations have logical barriers, making users able to easily swap between them. Shuffle is further extended for MSSP's needs, allowing for Sub-organizations to be controlled from a Parent-organization.
 
-[Playbooks](https://github.com/frikky/shuffle-workflows)
+![Shuffle Organization change](https://github.com/frikky/shuffle-docs/blob/master/assets/features-4.png?raw=true)
 
-## Open frameworks
-### OpenAPI
-With OpenAPI in mind, we started building out Shuffle. OpenAPI is a specification used to standardize the way web services talk to each other. In other words, we already have thousands of integrations available, just not loaded for every user. [Contact us for more info](/docs/contact)
+## Multiple environments
+Have multiple datacenters with physical barriers for connections? No problem - we've built a way for a single workflow to run scripts in multiple locations. Environments are divided by Organization, but still allowing for resource sharing if necessary.
 
-[Our definition](https://github.com/frikky/OpenAPI-security-definitions)
+## File storage
+What is a security system that can't handle files? Not very useful. The good news? We can. If you want to connect Shuffle to your favorite sandbox, or upload and analyze an email with Yara - we can do it all.
 
-### Mitre Att&ck
-With security being one of our specialities, we are building capabilities to leverage Mitre Att&ck to help with detection and hunting. It's hard to get started when the framework doesn't know anything about your environment.. But what if it did?
+What more? We also support namespaces, allowing for the download of a full namespace as a single bundle. What does this mean? You can e.g. control all your rules from a single place. 
 
-## Self documenting, reporting and compliance
-Stuck manually giving information to your boss, your auditors or colleagues? Don't worry, we got it covered. We can quickly check whether you fill most or all the required complaince needs for your SOC. This can be anything from GDPR to PCI-DSS.
+![Shuffle file handling](https://github.com/frikky/shuffle-docs/blob/master/assets/features-5.png?raw=true)
 
-With OpenAPI, Mitre Att&ck and open playbooks, you have all the points necessary to fill any and all of your operations documentation requirements. 
+## Key Value store
+We've extended Shuffle with the possibility of storing data for all your needs. This is called the "Shuffle Cache" and can be used for e.g. Pagination, timestamp management, IOC lists and anything else you want. Not to worry! This is permanent storage if you want it.
+
+What more? It's easy to use, and accessing the data can be done directly from $shuffle_cache, while setting values can be done with the Shuffle Toolbox.
+
+![Shuffle cache handling](https://github.com/frikky/shuffle-docs/blob/master/assets/features-6.png?raw=true)
+
+## Encrypted Authentication storage
+Having a good storage solution isn't enough. What if the server itself gets breached? Worry not! All your treasures are safely encrypted, and decrypted ONLY in real time for an app that needs to use them. 
+
+![Shuffle encrypted authentication storage](https://github.com/frikky/shuffle-docs/blob/master/assets/features-7.png?raw=true)
+
+## Built in Documentation
+What is a system that isn't documented well? A not so useful system. That's why we've ensured that our apps get documented, which is available at the click of a button from within the Workflow UI - right next to the authentication process.
+
+![Shuffle documentation everywhere](https://github.com/frikky/shuffle-docs/blob/master/assets/features-8.png?raw=true)
+
+## Triggers of all kinds
+Automation wouldn't be automation if you had to do manual work. That's why Shuffle has implemented 4 core triggers:
+- Webhooks: Allows any outside source to send data in real time to Shuffle.
+- Schedules: Makes it possible to start a workflow on a schedule 
+- Subflows: Want to run another Workflow from within your current one? This does that exactly.
+- User Input: Starting or continuing an action based on what an analyst decides 
+
+Extension triggers (not exhaustive): AWS Lambda, AWS S3, Elastalert, Kafka, Pub/Sub
+
+## SSO and MFA
+SSO and other required authentication mechanisms are already in play, and available to anyone who wants to use them rather than normal signin. Our main supported platforms are the following, with more platforms to come ([ask us!](https://shuffler.io/contact)):
+- Okta
+- Auth0
+- PingID
+- AzureAD
+
+![Shuffle single signon](https://github.com/frikky/shuffle-docs/blob/master/assets/features-2.png?raw=true)
+
+
+----------------------------------------------------------------------------------
+
+**Anything below here are started, but a work in progress (beta)**
+
+### Marketplace
+The Shuffle marketplace is where you can go and find the integrations and workflows you want. As more users Publish their workflows and apps, we will move a lot of our focus here.
+
+![Shuffle marketplace](https://github.com/frikky/shuffle-docs/blob/master/assets/features-9.png?raw=true)
+
+### Mitre Auto-Tagging
+Mitre Att&ck is more an more important. That's why we're working on a mechanism for auto-tagging data with Mitre Att&ck techniques based on what the data is from an endpoint. This is a self-built model, and will be improved over time as more people get to use it.
+
+### Development AI  
+We're developing technology to allow for apps and workflows to be built based on text. This is based on OpenAPI's GPT-3 model, and can make it even easier for anyone to automate long-term. 
+
+### RBA 
+RBA is planned for the 1.1 release. Our current authentication system is easily extendible for RBA, but the focus hasn't been here yet.
+
+### Dashboards 
+Dashboards are planned for 1.0 release. There are a few standard ones in place, but these will become customizable.
+
+### Reporting 
+Reporting is necessary to any organization. That's why our focus is on having a reporting mechanism on launch, built directly into Workflows themselves.
+
