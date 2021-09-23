@@ -37,9 +37,8 @@ The reason behind the usage of Golang is simple: Stability. Bash scripts and Pyt
 | app sdk  | Python | Used by Apps to talk to the backend |
 
 ## Frontend
-
 ## Backend
-
-
-
-
+## Database 
+## Orborus 
+## Worker 
+## App SDK 
