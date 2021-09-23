@@ -106,7 +106,7 @@ SSO and other required authentication mechanisms are already in play, and availa
 
 ----------------------------------------------------------------------------------
 
-**Anything below here are started, but a work in progress (beta)**
+**Anything below here is alpha stages**
 
 ### Marketplace
 The Shuffle marketplace is where you can go and find the integrations and workflows you want. As more users Publish their workflows and apps, we will move a lot of our focus here.
