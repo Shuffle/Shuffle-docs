@@ -33,6 +33,72 @@ curl -XDELETE http://172.21.0.4:9200/workflowqueue-shuffle
 {"acknowledged":true}
 ```
 
+# How to abort all running executions of a specific worflow
+Follow Python scripts allows to massively stop all running executions of a worflow
+```python
+import sys
+import requests
+
+API_ENDPOINT = "http(s)://<shuffle_endpoint>/api/v1"
+API_KEY = "<your_api_key>"
+WORKFLOW_NAME = "<workflow_name>"
+
+def main():
+    headers = {
+        "Authorization": "Bearer " + API_KEY
+    }
+
+    with requests.get(API_ENDPOINT + "/workflows", headers=headers) as response:
+        response.raise_for_status()
+        data = response.json()
+
+    wflows = list(filter(lambda wf: wf.get("name") == WORKFLOW_NAME, data))
+    if len(wflows) == 0:
+        print("Workflow not found")
+        return 2
+    if len(wflows) != 1:
+        print("Something goes wrong")
+        return 1
+
+    wflow = wflows[0]
+
+    # Get executions
+    # example: http(s)://<shuffle_endpoint>/api/v1/workflows/b519c8f7-e9b0-4b47-b93d-cac013e4522f/executions
+    wflow_id = wflow.get("id")
+    url = "{}/workflows/{}/executions".format(API_ENDPOINT, wflow_id)
+    with requests.get(url, headers=headers) as response:
+        response.raise_for_status()
+        data = response.json()
+
+    still_running = list(filter(lambda ex: ex.get("status") == "EXECUTING", data))
+
+    for exec in still_running:
+        exec_id = exec.get("execution_id")
+        print("[INFO] We're going to abort execution with ID {}".format(exec_id))
+
+        url = "{}/workflows/{}/executions/{}/abort".format(API_ENDPOINT, wflow_id, exec_id)
+
+        with requests.get(url, headers=headers) as response:
+            response.raise_for_status()
+            data = response.json()
+
+        if data.get("success"):
+            print("[INFO] Excecution successfully aborted")
+        else:
+            print("[ERROR] Unable to abort execution")
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
+```
+Copy the script into a file called `abort_running_executions.py` and run it with
+```
+# use python or python3 depending of your environment
+python abort_running_executions.py
+```
+In order to work _requests_ Python library must be installed in your Python execution env.
+
 ## Opensearch permissons error
 ![image](https://user-images.githubusercontent.com/21691729/124939209-d5694580-e000-11eb-8025-e2d475432e1b.png)
 ![image](https://user-images.githubusercontent.com/21691729/124939333-ec0f9c80-e000-11eb-9e56-5fbd06c7bfe3.png)
