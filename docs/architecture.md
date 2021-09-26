@@ -151,5 +151,5 @@ The most important parts about containerization in Shuffle is this:
 - [All apps](https://github.com/frikky/shuffle-apps) are built around the App SDK
 - If an app doesn't exist on the Worker's server during an execution, the Worker in question will try to download it from local, then remote registries.
 
-# Learn more
+## Learn more
 [Contact us](https://shuffler.io/contact) or mail us at [help@shuffler.io](mailto:help@shuffler.io), and we'll provide you with the necessary information.
