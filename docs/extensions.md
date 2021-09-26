@@ -12,7 +12,7 @@ From the start, Shuffle has been a platform about integrations. We've focused on
 
 These integrations will typically entail third party services connecting to Shuffle with inbound Webhooks as triggers in a workflow.
 
-# Wazuh
+## Wazuh
 Wazuh is a SIEM platform for security operations. We've used it through their API multiple ways, but were missing an important component; alerting. That's why we've developed a simple alert forwarder from Wazuh to Shuffle. 
 
 [Wazuh extension documentation](https://documentation.wazuh.com/current/user-manual/manager/manual-integration.html)
@@ -92,7 +92,7 @@ There are many ways to test the integration, but you can simplify it by setting 
 ![Extend Shuffle with Wazuh 3](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_3.png?raw=true)
 
 
-# TheHive
+## TheHive
 TheHive is a case management platform for and by security professionals. One of their key capabilities is webhooks, which can send realtime updates to a third party system whenever ANYTHING is changed within TheHive (e.g. a new alert or a case task is written). Shuffle has an ideal way of handling this, [outlined in this blogpost (TheHive4)](https://medium.com/shuffle-automation/indicators-and-webhooks-with-thehive-cortex-and-misp-open-source-soar-part-4-f70cde942e59).
 
 **PS: There is a difference between TheHive3 and TheHive 4 on how to set this up. We are referring to TheHive4 in this section.**
@@ -162,7 +162,7 @@ In TheHive, create a new case, or add a comment to an existing case. This will t
 
 ![Extend Shuffle with TheHive 3](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_3.png?raw=true)
 
-# Logzio 
+## Logzio 
 **1. Create a Workflow which will receive alerts**
 This one is pretty easily explained. Go to Shuffle an make a new Workflow.
 

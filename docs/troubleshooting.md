@@ -1,7 +1,7 @@
 # Troubleshooting
 Documentation for troubleshooting and debugging known issues in Shuffle.
 
-# Table of contents
+## Table of contents
 * [Force stop executions](#how_to_stop_executions_in_loop)
 * [Opensearch permission errors](#opensearch_permissions_error)
 * [Recover admin user](#recover_admin_user)

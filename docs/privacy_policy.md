@@ -4,7 +4,7 @@ Valid as of this file's [last release on Github](https://github.com/frikky/shuff
 
 **PS: Not applicable to the [Open Source version of Shuffle](https://github.com/frikky/shuffle)**
 
-# Table of contents
+## Table of contents
 * [Analytics](#analytics)
 * [Data Location](#data_location)
 * [Infrastructure Monitoring](#infrastructure_monitoring)

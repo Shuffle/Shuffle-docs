@@ -1,7 +1,7 @@
 # Triggers
 Documentation for triggers, running workflow executions
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [About](#about)
 * [Webhook](#webhook)
