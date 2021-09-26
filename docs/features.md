@@ -7,7 +7,7 @@ Describes the features included with Shuffle.
 
 [Contact us](https://shuffler.io/contact) for more info
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [Best in class App Creator](#best_in_class_app_creator)
 * [The workflow designer](#the_workflow_designer)

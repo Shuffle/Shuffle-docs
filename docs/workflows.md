@@ -1,7 +1,7 @@
 # Workflows
 Documentation for workflows. 
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [The Basics](#basics)
 * [Create](#create)

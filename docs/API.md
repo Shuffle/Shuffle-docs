@@ -1,7 +1,7 @@
 # Shuffle API 
 Documentation for Shuffle API v1.0. 
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [Authentication](#authentication)
 * [Responses](#responses)

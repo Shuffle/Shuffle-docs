@@ -1,7 +1,7 @@
 # Shuffle Architecture
 Documentation to understand the Shuffle architecture and thoughts behind our choices. Important to understand if you want to contribute or decide whether it works for your organization.
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [Overview](#architecture_overview)
 * [Frameworks](#frameworks)

@@ -3,7 +3,7 @@ Documentation for configuring Shuffle.
 
 **PS: This is only for on-prem / open-source, not cloud**
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [Updating Shuffle](#updating_shuffle)
 * [Production readiness](#production_readiness)

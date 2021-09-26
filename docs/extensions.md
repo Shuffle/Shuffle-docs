@@ -1,7 +1,7 @@
 # Shuffle extensions
 This is documentation for integrating and sending data from third-party services to Shuffle. Not to be confused with [apps](/apps) and [workflows](/workflows)
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [Wazuh Webhook](#wazuh)
 * [TheHive Webhook](#thehive)

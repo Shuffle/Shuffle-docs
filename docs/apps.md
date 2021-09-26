@@ -1,7 +1,7 @@
 # Shuffle Apps
 Documentation for apps. If you'd like to make an app [check out this guide](/docs/app_creation)
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [How they work](#how_they_work)
   * [Actions](#actions)

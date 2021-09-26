@@ -1,7 +1,7 @@
 # Organizations 
 Documentation for the Admin view of Shuffle. Best used by administrators.
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [Organization Overview](#organization_overview)
 * [Cloud Syncronization](#cloud_syncronization)

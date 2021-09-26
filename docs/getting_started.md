@@ -1,7 +1,7 @@
 # Getting started 
 Getting started with Shuffle
 
-# Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [First workflow](#first_workflow)
 * [Learn about Shuffle](#learn_about_shuffle)
