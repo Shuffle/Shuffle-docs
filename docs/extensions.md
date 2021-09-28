@@ -8,11 +8,11 @@ This is documentation for integrating and sending data from third-party services
   * [Auth0](#auth0)
   * [PingIdentity](#ping_id)
 * [Webhooks](#webhooks)
-	* [Wazuh Webhook](#wazuh)
-	* [TheHive Webhook](#thehive)
-	* [Logz.io Webhook](#logzio)
-	* [MISP forwarder](#misp)
-	* [AWS S3 forwarder](#aws_s3_forwarder)
+  * [Wazuh Webhook](#wazuh)
+  * [TheHive Webhook](#thehive)
+  * [Logz.io Webhook](#logzio)
+  * [MISP forwarder](#misp)
+  * [AWS S3 forwarder](#aws_s3_forwarder)
 
 ## Introduction
 From the start, Shuffle has been a platform about integrations. We've focused on making them as open and usable as possible, but were missing one part; inbound data. The general way Shuffle handles this has been through third-party API's, where we poll for data on a schedule. There are however some cases where this doesn't do the trick. That's what extensions are. 
