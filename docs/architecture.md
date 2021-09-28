@@ -38,7 +38,7 @@ The Shuffle automation engine is entirely built from scratch, relying heavily on
 ## Technologies
 The fundamental building blocks of Shuffle are all designed to be modular Docker images, meaning they can run separately in different environments. The list below contains all the necessary parts to execute a workflow. In case you want to contribute, we've added the programming languages as well.
 
-The reason behind the usage of Golang is simple: Stability. Bastechnologiestechnologiesh scripts and Python are prone to crashing, while Golang is fun, stable and easy to understand.
+The reason behind the usage of Golang is simple: Stability. Scripting languages like Python are prone to crashing, while Golang is fun, stable and easy to understand.
 
 | Type | Technology | Note |
 | ---- | ---------- | ---- |
