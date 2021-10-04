@@ -106,6 +106,7 @@ There are multiple ways to access the API. The first is through the UI and a log
 App authentication is how we authenticate and store an apps' configuration. If an app requires authentication, and the user adds them, these will be encrypted and stored in the database, along with being cached in their encrypted form (AES-256). These values can and should NEVER be decrypted to be seen by a process or human other than during a workflow execution.
 
 How are these values being used then? If they're encrypted, how does the app get access to them? Here's how:
+
 1. [A workflow starts running](#workflow_execution_model). This sets up a lot of different values necessary for Shuffle to find the start node, next nodes, parsing data, fixing conditions etc.
 2. The backend looks at ALL nodes in the workflow, checking if any of their parameters have the field "configuration" set to true. This indicates it's a field to be replaced.
 3. It finds the appropriate apps' chosen authentication by ID (authentication_id)
@@ -122,8 +123,8 @@ The execution model of Shuffle can be defined as such:
 4. For each of the new jobs, Orborus creates a container for a Worker with the following information:	An execution ID and authorization, and whether to run in an optimized way.
 5. A worker is started FOR EACH EXECUTION, which is in control of the entire duration of an execution. It has two modes:
 
-	1. Unoptimized: If a workflow is started manually, the Worker will periodically poll the backend for updates, pointing all apps to send direct information to the backend. This makes it possible for the user to see updates in real-time for debug purposes.
-	2. Optimized: If a Workflow is started from a trigger (not manually), the Worker starts an HTTP server, and acts as a temporary backend for this specific execution. This makes it possible to communicate and deploy Apps faster, without straining the backend. When the workflow is finished, it will send the full execution to the backend. This means the frontend MAY not have the full picture until after the workflow execution finishes.
+  1. Unoptimized: If a workflow is started manually, the Worker will periodically poll the backend for updates, pointing all apps to send direct information to the backend. This makes it possible for the user to see updates in real-time for debug purposes.
+  2. Optimized: If a Workflow is started from a trigger (not manually), the Worker starts an HTTP server, and acts as a temporary backend for this specific execution. This makes it possible to communicate and deploy Apps faster, without straining the backend. When the workflow is finished, it will send the full execution to the backend. This means the frontend MAY not have the full picture until after the workflow execution finishes.
 
 6. The Worker attempts starting each App's Docker container, starting with the startnode. As it finds that a node has finished, it will check it's status, before starting the following nodes upon success. If the App's Docker image doesn't exist, it will attempt to download in the order of: Backend, Dockerhub. If it doesn't exist, abort the workflow.
 7. The apps that were started by a Worker retrieves the full execution in order to be able to [identify variables](/docs/workflows#workflow_variables), [check conditions](/docs/workflows#conditions), authorization, [download files](/docs/features#file_storage) or from the cache etc. Order of operations in an App's Docker container:
