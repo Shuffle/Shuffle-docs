@@ -31,7 +31,7 @@ How it works:
 - After login, each user is redirected to /workflows as per a normal login.
 
 **PS**: In some cases, the persons' username may be appear an ID in Shuffle. If so, an admin should login to Shuffle and change their username. SSO should still work.
-**PPS**: The callback URL/redirect URL/recipient URL is https://<URL>:<PORT>/api/v1/login_sso
+**PPS**: The callback URL/redirect URL/recipient URL is `https://<URL>:<PORT>/api/v1/login_sso`
 
 ![Single signon configuration](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-1.png?raw=true)
 
