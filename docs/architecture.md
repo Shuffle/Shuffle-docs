@@ -107,7 +107,7 @@ App authentication is how we authenticate and store an apps' configuration. If a
 
 How are these values being used then? If they're encrypted, how does the app get access to them? Here's how:
 
-1. [A workflow starts running](#workflow_execution_model). This sets up a lot of different values necessary for Shuffle to find the start node, next nodes, parsing data, fixing conditions etc.
+1. The [workflow starts running](#workflow_execution_model). This sets up a lot of different values necessary for Shuffle to find the start node, next nodes, parsing data, fixing conditions etc.
 2. The backend looks at ALL nodes in the workflow, checking if any of their parameters have the field "configuration" set to true. This indicates it's a field to be replaced.
 3. It finds the appropriate apps' chosen authentication by ID (authentication_id)
 4. Shuffle runs [decryption on all](#encryption_and_hashing) the appropriate fields, then replaces the value JUST for this workflow execution.
@@ -116,6 +116,7 @@ How are these values being used then? If they're encrypted, how does the app get
 
 ## Workflow execution model
 The execution model of Shuffle can be defined as such:
+
 1. A Workflow is triggered. This can be by a trigger, or a manual execution, making a request towards /api/v1/workflows/<workflow_id>/execute
 2. The backend fills in the appropriate gaps (e.g. startnode, source trigger or [app authentication](#app_authentication)), before adding an execution to be retrieved by Orborus at a later stage, with the appropriate priority (0-10, 10 being highest).
 3. Orborus runs as an agent, constantly polling for jobs from Shuffle. By default, it retrieves 10 jobs at a time, before checking whether any can be started. This is done based on how many Workers are running in Docker at this time, compared to the environment variable SHUFFLE_ORBORUS_EXECUTION_CONCURRENCY.
