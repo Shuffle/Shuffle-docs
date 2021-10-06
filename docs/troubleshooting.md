@@ -5,6 +5,20 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Force stop executions](#how_to_stop_executions_in_loop)
 * [Opensearch permission errors](#opensearch_permissions_error)
 * [Recover admin user](#recover_admin_user)
+* [Load all apps locally](#load_all_apps_locally)
+
+## Load all apps locally
+In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com for our apps. Here's how to manually load them into Shuffle using git
+
+```
+#1. IF proxy necessary: Set up the proxy for Git (install if you don't have it). 
+git config --global http.proxy http://proxy.mycompany:80
+
+#2. Go to the shuffle folder where you have Shuffle installed, then go to the shuffle-apps folder (./shuffle/shuffle-apps)
+git clone https://github.com/shuffle/shuffle-apps
+
+#3. Go to the UI and hotload the apps: https://shuffler.io/docs/app_creation#hotloading_your_app (click the hotload button in the top left in the /apps UI)
+```
 
 ## How to stop executions in loop
 1. Run **docker ps**
