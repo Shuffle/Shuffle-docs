@@ -4,7 +4,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 ## Table of contents
 * [Load all apps locally](#load_all_apps_locally)
 * [Force stop executions](#how_to_stop_executions_in_loop)
-* [Abort all specific workflow executions](#abort all running executions of a specific workflow)
+* [Abort all specific workflow executions](#abort_all_running_executions of_a_specific_workflow)
 * [Opensearch permission errors](#opensearch_permissions_error)
 * [Recover admin user](#recover_admin_user)
 
