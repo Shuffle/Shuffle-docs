@@ -2,10 +2,11 @@
 Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Table of contents
+* [Load all apps locally](#load_all_apps_locally)
 * [Force stop executions](#how_to_stop_executions_in_loop)
+* [Abort all specific workflow executions](#abort all running executions of a specific workflow)
 * [Opensearch permission errors](#opensearch_permissions_error)
 * [Recover admin user](#recover_admin_user)
-* [Load all apps locally](#load_all_apps_locally)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com for our apps. Here's how to manually load them into Shuffle using git
@@ -47,7 +48,7 @@ curl -XDELETE http://172.21.0.4:9200/workflowqueue-shuffle
 {"acknowledged":true}
 ```
 
-# How to abort all running executions of a specific worflow
+## Abort all running executions of a specific worflow
 Follow Python scripts allows to massively stop all running executions of a worflow
 ```python
 import sys
@@ -108,7 +109,7 @@ if __name__ == "__main__":
 ```
 Copy the script into a file called `abort_running_executions.py` and run it with
 ```
-# use python or python3 depending of your environment
+## use python or python3 depending of your environment
 python abort_running_executions.py
 ```
 In order to work _requests_ Python library must be installed in your Python execution env.
