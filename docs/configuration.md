@@ -296,13 +296,18 @@ PS: We do intend to make this JUST https://shuffler.io in the future.
 
 ```
 # Can be closed after install with working Workflows
-shuffler.io  	# Initial setup & future app/workflow sync 
-github.com		# Downloading apps, workflows and documentation
-pkg-containers.githubusercontent.com # Downloads from Github Container registry (ghcr.io)
+shuffler.io  													# Initial setup & future app/workflow sync 
+github.com														# Downloading apps, workflows and documentation
+pkg-containers.githubusercontent.com 	# Downloads from Github Container registry (ghcr.io)
+raw.githubusercontent.com 						# Downloads our Documentation raw from github (https://github.com/shuffle/shuffle-docs) 
 
 # Should stay open
-dl-cdn.alpinelinux.org		# Building apps in realtime.  
-registry.hub.docker.com 	# Downloads apps if they don't exist locally. 
+dl-cdn.alpinelinux.org						# Used for building apps in realtime
+registry.hub.docker.com 					# Downloads apps if they don't exist locally
+ghcr.io														# Github Docker registry
+auth.docker.io										# Dockerhub authentication
+registry-1.docker.io							# Dockerhub registry (for apps)
+production.cloudflare.docker.com 	# Protects of DockerHub
 ```
 
 ### Proxy settings
