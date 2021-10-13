@@ -96,7 +96,7 @@ Conditions use the same format as nodes, with the view popping up on the right s
 3. Configure the condition. Choose the value(s) you're looking for, and use the center piece ("DOES NOT EQUAL" in this example) to modify what you want. In the case of this image, it would NOT run, because "hello" (left side) equals "hello" (right side)
 ![conditions-example-3](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-3.png?raw=true)
 
-4. Here's another example, where it would run IF the [execution argument](#execution argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
+4. Here's another example, where it would run IF the [execution argument](#execution_argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
 ![conditions-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-4.png?raw=true)
 
 5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing_values))
@@ -251,8 +251,8 @@ execution_argument = {
 }
 ```
 
-1. How would we go about getting "name" (execution_argument["name"])
-2. How do we get "writer" under "extra" (execution_argument["extra"]["writer"]? 
+1. How would we go about getting "name"? execution_argument["name"]
+2. How do we get "writer" under "extra"? execution_argument["extra"]["writer"]
 
 * Action argument:
 1. 
