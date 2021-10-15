@@ -86,7 +86,8 @@ PS: The data below is based on [this docker-compose file](https://github.com/fri
 **Orborus**
 Below is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the Shuffle backend location. It can be modified to reduce or increase load, to add proxies, change backend environment to execute and much more. See [environment variables](#environment_variables) for all options.
 
-**PS**: By default, the environments (executions) are NOT authenticated.
+**PS**: Replace SHUFFLE-BACKEND with the IP of Shuffle backend in the specification below. Using Hostname MAY [cause issues](https://github.com/frikky/Shuffle/issues/537) in certain environments.
+**PPS**: By default, the environments (executions) are NOT authenticated.
 
 ```
 version: '3'
@@ -101,7 +102,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - BASE_URL=http://SHUFFLE-BACKEND:BACKEND-PORT
+      - BASE_URL=http://SHUFFLE-BACKEND:5001
       - SHUFFLE_APP_SDK_VERSION=0.8.90
       - SHUFFLE_WORKER_VERSION=latest
       - ORG_ID=Shuffle

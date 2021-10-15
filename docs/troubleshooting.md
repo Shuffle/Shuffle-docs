@@ -4,9 +4,10 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 ## Table of contents
 * [Load all apps locally](#load_all_apps_locally)
 * [Force stop executions](#how_to_stop_executions_in_loop)
-* [Abort all specific workflow executions](#abort_all_running_executions of_a_specific_workflow)
 * [Opensearch permission errors](#opensearch_permissions_error)
 * [Recover admin user](#recover_admin_user)
+* [Orborus can't reach backend](#orborus_can_not_reach_backend)
+* [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com for our apps. Here's how to manually load them into Shuffle using git
@@ -20,6 +21,9 @@ git clone https://github.com/shuffle/shuffle-apps
 
 #3. Go to the UI and hotload the apps: https://shuffler.io/docs/app_creation#hotloading_your_app (click the hotload button in the top left in the /apps UI)
 ```
+
+## Orborus can not reach backend
+In certain cases there may be DNS issues, leading to hanging executions. This is in most cases due to apps not being able to find the backend in some way. That's why the best solution _if possible_ is to use the IP as hostname for Orborus -> Backend communication.
 
 ## How to stop executions in loop
 1. Run **docker ps**
