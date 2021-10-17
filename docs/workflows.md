@@ -361,18 +361,14 @@ Here, we build the json we want ourselves. This is powerful, as we can basically
 ![values-passing-list-4](https://github.com/frikky/shuffle-docs/blob/master/assets/values-passing-list-4.png?raw=true)
 
 ## Casting values
-There are a multitude of reasons casting to exist. This might be that you want a string to be a number, in upper or lowercase or even a list. To do this, casting was implemented in the App SDK. Here are the currently existing casting methods:
+Since version 0.9.25 of Shuffle, casting values and data formatting can be done using [Liquid formatting](/docs/liquid). All action parameters are supported.
 
-| Operation | Input type | Example | Return value | Return type | Alias | Note  |
-| --------- | ------- |------- | ------------ | ----------- | ---- | ----- | 
-| number()  | string | number(10) | 10 | integer | int() | String to int casting |
-| lower()   | string | lower(HELLO) | hello | string | | Makes a string lowercase |
-| upper()   | string | upper(hello) | HELLO | string | | Makes a string uppercase |
-| trim()    | string | trim( hello ) | hello | string | strip() | Removes whitespace around a string |
-| split()   | string | split(hello you) | [hello,you] | list | | Splits a list by whitespace. Will have options in the future | 
-| length()  | string | length(hello)  | 5 | integer | len() | Returns the length of a string |
-| parse()   | list, string | parse(["hey", "how", "are", "you"], 1:2) | how are | string | | Uses python slice annotaion after list: https://stackoverflow.com/questions/509211/understanding-slice-notation |
-| join()   	| list, string | parse(["hey", "how", "are", "you"], .) | hey.how.are.you | string | | Uses the join() functionality to make an array into a string that's split based on the value provided. Can be used to e.g. put IoCs in a document as a list directly |
+Space stripping:
+```
+{{ "          So much room for activities          " | strip }}!
+```
+
+More details: [https://shopify.github.io/liquid/filters/strip/](https://shopify.github.io/liquid/filters/strip/)
 
 ## Authentication
 Authetication is important for Shuffle and all API related software. The reason being that you can't connect to other services without authentication.
