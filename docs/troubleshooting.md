@@ -8,6 +8,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Recover admin user](#recover_admin_user)
 * [Orborus can't reach backend](#orborus_can_not_reach_backend)
 * [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
+* [Recover Organizations](#recover_organizations)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com for our apps. Here's how to manually load them into Shuffle using git
@@ -113,7 +114,8 @@ if __name__ == "__main__":
 ```
 Copy the script into a file called `abort_running_executions.py` and run it with
 ```
-## use python or python3 depending of your environment
+
+**Use python or python3 depending of your environment**
 python abort_running_executions.py
 ```
 In order to work _requests_ Python library must be installed in your Python execution env.
@@ -148,3 +150,4 @@ sudo chown 1000:1000 -R shuffle-database
 7. curl https://ip of shuffle server*/api/v1/users/updateuser -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "admin"}' - will set new user to the admin role.
 
 8. Log into webui with the new user and you should have admin rights
+

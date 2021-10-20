@@ -18,10 +18,12 @@ Valid as of this file's [last release on Github](https://github.com/frikky/shuff
 * Personal data: Cookies, Usage Data
 
 ## Data Location
-* As of 21.11.2020, all information is saved in [Google's europe-west2 location (London)](https://cloud.google.com/compute/docs/regions-zones). Other options later. 
+* As of 21.11.2020, all information is saved in [Google's europe-west2 location (London)](https://cloud.google.com/compute/docs/regions-zones). 
 
 ## Infrastructure Monitoring
-* Nothing 
+* Snyk: Monitors for Infrastructure, Code and Container vulnerabilities.
+* GitGuarding: Monitors for potential credentials lost within or outside our infrastructure.
+* Google Cloud Platform: Alerts, Notifications and logs for up/downtime. 
 
 ## External Social Media Platforms 
 * Twitter and Linkedin widgets
@@ -37,7 +39,7 @@ We use the third party payment processor [Stripe](https://stripe.com/us/privacy)
 
 ## User Data Management
 * Collected data: Email addresses, Domains, Organization names
-* Usage: Email outreach 
+* Usage: User signin and Email outreach 
 
 ## User Creations 
 1. Apps: Optional sharing with everyone
