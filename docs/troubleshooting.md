@@ -8,6 +8,8 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Recover admin user](#recover_admin_user)
 * [Orborus can't reach backend](#orborus_can_not_reach_backend)
 * [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
+* [Useful Opensearch Query](##Useful Opensearch Query)
+* [Extract all workflows](##Extract all workflows)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com for our apps. Here's how to manually load them into Shuffle using git
@@ -171,6 +173,8 @@ curl -X GET "localhost:9200/organizations/_search?pretty" -H 'Content-Type: appl
 ```
 
 # Extract all workflows
+
+This procedure can help you extract workflows directly form opensearch even if Backend and FrontEnd are in awkward situation.
 
 1. Extract the index info from Opensearch. (you may need to create a bind mount for the backup extraction)
 ```
