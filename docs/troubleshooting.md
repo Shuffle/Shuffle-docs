@@ -13,7 +13,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com for our apps. Here's how to manually load them into Shuffle using git
 
 ```
-#1. IF proxy necessary: Set up the proxy for Git (install if you don't have it). 
+#1. IF proxy necessary: Set up the proxy for Git (install if you don't have it).
 git config --global http.proxy http://proxy.mycompany:80
 
 #2. Go to the shuffle folder where you have Shuffle installed, then go to the shuffle-apps folder (./shuffle/shuffle-apps)
@@ -38,7 +38,7 @@ docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 869c
 or
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' shuffle-opensearch
 ```
-2.1. Output 
+2.1. Output
 ```
 172.21.0.4
 ```
@@ -139,7 +139,7 @@ sudo chown 1000:1000 -R shuffle-database
 
 3. open the users.log file with 'vi' and search for the admin user. Once found scroll down to the "apikey" section. this value will be the api key of the admin user.
 
-4. I jumped onto another server within the same vlan as my shuffle server but these could be ran on local host too. We will create a new user and update the user's role to admin with the shuffle api 
+4. I jumped onto another server within the same vlan as my shuffle server but these could be ran on local host too. We will create a new user and update the user's role to admin with the shuffle api
 
 5. curl https://*ip of shuffle server/api/v1/users/register -H "Authorization: Bearer APIKEY" -d '{"username": "username", "password": "P@ssw0rd"}'    - will create new user
 
@@ -148,3 +148,66 @@ sudo chown 1000:1000 -R shuffle-database
 7. curl https://ip of shuffle server*/api/v1/users/updateuser -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "admin"}' - will set new user to the admin role.
 
 8. Log into webui with the new user and you should have admin rights
+
+## Useful Opensearch Query
+
+### Find an user and its Orgs
+
+```
+curl -X GET "localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d' { "query": { "match": {"username": "myuser"} } }
+
+```
+
+### Find all org
+
+```
+curl -X GET "localhost:9200/organizations/_search?pretty" -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}'
+```
+
+Find all org IDs
+
+```
+curl -X GET "localhost:9200/organizations/_search?pretty" -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' | grep "\"id\" : \"" | sed 's/ *$//g' | sed 's/^[ \t]*//;s/[ \t]*$//' | uniq -u
+```
+
+# Extract all workflows
+
+1. Extract the index info from Opensearch. (you may need to create a bind mount for the backup extraction)
+```
+curl -X GET "localhost:9200/workflow/_search?pretty" -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' > /mnt/backup/workflows.json
+```
+
+2. Script to separate all workflows
+
+```
+
+import json
+import os
+
+data = {}
+
+with open("workflows.json", "r") as tmp:
+    data = json.loads(tmp.read())
+
+foldername = "./workflows_loaded"
+try:
+    os.mkdir(foldername)
+except:
+    pass
+
+## Will break  with keyerror lol
+for item in data["hits"]["hits"]:
+    #print(item)
+    try:
+        item = item["_source"]
+    except:
+        continue
+
+    filename = f"""{foldername}/{item["name"]}.json"""
+    print(f"Writing {filename}")
+    with open(filename, "w+") as tmp:
+        tmp.write(json.dumps(item))
+
+```
+This script need to be run on the folder with the file workflows.json, it will create an workflows_loaded directory with all the workflows in it.
+This can also be very useful either to backup your work or to export from a lab to a prod instance.
