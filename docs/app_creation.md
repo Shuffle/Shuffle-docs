@@ -444,7 +444,7 @@ class PythonPlayground(AppBase):
         return "Ran function 3"
 
     # Write your data inside this function
-    async def run_o365poller(self, planType,tenantID,clientID,clientSecret, PollInterval,json_data):
+    def run_o365poller(self, planType,tenantID,clientID,clientSecret, PollInterval,json_data):
         # It comes in as a string, so needs to be set to JSON
         try:
             #json_data = json.loads(json_data)
@@ -463,12 +463,12 @@ class PythonPlayground(AppBase):
         return func(planType,tenantID,clientID,clientSecret)
 
 if __name__ == "__main__":
-    asyncio.run(PythonPlayground.run(), debug=True)
+    PythonPlayground.run()
 ```
 
 Our app's api.yaml specifies we have a function called "run_o365poller" that accepts our 4 authentication args + 2 additional args (unused json_data and PollInterval), all string values.
 
-In order for the app to run, app.py must have an async function the same name as each function in api.yaml. We only have one above. Note that I intentionally left some commented json handling in place to show other ways to get args, you could send a json structure into the function for parsing, but should only be done for non-privileged info. The authentication data comes in as separate args.
+In order for the app to run, app.py must have a function the same name as each function in api.yaml. We only have one above. Note that I intentionally left some commented json handling in place to show other ways to get args, you could send a json structure into the function for parsing, but should only be done for non-privileged info. The authentication data comes in as separate args.
 
 Lastly, ensure your script returns the data you require, after mine is processed, I return a singular JSON array, with one JSON object per log entry. Another app will be written to parse this and take some action on this data, or it could simply be expanded on this app.
 
@@ -476,7 +476,7 @@ I have the function below, as specified in my api.yaml, that accepts the args I 
 
 ```
    # Write your data inside this function
-    async def run_o365poller(self, planType,tenantID,clientID,clientSecret, PollInterval,json_data):
+    def run_o365poller(self, planType,tenantID,clientID,clientSecret, PollInterval,json_data):
 ```
 
 ## Hotloading your app
