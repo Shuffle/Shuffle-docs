@@ -8,8 +8,8 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Recover admin user](#recover_admin_user)
 * [Orborus can't reach backend](#orborus_can_not_reach_backend)
 * [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
-* [Useful Opensearch Query](##Useful Opensearch Query)
-* [Extract all workflows](##Extract all workflows)
+* [Useful Opensearch Query](#useful_opensearch_query)
+* [Extract all workflows](#extract_all_workflows)
 * [Recover Organizations](#recover_organizations)
 
 ## Load all apps locally

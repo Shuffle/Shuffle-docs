@@ -1,10 +1,9 @@
-# Introduction
-This is the start of a handbook that is publicly available, outlining how Shuffle is approaching the future of automation. We believe accessibility is key, and with a distributed group of workers, documentation is a huge part of that.
-
 ## Company
-Shuffle exists to make automation accessible to everyone through collaboration. What this means is that we take the open source- and sharing aspect of our mission really seriously, and will share all we can in order to make the world safer. We were started to solve real-world issues for modern security operation centers, and intend to stay on that mission until it's finished.
+Shuffle exists to make automation accessible to everyone through collaboration. What this means is that we take the open source- and sharing aspect of our mission really seriously, and will share all we can in order to make the world safer. 
 
-### Brief history
+We were started to solve real-world issues for modern security operation centers, and intend to stay on that mission until it's finished. 
+
+### History
 #### 2019: Start of Shuffle
 Shuffle was started by Fredrik as a hobby project to solve issues his own team was experiencing in incident response. He found other projects attempting similar things, but found them to not do what they promised, whether that was through usability or features, and set out to fix that. How hard could it be? 
 
