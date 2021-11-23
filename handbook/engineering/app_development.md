@@ -47,7 +47,8 @@ Last but not least; make sure to document every step as Markdown in a README.md 
 	* Set it up locally (open source)
 	* Ask for a demo (they'll usually send a mail in minutes)
 	* Other options (please share)
-4. Discover: Get access to their API documentation, and search for OpenAPI/Swagger if possible.
+PS: If you can't get a hold of the product, but have documentation, please build it anyway. It won't be perfect, but it makes it easier to test with customers.
+4. Discover: Get access to their API documentation, and search for OpenAPI/Swagger if possible (ALWAYS DO THIS FIRST).
 5. Decide: if you should make it with the App Creator or Python. Always use the App Creator when possible. There are certain authentication mechanisms we can't do with Shuffle yet, but which we may have long-term (oAuth2, AWS boto3 timestamps etc.)
 6. Creation: This is where we rely on your expertise for ease of use. Remember that we're making this for non-developers, and less mandatory fields is always better. IMPORTANT:
 	* Make it simple to use.
