@@ -16,7 +16,16 @@ Getting started with Shuffle
 
 ![Hello world gif](https://github.com/frikky/shuffle-docs/blob/master/assets/Shuffle-hello-world.gif?raw=true)
 
-## Learn about Shuffle
+## Understanding Shuffle
+Our friends over at [OpenSecure](http://opensecure.co) made some good videos to learn about Shuffle. Check them out here!
+
+### What is SOAR? Automating with Shuffle
+[![Shuffle getting started understanding shuffle](https://img.youtube.com/vi/_riaZjLnoXo/0.jpg)](https://www.youtube.com/watch?v=_riaZjLnoXo)
+
+### Installing Shuffle
+[![How to install Shuffle](https://img.youtube.com/vi/YDUKZojg0vk/0.jpg)](https://www.youtube.com/watch?v=YDUKZojg0vk)
+
+## Learn about Shuffle - in depth
 Here's a training session we did on Shuffle.
 
 - 00:00 - 00:30: Introduction to Shuffle and what we're building
