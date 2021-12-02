@@ -33,3 +33,6 @@ Learn to use app creator from the shuffle UI (start by building a very basic app
 6.	Now try and build an app using python SDK
 7.	With python we can do pretty much anything we want to do when building an application
 8.	Learn how to use shuffle’s file API, which will be very useful when dealing with files inside the shuffle.
+
+### Notes
+- Have one task for EACH of the 8 categories
