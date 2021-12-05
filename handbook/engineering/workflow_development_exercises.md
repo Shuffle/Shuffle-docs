@@ -2,15 +2,17 @@
 UNFINISHED
 
 ## Introduction
+Please start by following our introductory tutorial on Medium.
 
-## Exercises (MUST learn)
+## Techniques to understand
 1. Variables
 2. JSON
 3. Loops
-4. Start node
-5. Triggers
-6. Liquid formatting
-7. Subflows
+4. Nestedloops
+5. Start node
+6. Triggers
+7. Liquid formatting
+8. Subflows
 
 ## Use-case exercises
 1. Make a Workflow that gets your new emails, and marks them as read

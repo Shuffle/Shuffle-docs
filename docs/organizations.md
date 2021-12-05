@@ -118,7 +118,6 @@ Pro is the full package. It is meant for those of you who want everything from s
 Get in touch at [frikky@shuffler.io](mailto:frikky@shuffler.io) if you want something more specific.
 
 ## User management
-**Only available onprem (20.11.2020)**
 ![User management Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-9.png?raw=true)
 
 User management is all about adding, listing, deleting and controlling users in general. Users are a part of a specific organization, and are created by organization admins. To add users you need the "admin" role.
