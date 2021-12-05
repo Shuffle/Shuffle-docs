@@ -122,15 +122,14 @@ Get in touch at [frikky@shuffler.io](mailto:frikky@shuffler.io) if you want some
 
 User management is all about adding, listing, deleting and controlling users in general. Users are a part of a specific organization, and are created by organization admins. To add users you need the "admin" role.
 
-Existing roles:
-* Admin - Gives you access to control an organization, and see what everyone in the organization are doing.
-* User  - Gives you access to YOUR resources within an organization. This is to prevent you from seeing what everyone else are doing.
+**Existing roles**:
+* Org-Admin - Gives access to control an organization, and see what everyone in the organization are doing.
+* Org-User - Gives access to use the organizations resources, but NOT see everyone elses Workflows. This role is meant for engineers who are to build their own workflows, without potentially breaking others'
+* Org-Reader - Gives access to READ all data for an organization (like an admin), but not make any changes.
 
 **To come:**
-* User control in cloud
-* API generation for users by admin
 * Creating API-only users (no login)
-* Granular access
+* Granular access (RBAC)
 
 ### Adding a user
 Click the "ADD USER" button, and you'll get a popup. Type in their username (open source) or email (cloud), and you'll create an invite for them. Cloud will not allow an admin to set a password to share, but rather send them an email. This will also be a part of the hybrid offering later.
