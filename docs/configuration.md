@@ -575,4 +575,26 @@ docker load wazuh.tar
 
 TBD: We'll make this an API-call for ContainerD later.
 
+## Docker socket
+For now, the docker socket is required to run Shuffle. Whether you run with Kubernetes or another clustering technology, Shuffle WILL need access to ContainerD, which is what the docker socket provides.  
+
+**Usage of the socket**:
+* Backend (Not required, but used for app management)
+* Orborus (Required, deploying Workers)
+* Worker	(Required, deploying Apps. Apps DONT have access to the socket.)
+
+**API's in use**
+* Backend: Create, Make, Export docker images. No direct container management.
+* Orborus: Download and Remove images. Make, List and Remove containers. Make, List and Remove services.
+* Worker: Download and Remove images. Make, List and Remove containers. Make, List and Remove services.
+
+## Hardening
+This is a section to expand on hardening possibilities of the Shuffle environment, seeing as may use a lot of access, and allows for remote code execution. 
+
+TBD - expand these topics:
+* Docker rootless
+* Docker proxy
+* Docker image regex
+* Locked down server image (don't allow other commands than Docker)
+
 ## Known Bugs

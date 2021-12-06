@@ -17,6 +17,7 @@ App development is hard to get into, but easy once you understand it.
 	- Has appropriate tags and categories
 
 ## OpenAPI / App Creator
+[Here's a video to get you started with OpenAPI](https://youtu.be/PNuXCixYwDc?t=8299)
 
 ## General 
 1. Use the **$shuffle_cache** function
