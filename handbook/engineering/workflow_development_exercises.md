@@ -28,6 +28,8 @@ The goal of this workflow is to get emails, and analyze whether the sender's IP 
 3. Parse out any IPs and run a GreyNoise community search for whether they're malicious IF 
 4. If it's found to be malicious, add it to the cache list "malicious_ips", otherwise add it to "benign_ips"
 
+- Schedules, Whois
+
 ### 2. Cases: Ticket management with PagerDuty 
 The point of this usecase is to learn to make tickets, list them, and analyze their contents, before taking action.
 
@@ -47,8 +49,8 @@ The point of this workflow is to make a list of indicators, and searching for if
 PS: You can test whether it changed by setting the value manually in the next iteration.
 
 **TBD:**
-### 4. SIEM: 
-### 5. Networking: 
-### 6. Eradication: 
+### 4. SIEM: Run a search and make a rule
+### 5. Networking: User input to block an IP
+### 6. Eradication: List alerts and clean up  
 ### 7. Asset Management: 
-### 8. 
+### 8. Identity Access Management:
