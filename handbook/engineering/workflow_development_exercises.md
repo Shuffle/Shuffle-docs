@@ -42,9 +42,10 @@ The point of this usecase is to learn to make tickets, list them, and analyze th
 ### 3. Intel: Continuous analysis for changes
 The point of this workflow is to make a list of indicators, and searching for if their data changes.
 
-1. Make a file with 5 IPs inside of it, then upload it to Shuffle.
-2. Use [IPInfo](https://ipinfo.io/signup) to analyze them every 30 minutes. We suggest saving it with the Shuffle cache, setting the key to be the value of the IP.
-3. If the data changes between those 30 minutes, send yourself an email notifying you. 
+1. Make a file with 5 IPs inside of it, then upload it to Shuffle 					(Files)
+2. Parse the file into a JSON list within Shuffle, making it usable 				(Liquid / Shuffle Tools)
+3. Use [IPInfo](https://ipinfo.io/signup) to analyze them every 30 minutes 	(Cache & Schedule)
+4. If the data changes between those 30 minutes, send yourself an email notifying you. 
 
 PS: You can test whether it changed by setting the value manually in the next iteration.
 
