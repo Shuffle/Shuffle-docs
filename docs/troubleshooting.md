@@ -20,10 +20,12 @@ In certain cases, you may have an issue loading apps into Shuffle. If this is th
 git config --global http.proxy http://proxy.mycompany:80
 
 #2. Go to the shuffle folder where you have Shuffle installed, then go to the shuffle-apps folder (./shuffle/shuffle-apps)
-git clone https://github.com/shuffle/shuffle-apps
+git clone https://github.com/shuffle/python-apps
 
 #3. Go to the UI and hotload the apps: https://shuffler.io/docs/app_creation#hotloading_your_app (click the hotload button in the top left in the /apps UI)
 ```
+
+**Alternatively: Go to https://github.com/shuffle/python-apps manually, download the folder as ZIP and extract it in the ./shuffle/shuffle-apps folder**
 
 ## Orborus can not reach backend
 In certain cases there may be DNS issues, leading to hanging executions. This is in most cases due to apps not being able to find the backend in some way. That's why the best solution _if possible_ is to use the IP as hostname for Orborus -> Backend communication.
