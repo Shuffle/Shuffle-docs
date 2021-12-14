@@ -1,2 +1,0 @@
-# User Data Policy 
-Shuffle API Services, including Google Sign-In, are part of an authentication and authorization framework that gives you, the developer, the ability to connect directly with Google users when you would like to request access to Google user data. The policy below, as well as the Google APIs Terms of Service, govern the use of Google API Services when you request access to Google user data. Please check back from time to time as these policies are occasionally updated.
