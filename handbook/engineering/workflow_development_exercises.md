@@ -53,5 +53,5 @@ PS: You can test whether it changed by setting the value manually in the next it
 ### 4. SIEM: Run a search and make a rule
 ### 5. Networking: User input to block an IP
 ### 6. Eradication: List alerts and clean up  
-### 7. Asset Management: 
+### 7. Asset Management: Find asset, and ask their owner whether you can auto-patch it in the background
 ### 8. Identity Access Management:
