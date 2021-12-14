@@ -4,10 +4,10 @@
 This document outlines our testing and CI/CD pipeline thoughts, and how it is vs. how it can and should be. 
 
 ## Introduction
-As Shuffle has grown, we've added a lot of features, which in turn also introduce bugs. These are in the frontend, backend, worker, orborus, App SDK, apps themselves, workflows and more. Shuffle is growing increasingly complex, which means we need a way to stablize between versions. This is where CI/CD and a SDLC (of sorts) comes into play. This document intends to outline each of the areas mentioned above, and how we are vs. how we would ideally like to handle them.
+As Shuffle has grown, we've added a lot of features, which in turn also introduce bugs. These are in the frontend, backend, worker, orborus, App SDK, apps themselves, workflows and more. Shuffle is growing increasingly complex, which means we need a way to stabilize between versions. This is where CI/CD and a SDLC (of sorts) comes into play. This document intends to outline each of the areas mentioned above, and how we are vs. how we would ideally like to handle them.
 
 ## What do we want?
-1. (2021 Q2-Q3) We want to end up in a place where we don't have random issues that breaks Shuffle for our users. E.g. when an app is uploaded to Github, we should make sure it works, and doesn't have simple coding or formatting errors. We want them to work, and be easily sharable. These apps should further upload their contents to https://shuffler.io, as this is where people find whether we have an integration or not.
+1. (2021 Q2-Q3) We want to end up in a place where we don't have random issues that breaks Shuffle for our users. E.g. when an app is uploaded to Github, we should make sure it works, and doesn't have simple coding or formatting errors. We want them to work, and be easily shareable. These apps should further upload their contents to https://shuffler.io, as this is where people find whether we have an integration or not.
 2. (2021 Q4) We want to validate each API-call for Shuffle. Does it have any errors?
 3. (2022 Q1) We want to validate each Workflow 
 4. (2022 Q2) We want to validate each App action

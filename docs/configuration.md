@@ -237,7 +237,7 @@ SHUFFLE_PASS_WORKER_PROXY=true
 ```
 
 ### Redundancy
-TBD: We have yet to decide how this should be implemented for Shuffle. Per now, you may configure multiple instances with a load balancer, but there's no easy way to syncronize data between them to ensure they're in the same place.
+TBD: We have yet to decide how this should be implemented for Shuffle. Per now, you may configure multiple instances with a load balancer, but there's no easy way to synchronize data between them to ensure they're in the same place.
 
 A good place to start is this blogpost by one of our contributors: https://azgaviperr.github.io/3-nodes-swarm/DockerSwarm/Stacks/Shuffler/
 
@@ -291,7 +291,7 @@ In most enterprise environments, Shuffle will be behind multiple firewalls, prox
 **PS:** If external connections are blocked, you may further have issues running Apps. Read more about [manual image transfers here](#manual_docker_image_transfers).
 
 ### Domain Whitelisting
-These URL's are used to get Shuffle up and running. Whitelisting them for the Shuffle services should make all processes work seemlessly.  
+These URL's are used to get Shuffle up and running. Whitelisting them for the Shuffle services should make all processes work seamlessly.  
 
 PS: We do intend to make this JUST https://shuffler.io in the future.
 
@@ -468,13 +468,13 @@ Shuffle runs using Docker in every step, from the frontend to the workers and ap
 Error getting containers: Error response from daemon: client version 1.40 is too new. Maximum supported API version is 1.35
 ```
 
-To fix this issue, we need to set the version from 1.40 down to 1.35 in the Shuffle enviornment. This can be done by opening the docker-compose.yml file, then changing environment variable "DOCKER_API_VERSION" from 1.40 to 1.35 for the "orborus" service as seen below, then restarting Shuffle.
+To fix this issue, we need to set the version from 1.40 down to 1.35 in the Shuffle environment. This can be done by opening the docker-compose.yml file, then changing environment variable "DOCKER_API_VERSION" from 1.40 to 1.35 for the "orborus" service as seen below, then restarting Shuffle.
 
 ![Error with Docker version](https://github.com/frikky/shuffle-docs/blob/master/assets/configuration-error-1.png?raw=true)
 
 
 ## Debugging
-As Shuffle has a lot of individual parts, debugging can be quite tricky. To get started, here's a list of the different parts, with the latter three being modular / location independant.
+As Shuffle has a lot of individual parts, debugging can be quite tricky. To get started, here's a list of the different parts, with the latter three being modular / location independent.
 
 | Type     | Container name    | Technology       | Note |
 | -------- | ----------------  | ---------------- | ---- |

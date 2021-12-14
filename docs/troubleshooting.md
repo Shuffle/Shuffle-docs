@@ -57,8 +57,8 @@ curl -XDELETE http://172.21.0.4:9200/workflowqueue-shuffle
 {"acknowledged":true}
 ```
 
-## Abort all running executions of a specific worflow
-Follow Python scripts allows to massively stop all running executions of a worflow
+## Abort all running executions of a specific workflow
+Follow Python scripts allows to massively stop all running executions of a workflow
 ```python
 import sys
 import requests
@@ -107,7 +107,7 @@ def main():
             data = response.json()
 
         if data.get("success"):
-            print("[INFO] Excecution successfully aborted")
+            print("[INFO] Execution successfully aborted")
         else:
             print("[ERROR] Unable to abort execution")
 
@@ -124,7 +124,7 @@ python abort_running_executions.py
 ```
 In order to work _requests_ Python library must be installed in your Python execution env.
 
-## Opensearch permissons error
+## Opensearch permissions error
 ![image](https://user-images.githubusercontent.com/21691729/124939209-d5694580-e000-11eb-8025-e2d475432e1b.png)
 ![image](https://user-images.githubusercontent.com/21691729/124939333-ec0f9c80-e000-11eb-9e56-5fbd06c7bfe3.png)
 Give permissions to shuffle-database folder

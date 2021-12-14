@@ -29,7 +29,7 @@ They are as follows:
 ![Shuffle-workflow-categories](https://github.com/frikky/shuffle-workflows/blob/master/images/categories_circle_dark.png)
 
 ### Difficulty of creation 
-The categories above are sorted as per their percieved difficulty to understand and build for, from easiest to hardest. This doesn't just include the platforms individually, but how they're integrated with other platforms. If you're new to security, we highly encourage starting in range 1-5, but if you wan't a challenge - move on :)
+The categories above are sorted as per their perceived difficulty to understand and build for, from easiest to hardest. This doesn't just include the platforms individually, but how they're integrated with other platforms. If you're new to security, we highly encourage starting in range 1-5, but if you want a challenge - move on :)
 
 ## Before you start  
 We want to make security a more collaborative space, but everyones trying to lock you into their services. We're trying to stop that by using standards that work outside of Shuffle. Apps that are shared are made public through [Security-Openapi](https://github.com/frikky/security-openapis) [Shuffle-Apps (Python)](https://github.com/frikky/shuffle-apps), then searchable with the help of Algolia.com. By making it and sharing using our app creator you will also stop any gatekeeping in the automation industry, as we also allow others to automate in a good way. 
@@ -55,7 +55,7 @@ PS: If you can't get a hold of the product, but have documentation, please build
 	* Add example responses to the API-calls 
 	* Add references to original documentation (urls)
 	* Write down anything of importance. It may be useful to others.
-7. **TEST**: This is an increasingly important step as we get more integrations on our hand. Don't just test it individually, but test it with other apps in a Workflow. Example: try to syncronize data from what you made with a case management system. Or send a webhook to Shuffle which adds data to it. KEEP these use-cases and make them clear - they can be shared as test-examples.
+7. **TEST**: This is an increasingly important step as we get more integrations on our hand. Don't just test it individually, but test it with other apps in a Workflow. Example: try to synchronize data from what you made with a case management system. Or send a webhook to Shuffle which adds data to it. KEEP these use-cases and make them clear - they can be shared as test-examples.
 8. Document: Throughout the process, we expect you to document steps. In most cases, we want it in Markdown format. [Here's a very simple example](https://github.com/frikky/security-openapis/blob/master/docs/discord.md) This may seem tedious, but is EXTREMELY important to keep everyone else up to speed with what you do. 
 9. Sharing: Congrats, you're done! All your hard work can now be shared with the world, and we're all that tiny bit more secure. Sharing can be done by:
 	OpenAPI: Export the app from the GUI, then make a pull request to the [security-openapi](https://github.com/frikky/security-openapis/compare) repository. Add documentation to the ./docs folder with the same name.

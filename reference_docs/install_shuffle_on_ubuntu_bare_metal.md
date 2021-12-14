@@ -1,9 +1,9 @@
 
 # Shuffle Bare Metal Build Log #
-1. Install Ubuntu 18.04 server with SSH acess
+1. Install Ubuntu 18.04 server with SSH access
 2. sudo apt-get update 
 3. sudo apt-get upgrade -y
-4. Install Dependancies
+4. Install Dependencies
 5. Install Nodejs
 6. Install Golang - Make sure you edit ~/.profile and set GOPATH, GoROOT and Export PATH
 7. Install Nginx - Make sure you fix proxy pass and comment out SSL for now
@@ -23,7 +23,7 @@
 21. go get github.com/docker/docker/api/types/container
 22. go get github.com/docker/docker/client
 23. go run ./oborborus.go - Oborous breaks as docker not installed - we are beaten :(
-24. detach fro mscreen
+24. detach from screen
 25. star another screen
 26. Run frontend something like
 27. cd /opt/Shuffle/frontend
@@ -31,9 +31,9 @@
 29. npm install-peers
 30. npm start
    
-## Install Dependancies ##
+## Install Dependencies ##
 
-### General Dependancies ###
+### General Dependencies ###
 ```
 sudo apt-get install -y python3 git build-essential nginx
 sudo systemctl enable nginx  

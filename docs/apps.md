@@ -29,12 +29,12 @@ A subset of available apps can be found at [https://shuffler.io/apps](https://sh
 ## How they work
 Apps are the primary building blocks in workflows. Apps can be auto-generated from [OpenAPI](https://swagger.io/specification/) specifications or using Shuffle's app sdk. To enforce stability and usability, we use a versioning system to prevent sudden updates to apps.
 
-Apps can contain multiple actions, which can take multiple variables. They are made to be able to interact with eachother by using each-others' data. Apps have the ability to be in multiple [environment](/docs/environments) with different data (e.g. different credentials), before passing them on.
+Apps can contain multiple actions, which can take multiple variables. They are made to be able to interact with each other by using each-others' data. Apps have the ability to be in multiple [environment](/docs/environments) with different data (e.g. different credentials), before passing them on.
 
 PS: In a future iteration, focus will move to an optional hybrid execution model (e.g. use cloud resources).
 
 ### Actions
-An app can perform more than one task based on predefined actions. These actions are defined by the developer, and are reusable and modifyable by the user of the app. An action should (for now) be a one-to-one representation of the function to run, and usually has arguments for authentication with the target application. Actions can contain multiple arguments.
+An app can perform more than one task based on predefined actions. These actions are defined by the developer, and are reusable and modifiable by the user of the app. An action should (for now) be a one-to-one representation of the function to run, and usually has arguments for authentication with the target application. Actions can contain multiple arguments.
 
 You can see what actions an app has by going to /apps, then finding the app you're looking for. 
 
@@ -150,7 +150,7 @@ If you want an app activated in your LOCAL environment, see [importing apps](#im
 
 
 ## Publishing apps 
-All apps can be published. Published apps are available to EVERYONE using Shuffle, as long as they activate it. This means if you publish an app, it is searchable AND sharable with others. The process for Python and the App Creator are different, as can be seen below. 
+All apps can be published. Published apps are available to EVERYONE using Shuffle, as long as they activate it. This means if you publish an app, it is searchable AND shareable with others. The process for Python and the App Creator are different, as can be seen below. 
 
 **Python**:
 - App publishing with python can only be done with Github (for now). Make a pull request for [shuffle-apps](https://github.com/frikky/shuffle-apps). 
