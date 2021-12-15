@@ -45,7 +45,7 @@ The underlying design of Apps in Shuffle are based on [WALKOFF](https://walkoff.
 [More about apps](/docs/apps)
 
 ## Why create a custom app?
-There are many prebuilt apps in Shuffle, all performing unique actions. There may however be an integration you need that doesn't exist yet. You may either make this yourself or commision this to be made [through Shuffle](https://shuffler.io/contact) - we're always looking to expand our repository of apps!
+There are many prebuilt apps in Shuffle, all performing unique actions. There may however be an integration you need that doesn't exist yet. You may either make this yourself or commission this to be made [through Shuffle](https://shuffler.io/contact) - we're always looking to expand our repository of apps!
 
 ## Python or the App Creator
 A normal question we get asked all the time - should I use the app creator or Python directly? Find out by answering these questions (will be expanded):
@@ -128,7 +128,7 @@ Here's what it entails:
 * Request body: the body to send
 	- Only available in POST, PUT, PATCH
 	- The data you put here is used as a placeholder for the user to edit
-	- Add ${variable_name} to it to add a variable. This makes it so the user CANT see the whole body, JUST the variables
+	- Add ${variable_name} to it to add a variable. This makes it so the user CAN'T see the whole body, JUST the variables
 * Example response: An example response from the endpoint. This is important to ensure usability of the action is easy. 
 	- Used by autocompletion methods in Shuffle. Also shown as example to the user
 
@@ -243,7 +243,7 @@ Shuffle
       |-- requirements.txt  # Extra packages to be used by the app
       +-- src 							
         +-- app.py          # The base python file for everything related to your application
-        +-- yourcustom_app.py		# More complex apps can have an entire directory stucture, imported and called by app.py
+        +-- yourcustom_app.py		# More complex apps can have an entire directory structure, imported and called by app.py
   +-- another_app_1
   +-- another_app_2
 ```

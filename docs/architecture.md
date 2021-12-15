@@ -139,7 +139,7 @@ The execution model of Shuffle can be defined as such:
 	7. If error from the app, return to the Backend with status "FAILURE" and details on the issue. If success, return status "SUCCESS" and the value of the execution. Logs and timestamps are also added for this. 
 	8. Exit the Docker container, and self-delete information IF running an optimized Worker.
 
-8. When the Execution in the Worke is in either the FINISHED or ABORTED state, the Worker sends information back to the original Backend about the status of the execution.
+8. When the Execution in the Worker is in either the FINISHED or ABORTED state, the Worker sends information back to the original Backend about the status of the execution.
 
 To learn about the code behind the execution, check [here](https://github.com/frikky/Shuffle/blob/d77ae8260fd32691d8942dece1957915ba1ff3d5/backend/go-app/walkoff.go#L1251)
 
