@@ -156,6 +156,8 @@ You may want to change an app later. This can be done by using the /apps UI to f
 ## Python Instructions
 Apps using Python can do pretty much anything you can do on a computer. As an example, most utility functions of Shuffle itself are written with as functions of Python in the app "Shuffle-Tools"
 
+One of the first things you have to do is select an SDK. There are three images currently in Shuffle, Alpine, Kali, and Blackarch. Alpine is your standard slim docker image. Kali allows you access to Kali tooling, and Blackarch is arch, with a kitchen sink approach to tools.
+
 In our example, we are going to develop an app that connects to an API for Office365, pulls some log data and returns it as a JSON data structure.
 We first think about the 3 primary elements:<br>
 * What **actions / functions** will we create?
