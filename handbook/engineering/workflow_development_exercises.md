@@ -49,9 +49,21 @@ The point of this workflow is to make a list of indicators, and searching for if
 
 PS: You can test whether it changed by setting the value manually in the next iteration.
 
-**TBD:**
-### 4. SIEM: Run a search and make a rule
-### 5. Networking: User input to block an IP
-### 6. Eradication: List alerts and clean up  
+### 4. SIEM: Run a search in Wazuh and add IP to list
+The point of this exercise is to use Wazuh to create a threat list, and alert on matches.
+
+1. Create a threat list within Wazuh (?)
+2. Create a rule for that threat list in Wazuh, and forward alerts for that rule to Shuffle (webhook, extensions)
+3. Take a list of 5 IPs, and add them to the threat list in Wazuh
+4. Modify the threat list with 5 new IPs, and ensure it alerts you from an Email.
+
+### 5. Networking: Block IP based on user input
+PS: Do #4 first. 
+
+From #4, WHEN an alert is created, ALSO block that IP in Amazon AWS s3 AND Amazon AWS VPC where the server is if a user wants it based on SMS or Email (?).
+
+### 6. Eradication: Run a script on a host
+With Wazuh, we want to run a script on a host to block all incoming network traffic
+
 ### 7. Asset Management: Find asset, and ask their owner whether you can auto-patch it in the background
 ### 8. Identity Access Management:
