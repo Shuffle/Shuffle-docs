@@ -125,7 +125,7 @@ drwxr-x---. 19 root  ossec  242 Dec 14 09:40 ..
 -rwxr-x---.  1 root  ossec 6.3K Nov 30 08:41 virustotal.py
 ```
 
-3. Change the files' ownership and access rights. This MAY be necessary if Wazuh doesn't have root priviliges (it shouldn't)
+3. Change the files' ownership and access rights. This MAY be necessary if Wazuh doesn't have root privileges (it shouldn't)
 ```
 $ chown root:ossec custom-shuffle
 $ chown root:ossec custom-shuffle.py

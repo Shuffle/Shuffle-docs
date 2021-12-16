@@ -218,7 +218,7 @@ Use-case:
 
 
 ## Passing values
-Passing values is what makes a solution like Shuffle work. It allows you to pass value from app X to app Y seemlessly. There are currently a couple of different ways to pass values between nodes, that also applies for conditions.
+Passing values is what makes a solution like Shuffle work. It allows you to pass value from app X to app Y seamlessly. There are currently a couple of different ways to pass values between nodes, that also applies for conditions.
 
 * Use the "Data from previous actions" 
 * Use the "static data" field
@@ -287,7 +287,7 @@ In the same way a node is identified by $, a list is identified by #. Say we hav
 
 **Usage**:
 ```
-				= Without #, it DOESNT loop the data.
+				= Without #, it DOES NOT loop the data.
 .# 			= Loops the entire list
 .#0 		= Runs ONLY the first element of the list 
 .#1 		= Runs ONLY the second element of the list
@@ -371,7 +371,7 @@ Space stripping:
 More details: [https://shopify.github.io/liquid/filters/strip/](https://shopify.github.io/liquid/filters/strip/)
 
 ## Authentication
-Authetication is important for Shuffle and all API related software. The reason being that you can't connect to other services without authentication.
+Authentication is important for Shuffle and all API related software. The reason being that you can't connect to other services without authentication.
 
 There are a few forms of authentication in Shuffle workflows:
 * Authentication to other apps

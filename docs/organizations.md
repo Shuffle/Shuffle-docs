@@ -4,7 +4,7 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 ## Table of contents
 * [Introduction](#introduction)
 * [Organization Overview](#organization_overview)
-* [Cloud Syncronization](#cloud_syncronization)
+* [Cloud Synchronization](#cloud_syncronization)
 * [Data collection](#data_collection)
 * [Pricing](#pricing)
 * [User Management](#user_management)
@@ -16,7 +16,7 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 * [App Categories](#app_categories)
 
 ## Introduction
-With version 0.8.0, Shuffle was released with an Admin panel. This gives access to configure an organization, and will over time get more features. With the latest release, Shuffle introduced cloud syncronization, which gives access to certain cloud features on-premises. 
+With version 0.8.0, Shuffle was released with an Admin panel. This gives access to configure an organization, and will over time get more features. With the latest release, Shuffle introduced cloud synchronization, which gives access to certain cloud features on-premises. 
 
 Keep in mind that everything in this document is **PER ORGANIZATION**. This is paramount to remember, as all features should be connected to a user within a specific organization.
 
@@ -25,7 +25,7 @@ The organization overview gives access to a few things:
 * Name Change
 * Description Change
 * Image change
-* Cloud syncronization
+* Cloud synchronization
 * Hybrid Feature overview
 
 The point of this view is to get access to new features more easily. It can tell you about new updates, features and more that we have in store. The view is slightly different from the cloud version to the on-premises version. Here's how:
@@ -33,8 +33,8 @@ The point of this view is to get access to new features more easily. It can tell
 * The **open source** version gives you an API-key field. This can be used in the cloud version.
 ![Organization view](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-1.png?raw=true)
 
-### Cloud Syncronization
-Cloud syncronization is a feature used to get more capabilities on-premises that otherwise wouldn't be possible. These range from scalability to collaboration and accessibility. The goal is to give access to features that otherwise are impossible to get otherwise. See [Hybrid Features](#hybrid_features) for more info.
+### Cloud Synchronization
+Cloud synchronization is a feature used to get more capabilities on-premises that otherwise wouldn't be possible. These range from scalability to collaboration and accessibility. The goal is to give access to features that otherwise are impossible to get otherwise. See [Hybrid Features](#hybrid_features) for more info.
 
 **Of note:**
 * We will NOT send ANY of your data to the cloud. Not even your local organizations name or description. This is purely a system to give access to extra features that can work on a general scale.
@@ -42,7 +42,7 @@ Cloud syncronization is a feature used to get more capabilities on-premises that
 ![Cloud sync features](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-2.png?raw=true)
 
 #### Setup 
-Setting up cloud syncronization requires two things:
+Setting up cloud synchronization requires two things:
 1. A user on [https://shuffler.io](https://shuffler.io). Get the API-key.
 2. An open source version of Shuffle. [Here's how to set it up](https://github.com/frikky/shuffle/blob/master/install-guide.md)
 
@@ -94,7 +94,7 @@ There are three types of data sharing, where the initial launch of Shuffle uses 
 The three levels we'll keep to are:
 * None 	- Shuffle doesn't collect any information about your on-premises organization. This is most features.
 * Minimal - Shuffle collects a minimal amount of information necessary to execute the action. An example is a Workflow execution, where we'll need to gather information about the next steps in a workflow to properly execute it.
-* High 	- Shuffle collects the necessary information to handle information. This is used for when full syncronization, meaning information used on-premises will also be used in the cloud. An example is having access to edit workflows in the cloud, that will execute on-premises. This requires access to all the same apps, workflows, credentials, triggers, organizational users and more. **PS: This will not happen for a while, and will be 100% OPTIONAL**
+* High 	- Shuffle collects the necessary information to handle information. This is used for when full synchronization, meaning information used on-premises will also be used in the cloud. An example is having access to edit workflows in the cloud, that will execute on-premises. This requires access to all the same apps, workflows, credentials, triggers, organizational users and more. **PS: This will not happen for a while, and will be 100% OPTIONAL**
 
 ### Pricing 
 [Our pricing tiers for Shuffle](https://shuffler.io/pricing) are currently split into three: Basic, Community and Pro. Basic is a support tier, and exists to make it possible for you to support us without having to use alternative means such as [github sponsors](https://github.com/sponsors/frikky). Everything we build out that can be priced is for us to further create a better offering for the open source community. 
@@ -187,11 +187,11 @@ These parameters are specified exactly as a parameter within an action. The func
 ![App creation python code](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-13.png?raw=true)
 
 ## Environments
-Environments are a core part of Shuffle's open source build. Think of it as physical location where you want an agent of Shuffle running (Orborus). Orborus is the tool that keeps your workflow running. But Orborus needs to know what jobs to run. Afterall, we'd like it you to be able to run parts of a workflow in the cloud and parts of it in all your different datacenters. 
+Environments are a core part of Shuffle's open source build. Think of it as physical location where you want an agent of Shuffle running (Orborus). Orborus is the tool that keeps your workflow running. But Orborus needs to know what jobs to run. After all, we'd like it you to be able to run parts of a workflow in the cloud and parts of it in all your different datacenters. 
 
 ![Environments in Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-19.png?raw=true)
 
-The default environment is called "Shuffle". You can add as many as you want, but you'll only get access to "cloud" environments through cloud syncronization.  
+The default environment is called "Shuffle". You can add as many as you want, but you'll only get access to "cloud" environments through cloud synchronization.  
 
 ### Environment fields
 * Name 						- The name to use. This is the identifier used by orborus. 
