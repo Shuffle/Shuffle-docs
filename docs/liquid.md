@@ -1,11 +1,13 @@
 # Liquid 
 Documentation for using [Liquid formatting](https://shopify.github.io/liquid/) inside Shuffle, along with examples
 
+**PS: This document will be heavily changed in the start of 2022.**
+
 ## Table of contents
 * [Introduction](#introduction)
 * [Usage and Issues](#usage_and_issues)
 
-https://knowledgecenter.zuora.com/Central_Platform/Workflow/Using_Workflow/Use_Liquid_expressions_in_Workflow
+LiquidPy examples: https://pwwang.github.io/liquidpy/wild/
 
 ## Introduction
 With the introduction of version 0.9.0 of Shuffle, we [Liquid formatting](https://shopify.github.io/liquid/) was implemented. Liquid is a templating language, allowing you to perform a lot of useful formatting operations. Common usecases involve directly writing python code or using their Liquids filters to do commong things like Regex Replace and check size. 
