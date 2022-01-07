@@ -30,14 +30,15 @@ The goal of this workflow is to get emails, and analyze whether the sender's IP 
 
 - Schedules, Whois
 
-### 2. Cases: Ticket management with PagerDuty 
-The point of this usecase is to learn to make tickets, list them, and analyze their contents, before taking action.
+### 2. Cases: Issue management with Jira 
+The point of this usecase is to learn to make jira, list them, and analyze their contents, before taking action.
 
-1. Make a user on Pagerduty here: [https://www.pagerduty.com/sign-up/](https://www.pagerduty.com/sign-up/)
-2. Use Shuffle to create a ticket with the title "This is a test ticket for handling malware"
-3. Use the file system in Shuffle to create AND upload the Eicar test file to the same ticket: https://secure.eicar.org/eicar.com.txt
-4. List ALL tickets on your Pagerduty account and look for whether they have files in them. You should find the ticket you made above. 
-5. With the ticket, re-download the file to Shuffle.
+1. Make a user on Jira here: [Jira download](https://www.atlassian.com/software/jira?&aceid=&adposition=&adgroup=95003655569&campaign=9124878867&creative=415542762940&device=c&keyword=jira%20software%20sign%20up&matchtype=e&network=g&placement=&ds_kids=p51242194601&ds_e=GOOGLE&ds_eid=700000001558501&ds_e1=GOOGLE&gclid=CjwKCAiA5t-OBhByEiwAhR-hmx8BfX8_S0SEAnN5pj0Lka1qmQ7G0-IqZOrwkL3JZYe_Rxp1i3RwBRoCLuwQAvD_BwE&gclsrc=aw.ds)
+2. Use Shuffle to create a issue with the title "This is a test issue for handling malware"
+3. Use the file system in Shuffle to create AND upload the Eicar test file to the same issue: https://secure.eicar.org/eicar.com.txt
+4. List ALL issues (NOT JUST ONE) on your Jira account. Look for whether they have attachments in them.
+5. Based on the previous issues with attachments, find THE issue that you just made in step 2.
+6. With the ticket in hand, re-download the file to Shuffle.
 
 ### 3. Intel: Continuous analysis for changes
 The point of this workflow is to make a list of indicators, and searching for if their data changes.
