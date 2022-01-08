@@ -223,7 +223,7 @@ This script need to be run on the folder with the file workflows.json, it will c
 This can also be very useful either to backup your work or to export from a lab to a prod instance.
 * [Rebuilding an opensearch index](#rebuilding_indexes)
 
-# Rebuilding an opensearch index
+## Rebuilding an opensearch index
 If you lost an index due to corruption or other causes, there is no easy way to handle it. Here's a workaround we have for certain scenarios. What you'll need: access to another Shuffle instance, OR someone willing to share. Lets do an example rebuilding the environments index. This assumes opensearch is on the same server.
 
 1. Cleanup the index
