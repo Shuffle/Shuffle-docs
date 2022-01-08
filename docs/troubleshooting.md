@@ -10,6 +10,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
 * [Useful Opensearch Query](#useful_opensearch_query)
 * [Extract all workflows](#extract_all_workflows)
+* [Rebuilding an opensearch index](#rebuilding_indexes)
 * [Recover Organizations](#recover_organizations)
 
 ## Load all apps locally
@@ -220,3 +221,22 @@ for item in data["hits"]["hits"]:
 ```
 This script need to be run on the folder with the file workflows.json, it will create an workflows_loaded directory with all the workflows in it.
 This can also be very useful either to backup your work or to export from a lab to a prod instance.
+* [Rebuilding an opensearch index](#rebuilding_indexes)
+
+# Rebuilding an opensearch index
+If you lost an index due to corruption or other causes, there is no easy way to handle it. Here's a workaround we have for certain scenarios. What you'll need: access to another Shuffle instance, OR someone willing to share. Lets do an example rebuilding the environments index. This assumes opensearch is on the same server.
+
+1. Cleanup the index
+```
+curl -XDELETE http://localhost:9200/environments
+```
+
+2. Start refilling the index with info. For environments, make sure the "org_id" is correct according to the ID you can find in the /admin UI or the org index.
+```
+curl -XPOST -H "Content-Type: application/json" "http://localhost:9200/environments/_doc" -d '{"Name" : "Shuffle","Type" : "onprem","Registered" : false,"default" : true,"archived" : false,"id" : "26ae5c79-a6f3-4225-be18-39fa6018cdba","org_id" : "49eeb866-c8b4-4ea0-bc19-9e650e3bba9e"}'
+```
+
+3. Check the index
+```
+curl http://localhost:9200/environments/_search?pretty
+```
