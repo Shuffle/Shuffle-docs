@@ -1,5 +1,5 @@
 # Shuffle API 
-Documentation for Shuffle API v1.0. 
+Documentation for Shuffle API v1.0. Will be generated from OpenAPI by Shuffle version 1.0.0 and be replicable in our [API Explorer](https://shuffler.io/apps/edaa73d40238ee60874a853dc3ccaa6f)
 
 ## Table of contents
 * [Introduction](#introduction)
@@ -9,6 +9,9 @@ Documentation for Shuffle API v1.0.
 * [Apps](#app_api)
 * [Users](#user_api)
 * [Files](#file_api)
+* [Triggers](#triggers)
+* [Notifications](#notifications)
+* [Environments - TBD](#environments)
 * [Organizations - TBD](#organizations)
 
 ## Introduction
@@ -409,6 +412,151 @@ curl -XDELETE https://shuffler.io/api/v1/files/{file_id} -H "Authorization: Bear
 ```
 {"success": true}
 ```
+
+## Triggers
+Triggers in Shuffle have their own custom usage and APIs. 
+
+### Get all schedules
+Get all schedules
+
+Methods: GET 
+
+```
+curl https://shuffler.io/api/v1/workflows/schedules -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+[{"id":"cabaaffc-db53-4e19-ad8b-4f5fc0dc49c9","start_node":"","seconds":0,"workflow_id":"7b8ffd74-5e67-4700-bf79-751d1ac7e5e4","argument":"{\"start\":\"\",\"execution_source\":\"schedule\",\"execution_argument\":\"{\\\"example\\\": {\\\"json\\\": \\\"is cool\\\"}}\"}","wrapped_argument":"{\"start\":\"\",\"execution_source\":\"schedule\",\"execution_argument\":\"{\\\"example\\\": {\\\"json\\\": \\\"is cool\\\"}}\"}","appinfo":{"sourceapp":{"foldername":"","name":"","id":"","description":"","action":""},"destinationapp":{"foldername":"","name":"","id":"","description":"","action":""}},"finished":false,"base_app_location":"","org":"37217426-f794-429c-a0f9-548f7055af45","createdby":"","availability":"","creationtime":1641573762,"lastmodificationtime":1641573762,"lastruntime":1641573762,"frequency":"*/15 * * * *","environment":""}]
+```
+
+### Schedule a workflow
+Schedule a workflow to run at certain intervals. The node in the workflow must exist.
+
+Methods: POST 
+
+```
+curl -XPOST https://shuffler.io/api/v1/workflows/{workflow_id}/schedule -H "Authorization: Bearer APIKEY" -d '{"name":"Schedule","frequency":"*/25 * * * *","execution_argument":"{\"example\": {\"json\": \"is cool\"}}","environment":"cloud","id":"cabaaffc-db53-4e19-ad8b-4f5fc0dc49c9"}'
+```
+
+
+**Success response** 
+```
+{"success":true}
+```
+
+### Stop a workflow schedule
+Stop a schedule from running
+
+Methods: DELETE 
+
+```
+curl -XDELETE https://shuffler.io/api/v1/workflows/{workflow_id}/schedule/{schedule_id} -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"success":true}
+```
+
+### Create and start webhook
+Start a new webhook
+
+Methods: POST 
+
+```
+curl -XPOST https://shuffler.io/api/v1/hooks -H "Authorization: Bearer APIKEY" -d '{"name":"Webhook_1","type":"webhook","id":"db434f8c-a9cb-47ec-abf8-ad8fb10e5809","workflow":"7b8ffd74-5e67-4700-bf79-751d1ac7e5e4","start":"6601f07f-92f2-45d3-88bf-328db7bfdfa0","environment":"cloud","auth":""}'
+```
+
+
+**Success response** 
+```
+{"success":true}
+```
+
+### Delete and stop webhook
+Stop a running webhook from being available
+
+Methods: DELETE 
+
+```
+curl -XDELETE https://shuffler.io/api/v1/hooks/{webhook_id} -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"success":true, "reason": "Stopped webhook"}
+```
+
+### Create Outlook Subscription
+TBD
+
+### Delete Outlook Subscription
+TBD
+
+### Create Gmail Subscription
+TBD
+
+### Get Gmail Subscription
+TBD
+
+### Delete Gmail Subscription
+TBD
+
+
+## Notifications 
+Below are the API's associated with Notifications in Shuffle. These can be listed, marked as read, and cleared.
+
+### Get all notifications
+Get all notifications assigned to your user from your organizations 
+
+Methods: GET 
+
+```
+curl https://shuffler.io/api/v1/notifications -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"success":true,"notifications":[{"image":"","created_at":1638898114,"updated_at":1638898114,"title":"Error in Workflow \"Shuffle Workflow helloooo\"","description":"Node shuffle_tools_1 in Workflow Shuffle Workflow Winner announcement was found to have an error. Click to investigate","org_id":"","user_id":"","tags":null,"amount":1,"id":"057bf2b5-d29d-4bb4-bf2f-d8a6ee882dfe","reference_url":"/workflows/1693bf4a-b0f4-46dd-8257-448cbc6b0e9b?execution_id=74adf061-f949-4392-9e2d-1fd5e3381037\u0026view=executions\u0026node=ef683a39-4c2b-4c83-ad2d-d28a922e44b4","org_notification_id":"60a22356-1028-4226-b755-51804e3a25a2","dismissable":true,"personal":true,"read":false}]}
+```
+
+### Mark all notifications as read
+Clears all notifications
+
+Methods: GET 
+
+```
+curl https://shuffler.io/api/v1/notifications/clear -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"success":true}
+```
+
+### Mark notification as read
+Marks a single notification as read
+
+Methods: GET 
+
+```
+curl https://shuffler.io/api/v1/notifications/{notificationId}/markasread -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"success":true}
+```
+
+## Environments 
+TBD
 
 ## Organization API
 Below are the endpoints related to organization creation, editing, listing and more. These will probably not be live until 1.0.0.
