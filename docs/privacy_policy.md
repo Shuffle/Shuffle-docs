@@ -3,6 +3,8 @@ This is the initial privacy policy for Shuffle cloud. Valid as of this file's la
 
 ## Table of contents
 * [Introduction](#introduction)
+* [Protecting your data](#how_we_protect_your_personal_data)
+* [Limited Use disclosure](#limited_use_disclosure)
 * [Analytics](#analytics)
 * [Data Location](#data_location)
 * [Infrastructure Monitoring](#infrastructure_monitoring)
@@ -36,6 +38,12 @@ We intend to add a way for you to periodically clear your data in 2022.
 
 ### Sharing of data with 3rd parties
 Shuffle does not share data with any 3rd parties, except our support partner [Infopercept](https://infopercept.com/). We do however have third party services where your data may be stored - all listed in the segmented details below.
+
+## Limited Use 
+Shuffle's use and transfer to and from any app in our ecosystem will adhere to the respective platform's user data policy, including their Limited Use requirements. If a breach of policy is discovered, please contact us at [support@shuffler.io](mailto:support@shuffler.io) to get the integration fixed or removed.
+
+### Google 
+All use of Google's API's within the Shuffle ecosystem adheres to the Google API Services User Data Policy. All client credentials that give access to or distribute data to and from Google API's are saved in a secure way and kept strictly confidential. 
 
 ## Segmented details 
 ### Analytics
