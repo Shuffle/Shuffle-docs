@@ -254,7 +254,7 @@ execution_argument = {
 1. How would we go about getting "name"? execution_argument["name"]
 2. How do we get "writer" under "extra"? execution_argument["extra"]["writer"]
 
-* Action argument:
+* Action parameter:
 1. 
 ![json-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/json-example-1.png?raw=true)
 
@@ -272,7 +272,7 @@ I've put both questions into one. Maybe you catch my drift.
 2. The same exact configuration, but using a static value.
 ![passing-values-2](https://github.com/frikky/shuffle-docs/blob/master/assets/passing-values-2.png?raw=true)
 
-3. Using the execution argument from 2 items (testing_1 and execution argument). The execution argument is defined to be "Hey this is cool" as seen in the bottom left.
+3. Using the execution parameter from 2 items (testing_1 and execution argument). The execution argument is defined to be "Hey this is cool" as seen in the bottom left.
 ![passing-values-3](https://github.com/frikky/shuffle-docs/blob/master/assets/passing-values-3.png?raw=true)
 
 Result for #3:
