@@ -56,3 +56,33 @@ https://user-images.githubusercontent.com/31187099/147345651-608e7020-6407-40c5-
 4. We then continue an error free session with a clean list, utilizing it in our workflow
 
 https://user-images.githubusercontent.com/31187099/147345723-05731f54-1d1a-43b8-bfe9-79ee1a7c9c3c.png
+
+
+## Example use of Liquid in a Shuffle workflow
+
+* When trying to reverse a JSON list using using Liquid formatting we get an error due to problems with the Liquid library in use. Take this JSON as an example,
+
+[
+    {
+        "Key": "2",
+        "A": "B"
+    },
+    {
+        "Key": "1",
+        "A": "B"
+    }
+]
+
+* If we try to reverse this array via the normal reverse function in Liquid we get the error shown below.
+[{{ $shuffle_tools_1 | reverse}}] 
+
+Error gotten: 
+[<list_reverseiterator object at 0x3eb14f722f70>]
+
+![13 01 2022_06 07 42_REC](https://user-images.githubusercontent.com/31187099/149260812-6c1a6f09-5324-4081-86d7-44d77e05da8c.png)
+
+
+* Getting creative we find a work around for this by incorporating the join function in Liquid, so your call would ideally look like this. [{{ $shuffle_tools_1 | reverse | join: ',' }}]. As you can see from the below screenshot this works perfectly getting a work around for using Liquid's reverse function.
+
+![13 01 2022_06 18 16_REC](https://user-images.githubusercontent.com/31187099/149260752-e7f37489-9095-4080-a0b7-2b04c53405a4.png)
+
