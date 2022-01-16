@@ -43,20 +43,19 @@ Generally in Liquid you output content using two curly braces e.g. {{ variable }
 
 1. Loading up a list of IP's stored in a file uploaded to Shuffle.
 
-https://user-images.githubusercontent.com/31187099/147345617-d9877652-161e-48f2-94d4-97c4e92e073a.png
+![Overview of the workflow](https://user-images.githubusercontent.com/31187099/147345617-d9877652-161e-48f2-94d4-97c4e92e073a.png "Overview of the workflow")
 
 2. The list is loaded up but the whitespace starting up the list will cause parsing problems while trying to use the list.
 
-https://user-images.githubusercontent.com/31187099/147345630-ccd6dfcc-61a0-4c48-9fb5-f14293347fe3.png
+![Image showing a list of IPs](https://user-images.githubusercontent.com/31187099/147345630-ccd6dfcc-61a0-4c48-9fb5-f14293347fe3.png "List of IPs")
 
 3. So we employ the use of liquid formatting to clean up the list and then use it in our workflow, in our case its just a basic strip and everything is ready for use
 
-https://user-images.githubusercontent.com/31187099/147345651-608e7020-6407-40c5-b959-68583d894b67.png
+![App actions window with applied liquid formatting in the "Items" field of the parse list function in the Shuffle Tools app](https://user-images.githubusercontent.com/31187099/147345651-608e7020-6407-40c5-b959-68583d894b67.png "App actions view")
 
 4. We then continue an error free session with a clean list, utilizing it in our workflow
 
-https://user-images.githubusercontent.com/31187099/147345723-05731f54-1d1a-43b8-bfe9-79ee1a7c9c3c.png
-
+![Successfully parsed list of IP adresses](https://user-images.githubusercontent.com/31187099/147345723-05731f54-1d1a-43b8-bfe9-79ee1a7c9c3c.png "Parsed IPs")
 
 ## Example use of Liquid in a Shuffle workflow
 
@@ -85,4 +84,3 @@ Error gotten:
 * Getting creative we find a work around for this by incorporating the join function in Liquid, so your call would ideally look like this. [{{ $shuffle_tools_1 | reverse | join: ',' }}]. As you can see from the below screenshot this works perfectly getting a work around for using Liquid's reverse function.
 
 ![13 01 2022_06 18 16_REC](https://user-images.githubusercontent.com/31187099/149260752-e7f37489-9095-4080-a0b7-2b04c53405a4.png)
-
