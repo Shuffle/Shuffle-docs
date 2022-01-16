@@ -4,7 +4,7 @@ This is the initial privacy policy for Shuffle cloud. Valid as of this file's la
 ## Table of contents
 * [Introduction](#introduction)
 * [Protecting your data](#how_we_protect_your_personal_data)
-* [Limited Use disclosure](#limited_use_disclosure)
+* [Limited Use disclosure](#limited_use)
 * [Analytics](#analytics)
 * [Data Location](#data_location)
 * [Infrastructure Monitoring](#infrastructure_monitoring)
