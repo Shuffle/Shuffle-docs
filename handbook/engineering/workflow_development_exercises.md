@@ -39,7 +39,7 @@ The point of this usecase is to learn to filter and problem solve typical API pr
 1. (Signup) Make a user on Jira here: [Jira download](https://www.atlassian.com/software/jira?&aceid=&adposition=&adgroup=95003655569&campaign=9124878867&creative=415542762940&device=c&keyword=jira%20software%20sign%20up&matchtype=e&network=g&placement=&ds_kids=p51242194601&ds_e=GOOGLE&ds_eid=700000001558501&ds_e1=GOOGLE&gclid=CjwKCAiA5t-OBhByEiwAhR-hmx8BfX8_S0SEAnN5pj0Lka1qmQ7G0-IqZOrwkL3JZYe_Rxp1i3RwBRoCLuwQAvD_BwE&gclsrc=aw.ds)
 2. (App Auth) Use Shuffle to create a issue with the title "This is a test issue for handling malware"
 3. (Files) Use the file system in Shuffle to create AND upload the Eicar test file to the same issue: https://secure.eicar.org/eicar.com.txt
-4. (Problem & Filter Loop) List ALL issues (NOT JUST ONE) on your Jira account. Look for whether they have attachments in them.
+4. (Problem & Filter Loop) List ALL issues (NOT JUST ONE) on your Jira account. Filter to look for whether they have attachments in them using Shuffle tools.
 5. (Filter Loop) Based on the previous issues with attachments, find THE issue that you just made in step 2.
 6. (Files) With the issue availabe, re-download the file to Shuffle.
 
