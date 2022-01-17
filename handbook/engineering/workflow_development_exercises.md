@@ -56,6 +56,8 @@ PS: You can test whether it changed by setting the value manually in the next it
 ### 4. SIEM: Run a search in Wazuh and add IP to list
 The point of this exercise is to use a SIEM to create a threat list, and alert on matches.
 
+PS: Add process for uploading logs
+
 1. (Signup) [Sign up to Logz.io](https://logz.io/freetrial-bd/)
 2. (App Auth) Using the API, create a threat list within Logz.io 
 3. (Loop & Schedule) Create a rule for that threat list in the UI itself. Continuously look for alerts in Logz.io with the API and a schedule. 
