@@ -218,6 +218,48 @@ Methods: DELETE
 curl -XDELETE https://shuffler.io/api/v1/apps/{app_id} -H "Authorization: Bearer APIKEY"
 ```
 
+### Get App Authentication
+Get a list of all app authentication
+
+Methods: GET
+
+```
+curl https://shuffler.io/api/v1/apps/authentication -H "Authorization: Bearer APIKEY"
+```
+
+**Success response** 
+```
+{"success": true, "data": []}
+```
+
+### Delete App Authentication
+Delete an authentication. PS: This does NOT change the ID of every workflow that utilizes the app.
+
+Methods: DELETE
+
+```
+curl https://shuffler.io/api/v1/apps/authentication/{authentication_id} -H "Authorization: Bearer APIKEY"
+```
+
+**Success response** 
+```
+{"success": true}
+```
+
+### Add App Authentication
+Add authentication to an app, available through e.g. the Workflow editor, or authentication explorer. When adding this, make sure the app has an ID (uuid) and name attached to it, and that the fields are matching the apps' description.
+
+Method: PUT
+
+```
+curl -XPUT https://shuffler.io/api/v1/apps/authentication -H "Authorization: Bearer APIKEY" '{"app":{"name":"Jira","is_valid":true,"id":"1836c9786bb54748bd8913c0617d50fd","link":"","app_version":"1.0.0","sharing_config":"","generated":true,"downloaded":false,"sharing":false,"verified":false,"invalid":false,"activated":true,"tested":false,"hash":"","private_id":"1836c9786bb54748bd8913c0617d50fd","description":"The Jira app for creating and managing issues from shuffle workflow.","environment":"Shuffle","small_image":"","large_image":"","contact_info":{"name":"","url":""},"reference_info":{"documentation_url":"","github_url":""},"folder_mount":{"folder_mount":false,"source_folder":"","destination_folder":""},"actions":[],"authentication":{"type":"","required":true,"parameters":[{"description":"","id":"","name":"username_basic","example":"username","multiline":false,"required":false,"in":"","schema":{"type":"basic"},"scheme":"basic"},{"description":"","id":"","name":"password_basic","example":"*****","multiline":false,"required":false,"in":"","schema":{"type":"basic"},"scheme":"basic"},{"description":"The URL of the app","id":"","name":"url","example":"https://api-url","value":"https://api-url","multiline":false,"required":true,"in":"","schema":{"type":"string"},"scheme":""}],"redirect_uri":"","token_uri":"","refresh_uri":"","scope":null,"client_id":"","client_secret":""},"tags":["Case Management"],"categories":["Cases"],"created":0,"edited":0,"last_runtime":0,"versions":null,"loop_versions":null,"owner":"2b3a37f3-fdd2-4965-b78d-f5d2fe9a2572","public":false,"reference_org":"","reference_url":"","action_file_path":"","documentation":""},"fields":[{"key":"username_basic","value":"asd"},{"key":"password_basic","value":"qwe"},{"key":"url","value":"https://api-url"}],"label":"Auth for Jira","usage":[{"workflow_id":"a816852a-e197-4b02-ba4f-0b67bb1baf3d"}],"id":"04825afa-e37b-44ce-a571-a67c2e2fb956","active":true}'
+```
+
+**Success response** 
+```
+{"success": true, "id": "app_id"}
+```
+
 ### Search existing apps 
 Returns a list of apps that are hidden in the backend, e.g. OpenAPI apps loaded from [Security API's](https://github.com/frikky/OpenAPI-security-definitions). Requires the search parameter. 
 
