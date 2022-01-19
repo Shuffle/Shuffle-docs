@@ -47,8 +47,6 @@ All use of Google's API's within the Shuffle ecosystem adheres to the Google API
 
 [More about Google's User Data policy here](https://developers.google.com/terms/api-services-user-data-policy)
 
-http://strip/?q=https%3A%2F%2Fdevelopers.google.com%2Fterms%2Fapi-services-user-data-policy%23additional_requirements_for_specific_api_scopes
-
 ## Segmented details 
 ### Analytics
 * Platforms: Google Analytics, Segment
