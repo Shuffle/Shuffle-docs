@@ -56,6 +56,8 @@ PS: You can test whether it changed by setting the value manually in the next it
 ### 4. SIEM: Run a search in Wazuh and add IP to list
 The point of this exercise is to use a SIEM to create a threat list, and alert on matches.
 
+PS: Add process for uploading logs
+
 1. (Signup) [Sign up to Logz.io](https://logz.io/freetrial-bd/)
 2. (App Auth) Using the API, create a threat list within Logz.io 
 3. (Loop & Schedule) Create a rule for that threat list in the UI itself. Continuously look for alerts in Logz.io with the API and a schedule. 
@@ -77,7 +79,7 @@ With Wazuh/Logz.io, we want to run a script on a host to block all incoming netw
 ### 8. Identity Access Management: Add user, block them from accessing, and export data as CSV
 Sign up to Okta, then use API's to to sign up another user, block their access, and export a report (create) in CSV format, which we upload to a different platform for customer reporting.
 
-1. (Signup) [Sign up to Okta](https://www.okta.com/uk/free-trial/) for a trial
+1. (Signup) [Sign up to Okta](https://www.okta.com/uk/free-trial/) for a trial * If you have problems signing up with your organization / this domain is already taken error, just add a couple of strings in the alloted space after your company's domain name and you should be good to go. 
 2. (App Auth) Make another user in your tenant using their API
 3. (Variables) Block that same users' account using the API
 4. (Loop) Make a CSV export of general user info: Id, Name, Account Status, Times logged in, Last login
