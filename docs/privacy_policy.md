@@ -42,8 +42,8 @@ Shuffle does not share data with any 3rd parties, except our support partner [In
 ## Limited Use 
 Shuffle's use and transfer to and from any app in our ecosystem will adhere to the respective platform's user data policy, including their Limited Use requirements. If a breach of policy is discovered, please contact us at [support@shuffler.io](mailto:support@shuffler.io) to get the integration fixed or removed.
 
-### Google 
-All use of Google's API's within the Shuffle ecosystem adheres to the Google API Services User Data Policy. All client credentials that give access to or distribute data to and from Google API's are saved in a secure way and kept strictly confidential. 
+### Google API Services User Data Policy
+All use of Google's API's within the Shuffle ecosystem adheres to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes), including Limited use requirements. All client credentials that give access to or distribute data to and from Google API's are saved in a secure way and kept strictly confidential.  
 
 ## Segmented details 
 ### Analytics
