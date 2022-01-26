@@ -85,3 +85,4 @@ Sign up to Okta, then use API's to to sign up another user, block their access, 
 4. (Loop) Make a CSV export of general user info: Id, Name, Account Status, Times logged in, Last login
 5. (Mail) Send this CSV to yourself as an attachment to an email on a schedule every 1. of the month
 
+### 9. De-duplication, Conditions, lists and loops and Subflows. 
