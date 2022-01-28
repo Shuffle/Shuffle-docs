@@ -597,4 +597,24 @@ TBD - expand these topics:
 * Docker image regex
 * Locked down server image (don't allow other commands than Docker)
 
+## Database configuration
+**TBD:** Everything below is tbd including swarm
+
+1. Disable security options for docker-compose
+2. Set username & password for opensearch to default admin:admin
+3. Set to use https by default (https://shuffle-opensearch:9200) 
+4. Remove 9200 from being exposed
+
+## Shuffle swarm Orborus setup
+1. Set Orborus to nightly or a version > 0.9.50
+2. Set Worker to nightly or a version > 0.9.50
+3. Add environments to Orborus:
+```
+SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
+SHUFFLE_SCALE_REPLICAS=1
+SHUFFLE_SWARM_CONFIG=run
+```
+
+### Add nodes:
+
 ## Known Bugs

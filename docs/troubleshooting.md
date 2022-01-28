@@ -240,3 +240,8 @@ curl -XPOST -H "Content-Type: application/json" "http://localhost:9200/environme
 ```
 curl http://localhost:9200/environments/_search?pretty
 ```
+
+### Updates failing: Unexpected UI
+1. After an update, click CTRL+SHIFT+R on your keyboard while in your browser. This runs a hard refresh without cache.
+2. Make sure you have the right version of Shuffle. Even if "nightly" is chosen, download them again with docker-compose pull or docker pull <image>
+3. Ensure environment variables are defined properly for the missbehaving service.
