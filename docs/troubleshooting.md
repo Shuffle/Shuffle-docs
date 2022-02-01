@@ -12,6 +12,9 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Extract all workflows](#extract_all_workflows)
 * [Rebuilding an opensearch index](#rebuilding_indexes)
 * [Recover Organizations](#recover_organizations)
+* [Database not starting](#database_not_starting)
+* [Failed updates](#updates_failing)
+
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com for our apps. Here's how to manually load them into Shuffle using git
@@ -240,3 +243,17 @@ curl -XPOST -H "Content-Type: application/json" "http://localhost:9200/environme
 ```
 curl http://localhost:9200/environments/_search?pretty
 ```
+
+### Updates failing
+1. After an update, click CTRL+SHIFT+R on your keyboard while in your browser. This runs a hard refresh without cache.
+2. Make sure you have the right version of Shuffle. Even if "nightly" is chosen, download them again with docker-compose pull or docker pull <image>
+3. Ensure environment variables are defined properly for the missbehaving service.
+
+## Database not starting
+In certain cases, you may experience Opensearch continuously restarting. PS: All of these can be spotted in the logs. There are a few reasons for this which should be checked in the following order:
+1. Have you set vm.max_map_count=262144 setting?
+2. Did you change the folder ownership (1000:1000 by default)?
+3. Is the folder ownership a proper user (1000:1000) working?
+4. Is there enough RAM on the device?
+5. Is there enough storage space on the device?
+6. Do you have security enabled (https & username & password), but not configured .env?
