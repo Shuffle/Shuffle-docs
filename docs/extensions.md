@@ -42,8 +42,8 @@ Once an application is made, it's time to find the required information. Go to t
 ![Okta SSO setup](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-2.png?raw=true)
 
 **Move these fields over to Shuffle:**
-Identity Provider Single Sign-On URL 	-> SSO Entrypoint (IdP)
-X.509 																-> SSO Certificate (X509)
+* Identity Provider Single Sign-On URL 	-> SSO Entrypoint (IdP)
+* X.509 																-> SSO Certificate (X509)
 
 After adding them, click "Save", saving the configuration. After saving, log out of your user to verify the SSO configuration. If you don't see a button for "Use SSO", you most likely configured the wrong organization.
 
@@ -54,8 +54,8 @@ After the app is made, click "Addons" > "SAML2 Web App".
 ![Auth0 SSO setup](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-4.png?raw=true)
 
 **In the popup, move the data of these fields to Shuffle:**
-Identity Provider Login URL 				-> SSO Entrypoint (IdP)
-Identity Provider Certificate 			-> SSO Certificate (X509)
+* Identity Provider Login URL 				-> SSO Entrypoint (IdP)
+* Identity Provider Certificate 			-> SSO Certificate (X509)
 
 Open the Certificate file in a text editor, and copy it's contents.
 
@@ -68,8 +68,8 @@ After the app is made, click the dropdown for it on the right side > Configurati
 ![PingID SSO setup Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-5.png?raw=true)
 
 **In the view above, move the data of these fields to Shuffle:**
-INITIATE SINGLE SIGN-ON URL 			-> SSO Entrypoint (IdP)
-DOWNLOAD METADATA 								-> SSO Certificate (X509)
+* INITIATE SINGLE SIGN-ON URL 			-> SSO Entrypoint (IdP)
+* DOWNLOAD METADATA 								-> SSO Certificate (X509)
 
 Open the Certificate file in a text editor, and copy it's contents in the field.
 
