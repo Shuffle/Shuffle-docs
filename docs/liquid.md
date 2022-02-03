@@ -55,6 +55,18 @@ By adding 86400 seconds to the string "now", before adding a date format, we get
 ```
 20220117
 ```
+### Create an epoch (Unix) timestamp 
+By using the string "now", and changing the date format to seconds, it will give you the epoch timestamp.
+
+**Expression:**
+```
+{{ "now" | date: "%s" }}
+```
+
+**Result:**
+```
+1643912690
+...
 
 ### Get size of an array
 
