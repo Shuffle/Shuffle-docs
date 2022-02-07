@@ -2,7 +2,7 @@
 This document outlines a process for app development. [Developer Intro](https://docs.google.com/presentation/d/1Se2NLPK-CjzccOZjRtfLzqrKG63QOgN1tAp35gWmZlU/edit?usp=sharing)
 
 ## Introduction
-App development is at the heart of how we grow. Without apps, Shuffle as a product and solution is useless. Together with Workflows, Apps can solve can solve any problems our customers, and users may be seeking. Our goal is to make automation accessible to everyone through collaboration, and app development a huge part of that. 
+App development is at the heart of how we grow. Without apps, Shuffle as a product and solution is useless. Together with Workflows, Apps can solve  any problems our customers and users may be seeking. Our goal is to make automation accessible to everyone through collaboration, and app development is a huge part of that. 
 
 ## Who we're building for
 Our target market are the people running [security operation centers](https://digitalguardian.com/blog/what-security-operations-center-soc). These exist around the world and at the frontlines, stopping bad behavior from malicious actors trying to cause harm. This means they're always on their toes - which in turn means they don't have much time for process and automation. That's where Shuffle comes in. We make it as simple as possible to get their existing platforms up and running, which giving them actionable advice on how to improve their defenses. Cybersecurity isn't a competition.
