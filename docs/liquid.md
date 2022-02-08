@@ -84,18 +84,44 @@ Want to merge the data in both of these lists? Use the "Merge lists" action, and
 
 ### List of available filters
 * abs: Returns the absolute value of a number.
+
+https://user-images.githubusercontent.com/31187099/152917948-865d7873-f406-45c7-98ae-37e992b3479d.mp4
+
+https://user-images.githubusercontent.com/31187099/152917975-b78f5df6-7bc8-428d-bb40-5284c0488281.mp4
+
 * append: Concatenates two strings and returns the concatenated value.
+
 * as_object: Cast data as an object instead of a string. Useful with other Liquid operations and for sending/receiving data.
 * at_least: Limits a number to a minimum value.
+
+https://user-images.githubusercontent.com/31187099/152918016-1bc0c002-a10f-4129-b886-9d1c8dcb51dd.mp4
+
 * at_most:Limits a number to a maximum value.
+
+https://user-images.githubusercontent.com/31187099/152918035-cc6ab9bf-07b5-4d15-9adc-074148b402c9.mp4
+
 * base64_encode: Encode a string using the Base64 encoding algorithm.
 * base64_decode: Decode a Base64 encoded string.
 * base64url_encode: Encode a string to a URL-safe base64url encoded string.
 * base64url_decode: Decode a URL-safe base64url encoded string.
 * capitalize: Makes the first character of a string capitalized.
+
+https://user-images.githubusercontent.com/31187099/152918039-6edd7a58-8579-4025-9f18-3f6c85443fbf.mp4
+
 * ceil: Rounds the input up to the nearest whole number. Liquid tries to convert the input to a number before the filter is applied.
+
+https://user-images.githubusercontent.com/31187099/152918095-8ed602a6-aa81-4b61-836d-1ff44a32c310.mp4
+
 * compact: Removes any nil values from an array.
+
+https://user-images.githubusercontent.com/31187099/152918109-b29bcc67-ff10-4139-8ab2-72089558ca59.mp4
+
+https://user-images.githubusercontent.com/31187099/152918123-238cc520-90dc-4c44-bb85-795f52522cd7.mp4
+
 * concat: Concatenates (joins together) multiple arrays. The resulting array contains all the elements from the input arrays.
+
+https://user-images.githubusercontent.com/31187099/152918139-72a03d69-0a49-4551-b885-d1cb9cf8c99c.mp4
+
 * csv_parse: Parse a CSV-formatted string with auto-detection of the delimiter character. Use with as_object, e.g.: {{ .csv_string | csv_parse | as_object }}
 * date: Converts a timestamp into another date format. The format for this syntax is the same as strftime.
 * default: Allows you to specify a fallback in case a value doesn’t exist. default will show its value if the left side is nil, false, or empty.
@@ -213,7 +239,6 @@ tag1, tag2, tag3
         "A": "B"
     }
 ]
-
 * If we try to reverse this array via the normal reverse function in Liquid we get the error shown below.
 [{{ $shuffle_tools_1 | reverse}}] 
 
