@@ -55,6 +55,18 @@ By adding 86400 seconds to the string "now", before adding a date format, we get
 ```
 20220117
 ```
+### Create an epoch Unix timestamp 
+By using the string "now", and changing the date format to seconds, it will give you the epoch timestamp.
+
+**Expression:**
+```
+{{ "now" | date: "%s" }}
+```
+
+**Result:**
+... 
+1643912690 
+... 
 
 ### Get size of an array
 
@@ -80,6 +92,35 @@ In our second node (e.g. Shuffle Tools 2), we're building out a JSON object, and
 ```
 
 Want to merge the data in both of these lists? Use the "Merge lists" action, and add both lists to the 
+
+### Check if time now is between 4:30 PM and 8 AM EST
+A script that returns False if the time now is NOT between the times assigned, and True if it IS between those times. 
+```
+import datetime
+
+initial_timestamp = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=5)
+timedata = {
+    "now": initial_timestamp.strftime("%s"),
+    "comparison": "",
+    "run_alert": False,
+}
+midnight = datetime.datetime.combine(
+    datetime.date.today(),
+    datetime.time(0, 0)
+)
+if initial_timestamp.hour < 8 and initial_timestamp.hour >= 0:
+    tomorrowtime = (midnight + datetime.timedelta(hours=8)).strftime("%s")
+    timedata["comparison"] = tomorrowtime
+    if timedata["now"] < tomorrowtime:
+        timedata["run_alert"] = True
+elif initial_timestamp.hour >= 16 and initial_timestamp.hour <= 23:
+    todaytime = (midnight + datetime.timedelta(hours=16, minutes=30)).strftime("%s")
+    timedata["comparison"] = todaytime
+    if timedata["now"] > todaytime:
+        timedata["run_alert"] = True
+
+print(timedata["run_alert"])
+```
 
 
 ### List of available filters

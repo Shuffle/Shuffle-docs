@@ -7,12 +7,14 @@ This is documentation for integrating and sending data from third-party services
   * [Okta](#okta)
   * [Auth0](#auth0)
   * [PingIdentity](#ping_id)
+  * [Keycloak](#keycloak)
 * [Webhooks](#webhooks)
   * [Wazuh Webhook](#wazuh)
   * [TheHive Webhook](#thehive)
   * [Logz.io Webhook](#logzio)
   * [MISP forwarder](#misp)
   * [AWS S3 forwarder](#aws_s3_forwarder)
+  * [QRadar Webhook](#qradar)
 
 ## Introduction
 From the start, Shuffle has been a platform about integrations. We've focused on making them as open and usable as possible, but were missing one part; inbound data. The general way Shuffle handles this has been through third-party API's, where we poll for data on a schedule. There are however some cases where this doesn't do the trick. That's what extensions are. 
@@ -42,8 +44,8 @@ Once an application is made, it's time to find the required information. Go to t
 ![Okta SSO setup](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-2.png?raw=true)
 
 **Move these fields over to Shuffle:**
-Identity Provider Single Sign-On URL 	-> SSO Entrypoint (IdP)
-X.509 																-> SSO Certificate (X509)
+* Identity Provider Single Sign-On URL 	-> SSO Entrypoint (IdP)
+* X.509 																-> SSO Certificate (X509)
 
 After adding them, click "Save", saving the configuration. After saving, log out of your user to verify the SSO configuration. If you don't see a button for "Use SSO", you most likely configured the wrong organization.
 
@@ -54,8 +56,8 @@ After the app is made, click "Addons" > "SAML2 Web App".
 ![Auth0 SSO setup](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-4.png?raw=true)
 
 **In the popup, move the data of these fields to Shuffle:**
-Identity Provider Login URL 				-> SSO Entrypoint (IdP)
-Identity Provider Certificate 			-> SSO Certificate (X509)
+* Identity Provider Login URL 				-> SSO Entrypoint (IdP)
+* Identity Provider Certificate 			-> SSO Certificate (X509)
 
 Open the Certificate file in a text editor, and copy it's contents.
 
@@ -68,12 +70,48 @@ After the app is made, click the dropdown for it on the right side > Configurati
 ![PingID SSO setup Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-5.png?raw=true)
 
 **In the view above, move the data of these fields to Shuffle:**
-INITIATE SINGLE SIGN-ON URL 			-> SSO Entrypoint (IdP)
-DOWNLOAD METADATA 								-> SSO Certificate (X509)
+* INITIATE SINGLE SIGN-ON URL 			-> SSO Entrypoint (IdP)
+* DOWNLOAD METADATA 								-> SSO Certificate (X509)
 
 Open the Certificate file in a text editor, and copy it's contents in the field.
 
 After adding them, click "Save", saving the configuration. After saving, log out of your user to verify the SSO configuration. If you don't see a button for "Use SSO", you most likely configured the wrong organization.
+
+### Keycloak
+* Go create a realm in your keycloak by clicking the add realm button
+
+![31 01 2022_19 01 10_REC](https://user-images.githubusercontent.com/31187099/151965784-1798e815-1e57-4720-a875-ba379610a38e.png)
+
+* Enter a name for your realm
+* Click create and your realm is created
+* Under configure, move down to identity providers, on the pop up, click on the drop down select SAML v2.0
+
+* An add identity provider window pops up where you can configure your identity provider and SAML configs.
+* Here you will fill the:
+    - Alias field
+    - Display name
+    - Ensure Enabled field is turned on
+    - Ensure Trust Email field is turned on
+    
+![01 02 2022_11 39 39_REC](https://user-images.githubusercontent.com/31187099/151965938-3bddb6e8-6819-41dc-b6ae-85cd0b56b31e.png)
+
+* Still on this window scroll down to SAML Config and click on this to drop down the settings
+
+![01 02 2022_11 45 52_REC](https://user-images.githubusercontent.com/31187099/151966312-33b75cec-3906-4485-8c58-26d77dd2ef84.png)
+
+* Here you will fill the:
+    - Service Provider Entity ID - Scroll up to the Redirect URI and copy everything BEFORE /broker/(your-alias)/endpoint and paste it in this field.
+    - Single Sign-On Service URL - In this field paste https://<URL>:<PORT>/api/v1/login_sso 
+    - Scroll down and ensure Allow create is on 
+    - Ensure HTTP-POST Binding Response is on
+    - Ensure HTTP-POST Binding for AuthnRequest is on
+    - Ensure Validate Signature is on, paste your X509 certificate see [here](https://lightbend.github.io/ssl-config/CertificateGeneration.html)
+
+* Proceed to hit save
+
+* Copy the service Provider Entity ID and paste it in your Shuffle instance under the SSO Entrypoint (IdP) proceed to add /account at the end of your URI
+
+![01 02 2022_14 59 32_REC](https://user-images.githubusercontent.com/31187099/151966347-d56f78d5-9a04-4719-b55e-4e5d3ed6e703.png)
 
 ### Other
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
@@ -396,7 +434,81 @@ Last but not least, we need a way [to see IF](/docs/workflows#conditions) the fi
 
 Done! Whenever a file is downloaded, it will be analyzed by Yara, checking matches, then removing the file if it's more than 3.
 
+### QRadar
 
+**QRadar send offense webhook to Shuffle.**
+
+***STEP 1: Add the Script to QRadar & Config***
+
+> **Bash Code:**
+```
+#!/bin/bash
+# Version 1.0.0
+
+shuffle_url=$1
+api_token=$2
+offense_id=${3%.*}
+
+auth_header="SAuthorization:$api_token"
+
+output=$(curl --insecure -H $auth_header $shuffle_url -d "$(cat <<EOF
+{
+        "offense_id": $offense_id
+}
+EOF
+)")
+
+# Basic print out of the output of the command
+echo $output
+```
+
+a) Log In to QRadar;
+			
+b) Go to Admin > Custom Actions > **Define Actions**;	
+			
+c) Click **Add**;
+			
+d) Fill the Basic Information (name & description);
+			
+e) In the Script Configuration set **bash** as interpreter, and import the bash script attached to this message;	
+			
+f) For the Script Parameters, add the parameters in the following order:
+			
+1. [Fixed Property] **shuffle_url** - As value insert the Shuffle Webhook URI, for example https://shuffle.local/api/v1/hooks/webhook_15acc....
+			
+2. [Fixed Property] **authorization** - Insert the Required headers (**SAuthorization**), for example in Shuffle webhook if you set **SAuthorization=s873hn872n_s298ns2-98ns2ns** in the Required headers you authorization value will be "s873hn872n_s298ns2-98ns2ns". *If you change the token name, don't forget to change it in the bash code too*.
+			
+3. [Network Event Property] **offense_id** - Insert **offense_id** as value 
+			
+g) Save
+			
+h) Deploy Changes
+
+![image](https://user-images.githubusercontent.com/21691729/152444978-d360680a-a0b1-40b0-bd04-fa7395cf4d85.png)
+![image](https://user-images.githubusercontent.com/21691729/152445000-0d2a1828-ee1d-41b1-a549-5417c9a48c75.png)
+		
+***STEP 2: Create new offense alert rule***
+			
+a) Go to Offenses > **Rules**;
+			
+b) Click Actions > **New Event Rule**:
+```
+    Rule Description
+      Apply Shuffle new offense alert on events which are detected by the Local system
+and when the event QID is one of the following (28250369) Offense Created
+ 
+    Rule Responses
+      Execute Custom Action QRadar to Shuffle  (previous added script)
+
+This Rule will be: Enabled
+```
+
+***Conclusion***
+>  **Why use this use case?**
+			
+ Easy, this way each time a new offense dispatches in QRadar it will send a webhook to Shuffle containing the offense_id, then the webhook node will receive this info and pass it to the next node (QRadar App) that will perform a **get offense** ~~data~~ action using the received offense id as key.
+			
+ This way you won't need to execute an api call every x time and save the last offense id. This is a better solution and improves the SLA, coz if you set 1 minute as you x time, you may have 1 minute delay or less, besides you are getting all "ungotten" offenses at once, when you can use shuffle to handle with multiple at the same time if it happen to dispatch more than one offense in QRadar at the same time or with just some seconds of difference.
 
 ### Cortex 
 TBD: Responder executions
