@@ -14,6 +14,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Recover Organizations](#recover_organizations)
 * [Database not starting](#database_not_starting)
 * [Failed updates](#updates_failing)
+* [TLS timeout error](#tls_timeout_error)
 
 
 ## Load all apps locally
@@ -257,3 +258,23 @@ In certain cases, you may experience Opensearch continuously restarting. PS: All
 4. Is there enough RAM on the device?
 5. Is there enough storage space on the device?
 6. Do you have security enabled (https & username & password), but not configured .env?
+
+
+## TLS timeout error
+In certain cases, you may experience a TLS timeout error, or a similar network request issue. This is most likely due to the network configuration of your Shuffle instances not matching the server it's running on. 
+
+The main configuration is "MTUs", AKA Maximum Transmission Unit. This has to match _exactly_ - with the Docker default being 1500.
+
+Find MTU:
+```
+ip addr | grep mtu
+```
+
+To set the MTU in Docker, do it in the docker-compose, in the networking section. Say the MTU you found was 1450, then use 1450, as can be seen below. When done, restart the docker-compose.
+```
+networks:
+	shuffle:
+		driver: bridge
+			driver_opts:
+				com.docker.network.driver.mtu: 1450
+```
