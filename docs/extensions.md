@@ -134,7 +134,7 @@ These are the steps to set it up:
 This one is pretty easily explained. Go to Shuffle an make a new Workflow.
 
 **2. Add a Webhook to the workflow**
-[Add a webhook](https://shuffler.io/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
+[Add a webhook](/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
 
 ![Extend Shuffle with Wazuh](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
 
@@ -211,7 +211,7 @@ TheHive is a case management platform for and by security professionals. One of 
 This one is pretty easily explained. Go to Shuffle an make a new Workflow.
 
 **2. Add a Webhook to the workflow**
-[Add a webhook](https://shuffler.io/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
+[Add a webhook](/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
 
 ![Extend Shuffle with TheHive](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
 
@@ -273,7 +273,7 @@ In TheHive, create a new case, or add a comment to an existing case. This will t
 This one is pretty easily explained. Go to Shuffle an make a new Workflow.
 
 **2. Add a Webhook to the workflow**
-[Add a webhook](https://shuffler.io/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
+[Add a webhook](/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
 
 ![Extend Shuffle with Wazuh](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
 
@@ -364,7 +364,7 @@ Steps to set it up:
 ![AWS lambda overview](https://github.com/frikky/shuffle-docs/blob/master/assets/s3_function-1.png?raw=true)
 
 **1. Create a Workflow which will receive alerts**
-This one is pretty easily explained. Go to Shuffle an make a new Workflow. [Add a webhook](https://shuffler.io/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
+This one is pretty easily explained. Go to Shuffle an make a new Workflow. [Add a webhook](/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
 
 ![Extend Shuffle with webhook](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
 

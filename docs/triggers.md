@@ -16,32 +16,50 @@ Triggers are the operators used to execute a [workflow](/docs/workflow) automati
 This image shows a simple workflow with two triggers: Webhook & Scheduler. 
 ![logos-triggers](https://github.com/frikky/shuffle-docs/blob/master/assets/logos-triggers.png?raw=true)
 
+Hybrid
+How to see executions
+
 ## About
 Triggers, along side apps and variables, can be found on the left hand side, in a tab called "Triggers". 
 
 ![Triggers-view-1](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-1.png?raw=true)
 
-Triggers are developed for and by Shuffle specifically to give the user access to multiple ways to run a workflow. There are currently five ways to execute workflows:
-
-* Cloud: Webhook, User Input, Schedule, Email, Rest API
-* Onprem: Webhook, User Input, Schedule, Rest API
+Triggers are developed by Shuffle specifically to give the user access to multiple ways to run a workflow. The triggers that are not available on-premises are due to access requirements - not hiding of features. 
 
 There are currently four triggers, with a fifth "hidden" one:
 * Webhook 		- Handle realtime HTTP requests from anywhere. 
 * Schedule 		- Runs your workflow on a schedule. Cronjob or seconds.
 * User Input 	- Waits for user input before continuing. You can answer yes/no.
+* Subflow 		- Allows running of another workflow from the current workflow.
+* Email 			- When you get an email in gmail/office365: start the workflow
 * Rest API 		- Essentially a trigger from either: 1. Another workflow. 2. Any third party software
 
-Cloud only:
-* Email 			- 23.05.2020: Can listen to office365 incoming mails
+There are currently six ways to execute workflows:
+* Cloud & Hybrid (paid): Webhook, Subflow, User Input, Schedule, Outlook, Gmail, Rest API
+* Onprem: Webhook, Subflow, User Input, Schedule, Rest API
+
+### Hybrid
+ALL triggers are available EVERYWHERE if you have a Shuffle subscription. This further allows routing executions through cloud (without saving any data) to your open source instance, without the need to open for inbound requests in your firewall(s).
+
+**Example:**
+Say you want to get messages from a service like a SIEM, but it's in a different data center. How do you get that request all the way to your instance? This can be done by setting up cloud synchronization allowing for:
+1. Remote SIEM -> Send Webhook to https://shuffler.io as a "proxy"
+2. Your local instance looks for jobs from an organization you own on https://shuffler.io
+3. When a webhook job is found on https://shuffler.io - it will execute in your local instance.
+
+Read more about cloud synchronization in the [organization documentation](/docs/organizations#cloud_syncronization).
+
+### Finding executions
+When a trigger runs, you will NOT be notified about it anywhere. It will instead run behind the scenes. You can however discover their data and executions by going to the specific workflow's UI, then clicking "See all executions" on the bottom (the running person).
 
 ### Webhook
-[Webhooks](https://en.wikipedia.org/wiki/Webhook) is the real-time handler for Shuffle data. Webhooks were initially implemented to handle data from [Office365 connectors](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using) and [TheHive](https://github.com/TheHive-Project/TheHiveDocs/blob/master/admin/webhooks.md), but turned into a generic trigger as we saw the use-case for it. 
+[Webhooks](https://en.wikipedia.org/wiki/Webhook) are the real-time handler for Shuffle data. Webhooks were initially implemented to handle data from [Office365 connectors](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using) and [TheHive](https://github.com/TheHive-Project/TheHiveDocs/blob/master/admin/webhooks.md), but have turned into a generic trigger, taking any kind of HTTP data, as we saw the need for it. 
 
 HTTP Method(s):
+* GET
 * POST
 
-PS: Data in the POST request will be the execution argument.
+PS: Data in the POST request will be the execution argument. If HTTP queries are present, these will be converted to JSON.
 
 #### Authentication
 In later versions of Shuffle, you further have access to an authentication field. This field is based on the headers of the request, and any header added to this field will be **REQUIRED** from the sender of the webhook.
