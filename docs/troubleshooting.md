@@ -278,3 +278,8 @@ networks:
 			driver_opts:
 				com.docker.network.driver.mtu: 1450
 ```
+
+PS: If you run Shuffle in swarm mode, the MTU has to be set for that network manually as well. That means we need to make a network named the same as the environment SHUFFLE_SWARM_NETWORK_NAME for Orborus (default: shuffle_swarm_executions):
+```
+docker network create --driver=overlay --ingress=false --attachable=true -o "com.docker.network.driver.mtu"="1450" shuffle_swarm_executions
+```
