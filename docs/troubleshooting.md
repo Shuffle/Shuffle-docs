@@ -15,6 +15,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Database not starting](#database_not_starting)
 * [Failed updates](#updates_failing)
 * [TLS timeout error](#tls_timeout_error)
+* [Orborus can't connect to backend](#orborus_backend_connection_problems)
 
 
 ## Load all apps locally
@@ -283,3 +284,16 @@ PS: If you run Shuffle in swarm mode, the MTU has to be set for that network man
 ```
 docker network create --driver=overlay --ingress=false --attachable=true -o "com.docker.network.driver.mtu"="1450" shuffle_swarm_executions
 ```
+
+## Orborus backend connection problems
+Due to the nature of Shuffle at scale, there are bound to be network issues. As Shuffle runs in Docker, and sometimes in swarm with k8s networking, it complicates the matter even further. Here's a list of things to help with debugging networking. If all else fails; reboot the machine & docker.
+
+1. Is the orborus container speaking to an IP in the same network? Check with docker inspect shuffle-oroburs -> is the same CIDR / network address to be seen in the list of Network IPs?
+2. Do all the required networks exist? WITHOUT swarm: minimum 1 bridge network. WITH swarm: 3 networks (ingress, shuffle_shuffle, shuffle_swarm_executions). All in overlay mode.
+3. Are all the networks configured properly? If in swarm mode; delete the networks, then restart Orborus (it will remake them).
+4. Are the right network modes in use? Bridge (normal) vs Overlay (swarm). This depends on the server structure (1 vs. many).
+
+"Fixes" (in order):
+- Remake all networks (docker network rm)
+- Restart Docker (systemctl stop -> start)
+- Reboot (the whole server)
