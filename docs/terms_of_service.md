@@ -76,7 +76,10 @@ All monthly limits are per organization, including its sub-organizations.
 
 3. Compliance with Laws. In its use of the System, Customer shall comply with all applicable laws and regulations, including without limitation laws governing the protection of personally identifiable information and other laws applicable to the protection of Customer Data.
 
-4. Users & System Access. Customer is responsible and liable for: (a) Users’ use of the System, including without limitation unauthorized User conduct and any User conduct that would violate the AUP or the requirements of this Agreement applicable to Customer; and (b) any use of the System through Customer’s account, whether authorized or unauthorized.
+4. Users and Customers of the Shuffle platform, whether Cloud or Open Source, are prohibited from providing direct sales of the Shuffle platform, whether Cloud or Open Source, without explicit permission in a written agreement with Shuffle. Users and Customers are further not allowed to provide paid engagements for support, automation help or other services herein, without an explicit written agreement with Shuffle AS. 
+
+5. Users & System Access. Customer is responsible and liable for: (a) Users’ use of the System, including without limitation unauthorized User conduct and any User conduct that would violate the AUP or the requirements of this Agreement applicable to Customer; and (b) any use of the System through Customer’s account, whether authorized or unauthorized.
+
 
 ## IP and Feedback 
 1. IP Rights to the System. Shuffle retains all right, title, and interest in and to the System, including without limitation all software, system software and applications used to provide the System, including any source code, updates, improvements, enhancements, modifications or derivative works thereof, whether or not patentable, and all inventions, content, graphics, media, user interfaces, logos, and trademarks contained in, displayed, performed or reproduced through the System.. This Agreement is an agreement for services and does not grant Customer any intellectual property license or rights in or to the System or any of its components. Customer understands and agrees that the System and its components are protected by copyright and other laws.
