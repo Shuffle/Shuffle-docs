@@ -95,7 +95,11 @@ Want to merge the data in both of these lists? Use the "Merge lists" action, and
 
 ### Check if time now is between 4:30 PM and 8 AM EST
 A script that returns False if the time now is NOT between the times assigned, and True if it IS between those times. 
+
+Prints are sent to the Shuffle frontend. Needs to start with {% python %} and end with {% endpython %}
+
 ```
+{% python %}
 import datetime
 
 initial_timestamp = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=5)
@@ -120,6 +124,7 @@ elif initial_timestamp.hour >= 16 and initial_timestamp.hour <= 23:
         timedata["run_alert"] = True
 
 print(timedata["run_alert"])
+{% endpython %}
 ```
 
 
