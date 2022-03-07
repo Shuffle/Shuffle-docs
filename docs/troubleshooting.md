@@ -15,6 +15,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Database not starting](#database_not_starting)
 * [Failed updates](#updates_failing)
 * [TLS timeout error](#tls_timeout_error)
+* [Shuffle on ARM](#shuffle_on_arm)
 * [Orborus can't connect to backend](#orborus_backend_connection_problems)
 
 
@@ -297,3 +298,6 @@ Due to the nature of Shuffle at scale, there are bound to be network issues. As 
 - Remake all networks (docker network rm)
 - Restart Docker (systemctl stop -> start)
 - Reboot (the whole server)
+
+## Shuffle on ARM
+ARM is currently not supported for Shuffle, as can be seen in issue [#665 on Github](https://github.com/frikky/Shuffle/issues/665). We don't have the capability to build it as of now, but can work with you to get it working if you want to try it.
