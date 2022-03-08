@@ -196,6 +196,51 @@ There are many ways to test the integration, but you can simplify it by setting 
 
 ![Extend Shuffle with Wazuh 3](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_3.png?raw=true)
 
+#### Extra about Wazuh
+Active response can be used with the command "Run Command" in Shuffle. This requires an Agent (Agent list) and Command ([Active response](https://documentation.wazuh.com/current/getting-started/use-cases/active-response.html) command). Below, we will show how to set up the custom command "reboot".
+
+- Wazuh API logs will be on the manager in: /var/ossec/logs/api.log
+- Wazuh agent logs can be found in /var/ossec/logs/ossec/log
+
+**Testing custom active response from Shuffle**:
+1. Log into the Wazuh manager, and add the following to your ossec.conf (/var/ossec/etc/ossec.conf):
+```
+  <command>
+    <name>reboot</name>
+    <executable>reboot.sh</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+```
+
+2. Open /var/ossec/etc/shared/ar.conf and ADD the following line to the bottom of the file:
+```
+reboot - reboot.sh - 0
+```
+
+3. Restart the manager (systemctl restart wazuh-manager.service). This should distribute the ar.conf file to active agents.
+4. SSH into the agent you want to test on. If the agent is not running, run this:
+```bash
+/var/ossec/bin/wazuh-control start
+```
+
+5. Add the basic reboot script to the active response location with the content below; /var/ossec/active-response/bin/reboot.sh:
+```
+#!/bin/sh
+# Reboots the host
+
+reboot now
+```
+
+6. Restart the wazuh agent
+```
+/var/ossec/bin/wazuh-control restart 
+```
+
+7. Log into Shuffle and import [this public workflow](https://shuffler.io/workflows/44bc4e93-ba6e-4895-8294-424fd2a1d169). Make sure to change the following:
+- Activate the Wazuh app if it's not already
+- Add a Wazuh username & password to the HTTP node
+- Add the Wazuh URL to the HTTP node, as well as Get_agents and other Wazuh nodes.
+- Make sure the last block after "Get_agents" runs the command "reboot" with the Agent list containing your specific agent.
 
 ### TheHive
 TheHive is a case management platform for and by security professionals. One of their key capabilities is webhooks, which can send realtime updates to a third party system whenever ANYTHING is changed within TheHive (e.g. a new alert or a case task is written). Shuffle has an ideal way of handling this, [outlined in this blogpost (TheHive4)](https://medium.com/shuffle-automation/indicators-and-webhooks-with-thehive-cortex-and-misp-open-source-soar-part-4-f70cde942e59).
