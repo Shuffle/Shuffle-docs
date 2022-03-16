@@ -7,6 +7,7 @@ Documentation for apps. If you'd like to make an app [check out this guide](/doc
   * [Actions](#actions)
   * [Arguments](#arguments)
   * [Searching for apps](#searching_for_apps)
+  * [Debugging apps](#debugging_apps)
 * [Creating apps](#create_custom_apps)
   * [Updating apps remotely](#updating_apps_remotely)
   * [Delete app](#delete_app)
@@ -66,6 +67,11 @@ When you set up Shuffle for the first time, it should provide you with >100 exis
 A goal for Shuffle is to make it possible to search outside the apps you currently have. This is an [open issue](https://github.com/frikky/Shuffle/issues/24) as of 23.05.2020, but will be worked on.
 
 **PS: Extended search can be done using the [shuffler search-engine](https://shuffler.io/search)**
+
+## Debugging apps
+Apps may fail at times, usually due to bad coding on the creators' side. This means that to get more information, you may be required to troubleshoot and debug to get the logs. 
+
+More about this in the [app creation](/docs/app_creation#debugging) debugging section
 
 ## Create apps
 Apps in Shuffle can be made using the App Creator or with Python directly.

@@ -200,7 +200,7 @@ There are many ways to test the integration, but you can simplify it by setting 
 Active response can be used with the command "Run Command" in Shuffle. This requires an Agent (Agent list) and Command ([Active response](https://documentation.wazuh.com/current/getting-started/use-cases/active-response.html) command). Below, we will show how to set up the custom command "reboot".
 
 - Wazuh API logs will be on the manager in: /var/ossec/logs/api.log
-- Wazuh agent logs can be found in /var/ossec/logs/ossec/log
+- Wazuh agent logs can be found in /var/ossec/logs
 
 **Testing custom active response from Shuffle**:
 1. Log into the Wazuh manager, and add the following to your ossec.conf (/var/ossec/etc/ossec.conf):
@@ -230,6 +230,8 @@ reboot - reboot.sh - 0
 
 reboot now
 ```
+
+PS: Once done, make sure it's executable: chmod +x /var/ossec/active-response/bin/reboot.sh
 
 6. Restart the wazuh agent
 ```
