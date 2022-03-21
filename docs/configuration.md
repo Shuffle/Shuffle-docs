@@ -208,7 +208,8 @@ Backend:
 
 SHUFFLE_ENCRYPTION_MODIFIER=YOUR KEY HERE
 
-# PS: Encryption is available from Shuffle backend version >=0.9.17
+# PS: Encryption is available from Shuffle backend version >=0.9.17. 
+## PPS: There's a [known bug](https://github.com/frikky/Shuffle/issues/528) with Proxies and git 
 ```
 
 Orborus:

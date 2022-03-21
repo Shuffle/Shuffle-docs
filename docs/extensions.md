@@ -180,8 +180,8 @@ Find more fields like [levels, groups and rule_id here](https://documentation.wa
 ```
 	<integration>
 		<name>custom-shuffle</name>
-		<level>9</level>
-		<hook_url>http://<IP>:<PORT>/api/v1/hooks/webhook_<HOOK_ID></hook_url>
+		<level>5</level>
+		<hook_url>http://IP:PORT/api/v1/hooks/webhook_hookid</hook_url>
 		<alert_format>json</alert_format>
 	</integration>
 ```
@@ -190,6 +190,10 @@ Find more fields like [levels, groups and rule_id here](https://documentation.wa
 ```
 systemctl restart wazuh-manager.service
 ```
+
+You should now start seeing data sent from Wazuh into Shuffle which can be used. If data is NOT sent, make sure of a few things:
+- If https in the Shuffle URL: is the certificate of Shuffle signed? Default: no.
+- Check /var/ossec/logs for logs: grep -R custom-shuffle
 
 **4. Test the integration**
 There are many ways to test the integration, but you can simplify it by setting the "level" part of the configuration to a lower number (3~), as that would trigger it in a lot of cases, including when you SSH into the Wazuh manager. After an alert is supposed to have triggered, go to Shuffle, and you'll see something like the image below.
@@ -271,12 +275,12 @@ Configuring TheHive is the only unique step here, and is different between versi
 As can be seen in the documentation, there are three steps to setting up TheHive webhooks: 
 1. Define the webhook forwarder:
 
-Find the application.conf file and scroll to the webhook section. If it doesn't exist, add the following:
+Find the [application.conf](https://docs.thehive-project.org/thehive/installation-and-configuration/configuration/manage-configuration/) file and scroll to the webhook section. If it doesn't exist, add the following:
 ```
 notification.webhook.endpoints = [
   {
     name: Shuffle
-    url: "http://<IP>:<PORT>/api/v1/hooks/webhook_<HOOK_ID>"
+    url: "http://IP:PORT/api/v1/hooks/webhook_hookid"
     version: 0
     wsConfig: {}
     includedTheHiveOrganisations: ["*"]
@@ -309,9 +313,7 @@ curl -XPUT -u$thehive_user:$thehive_password -H 'Content-type: application/json'
 ```
 
 **4. Test the integration**
-There are many ways to test the integration, but you can simplify it by setting the "level" part of the configuration to a lower number (3~), as that would trigger it in a lot of cases, including when you SSH into the Wazuh manager. 
-
-In TheHive, create a new case, or add a comment to an existing case. This will then be seen within Shuffle. After the webhook is supposed to have triggered, go to Shuffle, and you'll see something like the image below.
+In TheHive UI (NOT CLI), create a new case, or add a comment to an existing case. This will then be seen within Shuffle. After the webhook is supposed to have triggered, go to Shuffle, and you'll see something like the image below.
 
 ![Extend Shuffle with TheHive 3](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_3.png?raw=true)
 
