@@ -93,9 +93,43 @@ In our second node (e.g. Shuffle Tools 2), we're building out a JSON object, and
 
 Want to merge the data in both of these lists? Use the "Merge lists" action, and add both lists to the 
 
+### Data cleaning - newlines and quotes
+As quotes can't be part of text in JSON, you may need to clean up data a whole lot before sending it on to it's destination. To do this, we use filters to remove bad data. First, make another node in Shuffle (e.g. Shuffle_Tools_1 with the following data repeated in the "Repeat back to me" action:
+```
+`Investigation
+
+• Headline- Multiple inbound requests from foreign Ips related to IOCs log4shell
+
+• Summary of Findings: Defense has observed 123 logs from the past 30 days with 25 potential malicious IP addresses linked to the Log4J exploit. Those malicious IP’s were generated from inbound requests to trusted host "123.222.154.200". Defense also noticed internal to potentially malicious external IP traffic over port 443 from IP addresses 10.20.30.40. Attached is a Excel document with the list of the raw data, source IP’s, Destination IP’s and Malicious IP’s .
+```
+
+Now make a second node (also repeat back to me), which 
+```
+{
+"fields": {
+       "project":
+       {
+          "key": "TTPJ"
+       },
+       "summary": "test",
+       "description": "description": "{{ '$shuffle_tools_1' | newline_to_br | replace: '"', '' | replace: "<br />", "\\n" }}",
+       "issuetype": {
+          "name": "Task"
+       }
+   }
+}
+```
+
+The JSON should now be valid, even with newlines. You can use replace and other newline replacements in the same way.
+
+
 ### Check if time now is between 4:30 PM and 8 AM EST
 A script that returns False if the time now is NOT between the times assigned, and True if it IS between those times. 
+
+Prints are sent to the Shuffle frontend. Needs to start with {% python %} and end with {% endpython %}
+
 ```
+{% python %}
 import datetime
 
 initial_timestamp = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=5)
@@ -120,6 +154,7 @@ elif initial_timestamp.hour >= 16 and initial_timestamp.hour <= 23:
         timedata["run_alert"] = True
 
 print(timedata["run_alert"])
+{% endpython %}
 ```
 
 

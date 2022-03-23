@@ -134,7 +134,7 @@ These are the steps to set it up:
 This one is pretty easily explained. Go to Shuffle an make a new Workflow.
 
 **2. Add a Webhook to the workflow**
-Add a webhook and find the Webhook URL. Remember to start the Webhook!
+[Add a webhook](/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
 
 ![Extend Shuffle with Wazuh](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
 
@@ -180,8 +180,8 @@ Find more fields like [levels, groups and rule_id here](https://documentation.wa
 ```
 	<integration>
 		<name>custom-shuffle</name>
-		<level>9</level>
-		<hook_url>http://<IP>:<PORT>/api/v1/hooks/webhook_<HOOK_ID></hook_url>
+		<level>5</level>
+		<hook_url>http://IP:PORT/api/v1/hooks/webhook_hookid</hook_url>
 		<alert_format>json</alert_format>
 	</integration>
 ```
@@ -191,11 +191,62 @@ Find more fields like [levels, groups and rule_id here](https://documentation.wa
 systemctl restart wazuh-manager.service
 ```
 
+You should now start seeing data sent from Wazuh into Shuffle which can be used. If data is NOT sent, make sure of a few things:
+- If https in the Shuffle URL: is the certificate of Shuffle signed? Default: no.
+- Check /var/ossec/logs for logs: grep -R custom-shuffle
+
 **4. Test the integration**
 There are many ways to test the integration, but you can simplify it by setting the "level" part of the configuration to a lower number (3~), as that would trigger it in a lot of cases, including when you SSH into the Wazuh manager. After an alert is supposed to have triggered, go to Shuffle, and you'll see something like the image below.
 
 ![Extend Shuffle with Wazuh 3](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_3.png?raw=true)
 
+#### Extra about Wazuh
+Active response can be used with the command "Run Command" in Shuffle. This requires an Agent (Agent list) and Command ([Active response](https://documentation.wazuh.com/current/getting-started/use-cases/active-response.html) command). Below, we will show how to set up the custom command "reboot".
+
+- Wazuh API logs will be on the manager in: /var/ossec/logs/api.log
+- Wazuh agent logs can be found in /var/ossec/logs
+
+**Testing custom active response from Shuffle**:
+1. Log into the Wazuh manager, and add the following to your ossec.conf (/var/ossec/etc/ossec.conf):
+```
+  <command>
+    <name>reboot</name>
+    <executable>reboot.sh</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+```
+
+2. Open /var/ossec/etc/shared/ar.conf and ADD the following line to the bottom of the file:
+```
+reboot - reboot.sh - 0
+```
+
+3. Restart the manager (systemctl restart wazuh-manager.service). This should distribute the ar.conf file to active agents.
+4. SSH into the agent you want to test on. If the agent is not running, run this:
+```bash
+/var/ossec/bin/wazuh-control start
+```
+
+5. Add the basic reboot script to the active response location with the content below; /var/ossec/active-response/bin/reboot.sh:
+```
+#!/bin/sh
+# Reboots the host
+
+reboot now
+```
+
+PS: Once done, make sure it's executable: chmod +x /var/ossec/active-response/bin/reboot.sh
+
+6. Restart the wazuh agent
+```
+/var/ossec/bin/wazuh-control restart 
+```
+
+7. Log into Shuffle and import [this public workflow](https://shuffler.io/workflows/44bc4e93-ba6e-4895-8294-424fd2a1d169). Make sure to change the following:
+- Activate the Wazuh app if it's not already
+- Add a Wazuh username & password to the HTTP node
+- Add the Wazuh URL to the HTTP node, as well as Get_agents and other Wazuh nodes.
+- Make sure the last block after "Get_agents" runs the command "reboot" with the Agent list containing your specific agent.
 
 ### TheHive
 TheHive is a case management platform for and by security professionals. One of their key capabilities is webhooks, which can send realtime updates to a third party system whenever ANYTHING is changed within TheHive (e.g. a new alert or a case task is written). Shuffle has an ideal way of handling this, [outlined in this blogpost (TheHive4)](https://medium.com/shuffle-automation/indicators-and-webhooks-with-thehive-cortex-and-misp-open-source-soar-part-4-f70cde942e59).
@@ -211,7 +262,7 @@ TheHive is a case management platform for and by security professionals. One of 
 This one is pretty easily explained. Go to Shuffle an make a new Workflow.
 
 **2. Add a Webhook to the workflow**
-Add a webhook and find the Webhook URL. Remember to start the Webhook!
+[Add a webhook](/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
 
 ![Extend Shuffle with TheHive](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
 
@@ -224,12 +275,12 @@ Configuring TheHive is the only unique step here, and is different between versi
 As can be seen in the documentation, there are three steps to setting up TheHive webhooks: 
 1. Define the webhook forwarder:
 
-Find the application.conf file and scroll to the webhook section. If it doesn't exist, add the following:
+Find the [application.conf](https://docs.thehive-project.org/thehive/installation-and-configuration/configuration/manage-configuration/) file and scroll to the webhook section. If it doesn't exist, add the following:
 ```
 notification.webhook.endpoints = [
   {
     name: Shuffle
-    url: "http://<IP>:<PORT>/api/v1/hooks/webhook_<HOOK_ID>"
+    url: "http://IP:PORT/api/v1/hooks/webhook_hookid"
     version: 0
     wsConfig: {}
     includedTheHiveOrganisations: ["*"]
@@ -262,9 +313,7 @@ curl -XPUT -u$thehive_user:$thehive_password -H 'Content-type: application/json'
 ```
 
 **4. Test the integration**
-There are many ways to test the integration, but you can simplify it by setting the "level" part of the configuration to a lower number (3~), as that would trigger it in a lot of cases, including when you SSH into the Wazuh manager. 
-
-In TheHive, create a new case, or add a comment to an existing case. This will then be seen within Shuffle. After the webhook is supposed to have triggered, go to Shuffle, and you'll see something like the image below.
+In TheHive UI (NOT CLI), create a new case, or add a comment to an existing case. This will then be seen within Shuffle. After the webhook is supposed to have triggered, go to Shuffle, and you'll see something like the image below.
 
 ![Extend Shuffle with TheHive 3](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_3.png?raw=true)
 
@@ -273,7 +322,7 @@ In TheHive, create a new case, or add a comment to an existing case. This will t
 This one is pretty easily explained. Go to Shuffle an make a new Workflow.
 
 **2. Add a Webhook to the workflow**
-Add a webhook and find the Webhook URL. Remember to start the Webhook!
+[Add a webhook](/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
 
 ![Extend Shuffle with Wazuh](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
 
@@ -364,7 +413,7 @@ Steps to set it up:
 ![AWS lambda overview](https://github.com/frikky/shuffle-docs/blob/master/assets/s3_function-1.png?raw=true)
 
 **1. Create a Workflow which will receive alerts**
-This one is pretty easily explained. Go to Shuffle an make a new Workflow. Add a webhook and find the Webhook URL. Remember to start the Webhook!
+This one is pretty easily explained. Go to Shuffle an make a new Workflow. [Add a webhook](/docs/triggers#webhook) and find the Webhook URL. Remember to start the Webhook!
 
 ![Extend Shuffle with webhook](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
 
