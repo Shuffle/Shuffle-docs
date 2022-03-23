@@ -3,27 +3,27 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Table of contents
 * [Load all apps locally](#load_all_apps_locally)
-* [Force stop executions](#how_to_stop_executions_in_loop)
+* [Orborus can't connect to backend](#orborus_can_not_reach_backend)
+* [How to stop executions in loop](#how_to_stop_executions_in_loop)
+* [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
 * [Opensearch permission errors](#opensearch_permissions_error)
 * [Recover admin user](#recover_admin_user)
-* [Orborus can't reach backend](#orborus_can_not_reach_backend)
-* [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
-* [Useful Opensearch Query](#useful_opensearch_query)
+* [Useful OpenSearch Queries](#useful_opensearch_queries)
 * [Extract all workflows](#extract_all_workflows)
-* [Rebuilding an opensearch index](#rebuilding_indexes)
-* [Recover Organizations](#recover_organizations)
+* [Rebuilding an OpenSearch index](#rebuilding_an_opsearch_index)
+* [Updates Failing](#updates_failing)
 * [Database not starting](#database_not_starting)
-* [Failed updates](#updates_failing)
 * [TLS timeout error](#tls_timeout_error)
+* [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Shuffle on ARM](#shuffle_on_arm)
-* [Orborus can't connect to backend](#orborus_backend_connection_problems)
-
 
 ## Load all apps locally
-In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com for our apps. Here's how to manually load them into Shuffle using git
+In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com, where [our apps are hosted](https://github.com/shuffle/python-apps).
+
+Here's how to manually load them into Shuffle using git.
 
 ```
-#1. IF proxy necessary: Set up the proxy for Git (install if you don't have it).
+#1. If a proxy is required for your environment: Set up the proxy for Git (install if you don't have it).
 git config --global http.proxy http://proxy.mycompany:80
 
 #2. Go to the shuffle folder where you have Shuffle installed, then go to the shuffle-apps folder (./shuffle/shuffle-apps)
@@ -32,7 +32,7 @@ git clone https://github.com/shuffle/python-apps
 #3. Go to the UI and hotload the apps: https://shuffler.io/docs/app_creation#hotloading_your_app (click the hotload button in the top left in the /apps UI)
 ```
 
-**Alternatively: Go to https://github.com/shuffle/python-apps manually, download the folder as ZIP and extract it in the ./shuffle/shuffle-apps folder**
+**Alternatively:** You can go download [the latest Shuffle apps](https://github.com/Shuffle/python-apps/archive/refs/heads/master.zip) in your browser, and manually extract the `.zip` file into the `./shuffle/shuffle-apps` folder.
 
 ## Orborus can not reach backend
 In certain cases there may be DNS issues, leading to hanging executions. This is in most cases due to apps not being able to find the backend in some way. That's why the best solution _if possible_ is to use the IP as hostname for Orborus -> Backend communication.
@@ -125,7 +125,6 @@ if __name__ == "__main__":
 ```
 Copy the script into a file called `abort_running_executions.py` and run it with
 ```
-
 **Use python or python3 depending of your environment**
 python abort_running_executions.py
 ```
@@ -134,38 +133,46 @@ In order to work _requests_ Python library must be installed in your Python exec
 ## Opensearch permissions error
 ![image](https://user-images.githubusercontent.com/21691729/124939209-d5694580-e000-11eb-8025-e2d475432e1b.png)
 ![image](https://user-images.githubusercontent.com/21691729/124939333-ec0f9c80-e000-11eb-9e56-5fbd06c7bfe3.png)
-Give permissions to shuffle-database folder
+Set the ownership of the shuffle-database folder that the `shuffle-opensearch` container expects.
 ```
 sudo chown 1000:1000 -R shuffle-database
 ```
 
 ## Recover admin user
-1. docker exec to get bash session into opensearch container "docker exec -it "container id" bash
+1. docker exec to get bash session into OpenSearch container `docker exec -it <container_id> bash`
 
-2. pump curl results of users index into user.log file curl -X GET "localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d'
-{
-	"query": {
-		"match_all": {}
-	}
-}
-' > users.log
+2. Dump the results of users index query into `users.log` file
+   ```
+   curl -X GET "localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d'
+   {
+       "query": {
+           "match_all": {}
+       }
+   }
+   ' > users.log
+   ```
+3. open the `users.log` file with `less` and search for the admin user. Once found, scroll down to the `apikey` section. this value will be the api key of the admin user.
 
-3. open the users.log file with 'vi' and search for the admin user. Once found scroll down to the "apikey" section. this value will be the api key of the admin user.
+4. I jumped onto another server within the same vlan as my Shuffle server but these could be ran on local host too. We will create a new user and update the user's role to admin with the Shuffle API.
 
-4. I jumped onto another server within the same vlan as my shuffle server but these could be ran on local host too. We will create a new user and update the user's role to admin with the shuffle api
+5. Create a new user
+   ```
+   curl https://ip of shuffle server/api/v1/users/register -H "Authorization: Bearer APIKEY" -d '{"username": "username", "password": "P@ssw0rd"}'
+   ```
+6. Retrieve all the users and identify the user_id of the newly created user
+   ```
+   curl https://ip of shuffle server/api/v1/users/getusers -H "Authorization: Bearer APIKEY"
+   ```
+7. Assign the new user to the admin role.
+   ```
+   curl https://ip of shuffle server*/api/v1/users/updateuser -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "admin"}'
+   ```
+8. Log into webui with the new user, and you should now have admin rights.
 
-5. curl https://*ip of shuffle server/api/v1/users/register -H "Authorization: Bearer APIKEY" -d '{"username": "username", "password": "P@ssw0rd"}'    - will create new user
 
-6. curl https://ip of shuffle server/api/v1/users/getusers -H "Authorization: Bearer APIKEY" - get the userid of the newly created user
+## Useful OpenSearch Queries
 
-7. curl https://ip of shuffle server*/api/v1/users/updateuser -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "admin"}' - will set new user to the admin role.
-
-8. Log into webui with the new user and you should have admin rights
-
-
-## Useful Opensearch Query
-
-### Find an user and its Orgs
+### Find a user and their Orgs
 
 ```
 curl -X GET "localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d' { "query": { "match": {"username": "myuser"} } }
@@ -184,11 +191,11 @@ Find all org IDs
 curl -X GET "localhost:9200/organizations/_search?pretty" -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' | grep "\"id\" : \"" | sed 's/ *$//g' | sed 's/^[ \t]*//;s/[ \t]*$//' | uniq -u
 ```
 
-# Extract all workflows
+## Extract all workflows
 
-This procedure can help you extract workflows directly form opensearch even if Backend and FrontEnd are in awkward situation.
+This procedure can help you extract workflows directly from OpenSearch even if the Backend and FrontEnd are in an awkward situation.
 
-1. Extract the index info from Opensearch. (you may need to create a bind mount for the backup extraction)
+1. Extract the index info from OpenSearch. **NOTE:** You may need to create a bind mount for the location where the workflows will be extracted to.
 ```
 curl -X GET "localhost:9200/workflow/_search?pretty" -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' > /mnt/backup/workflows.json
 ```
@@ -225,11 +232,11 @@ for item in data["hits"]["hits"]:
         tmp.write(json.dumps(item))
 
 ```
-This script need to be run on the folder with the file workflows.json, it will create an workflows_loaded directory with all the workflows in it.
-This can also be very useful either to backup your work or to export from a lab to a prod instance.
-* [Rebuilding an opensearch index](#rebuilding_indexes)
+This script need to be run on the folder with the file `workflows.json`, it will create a `workflows_loaded` directory with all the workflows in it.
+This can also be very useful to either backup a copy your work or export it from a lab to a prod instance.
+* [Rebuilding an OpenSearch index](#rebuilding_an_opensearch_index)
 
-## Rebuilding an opensearch index
+## Rebuilding an OpenSearch index
 If you lost an index due to corruption or other causes, there is no easy way to handle it. Here's a workaround we have for certain scenarios. What you'll need: access to another Shuffle instance, OR someone willing to share. Lets do an example rebuilding the environments index. This assumes opensearch is on the same server.
 
 1. Cleanup the index
@@ -247,19 +254,20 @@ curl -XPOST -H "Content-Type: application/json" "http://localhost:9200/environme
 curl http://localhost:9200/environments/_search?pretty
 ```
 
-### Updates failing
+## Updates failing
 1. After an update, click CTRL+SHIFT+R on your keyboard while in your browser. This runs a hard refresh without cache.
 2. Make sure you have the right version of Shuffle. Even if "nightly" is chosen, download them again with docker-compose pull or docker pull <image>
-3. Ensure environment variables are defined properly for the missbehaving service.
+3. Ensure environment variables are defined properly for the misbehaving service.
 
 ## Database not starting
-In certain cases, you may experience Opensearch continuously restarting. PS: All of these can be spotted in the logs. There are a few reasons for this which should be checked in the following order:
-1. Have you set vm.max_map_count=262144 setting?
-2. Did you change the folder ownership (1000:1000 by default)?
-3. Is the folder ownership a proper user (1000:1000) working?
-4. Is there enough RAM on the device?
-5. Is there enough storage space on the device?
-6. Do you have security enabled (https & username & password), but not configured .env?
+In certain cases, you may experience OpenSearch continuously restarting. PS: All of these can be spotted in the logs. There are a few reasons for this which should be checked in the following order:
+
+1. Have you set `vm.max_map_count=262144` setting?
+1. Did you change the folder ownership (`1000:1000` by default)?
+1. Is the folder ownership a proper user (`1000:1000`) working?
+1. Is there enough RAM on the device?
+1. Is there enough storage space on the device?
+1. Do you have security enabled (https & username & password), but not configured it in the `.env` file?
 
 
 ## TLS timeout error
@@ -275,13 +283,13 @@ ip addr | grep mtu
 To set the MTU in Docker, do it in the docker-compose, in the networking section. Say the MTU you found was 1450, then use 1450, as can be seen below. When done, restart the docker-compose.
 ```
 networks:
-	shuffle:
-		driver: bridge
-			driver_opts:
-				com.docker.network.driver.mtu: 1450
+  shuffle:
+    driver: bridge
+      driver_opts:
+        com.docker.network.driver.mtu: 1450
 ```
 
-PS: If you run Shuffle in swarm mode, the MTU has to be set for that network manually as well. That means we need to make a network named the same as the environment SHUFFLE_SWARM_NETWORK_NAME for Orborus (default: shuffle_swarm_executions):
+**NOTE:** If you run Shuffle in swarm mode, the MTU has to be set for that network manually as well. That means we need to make a network named the same as the environment SHUFFLE_SWARM_NETWORK_NAME for Orborus (default: shuffle_swarm_executions):
 ```
 docker network create --driver=overlay --ingress=false --attachable=true -o "com.docker.network.driver.mtu"="1450" shuffle_swarm_executions
 ```
@@ -289,8 +297,10 @@ docker network create --driver=overlay --ingress=false --attachable=true -o "com
 ## Orborus backend connection problems
 Due to the nature of Shuffle at scale, there are bound to be network issues. As Shuffle runs in Docker, and sometimes in swarm with k8s networking, it complicates the matter even further. Here's a list of things to help with debugging networking. If all else fails; reboot the machine & docker.
 
-1. Is the orborus container speaking to an IP in the same network? Check with docker inspect shuffle-oroburs -> is the same CIDR / network address to be seen in the list of Network IPs?
-2. Do all the required networks exist? WITHOUT swarm: minimum 1 bridge network. WITH swarm: 3 networks (ingress, shuffle_shuffle, shuffle_swarm_executions). All in overlay mode.
+1. Is the Orborus container speaking to an IP in the same network? Check with docker inspect shuffle-oroburs -> is the same CIDR / network address to be seen in the list of Network IPs?
+2. Do all the required networks exist?
+   1. WITHOUT swarm: minimum 1 bridge network.
+   2. WITH swarm: 3 networks (ingress, shuffle_shuffle, shuffle_swarm_executions). All in overlay mode.
 3. Are all the networks configured properly? If in swarm mode; delete the networks, then restart Orborus (it will remake them).
 4. Are the right network modes in use? Bridge (normal) vs Overlay (swarm). This depends on the server structure (1 vs. many).
 
