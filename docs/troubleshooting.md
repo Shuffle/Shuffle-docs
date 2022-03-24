@@ -314,6 +314,8 @@ ARM is currently not supported for Shuffle, as can be seen in issue [#665 on Git
 ## Permission denied on files 
 In certain scenarios, permissions inside and outside a container may be different. This has a lot of causes, and we'll try to help figure them out below. Thankfully most fixes are relatively simple. To test this try to go to /admin?tab=files in Shuffle, and upload a file. If the file is uploaded and it says status "active", all is good. If it's not being uploaded, then it's most likely a permission issue.
 
+https://user-images.githubusercontent.com/31187099/159935630-d32facca-fba5-4eb5-a1f9-db0d58a3f08e.png
+
 #### Fix 1: share permissions.
 In the docker-compose.yml file, find the "shuffle-files" volume mounted for the backend service. Simply add a ":z" on the end of it like so:
 ```
