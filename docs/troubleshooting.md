@@ -17,7 +17,8 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [TLS timeout error](#tls_timeout_error)
 * [Shuffle on ARM](#shuffle_on_arm)
 * [Orborus can't connect to backend](#orborus_backend_connection_problems)
-
+* [Permission denied on file upload](#permission_denied_on_files)
+* [Docker Permission denied](#docker_permission_denied)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com for our apps. Here's how to manually load them into Shuffle using git
@@ -301,3 +302,71 @@ Due to the nature of Shuffle at scale, there are bound to be network issues. As 
 
 ## Shuffle on ARM
 ARM is currently not supported for Shuffle, as can be seen in issue [#665 on Github](https://github.com/frikky/Shuffle/issues/665). We don't have the capability to build it as of now, but can work with you to get it working if you want to try it.
+
+
+## Permission denied on files 
+In certain scenarios, permissions inside and outside a container may be different. This has a lot of causes, and we'll try to help figure them out below. Thankfully most fixes are relatively simple. To test this try to go to /admin?tab=files in Shuffle, and upload a file. If the file is uploaded and it says status "active", all is good. If it's not being uploaded, then it's most likely a permission issue.
+
+#### Fix 1: share permissions.
+In the docker-compose.yml file, find the "shuffle-files" volume mounted for the backend service. Simply add a ":z" on the end of it like so:
+```
+	- ${SHUFFLE_FILE_LOCATION}:/shuffle-files:z
+```
+
+Then restart the docker-compose (down & up -d), and try to upload a file again.
+
+#### Fix 2: Selinux problems
+Disable Selinux to test. This should take immediate effect (run as root). 
+```
+setenforce 0
+```
+
+After, try to upload a file again
+
+#### See permissions on the inside of the container
+To find the folder permissions inside the container
+```
+docker exec -u 0 shuffle-backend ls -la /
+```
+
+
+## Docker Permission denied 
+In certain scenarios or environments, you may find the docker socket to not have the right permissions. To work around this, we've built support for the [docker socket proxy](https://github.com/Tecnativa/docker-socket-proxy), which will give the containers the same permissions. Another good reason to use the docker socket proxy is to control the docker permissions required.
+
+To use the docker socket proxy, add the following to your docker-compose.yml as a service:
+```
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy
+    privileged: true
+    environment:
+      - SERVICES=1
+      - TASKS=1
+      - NETWORKS=1
+      - NODES=1
+      - BUILD=1
+      - IMAGES=1
+      - GRPC=1
+      - CONTAINERS=1
+      - PLUGINS=1
+      - SYSTEM=1
+      - VOLUMES=1
+      - INFO=1
+      - DISTRIBUTION=1
+      - POST=1
+      - AUTH=1
+      - SECRETS=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - shuffle
+
+```
+
+When done, remove the "/var/run/docker.sock" volume from the backend and orborus services in the docker-compose. These containers should route their docker traffic through this proxy. To enable the docker rerouting, add this environment variable to both of them:
+``
+      - DOCKER_HOST=tcp://docker-socket-proxy:2375
+```
+
+This will route all docker traffic through the docker-socket-proxy giving you granular access to each API. 
+
+PS: Adding :z to the end of the volume may fix this issue as well.

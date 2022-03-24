@@ -202,16 +202,19 @@ The default environment is called "Shuffle". You can add as many as you want, bu
 * Archived				- Tells you whether it's archived. There's a toggle at the top to edit it.
 
 ### Orborus configuration
-If you would like to run Orborus towards a different environment, you'll have to specify the environment variables "ENVIRONMENT_NAME", "ORG_ID" and "BASE_URL".
+If you would like to run Orborus towards a different environment, you'll have to specify the environment variables "ENVIRONMENT_NAME", "ORG", "AUTH" and "BASE_URL". AUTH and ORG may not be required.
 
-Here's an example, where the environment's name is "Hallo" and backend is at http://192.168.3.6:3001
+Here's an example, where the environment's name is "Hallo" and it's using https://shuffler.io as it's backend. This works on-premises as well.
 ```
-docker run -d \
-	--volume /var/run/docker.sock:/var/run/docker.soc \
-	-e ORG_ID="Hallo" \
-	-e ENVIRONMENT_NAME="Hallo" \
-	-e BASE_URL=http://192.168.3.6:3001 \
-	ghcr.io/frikky/shuffle-orborus:0.8.0
+docker run \
+	--volume /var/run/docker.sock:/var/run/docker.sock \
+	-e ENVIRONMENT_NAME="Another env" \
+	-e AUTH="Auth from the environment" \
+	-e ORG="Your org ID from the /admin UI top right" \
+  -e DOCKER_API_VERSION=1.40 \
+	-e BASE_URL=http://192.168.86.51:5002 \
+	ghcr.io/frikky/shuffle-orborus:nightly
+
 ```
 
 ## Schedules
