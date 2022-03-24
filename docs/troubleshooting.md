@@ -16,7 +16,6 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [TLS timeout error](#tls_timeout_error)
 * [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Shuffle on ARM](#shuffle_on_arm)
-
 * [Orborus can't connect to backend](#orborus_backend_connection_problems)
 * [Permission denied on file upload](#permission_denied_on_files)
 * [Docker Permission denied](#docker_permission_denied)
