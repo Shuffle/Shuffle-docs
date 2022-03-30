@@ -607,7 +607,7 @@ TBD - expand these topics:
 4. Remove 9200 from being exposed
 
 ## Shuffle swarm Orborus setup
-Orborus can run in swarm mode. This makes the system A LOT faster and scalable cross servers. This is a paid service, and requires the [Enterprise or MSSP license](https://shuffler.io/pricing)
+Orborus can run in swarm mode. This makes the system A LOT faster and more scalable across multiple servers. This is a paid service, and requires the [Enterprise or MSSP license](https://shuffler.io/pricing)
 
 You will be provided with the custom docker image by Shuffle.
 
@@ -619,6 +619,21 @@ SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
 SHUFFLE_SCALE_REPLICAS=1
 SHUFFLE_SWARM_CONFIG=run
 ```
+
+When this is done, take down the stack and pull it back up AFTER initializing swarm:
+```
+docker swarm init
+docker-compose down
+docker-compose up -d 
+```
+
+### Verify swarm
+Run the following command to get logs from Orborus:
+```
+docker logs -f shuffle-orborus
+```
+
+If you see any errors or swarm issues, contact us at (support@shuffler.io](mailto:support@shuffler.io)
 
 ### Add nodes:
 
