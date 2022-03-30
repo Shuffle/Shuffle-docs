@@ -19,6 +19,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Orborus can't connect to backend](#orborus_backend_connection_problems)
 * [Permission denied on file upload](#permission_denied_on_files)
 * [Docker Permission denied](#docker_permission_denied)
+* [Server is slow](#server_is_slow)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com, where [our apps are hosted](https://github.com/shuffle/python-apps).
@@ -379,3 +380,63 @@ When done, remove the "/var/run/docker.sock" volume from the backend and orborus
 This will route all docker traffic through the docker-socket-proxy giving you granular access to each API. 
 
 PS: Adding :z to the end of the volume may fix this issue as well.
+
+## Server is slow 
+If the server Shuffle is running on is slow, it's likely due to the same constraints of any other server. One of these are typically the culprit:
+- Disk space
+- CPU
+- RAM
+
+The normal reason this happens is due to too many processes running concurrently in Docker (too many containers). To look at ideal configurations, look at [production readiness](/docs/configuration#production_readiness) in our configuration documentation. 
+
+----------------------------------
+
+First we check **CPU**. This is can be done using the "top" command.
+```
+top
+```
+
+The typical near the top is something like this. If the CPU usage is too high (see line three '%Cpu(s): 11.0 us'" - this means 11% is used total), you've most likely not configured Shuffle to run with the appropriate amount of containers as a maximum, with bad cleanup routines (CLEANUP=true). 
+```
+top - 20:14:37 up 27 days, 24 min,  2 users,  load average: 17.88, 15.17, 13.21
+Tasks: 244 total,   2 running, 241 sleeping,   0 stopped,   1 zombie
+%Cpu(s): 11.0 us, 10.7 sy,  0.0 ni,  2.0 id, 74.8 wa,  0.0 hi,  1.5 si,  0.0 st
+KiB Mem :  8008956 total,   142236 free,  7561784 used,   304936 buff/cache
+KiB Swap:  8257532 total,  4550684 free,  3706848 used.    69760 avail Mem 
+```
+
+Fix: Stop docker containers and reduce the amount that are allowed to run. If everything is TOO slow, reboot the server and stop all containers when it's started back up:
+```
+docker stop $(docker ps -aq) --force
+```
+
+---------------------------------
+
+Next up is **RAM**. This is can also be done using the "top" command.
+```
+top
+```
+
+As with CPU, the information is near the top of your screen and looks something like this. If the RAM usage is too high (see line four 'KiB Mem :  8008956 total,   142236 free'" - this means that almost no memory is left on the device). This is a typical problem if you've enabled app log forwarding into Shuffle. To disable log forwarding, add the environment "SHUFFLE_LOGS_DISABLED=true" to Orborus, then bring it down and back up again.
+```
+top - 20:14:37 up 27 days, 24 min,  2 users,  load average: 17.88, 15.17, 13.21
+Tasks: 244 total,   2 running, 241 sleeping,   0 stopped,   1 zombie
+%Cpu(s): 11.0 us, 10.7 sy,  0.0 ni,  2.0 id, 74.8 wa,  0.0 hi,  1.5 si,  0.0 st
+KiB Mem :  8008956 total,   142236 free,  7561784 used,   304936 buff/cache
+KiB Swap:  8257532 total,  4550684 free,  3706848 used.    69760 avail Mem 
+```
+
+Fix: Stop docker containers and reduce the amount that are allowed to run. If everything is TOO slow, reboot the server and stop all containers when it's started back up:
+```
+docker stop $(docker ps -aq) --force
+```
+
+---------------------------------
+
+
+Next up is disk space - can Shuffle save anything? See whether there is space on the machine in the location Shuffle is running
+```
+df -h
+```
+
+To get more space, either delete some files, clean up the Opensearch instance or add more disk space.
