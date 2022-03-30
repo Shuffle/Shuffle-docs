@@ -607,17 +607,18 @@ TBD - expand these topics:
 4. Remove 9200 from being exposed
 
 ## Shuffle swarm Orborus setup
-Orborus can run in swarm mode. This makes the system A LOT faster and more scalable across multiple servers. This is a paid service, and requires the [Enterprise or MSSP license](https://shuffler.io/pricing)
+Orborus can run in swarm mode. This makes the system A LOT faster, use less resources and more scalable across multiple servers. This is a paid service, and requires the [Enterprise or MSSP license](https://shuffler.io/pricing).
 
 You will be provided with the custom docker image by Shuffle.
 
 1. Set Orborus to latest
 2. Set Worker to latest
-3. Add environments to Orborus:
+3. Add/change environments for Orborus. BASE_URL is the backends' external URL (the one you visit Shuffle with in the UI):
 ```
 SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
 SHUFFLE_SCALE_REPLICAS=1
 SHUFFLE_SWARM_CONFIG=run
+BASE_URL=http://shuffle-url:3443 
 ```
 
 When this is done, take down the stack and pull it back up AFTER initializing swarm:
@@ -627,14 +628,17 @@ docker-compose down
 docker-compose up -d 
 ```
 
+PS: In certain scenarios you may need extra configurations, e.g. for network MTU's, docker download locations, proxies etc. See more in the [production readiness](/docs/configuration#production_readiness) section.
+
 ### Verify swarm
 Run the following command to get logs from Orborus:
 ```
 docker logs -f shuffle-orborus
 ```
 
-If you see any errors or swarm issues, contact us at (support@shuffler.io](mailto:support@shuffler.io)
+And to check if services have started:
+```
+docker service ls
+```
 
-### Add nodes:
-
-## Known Bugs
+If the list is empty, or you see any of the "replicas" have 0/1, then something is wrong. In case of any swarm issues, contact us at (support@shuffler.io](mailto:support@shuffler.io) or contact your account representative.
