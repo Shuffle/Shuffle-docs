@@ -607,8 +607,12 @@ TBD - expand these topics:
 4. Remove 9200 from being exposed
 
 ## Shuffle swarm Orborus setup
-1. Set Orborus to nightly or a version > 0.9.50
-2. Set Worker to nightly or a version > 0.9.50
+Orborus can run in swarm mode. This makes the system A LOT faster and scalable cross servers. This is a paid service, and requires the [Enterprise or MSSP license](https://shuffler.io/pricing)
+
+You will be provided with the custom docker image by Shuffle.
+
+1. Set Orborus to latest
+2. Set Worker to latest
 3. Add environments to Orborus:
 ```
 SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
