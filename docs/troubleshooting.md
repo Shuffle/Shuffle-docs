@@ -373,7 +373,7 @@ To use the docker socket proxy, add the following to your docker-compose.yml as 
 ```
 
 When done, remove the "/var/run/docker.sock" volume from the backend and orborus services in the docker-compose. These containers should route their docker traffic through this proxy. To enable the docker rerouting, add this environment variable to both of them:
-``
+```
       - DOCKER_HOST=tcp://docker-socket-proxy:2375
 ```
 
