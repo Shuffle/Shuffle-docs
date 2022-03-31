@@ -312,6 +312,15 @@ registry-1.docker.io							# Dockerhub registry (for apps)
 production.cloudflare.docker.com 	# Protects of DockerHub
 ```
 
+### Incoming Domain Whitelisting
+When using Shuffle in the cloud, the incoming IP by defaut will be be from our cloud functions. The range is not static, and may wary wildly based on region. Here's a list:
+
+```
+Default: 107.178.231.0/24
+Test: 107.178.232.0/24
+Canada: TBD 
+```
+
 ### Proxy settings
 The main proxy issues may arise with the "Backend", along with 3the "Orborus" container, which runs workflows. This has to do with how this server can contact the backend (Orborus), along with how apps can be downloaded (Worker), down to how apps engage with external systems (Apps). 
 
