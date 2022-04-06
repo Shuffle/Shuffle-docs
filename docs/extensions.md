@@ -15,6 +15,9 @@ This is documentation for integrating and sending data from third-party services
   * [MISP forwarder](#misp)
   * [AWS S3 forwarder](#aws_s3_forwarder)
   * [QRadar Webhook](#qradar)
+  * [FortiSIEM Webhook](#fortisiem)
+  * [ELK Webhook](#elk)
+  * [Cortex Webhook](#cortex)
 
 ## Introduction
 From the start, Shuffle has been a platform about integrations. We've focused on making them as open and usable as possible, but were missing one part; inbound data. The general way Shuffle handles this has been through third-party API's, where we poll for data on a schedule. There are however some cases where this doesn't do the trick. That's what extensions are. 
@@ -559,5 +562,34 @@ This Rule will be: Enabled
 			
  This way you won't need to execute an api call every x time and save the last offense id. This is a better solution and improves the SLA, coz if you set 1 minute as you x time, you may have 1 minute delay or less, besides you are getting all "ungotten" offenses at once, when you can use shuffle to handle with multiple at the same time if it happen to dispatch more than one offense in QRadar at the same time or with just some seconds of difference.
 
+### FortiSIEM
+FortiSiEM is the SIEM of Fortigate. It has the possibility of notifying Shuffle through a webhook when a rule triggers, which is exatly what this documentation section is for. The main caveat: all data is XML and needs to be transformed with the Shuffle Tools "XML to JSON" formatter.
+	
+**1. Create a Workflow which will receive alerts**
+This one is pretty easily explained. Go to Shuffle an make a new Workflow.
+
+**2. Add a Webhook to the workflow**
+[Add a webhook](/docs/triggers#webhook) and get the Webhook URL. Remember to start the Webhook!
+
+![Extend Shuffle with Wazuh](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
+
+Copy the URL and keep it for the next steps
+![Extend Shuffle with Wazuh 2](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_2.png?raw=true)
+
+**3. Configure FortiSIEM forwarding**
+Log into the UI. When inside, go to ADMIN > Settings > Incident Notification. In the "Incident HTTP Notification", paste in the webhook from the previous step. Click "save", then "Test". After the test, check the workflow in Shuffle whether it triggered. If it didn't, your FortiSIEM can't access the Shuffle instance.
+	
+![image](https://user-images.githubusercontent.com/5719530/162085936-58a44de4-0289-4cf9-8f72-7b3229857448.png)
+	
+With the Notification Endpoint specified in the previous step, we need to decide what rules to add. By default, we add all of them. To do this, go to ADMIN > Settings > Notification Policy, and add a new policy. In here, select the "Send XML file over HTTP(S) to the destination set in...". This will make sure all alerts are sent to Shuffle.
+	
+![image](https://user-images.githubusercontent.com/5719530/162086144-8bbfb6fa-d512-4c36-81db-f830bcf9c204.png)
+
+That's it! It's now time to wait for an alert to actually trigger. When it has, make sure to send Execution Argument from the webhook ($exec) straight into an XML to JSON parser. That way you can use it easily in Shuffle.
+
+	
+### ELK
+TBD: Kibana forwarding & ElastAlert
+	
 ### Cortex 
 TBD: Responder executions
