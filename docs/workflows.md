@@ -67,7 +67,7 @@ Clicking the node presents you with a new view. This is the view to configure th
 
 The default action for the "Testing" app is "hello_world". This can be changed by clicking the dropdown menu. More about editing an app's actions can be found [here](#edit actions)
 
-![Node action options](https://github.com/frikky/shuffle-docs/blob/master/assets/node-action-options.PNG?raw=true)
+-![Node action options](https://github.com/frikky/shuffle-docs/blob/master/assets/node-action-options.PNG?raw=true)
 
 ### Save 
 Now that we have a working workflow, click the "save" button next to the big play button (or click CTRL+S). This presents you with a notification at the bottom of the screen that saving is in progress. Saving is required to make your latest edits available for execution.
@@ -107,7 +107,7 @@ After confirming the deletion action, you'll see a notification of the workflow 
 ## Nodes
 Nodes are an object within a workflow that presents with an app or a trigger. You add a node to a workflow by dragging its icon onto the workflow space from the left-hand menu. Whenever you click one of these nodes in your workflow, you will see the available configuration options on the right-hand side. [Suffle Apps](/docs/apps) are standardized, while triggers are different.
 
-Most nodes use values that you can pass to them. These can be text specified by you (pencil icon), [an app result](#passing_values) or from [variables](#variables) (heart icon).
+Most nodes use values that you can pass to them. These can be text specified by you (pencil icon), [an app result](#passing-values) or from [variables](#variables) (heart icon).
 
 ![argument-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/argument-example-1.png?raw=true)
 
@@ -138,10 +138,10 @@ The available set of values to use within a condition defined on a branch is the
 3. Configure the condition. Choose the value(s) you're looking for, and use the center piece ("DOES NOT EQUAL" in this example) to modify what you want. In the case of this image, it would NOT run, because "hello" (left side) equals "hello" (right side).
 ![conditions-example-3](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-3.png?raw=true)
 
-4. Here's another example, where it would run IF the [execution argument](#execution_argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
+4. Here's another example, where it would run IF the [execution argument](#execution-argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
 ![conditions-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-4.png?raw=true)
 
-5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing_values)).
+5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing-values)).
 ![conditions-example-5](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-5.png?raw=true)
 
 ### Condition Loops
@@ -228,7 +228,7 @@ PS: We are working on a way to have encrypted global variables to be used for pa
 ![variable-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-4.png?raw=true)
 
 ### Execution Variables
-Execution variables work the same way as Workflow Variables, except they HAVE to be set during execution. These are temporary datapoints that will not be saved anywhere. They work by taking the RESULT of an action of your choosing (examples below), done with a single click. If you're looking to define a variable that does not change between executions and is static, you need to look at [Workflow Variables](/docs/workflows#workflow_variables)
+Execution variables work the same way as Workflow Variables, except they HAVE to be set during execution. These are temporary datapoints that will not be saved anywhere. They work by taking the RESULT of an action of your choosing (examples below), done with a single click. If you're looking to define a variable that does not change between executions and is static, you need to look at [Workflow Variables](/docs/workflows#workflow`-variables)
 
 Some things to keep in mind using execution variables:
 * They are set DURING execution
