@@ -229,7 +229,7 @@ If you use the "static data" field (pencil), you have to write it out yourself.
 * "$testing_1" will get the data from the node "testing_1" OR variable "testing_1"
 * "$exec" will get the execution argument. 
 
-PS: it still only works with PREVIOUS nodes. This method is also error prone.
+PS: it still only works with PREVIOUS nodes (nodes before the one you're editing)
 
 ### Parsing JSON
 Parsing JSON is essential to be able to get API data. Shuffle uses it's own schema, which seems to work quite well. 

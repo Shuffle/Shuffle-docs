@@ -312,6 +312,15 @@ registry-1.docker.io							# Dockerhub registry (for apps)
 production.cloudflare.docker.com 	# Protects of DockerHub
 ```
 
+### Incoming Domain Whitelisting
+When using Shuffle in the cloud, the incoming IP by defaut will be be from our cloud functions. The range is not static, and may wary wildly based on region. Here's a list:
+
+```
+Default: 107.178.231.0/24
+Test: 107.178.232.0/24
+Canada: TBD 
+```
+
 ### Proxy settings
 The main proxy issues may arise with the "Backend", along with 3the "Orborus" container, which runs workflows. This has to do with how this server can contact the backend (Orborus), along with how apps can be downloaded (Worker), down to how apps engage with external systems (Apps). 
 
@@ -607,15 +616,38 @@ TBD - expand these topics:
 4. Remove 9200 from being exposed
 
 ## Shuffle swarm Orborus setup
-1. Set Orborus to nightly or a version > 0.9.50
-2. Set Worker to nightly or a version > 0.9.50
-3. Add environments to Orborus:
+Orborus can run in swarm mode. This makes the system A LOT faster, use less resources and more scalable across multiple servers. This is a paid service, and requires the [Enterprise or MSSP license](https://shuffler.io/pricing).
+
+You will be provided with the custom docker image by Shuffle.
+
+1. Set Orborus to latest
+2. Set Worker to latest
+3. Add/change environments for Orborus. BASE_URL is the backends' external URL (the one you visit Shuffle with in the UI):
 ```
 SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
 SHUFFLE_SCALE_REPLICAS=1
 SHUFFLE_SWARM_CONFIG=run
+BASE_URL=http://shuffle-url:3443 
 ```
 
-### Add nodes:
+When this is done, take down the stack and pull it back up AFTER initializing swarm:
+```
+docker swarm init
+docker-compose down
+docker-compose up -d 
+```
 
-## Known Bugs
+PS: In certain scenarios you may need extra configurations, e.g. for network MTU's, docker download locations, proxies etc. See more in the [production readiness](/docs/configuration#production_readiness) section.
+
+### Verify swarm
+Run the following command to get logs from Orborus:
+```
+docker logs -f shuffle-orborus
+```
+
+And to check if services have started:
+```
+docker service ls
+```
+
+If the list is empty, or you see any of the "replicas" have 0/1, then something is wrong. In case of any swarm issues, contact us at (support@shuffler.io](mailto:support@shuffler.io) or contact your account representative.

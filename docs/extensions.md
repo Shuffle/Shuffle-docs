@@ -15,6 +15,9 @@ This is documentation for integrating and sending data from third-party services
   * [MISP forwarder](#misp)
   * [AWS S3 forwarder](#aws_s3_forwarder)
   * [QRadar Webhook](#qradar)
+  * [FortiSIEM Webhook](#fortisiem)
+  * [ELK Webhook](#elk)
+  * [Cortex Webhook](#cortex)
 
 ## Introduction
 From the start, Shuffle has been a platform about integrations. We've focused on making them as open and usable as possible, but were missing one part; inbound data. The general way Shuffle handles this has been through third-party API's, where we poll for data on a schedule. There are however some cases where this doesn't do the trick. That's what extensions are. 
@@ -209,53 +212,53 @@ There are many ways to test the integration, but you can simplify it by setting 
 
 ![Extend Shuffle with Wazuh 3](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_3.png?raw=true)
 
-#### Extra about Wazuh
-Active response can be used with the command "Run Command" in Shuffle. This requires an Agent (Agent list) and Command ([Active response](https://documentation.wazuh.com/current/getting-started/use-cases/active-response.html) command). Below, we will show how to set up the custom command "reboot".
+#### Running custom commands with Wazuh
+Active response can be used with the command "Run Command" in the Wazuh app in Shuffle. This requires an Agent (Agent list) and Command ([Active response](https://documentation.wazuh.com/current/getting-started/use-cases/active-response.html) command). Below, we will show how to set up the custom command "reboot".
 
 - Wazuh API logs will be on the manager in: /var/ossec/logs/api.log
 - Wazuh agent logs can be found in /var/ossec/logs
 
 **Testing custom active response from Shuffle**:
-1. Log into the Wazuh manager, and add the following to your ossec.conf (/var/ossec/etc/ossec.conf):
+The goal with this section is to set up a bash script that can run custom commands from within Shuffle.
+
+1. Log into the Wazuh agent of choice (Linux), and add the following script to the active-response folder. Give it the name "shuffle.sh". Full path: /var/ossec/active-response/bin/shuffle.sh PS: Once done, make sure it's executable: chmod +x /var/ossec/active-response/bin/shuffle.sh
 ```
-  <command>
-    <name>reboot</name>
-    <executable>reboot.sh</executable>
-    <timeout_allowed>yes</timeout_allowed>
-  </command>
-```
+#!/bin/bash
+# Extra arguments
+
+# Installing jq
+if ! command -v jq &> /dev/null
+then
+    echo "jq could not be found - installing"
+    sudo apt install jq -y 
+    sudo yum install jq -y 
+fi
+
+
+read -r INPUT_JSON
+CMD=$(echo $INPUT_JSON | jq -r .parameters.alert.cmd)
+CALLBACK=$(echo $INPUT_JSON | jq -r .parameters.alert.callback)
+OUTPUT=$($CMD)
+curl -XPOST $CALLBACK -d """$OUTPUT""" -k
+``` 
 
 2. Open /var/ossec/etc/shared/ar.conf and ADD the following line to the bottom of the file:
 ```
-reboot - reboot.sh - 0
+shuffle - shuffle.sh - 0
 ```
 
-3. Restart the manager (systemctl restart wazuh-manager.service). This should distribute the ar.conf file to active agents.
-4. SSH into the agent you want to test on. If the agent is not running, run this:
-```bash
-/var/ossec/bin/wazuh-control start
-```
-
-5. Add the basic reboot script to the active response location with the content below; /var/ossec/active-response/bin/reboot.sh:
-```
-#!/bin/sh
-# Reboots the host
-
-reboot now
-```
-
-PS: Once done, make sure it's executable: chmod +x /var/ossec/active-response/bin/reboot.sh
-
-6. Restart the wazuh agent
+3. Restart the wazuh agent
 ```
 /var/ossec/bin/wazuh-control restart 
 ```
 
-7. Log into Shuffle and import [this public workflow](https://shuffler.io/workflows/44bc4e93-ba6e-4895-8294-424fd2a1d169). Make sure to change the following:
+4. Log into Shuffle and import [this public workflow](https://shuffler.io/workflows/44bc4e93-ba6e-4895-8294-424fd2a1d169). Make sure to change the following:
 - Activate the Wazuh app if it's not already
 - Add a Wazuh username & password to the HTTP node
 - Add the Wazuh URL to the HTTP node, as well as Get_agents and other Wazuh nodes.
-- Make sure the last block after "Get_agents" runs the command "reboot" with the Agent list containing your specific agent.
+- Make sure the last block after "Get_agents" runs the command "shuffle" with the "Agent list" containing your specific agent's ID.
+
+The default from this workflow is that it will reboot the server.
 
 ### TheHive
 TheHive is a case management platform for and by security professionals. One of their key capabilities is webhooks, which can send realtime updates to a third party system whenever ANYTHING is changed within TheHive (e.g. a new alert or a case task is written). Shuffle has an ideal way of handling this, [outlined in this blogpost (TheHive4)](https://medium.com/shuffle-automation/indicators-and-webhooks-with-thehive-cortex-and-misp-open-source-soar-part-4-f70cde942e59).
@@ -568,5 +571,34 @@ This Rule will be: Enabled
 			
  This way you won't need to execute an api call every x time and save the last offense id. This is a better solution and improves the SLA, coz if you set 1 minute as you x time, you may have 1 minute delay or less, besides you are getting all "ungotten" offenses at once, when you can use shuffle to handle with multiple at the same time if it happen to dispatch more than one offense in QRadar at the same time or with just some seconds of difference.
 
+### FortiSIEM
+FortiSiEM is the SIEM of Fortigate. It has the possibility of notifying Shuffle through a webhook when a rule triggers, which is exatly what this documentation section is for. The main caveat: all data is XML and needs to be transformed with the Shuffle Tools "XML to JSON" formatter.
+	
+**1. Create a Workflow which will receive alerts**
+This one is pretty easily explained. Go to Shuffle an make a new Workflow.
+
+**2. Add a Webhook to the workflow**
+[Add a webhook](/docs/triggers#webhook) and get the Webhook URL. Remember to start the Webhook!
+
+![Extend Shuffle with Wazuh](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_1.png?raw=true)
+
+Copy the URL and keep it for the next steps
+![Extend Shuffle with Wazuh 2](https://github.com/frikky/shuffle-docs/blob/master/assets/extensions_example_2.png?raw=true)
+
+**3. Configure FortiSIEM forwarding**
+Log into the UI. When inside, go to ADMIN > Settings > Incident Notification. In the "Incident HTTP Notification", paste in the webhook from the previous step. Click "save", then "Test". After the test, check the workflow in Shuffle whether it triggered. If it didn't, your FortiSIEM can't access the Shuffle instance.
+	
+![image](https://user-images.githubusercontent.com/5719530/162085936-58a44de4-0289-4cf9-8f72-7b3229857448.png)
+	
+With the Notification Endpoint specified in the previous step, we need to decide what rules to add. By default, we add all of them. To do this, go to ADMIN > Settings > Notification Policy, and add a new policy. In here, select the "Send XML file over HTTP(S) to the destination set in...". This will make sure all alerts are sent to Shuffle.
+	
+![image](https://user-images.githubusercontent.com/5719530/162086144-8bbfb6fa-d512-4c36-81db-f830bcf9c204.png)
+
+That's it! It's now time to wait for an alert to actually trigger. When it has, make sure to send Execution Argument from the webhook ($exec) straight into an XML to JSON parser. That way you can use it easily in Shuffle.
+
+	
+### ELK
+TBD: Kibana forwarding & ElastAlert
+	
 ### Cortex 
 TBD: Responder executions
