@@ -20,6 +20,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Permission denied on file upload](#permission_denied_on_files)
 * [Docker Permission denied](#docker_permission_denied)
 * [Server is slow](#server_is_slow)
+* [How to handle wrong or bad images on old versions of docker](#how-to-handle-wrong-or-bad-images-on-old-versions-of-docker)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com, where [our apps are hosted](https://github.com/shuffle/python-apps).
@@ -440,3 +441,45 @@ df -h
 ```
 
 To get more space, either delete some files, clean up the Opensearch instance or add more disk space.
+
+## How to handle wrong or bad images on old versions of docker.
+
+![WhatsApp Image 2022-04-06 at 11 06 20 AM](https://user-images.githubusercontent.com/31187099/162938392-6d08bbba-df36-439b-a25e-c218bc88eade.jpeg)
+
+Download the correct app version from shuffle cloud 
+
+Once downloaded upload it on your onprem shuffle instance by dragging and dropping it on the activated app list
+
+![upload app](https://user-images.githubusercontent.com/31187099/162938372-6d999a9b-efe8-4037-bca0-4b33e87f112c.png)
+
+Once done check the server for misp images present
+
+![list images](https://user-images.githubusercontent.com/31187099/162938324-a45ad395-d245-440c-a0c6-ce642b600600.png)
+
+You should see previous existing images and the newly added apps image
+
+The last step is to refer the target image to the source image that you uploaded
+
+You do this by using the docker tag command see more information here (https://docs.docker.com/engine/reference/commandline/tag/)
+docker tag frikky/shuffle:misp_1.0.0 davvyshuffle/shuffle:MISP-e72b9e9c5b0a40753e184c8ce0ba6c2b
+i.e docker tag source_image:{TAG} target_image:{TAG}.
+
+![docker tag](https://user-images.githubusercontent.com/31187099/162938293-519775fd-0455-4e5f-a9f5-00638a6d0b4b.png)
+
+Go back to your shuffle interface and your app should run success.
+
+If you intend on uploading the app in a remote server you could push the app image onto docker hub using the docker push command more info here(https://docs.docker.com/engine/reference/commandline/image_push/)
+
+Sign up on docker here (https://login.docker.com/u/login/) then push the intended image into your docker hub repository, from your server's cli. You might be prompted to enter your password, do so and your image will be uploaded successfully.
+
+![docker push](https://user-images.githubusercontent.com/31187099/162938270-3c43e748-bd6a-4fc9-a6fd-86e5d2385193.png)
+
+![docker hub image](https://user-images.githubusercontent.com/31187099/162938242-d089acca-c65f-41b1-9cf1-dce80eb00403.png)
+
+From your remote server cli pull the image from your docker hub repository. for more info about docker image pull see here (https://docs.docker.com/engine/reference/commandline/pull/)
+
+![docker pull](https://user-images.githubusercontent.com/31187099/163127595-1ec69dc6-4e2a-4343-bd25-4cff67d94734.png)
+
+Once this is done you have to tag the existing images of this app to the working app you just downloaded from your docker hub repo. 
+
+![docker tag](https://user-images.githubusercontent.com/31187099/162938293-519775fd-0455-4e5f-a9f5-00638a6d0b4b.png)
