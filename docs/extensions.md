@@ -96,7 +96,7 @@ You now have a client. Click on settings and configure them as follows
 -Standard Flow Enabled toggled to ON
 -Direct access grants toggled to ON 
 
-https://user-images.githubusercontent.com/31187099/162692070-ccc54692-6793-4331-adc7-2356d0fd5397.jpg?raw=true
+![Valid redirect URI](https://user-images.githubusercontent.com/31187099/162692070-ccc54692-6793-4331-adc7-2356d0fd5397.jpg)
 
 For the Valid Redirect URI http://<URL>:<PORT>/api/v1/login_openid
 -Backchannel Logout URL http://<URL>:<PORT>/*
@@ -105,7 +105,7 @@ For the Valid Redirect URI http://<URL>:<PORT>/api/v1/login_openid
 Under the Fine Grain OpenID Connect Configuration
 Valid Request URIs http://<URL>:<PORT>/login?autologin=true
 
-https://user-images.githubusercontent.com/31187099/162692186-6ac71b93-01be-4cb1-83f4-b7cb17758378.jpg?raw=true
+![Auto login = true](https://user-images.githubusercontent.com/31187099/162692186-6ac71b93-01be-4cb1-83f4-b7cb17758378.jpg?raw=true)
 
 Once this is done head over to your shuffle instance.
 1. Click on Admin button
@@ -115,7 +115,7 @@ Once this is done head over to your shuffle instance.
 5. Authorization URL http://<Your_Keycloak_URL>:<port>/auth/realms/openid/protocol/openid-connect/auth
 6. Token URL http://<Your_Keycloak_URL>:<port>/auth/realms/openid/protocol/openid-connect/token
 
-https://user-images.githubusercontent.com/31187099/162689392-51fcb2e9-3d89-4066-8b99-6074065f9c2a.png?raw=true
+![OIDC shuffle-side](https://user-images.githubusercontent.com/31187099/162689392-51fcb2e9-3d89-4066-8b99-6074065f9c2a.png?raw=true)
 
 If you keep getting redirected to your backend url, head on to your Shuffle folder on your server.
 1. Vim .env
@@ -123,7 +123,7 @@ If you keep getting redirected to your backend url, head on to your Shuffle fold
 
 Finally go back to shuffle and use SSO button to login.
 
-https://user-images.githubusercontent.com/31187099/162689445-8db0766c-6f18-4463-8a92-f6ae62213918.png?raw=true
+![shuffle SSO](https://user-images.githubusercontent.com/31187099/162689445-8db0766c-6f18-4463-8a92-f6ae62213918.png?raw=true)
 
 ### Other
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
