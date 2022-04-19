@@ -3,32 +3,44 @@ Documentation for workflows.
 
 ## Table of contents
 * [Introduction](#introduction)
-* [The Basics](#basics)
-* [Create](#create)
-* [Edit](#edit)
-* [Save](#save)
-* [Execute](#execute)
-* [Delete](#delete)
+* [Workflow Basics](#workflow-basics)
+  * [Create](#create)
+  * [Edit](#edit)
+  * [Save](#save)
+  * [Execute](#execute)
+  * [Duplicate](#duplicate)
+  * [Delete](#delete)
 * [Nodes](#nodes)
-* [Conditions](#conditions)
-* [Starting node](#starting_node)
-* [Execution argument](#execution_argument)
-* [Workflow Variables](#workflow_variables)
-* [Execution variables](#execution_variables)
-* [Passing values](#passing_values)
-* [Passing lists](#passing_lists)
-* [Parsing JSON](#parsing_json)
-* [Casting values](#casting_values)
+  * [Starting node](#starting-node)
+* [Conditionals](#conditionals)
+  * [IF Conditions](#conditions)
+  * [Condition Loops](#condition-loops)
+* [Variables and Arguments](#variables-and-arguments)
+  * [Execution Argument](#execution-argument)
+  * [Workflow Variables](#workflow-variables)
+  * [Execution variables](#execution-variables)
+* [Passing values](#passing-values)
+  * [Examples](#examples)
+* [Parsing JSON](#parsing-json)
+* [Passing lists](#passing-lists)
+  * [Examples](#examples-1)
+* [Casting values](#casting-values)
 * [Authentication](#authentication)
-* [Handling files](#file_handling)
+  * [App Authentication](#app-authentication)
+  * [Workflow Authentication](#workflow-Authentication)
+* [Handling files](#file-handling)
+  * [Useful file handling info](#useful-file-handling-info)
+  * [Learn to use files](#learn-to-use-files)
+  * [Upload file API with the app creator](#upload-file-api-with-the-app-creator)
 * [API](#api)
+
 
 ## Introduction
 Workflows are the backbone of Shuffle, empowering you to automate your daily tasks by with a simple interface. Workflows use [apps](/docs/apps), [triggers](/docs/triggers), [conditions](/docs/conditions) and [variables](/docs/apps/#variables) to make powerful automations in no time. 
 
 If you would like to learn more about how to create, test and automate your tasks, read on. 
 
-## Basics
+## Workflow Basics
 The following section describes a basic workflow. 
 
 ### Create
@@ -55,7 +67,7 @@ Clicking the node presents you with a new view. This is the view to configure th
 
 The default action for the "Testing" app is "hello_world". This can be changed by clicking the dropdown menu. More about editing an app's actions can be found [here](#edit actions)
 
-![Node action options](https://github.com/frikky/shuffle-docs/blob/master/assets/node-action-options.PNG?raw=true)
+-![Node action options](https://github.com/frikky/shuffle-docs/blob/master/assets/node-action-options.PNG?raw=true)
 
 ### Save 
 Now that we have a working workflow, click the "save" button next to the big play button (or click CTRL+S). This presents you with a notification at the bottom of the screen that saving is in progress. Saving is required to make your latest edits available for execution.
@@ -71,21 +83,51 @@ If you want to see all your previous executions, you can go back to [workflows](
 
 If you want to test more, go to the bottom of this article [How-to continuation](#how-to).
 
-## Nodes 
-Nodes are the draggable parts from the left-side view - apps and triggers. Whenever you click of these, you will get the view on the right side of the screen with configurations. Apps are standardized, while triggers are all different. 
+### Duplicate
 
-Most nodes use values that you can pass to them. These can be text specified by you (pencil icon), [an app result](#passing_values) or from [variables](#variables)(heart icon).
+If you want create a copy of a workflow you can do so by clicking the kebab (vertical 3 dots) menu and select "Duplicate Workflow".
+
+![Duplicate workflow in progress](https://github.com/frikky/shuffle-docs/blob/master/workflow-duplicate-1.png?raw=true)
+
+A new workflow will be visible with an `_copy` suffix append to its name.
+
+### Delete
+
+If you're finished with a workflow and no longer require a copy of it, you can delete a workflow by clicking the kebab (vertical 3 dots) menu and select "Delete Workflow".
+
+**NOTE: Any workflows that depend on this one will be impacted**
+
+![Confirm workflow deletion](https://github.com/frikky/shuffle-docs/blob/master/workflow-delete-1.png?raw=true)
+
+After confirming the deletion action, you'll see a notification of the workflow being deleted.
+
+![Workflow deletion confirmation](https://github.com/frikky/shuffle-docs/blob/master/workflow-delete-2.png?raw=true)
+
+
+## Nodes
+Nodes are an object within a workflow that presents with an app or a trigger. You add a node to a workflow by dragging its icon onto the workflow space from the left-hand menu. Whenever you click one of these nodes in your workflow, you will see the available configuration options on the right-hand side. [Suffle Apps](/docs/apps) are standardized, while triggers are different.
+
+Most nodes use values that you can pass to them. These can be text specified by you (pencil icon), [an app result](#passing-values) or from [variables](#variables) (heart icon).
 
 ![argument-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/argument-example-1.png?raw=true)
 
 ### Starting node
 The starting node is circular with a turquoise border. This node is the FIRST ACTION in an execution. The starting node is NOT a trigger, but rather the first action that a trigger sends data to. The starting node can be changed by clicking a different node, then the "SET STARTNODE" button in the top-right corner.
 
-## Conditions 
-Conditions use the same format as nodes, with the view popping up on the right side. To add a condition, you need to have a branch/line in the view, meaning you need at least two nodes. This line itself, is what will run the condition for you. Branches can use the same valeus as other nodes, meaning they can parse variables from previous node results.
+## Conditionals
 
-**PS: Conditions are currently only AND, not OR, meaning you would need multiple branches to get OR.**
-**PS: Conditions can NOT handle loops right now ($variable.#). Use the [Filter App action](#conditions_loop) to learn more.**
+### Conditions
+Conditions determine the flow of node execution within a workflow. A condition is defined on the branch/line between two nodes. Consequently, you require at least two nodes to set a condition within a workflow. By default, a branch has an implied true condition, resulting in the execution of a subsequent node.
+
+A node may have multiple branches flowing from it. These branch conditions are evaluated independently. Parallel execution of nodes will occur where multiple branch conditions leave a node evaluate as true. Additionally, a branch between two nodes may also have multiple conditions defined. Boolean logic is used to evaluate these conditions.
+
+**NOTE: Currently, defining multiple conditions has an implied AND. An OR condition is defined using multiple branches, each with a specified condition.**
+
+The configuration of conditions will be displayed on the right-hand side when the line between nodes is clicked. The design of the configuration options is similar to other nodes in Shuffle.
+
+The available set of values to use within a condition defined on a branch is the same as other nodes within Shuffle. Consequently, the condition can be passed the result from any previous node or a workflow variable or other execution argument.
+
+**PS: Conditions can NOT handle loops right now ($variable.#). Use the [Filter App action](#condition-loops) to learn more.**
 
 1. Click a branch / line
 ![conditions-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-1.png?raw=true)
@@ -93,17 +135,17 @@ Conditions use the same format as nodes, with the view popping up on the right s
 2. Click "New condition"
 ![conditions-example-2](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-2.png?raw=true)
 
-3. Configure the condition. Choose the value(s) you're looking for, and use the center piece ("DOES NOT EQUAL" in this example) to modify what you want. In the case of this image, it would NOT run, because "hello" (left side) equals "hello" (right side)
+3. Configure the condition. Choose the value(s) you're looking for, and use the center piece ("DOES NOT EQUAL" in this example) to modify what you want. In the case of this image, it would NOT run, because "hello" (left side) equals "hello" (right side).
 ![conditions-example-3](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-3.png?raw=true)
 
-4. Here's another example, where it would run IF the [execution argument](#execution_argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
+4. Here's another example, where it would run IF the [execution argument](#execution-argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
 ![conditions-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-4.png?raw=true)
 
-5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing_values))
+5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing-values)).
 ![conditions-example-5](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-5.png?raw=true)
 
-## Condition Loops
-**PS: Condition with Loops can be avoided if you use the "Subflow" trigger to run each item of a list in a [subflow](/docs/triggers#subflow). That however does require running new workflows, hence more CPU and RAM**
+### Condition Loops
+**PS: It is best to avoid loops within conditions by using the "Shuffle Workflow" trigger to run each item of a list in a [subflow](/docs/triggers#subflow). However, this will require additional workflows to be executed, which will result in more CPU and RAM usage**
 
 In this section, we'll be exploring how to use conditions for loops. As explained above, this is done using the "Filter List" action of the "Shuffle Tools" app. The goal if this app is to filter what DOES and DOESN'T fit your criteria within a list. This app action has the same functionality as a normal condition. These conditions are based on the "filter" mechanism of arrays in Javascript.
 
@@ -141,9 +183,10 @@ opposite: want to make it opposite? "equals" becomes "NOT equals" and "Larger th
 The "valid" field will match our criteria, while the "invalid" part has everything that doesn't. In our case (below), there are 2 that ARE malicious, and 1 that isn't.
 ![condition-loop-4](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-4.png?raw=true)
 
+## Variables and Arguments
 
-## Execution argument
-The execution argument is what makes it possible for triggers to work. This is the argument that the whole execution is ran with. Manual executions can also have an execution argument. In essence, the execution argument can be anything - json, list, string, number. It's up to you.
+### Execution argument
+The execution argument is what makes it possible for triggers to work. This is the argument that the whole execution begins with. Manual executions can also have an execution argument. In essence, the execution argument can be anything - json, list, string, number. It's up to you.
 
 ![execution-argument-1](https://github.com/frikky/shuffle-docs/blob/master/assets/execution-argument-1.png?raw=true)
 
@@ -156,8 +199,8 @@ These are the different names for it:
 * $userinput
 * $email_trigger
 
-## Workflow Variables
-Workflow variables is static reusable data decided before an execution. These are typically used for APIkeys, URL's or usernames. [Click here to see Executio variables](/docs/workflows#execution_variables)
+### Workflow Variables
+Workflow variables is static reusable data decided before an execution. These are typically used for API keys, URLs or usernames. If you need to define a dynamic variable that changes between executions or based on the results of a previous node, then you need to look at [Execution Variables](/docs/workflows#execution-variables)
 
 Some things to keep in mind when using workflow variables:
 * They are set BEFORE an execution
@@ -168,7 +211,7 @@ Some things to keep in mind when using workflow variables:
 Use-case:
 * Save URLs, API keys and more.
 
-PS: We are working on a way to have encrypted global variables to be used for passwords and global APIkeys (and more) with IAM, but that might take a while to implement properly.
+PS: We are working on a way to have encrypted global variables to be used for passwords and global API keys (and more) with IAM, but that might take a while to implement properly.
 
 **How to create and use a workflow variable:**
 
@@ -184,8 +227,8 @@ PS: We are working on a way to have encrypted global variables to be used for pa
 4. Use the variable in an action or condition
 ![variable-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/variable-example-4.png?raw=true)
 
-## Execution Variables
-Execution variables work the same way as Workflow Variables, except they HAVE to be set during execution. These are temporary datapoints that will not be saved anywhere. They work by taking the RESULT of an action of your choosing (examples below), done with a single click. If you're looking for static data, [click here to see Workflow variables](/docs/workflows#workflow_variables)
+### Execution Variables
+Execution variables work the same way as Workflow Variables, except they HAVE to be set during execution. These are temporary datapoints that will not be saved anywhere. They work by taking the RESULT of an action of your choosing (examples below), done with a single click. If you're looking to define a variable that does not change between executions and is static, you need to look at [Workflow Variables](/docs/workflows#workflow`-variables)
 
 Some things to keep in mind using execution variables:
 * They are set DURING execution
@@ -231,14 +274,16 @@ If you use the "static data" field (pencil), you have to write it out yourself.
 
 PS: it still only works with PREVIOUS nodes (nodes before the one you're editing)
 
-### Parsing JSON
+## Parsing JSON
 Parsing JSON is essential to be able to get API data. Shuffle uses it's own schema, which seems to work quite well. 
 
-$ 					= identifier for a previous node / execution argument 
-$exec 			= execution argument chosen
-$exec.name  = you choose the argument "name" from the execution argument
+```
+$node_1		= refers to a previously defined node called "node_1"
+$exec		= execution argument chosen
+$exec.name	= you choose the argument "name" from the execution argument
+```
 
-The first text after $ will always be the name of the previous node. If you add "." ($exec.name), it will look for "name" as a json value under "exec". If the node doesn't exist, it will just write $exec.name straight up.
+The first text after `$` will always be the name of the previous node. If you add "." ($exec.name), it will look for `"name"` as a json value under `"exec"`. If the node doesn't exist, it will just write `$exec.name` straight up.
 
 Say you send the following data as our [execution argument](#execution argument):
 ```
@@ -403,7 +448,7 @@ Files are handled in the backend of Shuffle through our API, which is fully acce
 * Files are handled using their ID. This is a reference to the file, and is automatically generated.
 * Other useful fields: md5/sha256, Filename, Filesize, organization, origin workflow, created time, status...
 * We will add S3 buckets and other storage mechanisms later.
-* [File API can be found here](/docs/API#files)
+* [File API can be found here](/docs/API#file-api)
 * They're typically identified by the field "File_id"
 
 A file can be in one of four statuses 
@@ -462,4 +507,4 @@ Having ran it, we get the correct response, as expected from their documentation
 And with that, we're done with the basic part of files in Shuffle. If something is unclear, please tell us.
 
 ## API
-[Click here to see the Workflow API](/docs/API#workflows)
+[Click here to see the Workflow API](/docs/API#workflow-api)
