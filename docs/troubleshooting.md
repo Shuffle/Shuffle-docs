@@ -21,6 +21,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Docker Permission denied](#docker_permission_denied)
 * [Server is slow](#server_is_slow)
 * [How to handle wrong or bad images on old versions of docker](#how-to-handle-wrong-or-bad-images-on-old-versions-of-docker)
+* [Docker not working](#docker_not_working)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com, where [our apps are hosted](https://github.com/shuffle/python-apps).
@@ -442,6 +443,7 @@ df -h
 
 To get more space, either delete some files, clean up the Opensearch instance or add more disk space.
 
+
 ## How to handle wrong or bad images on old versions of docker.
 
 ![WhatsApp Image 2022-04-06 at 11 06 20 AM](https://user-images.githubusercontent.com/31187099/162938392-6d08bbba-df36-439b-a25e-c218bc88eade.jpeg)
@@ -483,3 +485,27 @@ From your remote server cli pull the image from your docker hub repository. for 
 Once this is done you have to tag the existing images of this app to the working app you just downloaded from your docker hub repo. 
 
 ![docker tag](https://user-images.githubusercontent.com/31187099/162938293-519775fd-0455-4e5f-a9f5-00638a6d0b4b.png)
+
+  
+ 
+# Docker not working
+In certain cases, Docker may not be working due to too large an amount of containers running, and Docker not being able to keep up. The cause of this is typically Orborus starting too many workflows in unison. To fix this, either reduce the amount of containers able to run, or set up swarm mode (paid).
+	
+This can be controlled by the environment variables:
+```
+- SHUFFLE_ORBORUS_EXECUTION_TIMEOUT=600
+- SHUFFLE_ORBORUS_EXECUTION_CONCURRENCY=10 
+- CLEANUP=true
+```
+
+Then manually clean up the containers:
+```
+service docker stop
+rm -rf /var/lib/docker/containers/*
+rm -rf /var/lib/docker/vfs/dir/*
+service docker start
+```
+	
+**PS: You may need to use "systemctl stop docker" instead of using "service".**
+
+Now restart the Shuffle stack again, and all the containers should be gone
