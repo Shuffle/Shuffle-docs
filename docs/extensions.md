@@ -119,7 +119,12 @@ Once this is done head over to your shuffle instance.
 
 If you keep getting redirected to your backend url, head on to your Shuffle folder on your server.
 1. Vim .env
+
+![vim env](https://user-images.githubusercontent.com/31187099/164943744-981638cf-6149-42e1-a455-3d12927ec24c.png)
+
 2. In vim change the BASE URL to your server link; i.e BASE_URL=http://<URL>:<PORT>
+
+![baseurl](https://user-images.githubusercontent.com/31187099/164943748-96217836-6b7d-42e7-8c25-fae3d3294b30.png)
 
 Finally go back to shuffle and use SSO button to login.
 
