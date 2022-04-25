@@ -22,7 +22,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Server is slow](#server_is_slow)
 * [How to handle wrong or bad images on old versions of docker](#how-to-handle-wrong-or-bad-images-on-old-versions-of-docker)
 * [Docker not working](#docker_not_working)
-* [Troubleshooting for executions not running in swarm](#Troubleshooting for executions not running in swarm)
+* [Troubleshooting for executions not running, in swarm](#Troubleshooting_for_executions_not_running,_in_swarm)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com, where [our apps are hosted](https://github.com/shuffle/python-apps).
@@ -511,7 +511,7 @@ service docker start
 
 Now restart the Shuffle stack again, and all the containers should be gone
 
-## Troubleshooting for executions not running in swarm
+## Troubleshooting for executions not running, in swarm
 
 * You'll need to check whether swarm is configured properly and running. Do this by orborus logs using the following command.
 
@@ -540,7 +540,8 @@ docker ps
 ```
 ![Inkedswarm3_LI](https://user-images.githubusercontent.com/31187099/165058479-f5e0eab5-f117-4f96-aee4-04bd31c4ecc6.jpg)
 
-* Get the name of the worker and run the following command
+* Get the name of the worker and run the following command. If not, this means you will have to go on local of each node to get logs of workers running on it or using a docker management tool.
+
 
 ```
 docker logs <name_of_worker>
