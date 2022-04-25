@@ -22,6 +22,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Server is slow](#server_is_slow)
 * [How to handle wrong or bad images on old versions of docker](#how-to-handle-wrong-or-bad-images-on-old-versions-of-docker)
 * [Docker not working](#docker_not_working)
+* [Troubleshooting for executions not running in swarm](#Troubleshooting for executions not running in swarm)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com, where [our apps are hosted](https://github.com/shuffle/python-apps).
@@ -488,7 +489,7 @@ Once this is done you have to tag the existing images of this app to the working
 
   
  
-# Docker not working
+## Docker not working
 In certain cases, Docker may not be working due to too large an amount of containers running, and Docker not being able to keep up. The cause of this is typically Orborus starting too many workflows in unison. To fix this, either reduce the amount of containers able to run, or set up swarm mode (paid).
 	
 This can be controlled by the environment variables:
@@ -509,3 +510,40 @@ service docker start
 **PS: You may need to use "systemctl stop docker" instead of using "service".**
 
 Now restart the Shuffle stack again, and all the containers should be gone
+
+## Troubleshooting for executions not running in swarm
+
+* You'll need to check whether swarm is configured properly and running. Do this by orborus logs using the following command.
+
+```
+docker logs -f shuffle-orborus
+```
+* You should get results similar to the image below, if not check [here](https://shuffler.io/docs/configuration#shuffle_swarm_orborus_setup)
+
+![Inkedswarm2_LI](https://user-images.githubusercontent.com/31187099/165058404-294b8231-e7ac-4141-8e39-6e51034b2f60.jpg)
+
+* Once you've assertained that swarm mode is running as it should, go ahead and list services running in swarm using the below command.
+
+```
+docker service ls
+```
+* You should get results similar to the image below, the REPLICAS column should be AT LEAST 1 replica created for each running service. i.e A 0/1 means that the app isn't available to handle the executions that you need it to, so you'll have to reinstall the app, see [here](https://github.com/Shuffle/Shuffle-docs/blob/master/docs/troubleshooting.md#how-to-handle-wrong-or-bad-images-on-old-versions-of-docker) for more information on how to do this.
+
+![Inkedswarm1_LI](https://user-images.githubusercontent.com/31187099/165058264-9d032d30-5250-4b13-929c-266308e8cb0b.jpg)
+
+* Once you've ensured that all services have replicas created and are running, move on to the next step.
+
+* Check logs for the worker. First, run the below command to get a list of tasks that are running 
+
+```
+docker ps
+```
+![Inkedswarm3_LI](https://user-images.githubusercontent.com/31187099/165058479-f5e0eab5-f117-4f96-aee4-04bd31c4ecc6.jpg)
+
+* Get the name of the worker and run the following command
+
+```
+docker logs <name_of_worker>
+```
+* All you have to do now is comb the logs and identify where the problem is, if you can't figure out where the problem is reach out to our community on discord.
+
