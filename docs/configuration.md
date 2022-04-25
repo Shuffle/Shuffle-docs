@@ -267,7 +267,7 @@ To set up proxies in individual containers, open docker-compose.yml and add the 
 ## HTTPS
 HTTPS is enabled by default on port 3443 with a self-signed certificate for localhost. If you would like to change this, the only way (currently) is to add configure and rebuild the frontend. If you don't have HTTPS enabled, check [updating shuffle](#updating_shuffle) to get the latest configuration.
 
-Necessary info:
+Necessary info for the truststore:
 * Certificates are located in ./frontend/certs. 
 * ./frontend/README.md contains information on generating a self-signed cert 
 * (default): Privatekey is named privkey.pem

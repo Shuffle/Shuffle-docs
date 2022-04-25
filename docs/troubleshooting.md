@@ -20,6 +20,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Permission denied on file upload](#permission_denied_on_files)
 * [Docker Permission denied](#docker_permission_denied)
 * [Server is slow](#server_is_slow)
+* [Docker not working](#docker_not_working)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com, where [our apps are hosted](https://github.com/shuffle/python-apps).
@@ -462,4 +463,3 @@ service docker start
 **PS: You may need to use "systemctl stop docker" instead of using "service".**
 
 Now restart the Shuffle stack again, and all the containers should be gone
-
