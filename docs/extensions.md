@@ -80,41 +80,55 @@ Open the Certificate file in a text editor, and copy it's contents in the field.
 
 After adding them, click "Save", saving the configuration. After saving, log out of your user to verify the SSO configuration. If you don't see a button for "Use SSO", you most likely configured the wrong organization.
 
-### Keycloak
-* Go create a realm in your keycloak by clicking the add realm button
+### Open ID SSO setup with Keycloak
+In Keycloak 
+- Click on clients 
+- Create new client
+- Set client id 
+- Ensure client protocol is openid-connect
+- Hit save
 
-![31 01 2022_19 01 10_REC](https://user-images.githubusercontent.com/31187099/151965784-1798e815-1e57-4720-a875-ba379610a38e.png)
+You now have a client. Click on settings and configure them as follows
+-Your client ID
+-Set up a name
+-Client Protocol set to openid-connect
+-Access Type set to public
+-Standard Flow Enabled toggled to ON
+-Direct access grants toggled to ON 
 
-* Enter a name for your realm
-* Click create and your realm is created
-* Under configure, move down to identity providers, on the pop up, click on the drop down select SAML v2.0
+![Valid redirect URI](https://user-images.githubusercontent.com/31187099/162692070-ccc54692-6793-4331-adc7-2356d0fd5397.jpg)
 
-* An add identity provider window pops up where you can configure your identity provider and SAML configs.
-* Here you will fill the:
-    - Alias field
-    - Display name
-    - Ensure Enabled field is turned on
-    - Ensure Trust Email field is turned on
-    
-![01 02 2022_11 39 39_REC](https://user-images.githubusercontent.com/31187099/151965938-3bddb6e8-6819-41dc-b6ae-85cd0b56b31e.png)
+For the Valid Redirect URI http://<URL>:<PORT>/api/v1/login_openid
+-Backchannel Logout URL http://<URL>:<PORT>/*
+-Backchannel Logout Session toggled to ON
 
-* Still on this window scroll down to SAML Config and click on this to drop down the settings
+Under the Fine Grain OpenID Connect Configuration
+Valid Request URIs http://<URL>:<PORT>/login?autologin=true
 
-![01 02 2022_11 45 52_REC](https://user-images.githubusercontent.com/31187099/151966312-33b75cec-3906-4485-8c58-26d77dd2ef84.png)
+![Auto login = true](https://user-images.githubusercontent.com/31187099/162692186-6ac71b93-01be-4cb1-83f4-b7cb17758378.jpg?raw=true)
 
-* Here you will fill the:
-    - Service Provider Entity ID - Scroll up to the Redirect URI and copy everything BEFORE /broker/(your-alias)/endpoint and paste it in this field.
-    - Single Sign-On Service URL - In this field paste https://<URL>:<PORT>/api/v1/login_sso 
-    - Scroll down and ensure Allow create is on 
-    - Ensure HTTP-POST Binding Response is on
-    - Ensure HTTP-POST Binding for AuthnRequest is on
-    - Ensure Validate Signature is on, paste your X509 certificate see [here](https://lightbend.github.io/ssl-config/CertificateGeneration.html)
+Once this is done head over to your shuffle instance.
+1. Click on Admin button
+2. Scroll down and click on the downward facing arrow beneath Organization overview
+3. Scroll down again to OpenID connect
+4. Fill in the client ID (It should be the same as what you entered in Keycloak)
+5. Authorization URL http://<Your_Keycloak_URL>:<port>/auth/realms/openid/protocol/openid-connect/auth
+6. Token URL http://<Your_Keycloak_URL>:<port>/auth/realms/openid/protocol/openid-connect/token
 
-* Proceed to hit save
+![OIDC shuffle-side](https://user-images.githubusercontent.com/31187099/162689392-51fcb2e9-3d89-4066-8b99-6074065f9c2a.png?raw=true)
 
-* Copy the service Provider Entity ID and paste it in your Shuffle instance under the SSO Entrypoint (IdP) proceed to add /account at the end of your URI
+If you keep getting redirected to your backend url, head on to your Shuffle folder on your server.
+1. Vim .env
 
-![01 02 2022_14 59 32_REC](https://user-images.githubusercontent.com/31187099/151966347-d56f78d5-9a04-4719-b55e-4e5d3ed6e703.png)
+![vim env](https://user-images.githubusercontent.com/31187099/164943744-981638cf-6149-42e1-a455-3d12927ec24c.png)
+
+2. In vim change the BASE URL to your server link; i.e BASE_URL=http://<URL>:<PORT>
+
+![baseurl](https://user-images.githubusercontent.com/31187099/164943748-96217836-6b7d-42e7-8c25-fae3d3294b30.png)
+
+Finally go back to shuffle and use SSO button to login.
+
+![shuffle SSO](https://user-images.githubusercontent.com/31187099/162689445-8db0766c-6f18-4463-8a92-f6ae62213918.png?raw=true)
 
 ### Other
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
