@@ -26,6 +26,8 @@ Shuffle is based on Docker and is started using docker-compose with configuratio
 ## Installing Shuffle
 Check out the [installation guide](https://github.com/frikky/shuffle/blob/master/.github/install-guide.md), however if you're on linux:
 
+System requirements may be found further down in the [Servers](#servers) section.
+
 ```
 git clone https://github.com/frikky/Shuffle
 cd Shuffle
@@ -47,7 +49,7 @@ docker pull frikky/shuffle:app_sdk
 **PS: This will NOT update your apps, meaning they may be outdated. To update your apps, go to /apps and click both buttons in the top right corner (reload apps locally & Download from Github)**
 
 ## Production readiness
-Shuffle is by default configured to be easy to start using. This means we've had to make some tradeoffs which can be enabled/disabled to make it easier to use the first time. This part outlines a lot of what's necessary to make Shuffle security, availability and scalability better.
+Shuffle is by default configured to be easy to start using. This means we've had to make some tradeoffs which can be enabled/disabled to make it easier to use the first time. This part outlines a lot of what's necessary to make Shuffle's security, availability and scalability better. 
 
 **Here are the things we'll dive into**
 - [Servers](#servers)
