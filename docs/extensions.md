@@ -80,8 +80,8 @@ Open the Certificate file in a text editor, and copy it's contents in the field.
 
 After adding them, click "Save", saving the configuration. After saving, log out of your user to verify the SSO configuration. If you don't see a button for "Use SSO", you most likely configured the wrong organization.
 
-### Open ID SSO setup with Keycloak
-In Keycloak 
+### Keycloak
+Open ID SSO setup with Keycloak:
 - Click on clients 
 - Create new client
 - Set client id 

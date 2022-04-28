@@ -2,6 +2,7 @@ import os
 import hashlib
 import requests
 from algoliasearch.search_client import SearchClient
+from algoliasearch.exceptions import RequestException
 
 client = SearchClient.create(os.getenv("ALGOLIA_CLIENT"), os.getenv("ALGOLIA_SECRET"))
 index = client.init_index("documentation")
@@ -74,5 +75,8 @@ for dirname in os.listdir(basedir):
                     wrappeditem["data"] = item
     
     if len(to_upload) > 0:
-        print("%s: %d objects" % (filename, len(to_upload)))
-        ret = index.save_objects(to_upload)
+        try:
+            ret = index.save_objects(to_upload)
+            print("%s: %d objects" % (filename, len(to_upload)))
+        except RequestException as e:
+            print("ERROR: %s: %d objects: %s" % (filename, len(to_upload), e))
