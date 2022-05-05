@@ -6,7 +6,8 @@ This document outlines the release creation process of videos to be used for soc
 - Figure out the way to make it
 
 ## Editing
-- Use the tool
+- Write a script
+- Speak over it
 - Who talks over the video?
 
 ## Release
