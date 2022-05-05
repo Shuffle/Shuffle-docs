@@ -1,6 +1,8 @@
 # Video release
 This document outlines the release creation process of videos to be used for social media and documentation
 
+TBD: Who does what when? Editing? QA? Recording? Releases?
+
 ## Creation
 - Figure out [what to make](https://github.com/infopercept/projects) 
 - Figure out the way to make it
@@ -8,7 +10,7 @@ This document outlines the release creation process of videos to be used for soc
 ## Editing
 - Write a script
 - Speak over it
-- Who talks over the video?
+- Mash it together :)
 
 ## Release
 - Make sure to:
