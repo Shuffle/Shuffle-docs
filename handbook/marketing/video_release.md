@@ -2,7 +2,7 @@
 This document outlines the release creation process of videos to be used for social media and documentation
 
 ## Creation
-- Make the thing
+- Figure out [what to make](https://github.com/infopercept/projects) 
 - Figure out the way to make it
 
 ## Editing
