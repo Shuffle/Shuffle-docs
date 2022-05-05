@@ -15,6 +15,7 @@ TBD: Who does what when? Editing? QA? Recording? Releases?
 
 ## Release
 - Make sure to:
+* Release the video on our Youtube and add it to the correct list 
 * Add the video to PUBLIC documentation for the same thing
 * Write text that fits for social media platforms
 * Release on Twitter, Linkedin & Discord announcement
