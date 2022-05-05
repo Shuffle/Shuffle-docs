@@ -5,7 +5,8 @@ TBD: Who does what when? Editing? QA? Recording? Releases?
 
 ## Creation
 - Figure out [what to make](https://github.com/infopercept/projects) 
-- Figure out the way to make it
+- Figure out the way to make and record it
+- Build an example workflow, including with comments
 
 ## Editing
 - Write a script
