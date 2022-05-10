@@ -9,6 +9,7 @@ Documentation for configuring Shuffle.
 * [Production readiness](#production_readiness)
 * [Proxy Configuration](#proxy_configuration)
 * [HTTPS](#https)
+* [IPv6](#ipv6)
 * [Kubernetes](#kubernetes)
 * [Database](#database)
 * [Network Configuration](#network_configuration)
@@ -269,6 +270,8 @@ To set up proxies in individual containers, open docker-compose.yml and add the 
 ## HTTPS
 HTTPS is enabled by default on port 3443 with a self-signed certificate for localhost. If you would like to change this, the only way (currently) is to add configure and rebuild the frontend. If you don't have HTTPS enabled, check [updating shuffle](#updating_shuffle) to get the latest configuration.
 
+**PS: Another workaround is to set up an [Nginx reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) you can control yourself**
+
 Necessary info for the truststore:
 * Certificates are located in ./frontend/certs. 
 * ./frontend/README.md contains information on generating a self-signed cert 
@@ -281,6 +284,11 @@ After changing certificates, you can rebuild the entire frontend by running (./f
 ```
 ./run.sh
 ```
+
+## IPv6
+Shuffle supports IPv6 in Docker by default, but your docker engine may not. IPv6 can be enabled in Docker by adding it to the /etc/docker/daemon.json file on the host as per this article by Docker:
+
+[https://docs.docker.com/config/daemon/ipv6/](https://docs.docker.com/config/daemon/ipv6/)
 
 ## Kubernetes  
 Shuffle use with Kubernetes is now possible due to help from our contributors. This has not extensively been tested, so please reach out to @frikkylikeme if you're having execution issues.
