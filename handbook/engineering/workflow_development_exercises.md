@@ -53,7 +53,7 @@ The point of this workflow is to make a list of indicators, and searching for if
 
 PS: You can test whether it changed by setting the value manually in the next iteration.
 
-### 4. SIEM: Run a search in Wazuh and add IP to list
+### 4. SIEM: Run a search in Logz.io and add IP to list
 The point of this exercise is to use a SIEM to create a threat list, and alert on matches.
 
 PS: Add process for uploading logs

@@ -1,6 +1,8 @@
 # Shuffle Architecture
 Documentation to understand the Shuffle architecture and thoughts behind our choices. Important to understand if you want to contribute or decide whether it works for your organization.
 
+**PS: This document is aimed at on-premises installations, but has some relevant information about cloud too**
+
 ## Table of contents
 * [Introduction](#introduction)
 * [Overview](#architecture_overview)
@@ -17,7 +19,9 @@ Documentation to understand the Shuffle architecture and thoughts behind our cho
 * [Learn more](#learn_more)
 
 ## Introduction
-With a long-term vision of having an Open(API) ecosystem with a hybrid model between cloud and on-prem, this document will be a guide to understand some underlying aspects of Shuffle and how things fit together. Shuffle does NOT require internet to work.
+With a long-term vision of having an Open(API) ecosystem with a hybrid model between cloud and on-prem, this document will be a guide to understand some underlying aspects of Shuffle and how things fit together. Shuffle does **NOT** require internet to work.
+
+Shuffle Installation models: ![models](https://user-images.githubusercontent.com/5719530/167960847-53e81815-a240-4a26-abb9-96b9244be901.jpeg)
 
 ## Architecture overview
 The platform is split into two main parts: Server and Workers. The server acts as the host of everything from API activity to Workflow validation, while the Workers are another standalone unit, working in a microservice-esque way. The top and bottom part can be installed on different hosts and be clustered.
