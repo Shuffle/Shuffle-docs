@@ -15,7 +15,7 @@ Documentation for configuring Shuffle.
 * [Network Configuration](#network_configuration)
 * [Docker Version error](#docker_version_error)
 * [Database indexes](#database_indexes)
-* [Uptime monitoring](#platform_monitoring)
+* [Uptime monitoring](#uptime_monitoring)
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
 * [Known Bugs](#known_bugs)
