@@ -14,7 +14,8 @@ Documentation for configuring Shuffle.
 * [Database](#database)
 * [Network Configuration](#network_configuration)
 * [Docker Version error](#docker_version_error)
-* [Database migration](#database_migration)
+* [Database indexes](#database_indexes)
+* [Uptime monitoring](#platform_monitoring)
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
 * [Known Bugs](#known_bugs)
@@ -383,6 +384,17 @@ docker load shuffle_tools.tar
 
 # Transfer between 2 remote hosts:
 #scp -3 centos@10.0.0.1:/home/user/wazuh.tar centos@10.0.0.2:/home/user/wazuh.tar
+```
+
+## Uptime Monitoring
+Uptime monitoring of Shuffle can be done by periodically polling the API for userinfo located at /api/v1/getinfo. This is an API that connects to our database, and which will be stuck if we any platform issues occur, whether in your local instance or in our Cloud instance on https://shuffler.io. 
+
+Shuffle has and will not have any planned downtime for services on https://shuffler.io, and have built our architecture around being able to upgrade and roll back without any downtime at all. If this occurs in the future for our Cloud platform, we will make sure to notify any active users. We plan to launch a status monitor for our services in 2022.
+
+**Basic monitoring** can be done with a curl request + sendmail + cronjob as [seen in this blogpost](https://www.programcreek.com/2017/06/automatically-detect-server-downtime-using-linux-cron-job/) with the curl command below. Your personal API key can be found on [https://shuffler.io/settings](https://shuffler.io/settings) or in the same location (/settings) in your local instance.
+
+```
+curl https://shuffler.io/api/v1/getinfo -H "Authorization: Bearer apikey"
 ```
 
 ## Database
