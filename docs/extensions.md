@@ -7,7 +7,8 @@ This is documentation for integrating and sending data from third-party services
   * [Okta](#okta)
   * [Auth0](#auth0)
   * [PingIdentity](#ping_id)
-  * [Keycloak](#keycloak)
+  * [Keycloak - OpenID](#keycloak)
+  * [Azure AD - OpenID](#azure_id)
 * [Webhooks](#webhooks)
   * [Wazuh Webhook](#wazuh)
   * [TheHive Webhook](#thehive)
@@ -25,7 +26,7 @@ From the start, Shuffle has been a platform about integrations. We've focused on
 These integrations will typically entail third party services connecting to Shuffle with inbound Webhooks as triggers in a workflow.
 
 ## Single Signon SSO
-Shuffle added Single Signon (SAML) from version 0.9.16. This allows you to log into Shuffle from other sources, entirely controlled by your external environment. SSO is available for **onprem**, even without the Enterprise version of Shuffle cloud. It works by setting an Entrypoint (IdP) and X509 Certificate, both used to validate the requests. This can be added under /admin, and **only works for your PRIMARY organization**.
+Shuffle added Single Signon (SAML) from version 0.9.16 & OpenID since 1.0.0. This allows you to log into Shuffle from other sources, entirely controlled by your external environment. SSO is available for **onprem**, even without the Enterprise version of Shuffle cloud. It works by setting an Entrypoint (IdP) and X509 Certificate, both used to validate the requests. This can be added under /admin, and **only works for your PRIMARY organization**.
 
 ![Single Signon button](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-3.png?raw=true)
 
@@ -129,6 +130,13 @@ If you keep getting redirected to your backend url, head on to your Shuffle fold
 Finally go back to shuffle and use SSO button to login.
 
 ![shuffle SSO](https://user-images.githubusercontent.com/31187099/162689445-8db0766c-6f18-4463-8a92-f6ae62213918.png?raw=true)
+
+## Azure AD
+To use OpenID with Azure AD, Shuffle supports OpenID connect with the use of Client IDs and Client secrets. To set up OpenID Connect with Azure, we use "ID_token" authentication. This entails a few normal steps regarding app creation in Azure App Registration.
+
+1. 
+
+When the user is signed in, they have the access rights of a "user" in the designated organization, and will have a username according to the ID decided in O365. This can be changed by admins.
 
 ### Other
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.

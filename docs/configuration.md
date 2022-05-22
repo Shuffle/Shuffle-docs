@@ -207,7 +207,7 @@ Shuffle has a few toggles that makes it straight up faster, but which removes a 
 
 Backend:
 ```
-# Set the encryption key to ensure all app authentication is being encrypted. If this is NOT defined, we do not encrypt your apps. If this is defined, all authentications - both old and new will start using this key.
+# Set the encryption key to ensure all app authentication is being encrypted. If this is NOT defined, we do not encrypt your apps. If this is defined, all authentications - both old and new will start using this key. 
 # Do NOT lose this key if specified, as that means you will need to reset all keys.
 
 SHUFFLE_ENCRYPTION_MODIFIER=YOUR KEY HERE
