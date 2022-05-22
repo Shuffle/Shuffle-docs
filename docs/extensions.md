@@ -8,7 +8,7 @@ This is documentation for integrating and sending data from third-party services
   * [Auth0](#auth0)
   * [PingIdentity](#ping_id)
   * [Keycloak - OpenID](#keycloak)
-  * [Azure AD - OpenID](#azure_id)
+  * [Azure AD - OpenID](#azure_ad)
 * [Webhooks](#webhooks)
   * [Wazuh Webhook](#wazuh)
   * [TheHive Webhook](#thehive)
@@ -134,9 +134,27 @@ Finally go back to shuffle and use SSO button to login.
 ## Azure AD
 To use OpenID with Azure AD, Shuffle supports OpenID connect with the use of Client IDs and Client secrets. To set up OpenID Connect with Azure, we use "ID_token" authentication. This entails a few normal steps regarding app creation in Azure App Registration.
 
-1. 
+1. Set up an app in Azure AD with ID tokens enabled
+Go to [app registrations and create a new app](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade). Make it use "Web" for redirect URI's and direct it to your Shuffle instance at /api/v1/openid_connect. From here, make sure to go to "authentication" and enable "ID Tokens"
+![image](https://user-images.githubusercontent.com/5719530/169712651-24f481bc-7d90-4b09-b25f-cd1ec6c52c20.png)
 
-When the user is signed in, they have the access rights of a "user" in the designated organization, and will have a username according to the ID decided in O365. This can be changed by admins.
+2. Get the Client ID, Client Secret and your Tenant
+Start by generating a client secret. Keep it safe, as we'll use it later. 
+![image](https://user-images.githubusercontent.com/5719530/169712756-a07ae08f-75a6-4174-8c8a-26700fd48654.png)
+
+The client secret and tenant ID can be found in the "Overview" tab:
+![image](https://user-images.githubusercontent.com/5719530/169712793-7173a2c5-3450-4a79-8f95-9363b940c293.png)
+
+3. Go to the admin panel in Shuffle and put in the Client ID and Secret
+![image](https://user-images.githubusercontent.com/5719530/169712842-83db0618-d1f2-4bcd-ad78-5276f0c0696a.png)
+
+4. Put in your Tenant ID in the authorization URL
+The URL is as such: `https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/authorize`. The Token URL is not strictly required for ID Token auth.
+![image](https://user-images.githubusercontent.com/5719530/169712857-fe49855e-da3a-4dca-9fde-59bdc60eaa4d.png)
+	
+5. Done! Click save and log out. Try your new login based on your Azure AD configuration. 
+	
+PS: When the user is signed in, they have the access rights of a "user" in the designated organization, and will have a username according to the ID decided in O365. This can be changed by admins.
 
 ### Other
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
