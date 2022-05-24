@@ -111,12 +111,16 @@ Oauth2 is a special authentication mechanism, most used by major providers like 
 
 As per the provider's documentation, you need to find their authorization url, token URL and Scopes that are matching what you want to do. Here's [what we found from Microsoft](https://docs.microsoft.com/en-us/graph/auth-v2-user). Please keep in mind you do NOT have to add the queries, but just the main URL. For Microsoft the user will have to change the tenant.
 
+![image](https://user-images.githubusercontent.com/5719530/170031712-f1924861-36a1-4180-8f3b-e3e682873443.png)
+
 After filling these in, you can now safely proceed to a Workflow to use the app. When authenticating the app, you will now have to fill in the following as a user:
 ```
 - Client ID
 - Client Secret
 - Scopes
 ```
+
+![image](https://user-images.githubusercontent.com/5719530/170031817-1e45dd41-a038-4498-9f4e-14a91785a6ef.png)
 
 The former two will have to be found by the USER, as the point of this authentication type is to run as the user itself. This has to be documented well, either in the description of the app itself, or in the [OpenAPI documentation folder on Github]() to make it easily available to users. An example [for Microsoft app registration can be found here](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app), which includes how to get a client ID and secret. 
 
