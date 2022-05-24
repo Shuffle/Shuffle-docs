@@ -16,10 +16,10 @@ Please start by following these documents:
 4. Nestedloops
 5. Start node
 6. Triggers
-7. [Liquid formatting]([url](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d))
+7. [Liquid formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d)
 8. Subflows
-9. [Shuffle Cache]([url](https://shuffler.io/workflows/f39a3c37-4f38-4ca0-952a-a9425080b44e))
-10. [Shuffle File storage]([url](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349)) 
+9. [Shuffle Cache](https://shuffler.io/workflows/f39a3c37-4f38-4ca0-952a-a9425080b44e)
+10. [Shuffle File storage](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349)
 11. App Authentication
 12. Loop filtering
 
