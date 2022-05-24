@@ -15,7 +15,8 @@ Documentation for configuring Shuffle.
 * [Database](#database)
 * [Network Configuration](#network_configuration)
 * [Docker Version error](#docker_version_error)
-* [Database migration](#database_migration)
+* [Database indexes](#database_indexes)
+* [Uptime monitoring](#uptime_monitoring)
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
 * [Known Bugs](#known_bugs)
@@ -37,7 +38,7 @@ docker-compose up -d
 ```
 
 ## Updating Shuffle
-As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure and up to date as possible, do this as much as you please.
+As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure and up to date as possible, do this as much as you please. To use a specific version of Shuffle, check out [specific version](/docs/configuration#specific_versioning)
 
 While being in the main repository:
 ```
@@ -49,6 +50,12 @@ docker pull frikky/shuffle:app_sdk
 ```
 
 **PS: This will NOT update your apps, meaning they may be outdated. To update your apps, go to /apps and click both buttons in the top right corner (reload apps locally & Download from Github)**
+
+## Specific Versioning
+To use a specific version of Shuffle, you'll need to manually edit the Docker-Compose.yml file to reflect the version - usually for the frontend and backend, but sometimes also the other containers. You can [see all our released versions here](https://github.com/frikky?tab=packages). We recommend keeping the same version for the frontend and backend, and **not** to keep them separate as the image below shows.
+
+![image](https://user-images.githubusercontent.com/5719530/169809608-325b5e9f-af44-45ab-83e1-c2acbcaf206a.png)
+
 
 ## Production readiness
 Shuffle is by default configured to be easy to start using. This means we've had to make some tradeoffs which can be enabled/disabled to make it easier to use the first time. This part outlines a lot of what's necessary to make Shuffle's security, availability and scalability better.
@@ -207,7 +214,7 @@ Shuffle has a few toggles that makes it straight up faster, but which removes a 
 
 Backend:
 ```
-# Set the encryption key to ensure all app authentication is being encrypted. If this is NOT defined, we do not encrypt your apps. If this is defined, all authentications - both old and new will start using this key.
+# Set the encryption key to ensure all app authentication is being encrypted. If this is NOT defined, we do not encrypt your apps. If this is defined, all authentications - both old and new will start using this key. 
 # Do NOT lose this key if specified, as that means you will need to reset all keys.
 
 SHUFFLE_ENCRYPTION_MODIFIER=YOUR KEY HERE
@@ -386,16 +393,16 @@ docker load shuffle_tools.tar
 #scp -3 centos@10.0.0.1:/home/user/wazuh.tar centos@10.0.0.2:/home/user/wazuh.tar
 ```
 
-
 #### Install Shuffle on a machine without internet
 
 This procedure will help you export what you need to run Shuffle on a no internet host.
 
 1. Prerequise
 
-The machine install docker and docker-compose
+* Both machines has Docker and Docker Compose installed already
+* Your host machine already needs the images on it to make them exportable
 
-2. pull images
+2. Pull images on original machine
 
 Shuffle need a few base images to work:
 - shuffle-frontend
@@ -403,14 +410,20 @@ Shuffle need a few base images to work:
 - shuffle-orborus
 - shuffle-worker
 - shuffle:app_sdk
-- shuffle-subflow
 - opensearch
+- shuffle-subflow
+
 ```
  docker pull ghcr.io/frikky/shuffle-backend & docker pull ghcr.io/frikky/shuffle-frontend & docker pull ghcr.io/frikky/shuffle-orborus &  docker pull frikky/shuffle:app_sdk & docker pull ghcr.io/frikky/shuffle-worker & docker pull opensearchproject/opensearch:1.3.2 & docker pull registry.hub.docker.com/frikky/shuffle:shuffle-subflow_1.0.0
  ```
-Be careful with the versionning for opensearch and shuffle-subflow, all other are goint to use the tag "latest"
+ 
+Be careful with the versioning for opensearch, all other are going to use the tag "latest". 
+You will also need to download and transfer ALL the apps you want to use. These can be discovered as such:
+```
+docker images | grep -i shuffle
+```
 
-3. Save image and archive it
+3. Save images and archive them
 
 ```
 mkdir shuffle-export & cd shuffle-export
@@ -433,15 +446,15 @@ cd .. & tar cvf shuffle-export.tar.gz shuffle-export
 
 4. Export data to the targeted machine
 
-Use scp, usb key, ..., to copy the previous archive to the machine.
+Use scp, usb key, ..., to copy the previous archive to the machine. [More about manual transfers here](http://localhost:3002/docs/configuration#manual_docker_image_transfers)
 
-5. Import docker images
+5. Import docker images to host without internet
 ```
 tar xvf shuffle-export.tar.gz & cd shuffle-export
 find -type f -name "*.tar" -exec docker load --input "{}" \;
 ```
 
-6. Deploy shuffle
+6. Deploy Shuffle without Internet
 
 Create folders to add the python apps
 
@@ -450,6 +463,19 @@ mkdir shuffle-apps
 cp -a python-apps/ * shuffle-apps/```
 
 Now, you just need to configure and install Shuffler like in normal procedure
+
+## Uptime Monitoring
+Uptime monitoring of Shuffle can be done by periodically polling the API for userinfo located at /api/v1/getinfo. This is an API that connects to our database, and which will be stuck if we any platform issues occur, whether in your local instance or in our Cloud instance on https://shuffler.io. 
+
+Shuffle has and will not have any planned downtime for services on https://shuffler.io, and have built our architecture around being able to upgrade and roll back without any downtime at all. If this occurs in the future for our Cloud platform, we will make sure to notify any active users. We plan to launch a status monitor for our services in 2022.
+
+**Basic monitoring** can be done with a curl request + sendmail + cronjob as [seen in this blogpost](https://www.programcreek.com/2017/06/automatically-detect-server-downtime-using-linux-cron-job/) with the curl command below. Your personal API key can be found on [https://shuffler.io/settings](https://shuffler.io/settings) or in the same location (/settings) in your local instance.
+
+```
+curl https://shuffler.io/api/v1/getinfo -H "Authorization: Bearer apikey"
+```
+
+
 ## Database
 To modify the database location, change "DB_LOCATION" in .env (root dir) to your new location.
 
