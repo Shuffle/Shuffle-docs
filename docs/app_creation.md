@@ -80,18 +80,20 @@ Creating or editing an app in Shuffle is made to be as simple and fast as possib
 * Image: An image for the app - should be square.
 * Base URL: The BASE URL for the app. Example: https://shuffler.io. Should NOT end with a /
 * Authentication: Authentication for the REST API.
+```
 	- No authentication: Means no authentication for the user
 	- API key: An API-key to be put in a header or query 
 	- Bearer Auth: Wants a "Bearer token" from the user. Uses the "Authorization" header field.
 	- Basic Auth: Uses Basic auth. Requires username and password from a user.
-	- Oauth2: TBD
+	- Oauth2: Based on Oauth2 and also works with OpenID. Works with all major providers, and handles refresh tokens for you. [More here](/docs/app_creation#oauth2)
+```
 * Extra configuration items: These are extra headers or queries the user HAS to provide when using the app.
 * Actions: Where you add the paths for each endpoint.
 * Categories: The category the app belongs to. Nothing fitting? Set it to "Other"
 * Tags: Add 1-5 tags that seem to fit. 
 
 ## Authentication
-#There are many ways to authenticate Shuffle apps. The most important thing is to understand how authentication is reflected in a Workflow. Let's use "GreyNoise" as an example.
+### There are many ways to authenticate Shuffle apps. The most important thing is to understand how authentication is reflected in a Workflow. Let's use "GreyNoise" as an example.
 
 GreyNoise uses the URL "https://api.greynoise.io" and authentication type of "API key" with the header "key". 
 ![Apps view 8](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-8.png?raw=true)
@@ -103,6 +105,21 @@ When authenticating this app in a workflow, we will therefore see two fields - "
 If you want extra variables added to the required authentication, you can add them with the "Extra configuration items". The defined header or query will then be added to every request from the user.
 
 ![Apps view 14](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-14.png?raw=true)
+
+### Oauth2
+Oauth2 is a special authentication mechanism, most used by major providers like Google and Microsoft, but also others who want good authentication mechanisms. Oauth2 works by primarily defining two URL's (three with refresh token URL) and scopes that can be used. One good example is [microsoft graph](https://shuffler.io/apps/edit/d71641a57deeee8149df99080adebeb7).
+
+As per the provider's documentation, you need to find their authorization url, token URL and Scopes that are matching what you want to do. Here's [what we found from Microsoft](https://docs.microsoft.com/en-us/graph/auth-v2-user). Please keep in mind you do NOT have to add the queries, but just the main URL. For Microsoft the user will have to change the tenant.
+
+After filling these in, you can now safely proceed to a Workflow to use the app. When authenticating the app, you will now have to fill in the following as a user:
+```
+- Client ID
+- Client Secret
+- Scopes
+```
+
+The former two will have to be found by the USER, as the point of this authentication type is to run as the user itself. This has to be documented well, either in the description of the app itself, or in the [OpenAPI documentation folder on Github]() to make it easily available to users. An example [for Microsoft app registration can be found here](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app), which includes how to get a client ID and secret. 
+
 
 ## Actions
 Actions are the meat of how apps actually work. The action part of the app creator provides the ability to control each individual endpoint very specifically. 
