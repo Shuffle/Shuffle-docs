@@ -93,6 +93,21 @@ In our second node (e.g. Shuffle Tools 2), we're building out a JSON object, and
 
 Want to merge the data in both of these lists? Use the "Merge lists" action, and add both lists to the 
 
+### Dot notation
+In [certain cases](https://github.com/Shuffle/Shuffle/issues/848), you may get JSON that has invalid keys. In these cases, we have workarounds using python to get the information. Here's an example based on an older issue someone had:
+
+A node with the name "nodename" has the following value:
+```
+{"_source": {"kibana.alert.rule.name": "Agent Spoofing - Multiple Hosts Using Same Agent", "siem.thresholdRule", "kibana.alert.rule.uuid": "abcde12345"}}
+```
+
+How would you get the field "._source.agent.alert.rule.name" within Shuffle? The answer is a workaround that utilizes Python, where you can work around dot notations with Python's bracket syntax.
+```
+{% python %}import json; print(json.loads($nodename)["_source"]["kibana.alert.rule.name"]){% endpython %}
+```
+
+Keep in mind this is not optimal nor an intended solution in many other scenarios. Just when keys are not represented in a useful way.
+
 ### Data cleaning - newlines and quotes
 As quotes can't be part of text in JSON, you may need to clean up data a whole lot before sending it on to it's destination. To do this, we use filters to remove bad data. First, make another node in Shuffle (e.g. Shuffle_Tools_1 with the following data repeated in the "Repeat back to me" action:
 ```
