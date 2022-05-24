@@ -37,7 +37,7 @@ docker-compose up -d
 ```
 
 ## Updating Shuffle
-As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure and up to date as possible, do this as much as you please.
+As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure and up to date as possible, do this as much as you please. To use a specific version of Shuffle, check out [specific version](/docs/configuration#specific_versioning)
 
 While being in the main repository:
 ```
@@ -49,6 +49,12 @@ docker pull frikky/shuffle:app_sdk
 ```
 
 **PS: This will NOT update your apps, meaning they may be outdated. To update your apps, go to /apps and click both buttons in the top right corner (reload apps locally & Download from Github)**
+
+## Specific Versioning
+To use a specific version of Shuffle, you'll need to manually edit the Docker-Compose.yml file to reflect the version - usually for the frontend and backend, but sometimes also the other containers. You can [see all our released versions here](https://github.com/frikky?tab=packages). We recommend keeping the same version for the frontend and backend, and **not** to keep them separate as the image below shows.
+
+![image](https://user-images.githubusercontent.com/5719530/169809608-325b5e9f-af44-45ab-83e1-c2acbcaf206a.png)
+
 
 ## Production readiness
 Shuffle is by default configured to be easy to start using. This means we've had to make some tradeoffs which can be enabled/disabled to make it easier to use the first time. This part outlines a lot of what's necessary to make Shuffle's security, availability and scalability better. 
