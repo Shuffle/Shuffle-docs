@@ -4,7 +4,10 @@ This document contains exercises for learning to use the various kinds of tools 
 **Read documentation carefully, but think critically** 
 
 ## Introduction
-Please start by following our [introductory tutorial on Medium](https://medium.com/shuffle-automation/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12) and reading the [Workflow documentation](http://shuffler.io/docs/workflows).
+Please start by following these documents:
+- [See our getting started section](https://shuffler.io/docs/getting_started)
+- [introductory tutorial on Medium](https://medium.com/shuffle-automation/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12) 
+- Reading the [Workflow documentation](http://shuffler.io/docs/workflows).
 
 ## Techniques to understand in depth
 1. Variables
@@ -13,10 +16,10 @@ Please start by following our [introductory tutorial on Medium](https://medium.c
 4. Nestedloops
 5. Start node
 6. Triggers
-7. Liquid formatting
+7. [Liquid formatting]([url](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d))
 8. Subflows
-9. Shuffle Cache
-10. Shuffle File storage 
+9. [Shuffle Cache]([url](https://shuffler.io/workflows/f39a3c37-4f38-4ca0-952a-a9425080b44e))
+10. [Shuffle File storage]([url](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349)) 
 11. App Authentication
 12. Loop filtering
 
