@@ -38,7 +38,7 @@ It is further possible to write pure python with data from Shuffle. In the case 
 ```
 {% python %}
 list = ["tag1", "tag2", "tag3"]
-print(list.join(","))
+print(",".join(list))
 {% endpython %}
 ```
 
