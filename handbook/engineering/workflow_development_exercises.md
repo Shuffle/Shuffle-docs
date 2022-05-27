@@ -1,6 +1,8 @@
 # Workflow development exercises 
 This document contains exercises for learning to use the various kinds of tools of Shuffle. The goal is NOT to learn about the platforms we use for our examples, but instead of learn about the various techniques used in Shuffle, making you proficient in workflow building and troubleshooting.
 
+You can either build this on [https://shuffler.io](https://shuffler.io) or in [your local instance](https://github.com/Shuffle/Shuffle)!
+
 **Read documentation carefully, but think critically** 
 
 ## Introduction
