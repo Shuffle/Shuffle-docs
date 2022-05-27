@@ -7,6 +7,7 @@ You can either build this on [https://shuffler.io](https://shuffler.io) or in [y
 
 ## Introduction
 Please start by following these documents:
+- [Internal Shuffle training videos](https://drive.google.com/drive/u/0/folders/1MtVfkCXDMSZ9yBwLDiVb0lj1H-oAK5RZ)
 - [See our getting started section](https://shuffler.io/docs/getting_started)
 - [introductory tutorial on Medium](https://medium.com/shuffle-automation/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12) 
 - Reading the [Workflow documentation](http://shuffler.io/docs/workflows).
