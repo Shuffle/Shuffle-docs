@@ -35,6 +35,7 @@ The goal of this workflow is to get emails, and analyze whether the sender's IP 
 2. (Variables) 					From the same emails, parse out indicators of compromise (IoC's)
 3. (Filtering & Search) Parse out any IPs and run a GreyNoise community search for whether they're malicious IF 
 4. (Shuffle Cache) 			If it's found to be malicious, add it to the cache list "malicious_ips", otherwise add it to "benign_ips"
+5. (Loops)              If you have a Jira account (from 2: Cases), create a ticket in Jira for each email and add whether the sender IP is malicious or not.
 
 - Schedules, Whois
 
