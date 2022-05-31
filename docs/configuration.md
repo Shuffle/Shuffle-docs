@@ -7,7 +7,7 @@ Documentation for configuring Shuffle.
 * [Introduction](#introduction)
 * [Updating Shuffle](#updating_shuffle)
 * [Production readiness](#production_readiness)
-* [No internet install](#Install Shuffle on a machine without internet)
+* [No internet install](#install_shuffle_on_a_machine_without_internet)
 * [Proxy Configuration](#proxy_configuration)
 * [HTTPS](#https)
 * [IPv6](#ipv6)
