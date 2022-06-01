@@ -1,10 +1,13 @@
 # Workflow development exercises 
 This document contains exercises for learning to use the various kinds of tools of Shuffle. The goal is NOT to learn about the platforms we use for our examples, but instead of learn about the various techniques used in Shuffle, making you proficient in workflow building and troubleshooting.
 
+You can either build this on [https://shuffler.io](https://shuffler.io) or in [your local instance](https://github.com/Shuffle/Shuffle)!
+
 **Read documentation carefully, but think critically** 
 
 ## Introduction
 Please start by following these documents:
+- [Internal Shuffle training videos](https://drive.google.com/drive/u/0/folders/1MtVfkCXDMSZ9yBwLDiVb0lj1H-oAK5RZ)
 - [See our getting started section](https://shuffler.io/docs/getting_started)
 - [introductory tutorial on Medium](https://medium.com/shuffle-automation/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12) 
 - Reading the [Workflow documentation](http://shuffler.io/docs/workflows).
@@ -33,6 +36,7 @@ The goal of this workflow is to get emails, and analyze whether the sender's IP 
 2. (Variables) 					From the same emails, parse out indicators of compromise (IoC's)
 3. (Filtering & Search) Parse out any IPs and run a GreyNoise community search for whether they're malicious IF 
 4. (Shuffle Cache) 			If it's found to be malicious, add it to the cache list "malicious_ips", otherwise add it to "benign_ips"
+5. (Loops)              If you have a Jira account (from 2: Cases), create a ticket in Jira for each email and add whether the sender IP is malicious or not.
 
 - Schedules, Whois
 
