@@ -9,7 +9,7 @@ Documentation for configuring Shuffle.
 * [Introduction](#introduction)
 * [Updating Shuffle](#updating_shuffle)
 * [Production readiness](#production_readiness)
-* [No internet Install](#No_Internet_Install)
+* [No Internet Install](#no_internet_install)
 * [Proxy Configuration](#proxy_configuration)
 * [HTTPS](#https)
 * [IPv6](#ipv6)
@@ -430,7 +430,7 @@ docker load shuffle_tools.tar
 #scp -3 centos@10.0.0.1:/home/user/wazuh.tar centos@10.0.0.2:/home/user/wazuh.tar
 ```
 
-#### No Internet Install
+## No Internet Install
 
 This procedure will help you export what you need to run Shuffle on a no internet host.
 
