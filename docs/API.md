@@ -218,6 +218,27 @@ Methods: DELETE
 curl -XDELETE https://shuffler.io/api/v1/apps/{app_id} -H "Authorization: Bearer APIKEY"
 ```
 
+### Upload a python app 
+Uploads a python app. You should upload a zip file with the following like file structure. 
+``` 
+App.zip
+├── src
+│   ├── app.py
+├── api.yaml
+├── Dockerfile
+├── requirements.txt
+```       
+
+Methods: POST
+
+```
+curl https://shuffler.io/api/v1/apps/upload -H "Authorization: Bearer APIKEY" -F 'shuffle_file=@./your_file/file_path/App.zip'
+```
+**Success response** 
+```
+{"Deployed App ID" : "798f1234c4fb8b4a6300da3c546af45a"}
+```	
+	
 ### Get App Authentication
 Get a list of all app authentication
 
