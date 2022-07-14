@@ -29,7 +29,7 @@ These integrations will typically entail third party services connecting to Shuf
 Shuffle added Single Signon (SAML) from version 0.9.16 & OpenID since 1.0.0. This allows you to log into Shuffle from other sources, entirely controlled by your external environment. SSO is available for **onprem**, even without the Enterprise version of Shuffle cloud. It works by setting an Entrypoint (IdP) and X509 Certificate, both used to validate the requests. This can be added under /admin, and **only works for your PRIMARY organization**.
 
 ## Note 
-You will have to change the BASE_URL to match your front end server link i.e BASE_URL=http://<URL>:<PORT>
+You will have to change the BASE_URL to match your front end server link i.e `BASE_URL=http://<URL>:<PORT>`
 
 ![Single Signon button](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-3.png?raw=true)
 
