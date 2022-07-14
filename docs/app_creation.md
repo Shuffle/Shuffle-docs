@@ -514,10 +514,13 @@ Once complete, any workflows you have that use the existing app, you'll have to 
 Just made an app and want others to get access to it? Here's how to get it in the hands of everyone:
 
 **OpenAPI:**
-OpenAPI apps are by design very easy to build and share - both inside and outside the Shuffle ecosystem.
+Before releasing an app, it needs to be uploaded and available in Shuffle. OpenAPI apps are by design easy to build and share - both inside and outside the Shuffle ecosystem.
+
+```
 1. Go to /apps in your instance (cloud/onprem)
 2. Find the app you've just made!  
 3. Click publish.
+```
 
 ![App Creator](https://github.com/frikky/shuffle-docs/blob/master/assets/app_creator-1.png?raw=true)
 

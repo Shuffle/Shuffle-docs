@@ -3,6 +3,7 @@ Getting started with Shuffle
 
 ## Table of contents
 * [Introduction](#introduction)
+* [FAQ](#faq)
 * [Usage Models](#usage_models)
 * [First workflow](#first_workflow)
 * [Learn about Shuffle](#learn_about_shuffle)
@@ -15,6 +16,8 @@ Getting started with Shuffle
 
 ## Usage Models
 ![models](https://user-images.githubusercontent.com/5719530/167960847-53e81815-a240-4a26-abb9-96b9244be901.jpeg)
+
+## FAQ
 
 ## First workflow
 
