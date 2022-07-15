@@ -68,7 +68,9 @@ We use the third party payment processor [Stripe](https://stripe.com/us/privacy)
 4. Stripe: Payments
 5. Fiken: Accounting 
 6. Google Drive: General storage
-7. Discord & Signal: Communication
+7. Discord: Community Communication
+8. Copper & Pipedrive: CRM
+9. Drift: Support Chat
 
 ### User Data Management
 * Collected data: Email addresses, Domains, Organization names, Firstname, Lastname, Authentication keys
