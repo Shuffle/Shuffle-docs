@@ -19,6 +19,7 @@ This is documentation for integrating and sending data from third-party services
   * [FortiSIEM Webhook](#fortisiem)
   * [ELK Webhook](#elk)
   * [Cortex Webhook](#cortex)
+  * [Splunk Webhook](#splunk-siem)
 
 ## Introduction
 From the start, Shuffle has been a platform about integrations. We've focused on making them as open and usable as possible, but were missing one part; inbound data. The general way Shuffle handles this has been through third-party API's, where we poll for data on a schedule. There are however some cases where this doesn't do the trick. That's what extensions are. 
@@ -629,6 +630,32 @@ With the Notification Endpoint specified in the previous step, we need to decide
 ![image](https://user-images.githubusercontent.com/5719530/162086144-8bbfb6fa-d512-4c36-81db-f830bcf9c204.png)
 
 That's it! It's now time to wait for an alert to actually trigger. When it has, make sure to send Execution Argument from the webhook ($exec) straight into an XML to JSON parser. That way you can use it easily in Shuffle.
+
+### Splunk SIEM 
+Splunk is a SIEM tool for security operations. There are multiple ways to forward the Splunk alerts to  external systems. Simplest way to forward splunk alerts to Shuffle is with using webhook.
+
+**Step 1:** First we'll have to create a Shuffle workflow which will recieve alerts from Splunk. Go to /workflows in Shuffle and create a new worfklow. Then, inside workflow editor drag in the webhook from the trigger section in left pane.
+
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/splunk-alerts-1.png)
+
+**Step 2:** Click on the webhook node and then click on start. Copy the webhook url.
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/splunk-alerts-2.png)
+
+**Now that we have webhook running in the Shuffle, Go to your Splunk deployment server and log in.**
+
+**Step 3:** Now we'll have to configure Splunk with the webhook URL. Once logged in, go to the **search and reporting** app and type in the query you want to create an alert for.   
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/splunk-alerts-3.png)
+
+**Step 4:** Save the search query as an alert.
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/splunk-alerts-4.png)
+
+**Step 5:** Fill out all the form details for saving as an alert. At the very bottom of thr form in **Trigger action** section click on **Add actions** select Webhook.
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/splunk-alerts-5.png)
+
+**Step 6:** Paste in the webhook URL in URL field and click Save.
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/splunk-alerts-5.png)
+
+**You should now start seeing data sent from Splunk into Shuffle which can be used inside workflow for further actions.**
 
 	
 ### ELK
