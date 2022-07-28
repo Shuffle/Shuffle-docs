@@ -653,7 +653,7 @@ Splunk is a SIEM tool for security operations. There are multiple ways to forwar
 ![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/splunk-alerts-5.png)
 
 **Step 6:** Paste in the webhook URL in URL field and click Save.
-![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/splunk-alerts-5.png)
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/splunk-alerts-6.png)
 
 **You should now start seeing data sent from Splunk into Shuffle which can be used inside workflow for further actions.**
 
