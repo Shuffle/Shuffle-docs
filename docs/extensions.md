@@ -30,7 +30,7 @@ These integrations will typically entail third party services connecting to Shuf
 Shuffle added Single Signon (SAML) from version 0.9.16 & OpenID since 1.0.0. This allows you to log into Shuffle from other sources, entirely controlled by your external environment. SSO is available for **onprem**, even without the Enterprise version of Shuffle cloud. It works by setting an Entrypoint (IdP) and X509 Certificate, both used to validate the requests. This can be added under /admin, and **only works for your PRIMARY organization**.
 
 ## Note 
-You will have to change the BASE_URL to match your front end server link i.e `BASE_URL=http://<URL>:<PORT>`
+**ONPREM ONLY:** You will have to change the SSO_REDIRECT_URL variable in the .env file to match your front end server link i.e `SSO_REDIRECT_URL=http://<URL>:<PORT>` 
 
 ![Single Signon button](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-3.png?raw=true)
 
@@ -127,7 +127,7 @@ If you keep getting redirected to your backend url, head on to your Shuffle fold
 
 ![vim env](https://user-images.githubusercontent.com/31187099/164943744-981638cf-6149-42e1-a455-3d12927ec24c.png)
 
-2. In vim change the BASE URL to your server link; i.e BASE_URL=http://<URL>:<PORT>
+2. In vim change the BASE URL to your server link; i.e SSO_REDIRECT_URL=http://<URL>:<PORT>
 
 ![baseurl](https://user-images.githubusercontent.com/31187099/164943748-96217836-6b7d-42e7-8c25-fae3d3294b30.png)
 

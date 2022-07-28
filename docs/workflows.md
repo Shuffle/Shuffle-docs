@@ -326,7 +326,7 @@ Result for #3:
 ## Passing lists
 **PS: If you deal with MULTIPLE loops (loop within a loop), please pass each element to a sub-workflow using the [Shuffle Workflow](/docs/triggers#subflow)**
 
-Lists are a different ballgame, but are really important to a SOAR solution. One simple reason would be: what if you have some alerts you want from system X to system Y? That will most likely be a list.
+Lists and looping are a different ballgame, but are really important to any SOAR solution. One simple reason would be: what if you have some alerts you want from system X to system Y? That will most likely be a list.
 
 In the same way a node is identified by $, a list is identified by #. Say we have the following json data, and we want parse the "users" list. The node name is repeat_list (more below in example). 
 
