@@ -20,6 +20,7 @@ This is documentation for integrating and sending data from third-party services
   * [ELK Webhook](#elk)
   * [Cortex Webhook](#cortex)
   * [Splunk Webhook](#splunk-siem)
+  * [Eventlog Analyzer - SIEM](#eventlog-analyzer)
 
 ## Introduction
 From the start, Shuffle has been a platform about integrations. We've focused on making them as open and usable as possible, but were missing one part; inbound data. The general way Shuffle handles this has been through third-party API's, where we poll for data on a schedule. There are however some cases where this doesn't do the trick. That's what extensions are. 
@@ -159,7 +160,7 @@ The URL is as such: `https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/aut
 5. Done! Click save and log out. Try your new login based on your Azure AD configuration. 
 	
 PS: When the user is signed in, they have the access rights of a "user" in the designated organization, and will have a username according to the ID decided in O365. This can be changed by admins.
-
+	
 ### Other
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
 
@@ -657,6 +658,9 @@ Splunk is a SIEM tool for security operations. There are multiple ways to forwar
 
 **You should now start seeing data sent from Splunk into Shuffle which can be used inside workflow for further actions.**
 
+	
+### Eventlog Analyzer
+Note: API integration is unfortunately not supported with EventLog Analyzer. However, If you would like to forward logs from EventLog Analyzer to Shuffle. For more information please follow this [guide](https://www.manageengine.com/products/eventlog/help/StandaloneManagedServer-UserGuide/Configurations/log-forwarder.html)
 	
 ### ELK
 TBD: Kibana forwarding & ElastAlert
