@@ -6,6 +6,9 @@ Getting started with Shuffle
 * [FAQ](#faq)
 * [Usage Models](#usage_models)
 * [First workflow](#first_workflow)
+* [Shuffle 101](#shuffle_101)
+* [Shuffle Videos](#shuffle_videos)
+* [Community Videos](#community_videos)
 * [Learn about Shuffle](#learn_about_shuffle)
 
 ## Introduction
@@ -23,16 +26,16 @@ Getting started with Shuffle
 
 ![Hello world gif](https://github.com/frikky/shuffle-docs/blob/master/assets/Shuffle-hello-world.gif?raw=true)
 
-## Understanding Shuffle
-Our friends over at [OpenSecure](http://opensecure.co) made some good videos to learn about Shuffle. Check them out here!
+## Shuffle 101
+- [Learning Startnodes](https://shuffler.io/workflows/0285a05e-8dc0-4614-840b-88606d6a1e59?queryID=5775af43ac103d34ff77f11d27ea5bed)
+- [Learning the HTTP app](https://shuffler.io/workflows/b8a3a70a-f3f9-459f-99b3-7a2723a1a4b8?queryID=5775af43ac103d34ff77f11d27ea5bed)
+- [Cache Tutorial](https://shuffler.io/workflows/f39a3c37-4f38-4ca0-952a-a9425080b44e?queryID=5775af43ac103d34ff77f11d27ea5bed)
+- [File Tutorial](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349?queryID=5775af43ac103d34ff77f11d27ea5bed)
+- [App Authentication](https://shuffler.io/workflows/d65d228a-f406-4227-9fa7-f7d9303f8411?queryID=5775af43ac103d34ff77f11d27ea5bed)
+- [Learning Liquid Formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d?queryID=5775af43ac103d34ff77f11d27ea5bed)
 
-### What is SOAR? Automating with Shuffle
-[![Shuffle getting started understanding shuffle](https://img.youtube.com/vi/_riaZjLnoXo/0.jpg)](https://www.youtube.com/watch?v=_riaZjLnoXo)
-
-### Installing Shuffle
-[![How to install Shuffle](https://img.youtube.com/vi/YDUKZojg0vk/0.jpg)](https://www.youtube.com/watch?v=YDUKZojg0vk)
-
-## Learn about Shuffle - in depth
+## Shuffle Youtube Videos
+### Learn about Shuffle - in depth
 Here's a training session we did on Shuffle.
 
 - 00:00 - 00:30: Introduction to Shuffle and what we're building
@@ -40,4 +43,9 @@ Here's a training session we did on Shuffle.
 - 02:00 - end: Real-time demo, creating use-cases for attendees
 
 [![Shuffle the SOC walkthrough](https://img.youtube.com/vi/PNuXCixYwDc/0.jpg)](https://www.youtube.com/watch?v=PNuXCixYwDc)
+
+## Community Videos
+- **Understanding Shuffle**: Our friends over at [OpenSecure](http://opensecure.co) made some good videos to learn about Shuffle. Check them out here!
+- **What is SOAR?**: [Shuffle getting started understanding shuffle](https://www.youtube.com/watch?v=_riaZjLnoXo)
+- **Installing Shuffle**: [How to install Shuffle](https://www.youtube.com/watch?v=YDUKZojg0vk)
 
