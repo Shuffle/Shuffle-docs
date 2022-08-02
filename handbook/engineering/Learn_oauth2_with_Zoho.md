@@ -1,3 +1,8 @@
+# Set up auth
+https://api-console.zoho.com/
+
+Make the app **server auth**
+
 # Using 0auth with Zoho Desk.
 
 This following content is based off of the Zoho Desk API documentation that can be found here: https://desk.zoho.com/DeskAPIDocument#OauthTokens#MakingTheAuthorizationRequest
