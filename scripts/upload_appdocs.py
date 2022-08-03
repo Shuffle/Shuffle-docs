@@ -1,5 +1,5 @@
-# Uploads documentation into Algolia when ran. 
-# Primarily focuses on each part of markdown files.
+# Uploads appdocs from OpenAPI apps and Python apps to Algolia for searchability
+# Based on upload.py (normal docs)
 
 import os
 import hashlib
@@ -10,7 +10,7 @@ from algoliasearch.exceptions import RequestException
 client = SearchClient.create(os.getenv("ALGOLIA_CLIENT"), os.getenv("ALGOLIA_SECRET"))
 index = client.init_index("documentation")
 
-basedir = "../docs"
+basedir = "../../OpenAPI-security-definitions/docs"
 validurls = []
 for dirname in os.listdir(basedir):
     if "md" not in dirname:
@@ -38,6 +38,7 @@ for dirname in os.listdir(basedir):
                 if curitem:
                     if wrappeditem["title"] != "Table of contents":
                         if wrappeditem["ref_url"] not in validurls:
+                            print("REF: %s, doc: %s" % (filename, wrappeditem["ref_url"]))
                             ret = requests.get(wrappeditem["ref_url"])
                             #print("RET: %d - %s" % (ret.status_code, wrappeditem["ref_url"]))
                             if ret.status_code != 200:
@@ -46,26 +47,27 @@ for dirname in os.listdir(basedir):
                             else:
                                 validurls.append(wrappeditem["ref_url"])
 
-                        to_upload.append(wrappeditem)
+                        if filename == "datadog":
+                            to_upload.append(wrappeditem)
                     
                 # Priority based on title
-                title = " ".join(item.split("# ")[1:]).strip()
-                priority = 5
+                title = "%s app: %s" % (filename.capitalize(), " ".join(item.split("# ")[1:]).strip())
+                priority = 0
                 for char in item:
                     if char == "#":
                         priority -= 1
-    
+
                 # Hash is used for prioritizing the search
                 title_hash = hashlib.md5(("%s_%s" % (filename, title)).encode("utf-8")).hexdigest()
                 wrappeditem = {
                     "filename": filename,
                     "title": title.strip(),
                     "data": "",
-                    "url": "https://shuffler.io/docs/%s#%s" % (filename, title.replace(" ", "_").lower()),
-                    "urlpath": "/docs/%s#%s" % (filename, title.replace(" ", "_").lower()),
+                    "url": "https://shuffler.io/apps/%s?tab=docs#%s" % (filename, title.replace(" ", "_").lower()),
+                    "urlpath": "/apps/%s?tab=docs#%s" % (filename, title.replace(" ", "_").lower()),
                     "objectID": title_hash,
                     "priority": priority,
-                    "ref_url": "https://github.com/shuffle/shuffle-docs/blob/master/docs/%s.md" % filename,
+                    "ref_url": "https://github.com/shuffle/openapi-apps/blob/master/docs/%s.md" % filename,
                 }
                 curitem = item
                 continue
@@ -79,6 +81,7 @@ for dirname in os.listdir(basedir):
     
     if len(to_upload) > 0:
         try:
+            print("Uploading: %s" % to_upload)
             ret = index.save_objects(to_upload)
             print("%s: %d objects" % (filename, len(to_upload)))
         except RequestException as e:
