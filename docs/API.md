@@ -509,14 +509,14 @@ curl https://shuffler.io/api/v1/files/namespaces/{category} -H "Authorization: B
 
 **?id=true**
 ```
-[{
+{"success": True, "list": [{
 	"name": "Filename",
 	"id": "file_uuid",
 },
 {
 	"name": "Filename2",
 	"id": "file_uuid2",
-}]
+}]}
 ```
 
 **Success response** 
