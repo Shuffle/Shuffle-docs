@@ -483,6 +483,48 @@ curl -XDELETE https://shuffler.io/api/v1/files/{file_id} -H "Authorization: Bear
 {"success": true}
 ```
 
+### Edit an existing file
+Edit an active file with existing content (/upload) for first uploads. The file meta is left intact, except for the hash sums, sizing and timestamps. This function is meant to be used together with [file categories](#get_file_category) to e.g. handle Detection rules.
+
+Methods: PUT
+
+```
+curl -XPUT https://shuffler.io/api/v1/files/{file_id}/edit -H "Authorization: Bearer APIKEY" -d 'this is the new content of the file'
+```
+
+
+**Success response** 
+```
+{"success": true}
+```
+
+### Get file category
+Gets all files in a namespace zipped. The point of this function is to be able to load in multiple files at once in order to e.g. run detections. By adding the query ids=true, it will instead give you a list of all the files
+
+Methods: GET
+
+```
+curl https://shuffler.io/api/v1/files/namespaces/{category} -H "Authorization: Bearer APIKEY"
+```
+
+**?id=true**
+```
+[{
+	"name": "Filename",
+	"id": "file_uuid",
+},
+{
+	"name": "Filename2",
+	"id": "file_uuid2",
+}]
+```
+
+**Success response** 
+```
+<ZIPFILE WITH ALL FILES IN CATEGORY>
+```
+
+
 ## Triggers
 Triggers in Shuffle have their own custom usage and APIs. 
 
