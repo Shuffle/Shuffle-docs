@@ -33,6 +33,7 @@ Getting started with Shuffle
 - [File Tutorial](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349?queryID=5775af43ac103d34ff77f11d27ea5bed)
 - [App Authentication](https://shuffler.io/workflows/d65d228a-f406-4227-9fa7-f7d9303f8411?queryID=5775af43ac103d34ff77f11d27ea5bed)
 - [Learning Liquid Formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d?queryID=5775af43ac103d34ff77f11d27ea5bed)
+- [JSON within Shuffle](https://shuffler.io/workflows/ee334515-0224-4a09-af8c-ebc60886f154?queryID=7571057f529c8a4a9aabd5800c0d2b29)
 
 ## Shuffle Youtube Videos
 ### Learn about Shuffle - in depth
