@@ -25,6 +25,7 @@ Please start by following these documents:
 10. [Shuffle File storage](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349)
 11. App Authentication
 12. Loop filtering
+13. Rest APIs
 
 ## Use-case exercises
 To learn about how to do common things with Shuffle, we suggest trying to make the following use-cases.
