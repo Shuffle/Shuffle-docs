@@ -399,7 +399,7 @@ Creating a file is necessary before uploading one. This is to prepare the file l
 Methods: POST 
 
 ```
-curl https://shuffler.io/api/v1/files/create -H "Authorization: Bearer APIKEY" -d '{"filename": "file.txt", "org_id": "your_organization", "workflow_id": "workflow_id"}'
+curl https://shuffler.io/api/v1/files/create -H "Authorization: Bearer APIKEY" -d '{"filename": "file.txt", "org_id": "your_organization", "workflow_id": "workflow_id", "namespace": "category", "labels": ["label1", "label2"]}'
 ```
 
 
@@ -499,7 +499,7 @@ curl -XPUT https://shuffler.io/api/v1/files/{file_id}/edit -H "Authorization: Be
 ```
 
 ### Get file category
-Gets all files in a namespace zipped. The point of this function is to be able to load in multiple files at once in order to e.g. run detections. By adding the query ids=true, it will instead give you a list of all the files
+Gets all files in a namespace zipped. The point of this function is to be able to load in multiple files at once in order to e.g. run detections. By adding the query ids=true, it will instead give you a list of all the files. When receiveing file it will automatically deduplicate files with the same Sha256 hash.
 
 Methods: GET
 

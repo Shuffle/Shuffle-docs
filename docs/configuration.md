@@ -197,7 +197,7 @@ services:
     container_name: shuffle-opensearch
     environment:
       - bootstrap.memory_lock=true
-      - "OPENSEARCH_JAVA_OPTS=-Xms1024m -Xmx1024m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+      - "OPENSEARCH_JAVA_OPTS=-Xms4096m -Xmx4096m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
             - plugins.security.disabled=true
       - cluster.routing.allocation.disk.threshold_enabled=false
       - cluster.name=shuffle-cluster
@@ -268,8 +268,7 @@ SHUFFLE_PASS_WORKER_PROXY=true
 ```
 
 ### Redundancy
-
-TBD: We have yet to decide how this should be implemented for Shuffle. Per now, you may configure multiple instances with a load balancer, but there's no easy way to synchronize data between them to ensure they're in the same place.
+You may configure multiple instances with a load balancer and docker-swarm/kubernetes. An official guide for high availability is still in the making. Please [contact us](https://shuffler.io/contact) if this is a need.
 
 A good place to start is this blogpost by one of our contributors: https://azgaviperr.github.io/3-nodes-swarm/DockerSwarm/Stacks/Shuffler/
 
