@@ -21,6 +21,7 @@ This is documentation for integrating and sending data from third-party services
   * [Cortex Webhook](#cortex)
   * [Splunk Webhook](#splunk-siem)
   * [Eventlog Analyzer - SIEM](#eventlog-analyzer)
+  * [ServicePilot - SIEM](#servicepilot-siem)
 
 ## Introduction
 From the start, Shuffle has been a platform about integrations. We've focused on making them as open and usable as possible, but were missing one part; inbound data. The general way Shuffle handles this has been through third-party API's, where we poll for data on a schedule. There are however some cases where this doesn't do the trick. That's what extensions are. 
@@ -661,6 +662,48 @@ Splunk is a SIEM tool for security operations. There are multiple ways to forwar
 	
 ### Eventlog Analyzer
 Note: API integration is unfortunately not supported with EventLog Analyzer. However, If you would like to forward logs from EventLog Analyzer to Shuffle. For more information please follow this [guide](https://www.manageengine.com/products/eventlog/help/StandaloneManagedServer-UserGuide/Configurations/log-forwarder.html)
+	
+
+### ServicePilot SIEM 
+ServicePilot is a high-performance analytics platform that supports observability and full-stack monitoring: metrics, traces and logs. You can collect data from many services and sources across your entire IT stack (ITIM, NPM, APM, DEM, SIEM) as well as view details of historical data stored by ServicePilot. Webhook integration service is not provided by the ServicePilot platform. Here am gonna mentioned the steps for how to use ServicePilot app workflow.
+
+#### - What this workflow do?
+This workflow is help to get all the alerts, objects, events and logs. In this workflow there are two nodes of ServicePilot app. one is for getting all the records from the ServicePilot SIEM app and another one is searching for alerts, objects, events and logs for specific entry. As a result this workflow first excecute the Get_All_Data node and after that it excecute the Get_Specific_Record node and at the last return the result.
+
+#### - How the seaching happens?
+For searching records from the ServicePilot app we need to write SQL query to search the data. we need to write query as a query parameter in the request url.
+
+#### - Steps to create a workflow
+**Step 1:** First we'll have to create a Shuffle workflow which will search for events, objects, alerts, and logs from ServicePilot. Go to /workflows in Shuffle and create a new worfklow. Then, inside workflow editor drag in the node for the ServicePilot.
+	
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/servicepilot-0.0.png)
+
+**Step 2:** Click on the ServicePilot node.
+	
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/servicepilot-1.0.png)
+
+**Step 3:** Change the name of the node as Get_All_Data.
+	
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/servicepilot-1.1.png)
+
+**Step 4:** Write Query for searching all the datas from the ServicePilot.
+	
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/servicepilot-1.2.png)
+
+**Step 5:** Inside workflow editor drag in the another node for the ServicePilot and connect it with the existing node.
+	
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/servicepilot-2.0.png)
+
+**Step 6:** Change the name of the node as Get_Specific_Record.
+	
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/servicepilot-2.1.png)
+
+**Step 7:** Write Query for searching specific record from the ServicePilot.
+	
+![image](https://github.com/shuffle/Shuffle-docs/blob/master/assets/servicepilot-2.2.png)
+
+**Finally, Click the excecution button and you should now start seeing data sent from ServicePilot into Shuffle which can be used inside workflow for further actions.**
+	
 	
 ### ELK
 TBD: Kibana forwarding & ElastAlert
