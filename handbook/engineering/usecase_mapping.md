@@ -20,7 +20,7 @@ Our focus for the rest of 2022 will most likely be on the following [App categor
 - EDR
 - SIEM
 
-This is to ensure we can handle "normal" data in a structured way.
+This is to ensure we can handle "normal" data in a structured way. These should then be built out in order in accordance with most to least popular as can be seen here: https://app.cyfe.com/dashboards/1031846
 
 ## 1. How the App Framework and Usecases fit together
 When going to the welcome pages (https://shuffler.io/welcome), you will be presented with questions about what tools you use. 
