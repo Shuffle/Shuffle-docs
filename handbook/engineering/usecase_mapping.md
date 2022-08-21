@@ -14,7 +14,7 @@ The goal of this document is entirely to understand:
 ![image](https://user-images.githubusercontent.com/5719530/185791408-f61249db-6ff8-4e43-99ee-c3559ef34b81.png)
 
 ## Focus
-Our focus for the rest of 2022 will most likely be on the following App categories:
+Our focus for the rest of 2022 will most likely be on the following [App categories](https://github.com/Shuffle/Shuffle-docs/blob/master/handbook/engineering/app_development.md):
 - Email (Comms)
 - Cases
 - EDR
@@ -35,6 +35,30 @@ When setting these up, you end up selecting an app from our search engine Algoli
 - 2. The app is added to the App framework for their organization. This means we can further recommend workflows and usecases for them.
 
 ![image](https://user-images.githubusercontent.com/5719530/185791974-3714803a-e5ee-4bfd-acbd-62eb32547fb0.png)
+
+## 2. What types of Workflows exist and how to build them
+Now that the user has selected an app, it's our turn to provide them with the recommended workflows. But to do this, Shuffle needs to understand what the app is and how to use it. As mentioned in the previous example, the "Gmail" app goes under the "Comms" or "Email" category. And for each category, we have some "standard" actions. As an example for email, this is:
+
+- List and read emails
+- Send emails
+
+But these aren't as obvious as you may think to get. That's why we need PUBLISHED workflows that are MAPPED to the app within our search engine Algolia. The types of workflows are as follows:
+- Triggers: A workflow that is intended to act as a trigger for the app. E.g. for email: "When I get an email", THEN... To be valid, these workflows NEED TO start with a schedule, and end in a subflow which gets a single item at a time. 
+- Subflows: Any "simple" action that we can use. E.g. if we want to connect Gmail with Jira for ticketing, 
+
+After the workflow is published, it can then be edited into the search engine properly like this (in Algolia):
+![image](https://user-images.githubusercontent.com/5719530/185792423-600e19e6-925c-4a2d-b331-9b54a95183c6.png)
+
+Workflow types can be changed while editing a workflow:
+![image](https://user-images.githubusercontent.com/5719530/185792338-9985e561-afa3-4c90-85f4-b96e1961ab63.png)
+
+
+## 3. How to find the most relevant workflows to build
+- TBA
+
+## 4. How to map the Workflows to the App in order to make the workflow building process easier for our users
+- TBA
+
 
 
 
