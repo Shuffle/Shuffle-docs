@@ -555,11 +555,11 @@ output=$(curl --insecure -H $auth_header $shuffle_url -d "$(cat <<EOF
 }
 EOF
 )")
-
-# Basic print out of the output of the command
-echo $output
 ```
 
+What you should do to use it:
+
+```
 a) Log In to QRadar;
 			
 b) Go to Admin > Custom Actions > **Define Actions**;	
@@ -581,6 +581,7 @@ f) For the Script Parameters, add the parameters in the following order:
 g) Save
 			
 h) Deploy Changes
+```
 
 ![image](https://user-images.githubusercontent.com/21691729/152444978-d360680a-a0b1-40b0-bd04-fa7395cf4d85.png)
 ![image](https://user-images.githubusercontent.com/21691729/152445000-0d2a1828-ee1d-41b1-a549-5417c9a48c75.png)
