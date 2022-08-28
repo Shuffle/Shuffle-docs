@@ -267,12 +267,11 @@ https://user-images.githubusercontent.com/31187099/152918139-72a03d69-0a49-4551-
 * slice: Returns a substring of 1 character beginning at the index specified by the argument passed in. An optional second argument specifies the length of the substring to be returned.
 * sort: Sorts elements in an array by a property of an element in the array. The order of the sorted array is case-sensitive.
 * sort_natural: Sorts elements in an array by a property of an element in the array.
-* split: Used to make a list from a string. Often useful when parsing data
-
+* split: Divides an input string into an array using the argument as a separator. Example: {{ "email@domain.com" | split: '@' }}
+       
 ```
-{{ "my,list,uses,comma" | split: "," }}
+ {{ "email@domain.com" | split: '@' }}
 ```
-
 * strip: Removes all whitespace (tabs, spaces, and newlines) from both the left and right side of a string. It does not affect spaces between words.
 * strip_html: Removes any HTML tags from a string.
 * strip_newlines: Removes any newline characters (line breaks) from a string.
