@@ -3,6 +3,7 @@ Documentation for workflows.
 
 ## Table of contents
 * [Introduction](#introduction)
+* [What you need to know](#what-you-need-to-know)
 * [Workflow Basics](#workflow-basics)
   * [Create](#create)
   * [Edit](#edit)
@@ -40,8 +41,28 @@ Workflows are the backbone of Shuffle, empowering you to automate your daily tas
 
 If you would like to learn more about how to create, test and automate your tasks, read on. 
 
+## What you need to know
+We encourage everyone to have checked out our [Workflow Development Exercises](https://github.com/Shuffle/Shuffle-docs/blob/master/handbook/engineering/workflow_development_exercises.md) before becoming a creator. This makes sure you know the fundamentals of using Shuffle, as seen below:
+1. Variables
+2. JSON
+3. Loops
+4. Nestedloops
+5. Start node
+6. Triggers
+7. [Liquid formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d)
+8. Subflows
+9. [Shuffle Cache](https://shuffler.io/workflows/f39a3c37-4f38-4ca0-952a-a9425080b44e)
+10. [Shuffle File storage](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349)
+11. App Authentication
+12. Loop filtering
+13. Rest APIs
+
+## Finding relevant workflows
+You may often want to start with a template. To build a Workflow in Shuffle from scratch is much harder than having something to go off. That's why we always encourage you to [search public workflows](/search?tab=workflows) first.
+
+
 ## Workflow Basics
-The following section describes a basic workflow. 
+The following section describes the basics of a workflow. 
 
 ### Create
 Once logged in, creating a workflow can be done by going to the [workflows](/workflows) dashboard and clicking the "New" button next to "Workflows". It will ask you for a name and description. These can be changed at any time. 

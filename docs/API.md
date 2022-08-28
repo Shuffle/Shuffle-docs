@@ -11,8 +11,8 @@ Documentation for Shuffle API v1.0. Will be generated from OpenAPI by Shuffle ve
 * [Files](#file_api)
 * [Triggers](#triggers)
 * [Notifications](#notifications)
-* [Environments - TBD](#environments)
-* [Organizations - TBD](#organizations)
+* [Environments - TBA](#environments)
+* [Organizations - TBA](#organizations)
 
 ## Introduction
 Shuffle is a platform to build and execute [workflows](/docs/workflows) to help with automation and reduce burnout. It's built with an API structure in mind, and everything done has an API endpoint. The listed API's are built and generated with our own [OpenAPI creator](/docs/apps#create_openapi_app). All API's listed are for both versions of Shuffle (cloud/onprem), unless otherwise specified. Our OpenAPI specification can be [downloaded here](https://shuffler.io/apps/edaa73d40238ee60874a853dc3ccaa6f). Below are the base URL's for the API.
@@ -57,8 +57,6 @@ Shuffle responses follow the response codes listed below. The data you can expec
 | 401    | Not authorized, or an error occurred. Usually contains a reason for the error. |
 | 405    | Method not allowed. We use GET/POST/PUT/DELETE |
 | 500    | A backend error occurred. |
-
-**TBD: Add proper example responses for each.**
 
 
 
@@ -604,19 +602,19 @@ curl -XDELETE https://shuffler.io/api/v1/hooks/{webhook_id} -H "Authorization: B
 ```
 
 ### Create Outlook Subscription
-TBD
+TBA
 
 ### Delete Outlook Subscription
-TBD
+TBA
 
 ### Create Gmail Subscription
-TBD
+TBA
 
 ### Get Gmail Subscription
-TBD
+TBA
 
 ### Delete Gmail Subscription
-TBD
+TBA
 
 
 ## Notifications 
@@ -668,12 +666,12 @@ curl https://shuffler.io/api/v1/notifications/{notificationId}/markasread -H "Au
 ```
 
 ## Environments 
-TBD
+TBA
 
 ## Organization API
 Below are the endpoints related to organization creation, editing, listing and more. These will probably not be live until 1.0.0.
 
-**TBD**
+**TBA**
 
 
 

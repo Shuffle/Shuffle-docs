@@ -213,12 +213,17 @@ https://user-images.githubusercontent.com/31187099/152918123-238cc520-90dc-4c44-
 
 https://user-images.githubusercontent.com/31187099/152918139-72a03d69-0a49-4551-b885-d1cb9cf8c99c.mp4
 
-* csv_parse: Parse a CSV-formatted string with auto-detection of the delimiter character. Use with as_object, e.g.: {{ .csv_string | csv_parse | as_object }}
+* csv_parse: Parses CSV-formatted information into a list. Returns with parsed objects in JSON
+
+```
+{{ "name,time\n me,now" | csv_parse }}
+```
+
 * date: Converts a timestamp into another date format. The format for this syntax is the same as strftime.
 * default: Allows you to specify a fallback in case a value doesn’t exist. default will show its value if the left side is nil, false, or empty.
 * divided_by: Divides a number by the specified number.
 * downcase: Makes each character in a string lowercase. It has no effect on strings which are already all lowercase.
-* eml_parse: Takes a string containing EML content (i.e.: RFC822) and parses out information such as to, from, subject, attachments, etc. Use with as_object, e.g.: {{ .raw_eml_string | eml_parse | as_object }}
+* eml_parse: Takes a string containing EML content (i.e.: RFC822) and parses out information such as to, from, subject, attachments, etc. Use with e.g.: {{ .raw_eml_string | eml_parse }}
 * escape: Escapes a string by replacing characters with escape sequences (so that the string can be used in a URL, for example). It doesn’t change strings that don’t have anything to escape.
 * escape_once: Escapes a string without changing existing escaped entities. It doesn’t change strings that don’t have anything to escape.
 * first: Returns the first element of an array.
@@ -231,8 +236,8 @@ https://user-images.githubusercontent.com/31187099/152918139-72a03d69-0a49-4551-
 * html_decode: Converts escaped characters in a string to HTML syntax characters, e.g. "&lt;élan&gt;" becomes "<élan>".
 * in_cidr: Checks if an IP address is in a given CIDR block, e.g.: {{ .ip_address | in_cidr: '10.0.0.0/8' }}
 * [join](#join): Combines the elements in an array into a single string using the argument as a separator.
-* json_parse: Parse an escaped JSON string. Use with as_object, e.g.: {{ .escaped_json_string | json_parse | as_object }}
-* jsonpath: Evaluate complex JSONPaths. Includes support for wildcards and filters, e.g.: {{ .receive_event | jsonpath: '$.phoneNumbers[*].type' | as_object }}
+* json_parse: Parse an escaped JSON string. e.g.: {{ .escaped_json_string | json_parse }}
+* jsonpath: Evaluate complex JSONPaths. Includes support for wildcards and filters, e.g.: {{ .receive_event | jsonpath: '$.phoneNumbers[*].type' }}
 * jwt_sign: Create a JSON Web Token from the input claim set using either RS256 (default) or HS256, e.g.: {{ .claim_set | jwt_sign: .CREDENTIAL.jwt_rsa_private_key }}, {{ .claim_set | jwt_sign: .CREDENTIAL.jwt_hmac_key, 'HS256', .extra_headers }}
 * last: Returns the last element of an array.
 * lstrip: Removes all whitespace (tabs, spaces, and newlines) from the beginning of a string. The filter does not affect spaces between words.
@@ -248,8 +253,8 @@ https://user-images.githubusercontent.com/31187099/152918139-72a03d69-0a49-4551-
 * prepend: Adds the specified string to the beginning of another string.
 * random_element: Select a random element from an array.
 * regex_replace: Replaces every occurrence of a regex match in a string with the second argument, e.g. {{ "hello hello!" | regex_replace: "h\w+", "goodbye" }} outputs goodbye goodbye!.
-* remove: Removes every occurrence of the specified substring from a string. Removes the elements from an array if the expression is terminated with as_object e.g. {{ .array | remove: '<element>' | as_object }}.
-* remove_first: Removes only the first occurrence of the specified substring from a string. Removes the element from an array if the expression is terminated with as_object e.g. {{ .array | remove_first: '<element>' | as_object }}.
+* remove: Removes every occurrence of the specified substring from a string. Removes the elements from an array if the expression is terminated, e.g. {{ .array | remove: '<element>' }}.
+* remove_first: Removes only the first occurrence of the specified substring from a string. Removes the element from an array if the expression is terminated, e.g. {{ .array | remove_first: '<element>' }}.
 * replace: Replaces every occurrence of an argument in a string with the second argument.
 * replace_first: Replaces only the first occurrence of the first argument in a string with the second argument.
 * reverse: Reverses the order of the elements in an array. reverse cannot reverse a string.
@@ -262,7 +267,12 @@ https://user-images.githubusercontent.com/31187099/152918139-72a03d69-0a49-4551-
 * slice: Returns a substring of 1 character beginning at the index specified by the argument passed in. An optional second argument specifies the length of the substring to be returned.
 * sort: Sorts elements in an array by a property of an element in the array. The order of the sorted array is case-sensitive.
 * sort_natural: Sorts elements in an array by a property of an element in the array.
-* split: Divides an input string into an array using the argument as a separator. split is commonly used to convert comma-separated items from a string to an array. Use with as_object to send data as an array, e.g.: {{ .comma_delimited_string | split: ',' | as_object }}. Without using as_object, the result will commonly be a string with concatenated values in the array.
+* split: Used to make a list from a string. Often useful when parsing data
+
+```
+{{ "my,list,uses,comma" | split: "," }}
+```
+
 * strip: Removes all whitespace (tabs, spaces, and newlines) from both the left and right side of a string. It does not affect spaces between words.
 * strip_html: Removes any HTML tags from a string.
 * strip_newlines: Removes any newline characters (line breaks) from a string.
@@ -275,7 +285,6 @@ https://user-images.githubusercontent.com/31187099/152918139-72a03d69-0a49-4551-
 * truncatewords: Shortens a string down to the number of words passed as the argument. If the specified number of words is less than the number of words in the string, an ellipsis (…) is appended to the string.
 * type: Outputs the class of a specified object, e.g.: String or Array.
 * uniq: Removes any duplicate elements in an array.
-* unzip: Extracts files from a ZIP archive. Use with as_object, e.g.: {{ .zip_data | unzip: 'optional_password' | as_object }}
 * upcase: Makes each character in a string uppercase. It has no effect on strings which are already all uppercase.
 * url_decode: Decodes a string that has been encoded as a URL or by url_encode.
 * url_encode: Converts any URL-unsafe characters in a string into percent-encoded characters.
