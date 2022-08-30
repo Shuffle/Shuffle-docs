@@ -57,8 +57,7 @@ Workflow types can be changed while editing a workflow:
 - TBA
 
 ## 4. How to map the Workflows to the App in order to make the workflow building process easier for our users
-- TBA
-
+More about how this works is in the [Creator Documentation for Workflow Develpment](https://github.com/Shuffle/Shuffle-docs/blob/master/docs/creators.md#workflow-release)
 
 
 
