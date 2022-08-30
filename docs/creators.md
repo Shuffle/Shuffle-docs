@@ -29,6 +29,7 @@ The first thing necessary to become a creator is to sign up to the Shuffle platf
 With these in place, you can go to the [Creator](/creators) pages and sign up! It only takes a minute. In order to get verified, you will further have to provide your First Name and Last name, along with other optional information.
 
 ## Your Creator Profile 
+What and how you can change, what people are interested in, what you can earn from, how it's calculated, where dashboards are....
 TBD
 
 ## Get verified
@@ -88,7 +89,33 @@ After [releasing a workflow](https://github.com/Shuffle/Shuffle-docs/blob/8e4e7b
 
 Additionally, if the workflow's type is "Subflow", make sure to add relevant return values in case of failure to the "Default return value" field.
 
-TBA
+### Publishing subflows and trigger-workflows
+Trigger workflows are workflows that act as "Triggers" for a specific App. The goal with trigger workflows is to get specific information from an App, then hand it over to a Subflow. Subflows are Workflows that receive some "Standard" inforamtion, using our [Standardized Data scripts](https://github.com/Shuffle/python-apps/blob/4ba237a8d9483b34d1a3de83c16920dc9dde502a/shuffle-tools/1.2.0/src/app.py#L2270). Trigger and Subflows exist to help all users build and experience workflows faster, by acting as templates that Shuffle itself as a platform can stitch together. 
+
+A good example of this is Email. A typical usecase is "When I get an email, enrich it and send it to a ticketing system". This is then split into two main sections, and a last section for enrichment:
+1. A trigger worfklow: "When I get an email"
+2. A subflow: "Send it to the ticketing system"
+3. A subflow system for enrichment: "enrich it"
+
+Here's how the baseline looks before you can modify it:
+![image](https://user-images.githubusercontent.com/5719530/187560930-d33ea7bd-1691-4dc3-83a4-a427f0ca3fe4.png)
+
+After it's been modified, it will automatically grab relevant apps from the App Framework. [More about that here](https://github.com/Shuffle/Shuffle-docs/blob/master/handbook/engineering/usecase_mapping.md).
+
+![image](https://user-images.githubusercontent.com/5719530/187562470-032245db-7185-4cf7-bc06-1a4dc72e4188.png)
+
+### Trigger Workflows
+Trigger workflows start something for an app. A good example is to get new emails and sending them to a subflow ("When I get an email"). They are defined by a few key pieces:
+- They start from a trigger (Schedule, Webhook, Email)
+- They end with a subflow to run in the next workflow
+
+### Subflows
+Subflows are workflows that receive some data from a Trigger workflow. They use [Standardized Data scripts](https://github.com/Shuffle/python-apps/blob/4ba237a8d9483b34d1a3de83c16920dc9dde502a/shuffle-tools/1.2.0/src/app.py#L2270) to get data in the same format every time. They are defined by:
+- Always start with standardized data, or with the first node being standardized data
+- Does not have its own trigger. Should be triggered AS A SUBFLOW
+
+
+## Workflow types
 
 ## Release Workflows
 TBD
