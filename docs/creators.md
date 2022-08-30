@@ -62,7 +62,31 @@ Our goal with Shuffle as a platform is to help you earn and get reach for your w
 - [Building Apps](/docs/apps#workflow_basics)
 
 ## Correct information 
-It's important that content shared through Shuffle has sufficient information. This is to ensure that 
+It's important that content shared through Shuffle has sufficient information, as to help other users find what they're looking for. The search engine is always the starting point, and it's up to you to become discoverable.
+
+### Workflow Release
+After [releasing a workflow](https://github.com/Shuffle/Shuffle-docs/blob/8e4e7bbe2ce5a4ee86c8aed9e7c80a9d9ab9cd17/handbook/engineering/workflow_release_process.md), this happens:
+1. We send a notification to Shuffle's team to verify the Workflow
+2. We release sensitive content that maybe shouldn't be there, or any "test" nodes.
+3. Your Creator user gets assigned as the owner of the Workflow. This means you can edit the workflow. You can find your creator user [on the creator pages](https://shuffler.io/creators). From here, you can find the Workflow in the "Workflows" tab, or you can search for it in the search engine. 
+
+![image](https://user-images.githubusercontent.com/5719530/187559714-1b0f5b8c-95ce-490b-bc7e-d95a9bac3bab.png)
+
+4. When inside a Workflow you own, and which is public, you will see the buttons for jumping to the Workflow Editor in the bottom left of your screen. By clicking "Edit Workflow", you will have full access to modifying the Workflow the work the best for other users. You can also test it. Make sure it doesn't contain any sensitive information.
+![image](https://user-images.githubusercontent.com/5719530/187559912-591943bc-5200-45fd-98a7-dd4a4c640ef3.png)
+
+5. By clicking the "Edit" button on the bottom bar, you can make further changes to the workflow. This is the most important information, and is where you should make sure to fill out all significant fields. This also means to link to related documentation, blogposts and other info.
+
+![image](https://user-images.githubusercontent.com/5719530/187560076-45e0dca8-c6ed-4015-810a-466e37d36ff6.png)
+
+6. To make sure you get maximum impact, both in our search engine's priority system, along with on Google and other search engines, make sure to AT LEAST have these fields filled out extensively:
+- Name 
+- Description
+- Tags
+- Type (If you don't know, choose "Standalone")
+- Usecase
+
+Additionally, if the workflow's type is "Subflow", make sure to add relevant return values in case of failure to the "Default return value" field.
 
 TBA
 
