@@ -1,7 +1,7 @@
-![image](https://user-images.githubusercontent.com/5719530/187564027-0ec68080-82bd-44ac-972f-cb7f85b8c0ad.png)
-
 # Creators 
 Documentation for everything about creators. Become a creator by [signing up here](https://shuffler.io/creators) and join the [Discord community here](https://discord.com/invite/B2CBzUm)
+
+![image](https://user-images.githubusercontent.com/5719530/187564027-0ec68080-82bd-44ac-972f-cb7f85b8c0ad.png)
 
 ## Table of contents
 * [Introduction](#introduction)
