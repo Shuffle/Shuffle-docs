@@ -43,7 +43,7 @@ To earn with Shuffle, you need to get verified. This is a manual process, as we 
 - Must have provided us with your Firstname and Lastname
 - Set up a [Github sponsors](https://github.com/sponsors/accounts) account. We will use this for payouts.
 
-If you feel ready to get verified, send us an email at [support@shuffler.io](mailto:support@shuffler.io?subject=Become a Verified Creator). This process will be fully automated in the future.
+If you feel ready to get verified, send us an email at [support@shuffler.io](mailto:support@shuffler.io?subject=Become%20a%20Verified%20Creator). This process will be fully automated in the future.
 
 ## Verified perks
 As a verified Creator, you get access to more information. We share with you the following:
@@ -65,7 +65,7 @@ Our goal with Shuffle as a platform is to help you earn and get reach for your w
 - [Building Apps](/docs/apps#workflow_basics)
 
 ## Correct information 
-It's important that content shared through Shuffle has sufficient information, as to help other users find what they're looking for. The search engine is always the starting point, and it's up to you to become discoverable.
+It's important that content shared through Shuffle has sufficient information, as to help other users find what they're looking for. The search engine is always the starting point, and it's up to you to discoverable.
 
 ### Workflow Release
 [![Publishing Workflows and New Workflow Types](https://user-images.githubusercontent.com/5719530/187566365-ebc054bc-393b-439f-9649-76df707c581b.png)](https://www.loom.com/embed/4f9ee793e4fd4c9fbdc040d37d0309a4)
