@@ -24,7 +24,7 @@ There are no specific prerequisites to become a Creator, but we encourage you to
 
 ## Become a creator
 The first thing necessary to become a creator is to sign up to the Shuffle platform. These are the requirements:
-- A [Shuffle account](https://shuffler.io/register?message=Sign up%20to%20become%20a%20creator)
+- A [Shuffle account](https://shuffler.io/register?message=Sign%20up%20to%20become%20a%20creator)
 - A [Github account](https://github.com)
 - A [Discord account](https://discord.com/invite/B2CBzUm) (required to get Verified)
 
