@@ -68,7 +68,7 @@ Our goal with Shuffle as a platform is to help you earn and get reach for your w
 It's important that content shared through Shuffle has sufficient information, as to help other users find what they're looking for. The search engine is always the starting point, and it's up to you to become discoverable.
 
 ### Workflow Release
-[![Publishing Workflows and New Workflow Types]([https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg](https://user-images.githubusercontent.com/5719530/187566365-ebc054bc-393b-439f-9649-76df707c581b.png))]([https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE](https://www.loom.com/embed/4f9ee793e4fd4c9fbdc040d37d0309a4))
+[![Publishing Workflows and New Workflow Types](https://user-images.githubusercontent.com/5719530/187566365-ebc054bc-393b-439f-9649-76df707c581b.png)](https://www.loom.com/embed/4f9ee793e4fd4c9fbdc040d37d0309a4)
 
 After [releasing a workflow](https://github.com/Shuffle/Shuffle-docs/blob/8e4e7bbe2ce5a4ee86c8aed9e7c80a9d9ab9cd17/handbook/engineering/workflow_release_process.md), this happens:
 1. We send a notification to Shuffle's team to verify the Workflow
