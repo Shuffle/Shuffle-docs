@@ -24,7 +24,7 @@ There are no specific prerequisites to become a Creator, but we encourage you to
 
 ## Become a creator
 The first thing necessary to become a creator is to sign up to the Shuffle platform. These are the requirements:
-- A [Shuffle account](https://shuffler.io/register?message=Sign up to become a creator)
+- A [Shuffle account](https://shuffler.io/register?message=Sign up%20to%20become%20a%20creator)
 - A [Github account](https://github.com)
 - A [Discord account](https://discord.com/invite/B2CBzUm) (required to get Verified)
 
@@ -73,6 +73,7 @@ It's important that content shared through Shuffle has sufficient information, a
 [![Publishing Workflows and New Workflow Types](https://user-images.githubusercontent.com/5719530/187566365-ebc054bc-393b-439f-9649-76df707c581b.png)](https://www.loom.com/embed/4f9ee793e4fd4c9fbdc040d37d0309a4)
 
 After [releasing a workflow](https://github.com/Shuffle/Shuffle-docs/blob/8e4e7bbe2ce5a4ee86c8aed9e7c80a9d9ab9cd17/handbook/engineering/workflow_release_process.md), this happens:
+
 1. We send a notification to Shuffle's team to verify the Workflow
 2. We release sensitive content that maybe shouldn't be there, or any "test" nodes.
 3. Your Creator user gets assigned as the owner of the Workflow. This means you can edit the workflow. You can find your creator user [on the creator pages](https://shuffler.io/creators). From here, you can find the Workflow in the "Workflows" tab, or you can search for it in the search engine. 
@@ -99,6 +100,7 @@ Additionally, if the workflow's type is "Subflow", make sure to add relevant ret
 Trigger workflows are workflows that act as "Triggers" for a specific App. The goal with trigger workflows is to get specific information from an App, then hand it over to a Subflow. Subflows are Workflows that receive some "Standard" inforamtion, using our [Standardized Data scripts](https://github.com/Shuffle/python-apps/blob/4ba237a8d9483b34d1a3de83c16920dc9dde502a/shuffle-tools/1.2.0/src/app.py#L2270). Trigger and Subflows exist to help all users build and experience workflows faster, by acting as templates that Shuffle itself as a platform can stitch together. 
 
 A good example of this is Email. A typical usecase is "When I get an email, enrich it and send it to a ticketing system". This is then split into two main sections, and a last section for enrichment:
+
 1. A trigger worfklow: "When I get an email"
 2. A subflow: "Send it to the ticketing system"
 3. A subflow system for enrichment: "enrich it"
