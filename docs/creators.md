@@ -7,9 +7,13 @@ Documentation for everything about creators. Become a creator by [signing up her
 * [Introduction](#introduction)
 * [FAQ](#FAQ)
 * [Become a creator](#become_a_creator)
-	* [Your Creator Profile](#your_creator_profile)
-	* [Get verified](#get_verified)
-	* [Verified perks](#verified_perks)
+  * [Your Creator Profile](#your_creator_profile)
+  * [Get verified](#get_verified)
+  * [Verified perks](#verified_perks)
+* [Content Control](#content_control)
+  * [What to share](#what_to_share)
+  * [Workflow Release](#workflow_release)
+  * [Workflow Types](#workflow_types)
 
 ## Introduction
 The Shuffle ecosystem is built on open source code, and since the start, we've focused on openness and building as good a service as we can. We do however know that we don't know everything, and need help from the community to create as good of a service for our customers as possible. That's why we've launched the creator program - a way we can share revenue with everyone who spend time helping Shuffle grow by creating content like Apps, Workflows and Documentation, along with Blogposts, videos and who do support and github contributions.
@@ -30,7 +34,7 @@ The first thing necessary to become a creator is to sign up to the Shuffle platf
 
 With these in place, you can go to the [Creator](/creators) pages and sign up! It only takes a minute. In order to get verified, you will further have to provide your First Name and Last name, along with other optional information.
 
-## Your Creator Profile 
+### Your Creator Profile 
 What and how you can change, what people are interested in, what you can earn from, how it's calculated, where dashboards are....
 TBD
 
@@ -45,14 +49,16 @@ To earn with Shuffle, you need to get verified. This is a manual process, as we 
 
 If you feel ready to get verified, send us an email at [support@shuffler.io](mailto:support@shuffler.io?subject=Become%20a%20Verified%20Creator). This process will be fully automated in the future.
 
-## Verified perks
+### Verified perks
 As a verified Creator, you get access to more information. We share with you the following:
 - A monthly update on how your apps, workflows and other content is doing
 - We provide suggestions for what to do next
 - A dashboard with information about being verified
 - We provide you with full visibility into searches, clicks and conversions for all apps and workflows within Shuffle
 
-## What to share
+## Content Control
+
+### What to share
 You can build and share anything that may be relevant to other users. The focus is on Workflows and Apps, but the following are also a part of earning with Shuffle:
 - Support tickets
 - Github contributions
@@ -64,12 +70,12 @@ Our goal with Shuffle as a platform is to help you earn and get reach for your w
 - [Building Workflows](/docs/workflows#workflow_basics)
 - [Building Apps](/docs/apps#workflow_basics)
 
-## Correct information 
+### Correct information 
 It's important that content shared through Shuffle has sufficient information, as to help other users find what they're looking for. The search engine is always the starting point, and it's up to you to discoverable.
 
 ![image](https://user-images.githubusercontent.com/5719530/187629553-bbc97b43-8d61-44f2-ab73-cbe8ad6a0ad4.png)
 
-## Workflow Release
+### Workflow Release
 [![Publishing Workflows and New Workflow Types](https://user-images.githubusercontent.com/5719530/187566365-ebc054bc-393b-439f-9649-76df707c581b.png)](https://www.loom.com/embed/4f9ee793e4fd4c9fbdc040d37d0309a4)
 
 After [releasing a workflow](https://github.com/Shuffle/Shuffle-docs/blob/8e4e7bbe2ce5a4ee86c8aed9e7c80a9d9ab9cd17/handbook/engineering/workflow_release_process.md), this happens:
