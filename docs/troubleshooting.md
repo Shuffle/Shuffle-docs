@@ -255,6 +255,32 @@ If you lost an index due to corruption or other causes, there is no easy way to 
    ```
    curl http://localhost:9200/environments/_search?pretty
    ```
+   
+## OpenSearch consumes too much memory
+After narrowing down your problem to opensearch is what is consuming your system resources you need to figure out why? Might be too many indices in OpenSearch or just a java heap size problem
+
+1. You'll need to list out all indices in elasticsearch opensearch.
+   ``` 
+   docker exec -u0 -it "opensearch_ID" curl https://localhost:9200/_cat/indices?pretty -k -u admin:admin    ```
+2. You could grep to narrow down on your search.
+```
+docker exec -u0 -it "opensearch_ID" curl https://localhost:9200/_cat/indices?pretty -k -u admin:admin | grep -v security
+```
+3. Once you see what's causing the problem in our case it was workflowexecution which was at 13 gb. We deleted it using the below command.
+```
+docker exec -u0 -it "opensearch_ID" curl -X DELETE "https://localhost:9200/workflowexecution?pretty" -k -u admin:admin -v
+```
+## Disclaimer
+If you are doing this in a production server you will have to comb through the indices and delete them manually with respect to you organisations priorities, old executions and such.
+
+4. You should notice a reduction in memory  consumption check this by running top. Do a docker-compose down then a docker-compose up -d for good measure and you are good to go. 
+
+5. If the above steps do not fix the issue then this might mean its a java heap size issue, go into your docker-compose.yml file, move down till you locate the opensearch configurations and navigate to the OPENSEARCH_JAVA_OPTS settings and change them if initially they were running at 4 gb half that to 2 gb and save the file.
+
+```
+ - "OPENSEARCH_JAVA_OPTS=-Xms2048m -Xmx2048m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+```
+6. Do a docker-compose down then a docker-compose up -d. You should notice a difference in the memory consumption by Opensearch
 
 ## Updates failing
 1. After an update, click CTRL+SHIFT+R on your keyboard while in your browser. This runs a hard refresh without cache.
