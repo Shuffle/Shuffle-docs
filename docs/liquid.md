@@ -193,8 +193,6 @@ https://user-images.githubusercontent.com/31187099/152918035-cc6ab9bf-07b5-4d15-
 
 * base64_encode: Encode a string using the Base64 encoding algorithm.
 * base64_decode: Decode a Base64 encoded string.
-* base64url_encode: Encode a string to a URL-safe base64url encoded string.
-* base64url_decode: Decode a URL-safe base64url encoded string.
 * capitalize: Makes the first character of a string capitalized.
 
 https://user-images.githubusercontent.com/31187099/152918039-6edd7a58-8579-4025-9f18-3f6c85443fbf.mp4
