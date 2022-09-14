@@ -27,15 +27,11 @@ Our acceptable use policy sets per-organization usage limits and was designed to
 All monthly limits are per organization, including its sub-organizations. 
 
 ### Free Plan
-- **App Executions** - 1000
+- **App Executions** - 5000 
 - **Bandwidth** - 10GB in and 10GB out of Shuffle 
 
-### Hybrid Plan 
-- **App Executions** - 5000 
-- **Bandwidth** - 100GB in and 100GB out of Shuffle 
-
 ### Enterprise & MSSP Plan
-- **App Executions** - 150.000 
+- **App Executions** - Minimum 150.000 
 - **Bandwidth** - 1000 GB in and 1000 GB out of Shuffle 
 - **Extended limits** - Varies based on agreement - by default $0.0009/app execution above normal limit, or $75 per CPU core supported above normal limit. Please [contact us](https://shuffler.io/contact) us for more information.
 

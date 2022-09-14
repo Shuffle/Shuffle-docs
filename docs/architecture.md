@@ -91,13 +91,22 @@ Hashed (bcrypt):
 - User passwords.
 
 Encrypted (AES-256):
-- [App authentication](#app_authentication). The seed used for hashing can be set with the environment variable SHUFFLE_ENCRYPTION_MODIFIER. 
+- [App authentication](#app_authentication) and [Files](#files) are being encrypted. The seed used for hashing is random for each organization, and can be set with the environment variable SHUFFLE_ENCRYPTION_MODIFIER in the local version of Shuffle. This is automatically handled in our SaaS offering. How it works: 
+
 	1. Create md5 hash from Org ID + Workflow_id + Auth timestamp + SHUFFLE_ENCRYPTION_MODIFIER
 	2. Encrypt the authentication value with [aes.NewCipher](https://cs.opensource.google/go/go/+/go1.17.1:src/crypto/aes/cipher.go;l=32)
 	3. Base64 encode the encrypted value (because bytes and strings aren't friends)
 	4. Store the value in the database.
 
+```
 	Run in reverse to decrypt and retrieve the values.
+```
+
+**Encryption Code reference** 
+
+- [Encrypt](https://github.com/Shuffle/shuffle-shared/blob/d5e67ed2cefb5e94f3c516bdd3030384f6241754/shared.go#L11196)
+- [Decrypt](https://github.com/Shuffle/shuffle-shared/blob/d5e67ed2cefb5e94f3c516bdd3030384f6241754/shared.go#L11228)
+
 
 ### Backend API access
 There are multiple ways to access the API. The first is through the UI and a logged in user. The second is through the API directly with a Bearer token. The third is from a workflow execution.  
