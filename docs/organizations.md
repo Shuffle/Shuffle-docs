@@ -4,7 +4,7 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 ## Table of contents
 * [Introduction](#introduction)
 * [Organization Overview](#organization_overview)
-* [Cloud Synchronization](#cloud_syncronization)
+* [Cloud Synchronization](#cloud_synchronization)
 * [Data collection](#data_collection)
 * [Pricing](#pricing)
 * [User Management](#user_management)
@@ -34,10 +34,7 @@ The point of this view is to get access to new features more easily. It can tell
 ![Organization view](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-1.png?raw=true)
 
 ### Cloud Synchronization
-Cloud synchronization is a feature used to get more capabilities on-premises that otherwise wouldn't be possible. These range from scalability to collaboration and accessibility. The goal is to give access to features that otherwise are impossible to get otherwise. See [Hybrid Features](#hybrid_features) for more info.
-
-**Of note:**
-* We will NOT send ANY of your data to the cloud. Not even your local organizations name or description. This is purely a system to give access to extra features that can work on a general scale.
+Cloud synchronization is a FREE feature used to get more capabilities on-premises, that otherwise wouldn't be possible. These range from scalability to collaboration, support, public workflow generation, accessibility and more. The goal is to give access to features that otherwise are impossible to build in a location solution. See [Hybrid Features](#hybrid_features) for more info.
 
 ![Cloud sync features](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-2.png?raw=true)
 
