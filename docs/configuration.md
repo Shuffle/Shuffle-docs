@@ -22,6 +22,7 @@ Documentation for configuring Shuffle.
 * [Debugging](#debugging)
 * [Execution Debugging](#execution_debugging)
 * [Known Bugs](#known_bugs)
+* [Shuffle Server Healthcheck](#shuffle-server-healthcheck)
 
 ## Introduction
 
@@ -842,3 +843,75 @@ docker service ls
 ```
 
 If the list is empty, or you see any of the "replicas" have 0/1, then something is wrong. In case of any swarm issues, contact us at (support@shuffler.io](mailto:support@shuffler.io) or contact your account representative.
+
+![](Aspose.Words.81096d25-bbff-47b2-a5ee-1ac38ad8ca4e.001.jpeg)
+
+## Shuffle Server Healthcheck
+
+There are multiple things to check in the Shuffle server to ensure that the health of server is in a good state:  
+
+- Disk Space 
+- Memory 
+- Elasticsearch service state 
+
+For this, the scripts have been prepared with the alerting mechanism which will check if everything is proper or not. 
+
+### Disk Space Script 
+
+This script will determine whether or not the disc space is more than 75% full. If so, an alert will be sent to your Webhook URL. Replace the script's <Webhook-URL> with your Webhook URL. 
+
+
+```
+#!/bin/sh
+df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 " " $1 }' | grep -v overlay | while read output;
+do
+  #echo $output
+  usep=$(echo $output | awk '{ print $1}' | cut -d '%' -f1  )
+  partition=$(echo $output | awk '{ print $2 }' )
+  if [ $usep -ge 75 ]; then
+    curl -X POST -H 'Content-type: application/json' --data '{"Alert":"Almost out of disk space","Server":"Local-Lab Shuffle Server"}' <Webhook-URL>
+  fi
+done
+```
+
+### Memory Check Script 
+
+This script will determine whether or not the memory utilization is more than 70%. If so, an alert will be sent to your Webhook URL. Replace the script's <Webhook-URL> with your Webhook URL. 
+
+
+```
+#check server health
+STATUS="$(curl http://172.17.14.102:3001/api/v1/_ah/health)"
+if [ "${STATUS}" = "OK" ]; then
+    :
+else
+    curl -X POST -H 'Content-type: application/json' --data '{"Alert":"There is a problem with this server(172.17.14.102), status is not OK"}' <Webhook-URL>
+    exit 1
+fi
+```
+
+### Elasticsearch Service Script 
+
+This script will determine whether or not the Elasticsearch service is running or not. If not so, an alert will be sent to your Webhook URL. Replace the script’s <Elasticsearch-IP> with the Elasticsearch IP of your environment. Replace the script's <Webhook-URL> with your Webhook URL. 
+
+```
+#check server health
+STATUS="$(curl <Elasticsearch-IP>)"
+if [ "${STATUS}" = "OK" ]; then
+    :
+else
+    curl -X POST -H 'Content-type: application/json' --data '{"Alert":"There is a problem with this server(172.17.14.102), status is not OK"}' <Webhook-URL>
+    exit 1
+fi
+~
+```
+
+### Cron Jobs to automate the Process 
+
+You can set a cron job to execute the scripts on every 15 minutes and the whole process can be automated. 
+
+```
+15 * * * * bash /root/diskspacecheck.sh
+15 * * * * bash /root/healthchech.sh
+15 * * * * bash /root/memorycheck.sh
+```
