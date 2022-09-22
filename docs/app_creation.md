@@ -562,6 +562,14 @@ As previously stated, a lot can go wrong. Here's the most common issues:
 * Badly formed apps.
 * Bad environment
 
+### Troubleshooting errors when uploading yaml or json files in Shuffle
+
+Steps to follow:
+
+1. Use an OpenAPI validator to make sure the data is correct. Example: [https://editor.swagger.io/](https://editor.swagger.io/)
+2. If you see errors, go to the line that is displayed and try to modify that line and upload again. 
+3. Continue doing so and making corrections until the upload is successful without any errors.
+
 #### General debugging
 This part is mean to describe how to go about finding the issue you're having with executions. In most cases, you should start from the top of the list previously described in the following way:
 
