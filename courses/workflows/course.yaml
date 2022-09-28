@@ -6,3 +6,5 @@ order:
     path: "introduction.md"
   - name: Page 2
     path: "example.md"
+  - name: Coffee
+    path: "coffee.md"
