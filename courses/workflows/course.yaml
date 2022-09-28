@@ -1,0 +1,8 @@
+name: "Learn Workflows"
+description: "This is an extended description"
+image: "Put a URL in here"
+order:
+  - name: Introduction
+    path: "introduction.md"
+  - name: Page 2
+    path: "example.md"
