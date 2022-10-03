@@ -128,7 +128,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - BASE_URL=http://SHUFFLE-BACKEND:5001
-      - SHUFFLE_APP_SDK_VERSION=0.8.90
+      - SHUFFLE_APP_SDK_VERSION=1.0.0
       - SHUFFLE_WORKER_VERSION=latest
       - ORG_ID=Shuffle
       - ENVIRONMENT_NAME=Shuffle
@@ -136,7 +136,7 @@ services:
       - SHUFFLE_ORBORUS_EXECUTION_TIMEOUT=600
       - SHUFFLE_BASE_IMAGE_NAME=frikky
       - SHUFFLE_BASE_IMAGE_REGISTRY=ghcr.io
-      - SHUFFLE_BASE_IMAGE_TAG_SUFFIX="-0.8.60"
+      - SHUFFLE_BASE_IMAGE_TAG_SUFFIX="-1.0.0"
       - CLEANUP=true
     restart: unless-stopped
 networks:
