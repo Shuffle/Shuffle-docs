@@ -199,7 +199,6 @@ services:
     environment:
       - bootstrap.memory_lock=true
       - "OPENSEARCH_JAVA_OPTS=-Xms4096m -Xmx4096m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
-            - plugins.security.disabled=true
       - cluster.routing.allocation.disk.threshold_enabled=false
       - cluster.name=shuffle-cluster
       - node.name=shuffle-opensearch
