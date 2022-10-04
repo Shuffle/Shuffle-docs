@@ -33,8 +33,8 @@ Documentation for workflows.
   * [Useful file handling info](#useful-file-handling-info)
   * [Learn to use files](#learn-to-use-files)
   * [Upload file API with the app creator](#upload-file-api-with-the-app-creator)
+* [Exploring Executions](#exploring-executions)
 * [API](#api)
-
 
 ## Introduction
 Workflows are the backbone of Shuffle, empowering you to automate your daily tasks by with a simple interface. Workflows use [apps](/docs/apps), [triggers](/docs/triggers), [conditions](/docs/conditions) and [variables](/docs/apps/#variables) to make powerful automations in no time. 
@@ -526,6 +526,71 @@ Having ran it, we get the correct response, as expected from their documentation
 ![workflow-files-10-virustotal](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-files-10.png?raw=true)
 
 And with that, we're done with the basic part of files in Shuffle. If something is unclear, please tell us.
+
+## Exploring Executions
+Executions in Shuffle can be explored by clicking the button of the "Running" person on the bottom of your screen while inside a workflow. This will open up a side-bar where you can see a list of the last executions as well as dig into details on why something did or didn't work (debugging). It will not always notify you when a new execution has happened, as these run in the background, but will open up when you attempt re-running an execution.
+
+![image](https://user-images.githubusercontent.com/5719530/193847954-46334f96-f277-445f-9d84-c283c8552ff5.png)
+
+### Execution List
+After clicking the button, you will see a list of executions, which can be refreshed as you go along. This list is meant to help you find a previous execution, and to dig into it further. Here's a quick breakdown of what everything means:
+
+![image](https://user-images.githubusercontent.com/5719530/193848186-2a6fab57-aeb2-4af5-b56a-e3756d3ef731.png)
+
+- "Refresh Executions" button: Get an updated list in case a workflow was executed in the background.
+- List of executions: These are items that can be clicked to explore each individual execution. Some more details:
+
+**Colors**
+
+* Green: Good/Finished Execution
+* Yellow: Executing/Waiting Execution
+* Red: Aborted/Failed execution
+
+**Icons**
+
+These indicate HOW the specific execution was started. The options are:
+- Playbutton: Manual executions
+- Triggers icons: Webhooks, Schedules, Subflows, User Input, Email systems
+
+**Timestamp**
+
+The timestamp the Workflow started at
+
+**Arrow Icon >**
+
+Usually White. Orange color indicates the LATEST execution you clicked.
+
+### Execution Details
+When clicking an execution, you will see information similar to the image below. This contains the details of how a workflow was actually ran. From the top, here's what everything means:
+
+![image](https://user-images.githubusercontent.com/5719530/193849909-0bd971e4-f8ba-4c80-b26c-7317ec2ca370.png)
+
+**See other executions button**
+
+Go back to the list of executions
+
+**Execution Info**
+
+- Rerun Icon: Rerun the execution with the exact same execution argument from the same startnode.
+- Status: Whether the workflow is finished/executing/failed etc. Should be FINISHED when it's done
+- Timestamps: Indicates when it started and when it finished. If there's a lot of time between these two, then you probably have problems with the execution, or node delays enabled.
+- "Show Skipped actions": Anything that's NOT under the Startnode will be hidden by default. Clicking this will show anything with a status that shouldn't be visible (e.g. SKIPPED).
+
+**Action List**
+
+The next part is a list of Action Results that were performed within the execution, typically in order of when they ran. Here is the breakdown of the buttons in each action:
+
+- The "Arrow left icon <": Expand information about that specific Action Result. Usually contains even more debug information.
+- Logo: The logo of the App
+- Name ("NEW" in the image): The Name you have provided to the Action in the Workflow
+- Function name ("get_me" in the image): The Python function that will run within Shuffle itself. Even if the app is OpenAPI/Generated, it will still be a python function hidden underneath it all.
+- Status: The Status of the Action itself. If this is ABORTED or FAILED, Shuffle will create a notification for your organization and stop the workflow itself. This is NOT to be confused the "status" within the JSON result, which doesn't cause the workflow to stop, but which can be used in conditions.
+- Result: The actual result itself. The black box can be clicked to expand the JSON values. These values can further be used in the next actions.
+
+![image](https://user-images.githubusercontent.com/5719530/193852036-513560ef-2a7b-4b66-9a6e-c79698534822.png)
+
+**PS: There's a handy Copy trick with JSON. By clicking the VALUE in JSON, it will copy the path to the Value itself (e.g. #nodename.success), while clicking the pink COPY ICON to the right of the value will copy the actual value (e.g. false in the image above)**
+
 
 ## API
 [Click here to see the Workflow API](/docs/API#workflow-api)
