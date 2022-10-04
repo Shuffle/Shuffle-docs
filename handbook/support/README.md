@@ -1,0 +1,3 @@
+# Support
+This document outlines how we do support at Shuffle, including what tools and how to generally approach people in a friendly manner. 
+We get all kinds of questions...
