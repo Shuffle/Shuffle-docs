@@ -31,9 +31,9 @@ The platform is split into two main parts: Server and Workers. The server acts a
 ## Frameworks
 Shuffle uses and is built upon existing, well established frameworks to help the Security community move forward, rather than just increase complexity. 
 
-* [OpenAPI](https://swagger.io/specification/) - Used to load and generate API specifications that's applicable for other platforms that just Shuffle. This is a standard that's widely used by almost every enterprise, but the security industry are lacking behind.
+* [OpenAPI](https://swagger.io/specification/) - Used to load and generate API specifications that's applicable for other platforms than Shuffle. This is a standard that's widely used by almost every enterprise, but the security industry are lacking behind.
 * [Mitre Att&ck](https://attack.mitre.org/) - Used to create general purpose workflows to make onboarding and usage as smooth as possible. Mitre Att&ck detections are directly proportional to risk, and can be used for KPI's to sell reasons for investment in the platform to leadership etc.
-* [CACAO](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=cacao#tc-tools) - A standardized way of handling collaborative automation. Shuffle is built for the masses, and we intend to be as close to the CACAO specification as possible.
+* [CACAO](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=cacao) - A standardized way of handling collaborative automation. Shuffle is built for the masses, and we intend to be as close to the CACAO specification as possible long-term. This is a work in progress (October 2022).
 * [Cytoscape](https://js.cytoscape.org/) - A light-weight and scalable design system, used for node relationships in our Workflow view. Cytoscape provides us all the necessary parts to create a fully functional workflows for any use. 
 
 ## Automation Engine
