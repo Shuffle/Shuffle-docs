@@ -5,6 +5,8 @@ We get all kinds of questions...
 
 To get started, you will need to get access to the support channels below. Each has a link to where you need to go to login or download an application and so forth.
 
+![Typical Support tasks](https://user-images.githubusercontent.com/5719530/194396752-2cd5401c-7b3e-4864-904d-06d99e53dd75.png)
+
 ---
 
 ### Support Channels:
