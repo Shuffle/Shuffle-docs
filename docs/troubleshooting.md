@@ -23,6 +23,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [How to handle wrong or bad images on old versions of docker](#how-to-handle-wrong-or-bad-images-on-old-versions-of-docker)
 * [Docker not working](#docker_not_working)
 * [Troubleshooting for executions not running, in swarm](#Troubleshooting_for_executions_not_running,_in_swarm)
+* [Find app creator Python function](#find_code_openapi_app)
 
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com, where [our apps are hosted](https://github.com/shuffle/python-apps).
@@ -574,3 +575,23 @@ docker logs <name_of_worker>
 ```
 * All you have to do now is comb the logs and identify where the problem is, if you can't figure out where the problem is reach out to our community on discord.
 
+## Find code OpenAPI app 
+You may have had problems with an app and need some help getting it fixed. Apps created in the app creator of Shuffle also do generate underlying Python code utilizing the same capabilities as if you make a Python function from scratch. Here's how to find the code for a function.
+
+1. Decide on an app to find. In our example, let's use "DefectDojo". 
+Start by finding the Docker image:
+```
+docker images | grep -i defectdojo
+```
+
+2. From the list above, you should see an image called "Defectdojo". The next step is to run it and extract the code. Copy the name of it, then type this:
+```
+docker run <imagename> cat app.py > app.py
+```
+
+3. You should now have a file called "app.py" locally. Now lets say the function you're having trouble with is called "importscan create". In the app.py file we just created, go into it, and search for that exact name. All spaces ( ) and dashes (-) have been turned into underscores (_), and all text is LOWERCASE. The line should start with something akin to:
+```
+def post_importscan_create(self,...)
+```
+
+Copy everything indented under this function and sent to support@shuffler.io for further help!
