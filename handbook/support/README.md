@@ -23,31 +23,32 @@ Shuffle currently uses the following support channels. For Google Groups and Dri
 
 ### Hours of operation per channel and Coverage (Coordinated Universal Time UTC)
 
+Support Team Legend: NA = North America, EU = Europe, IN = India.
 
-| Hour  | Channels | Support Team |
-|-------|----------|--------------|
-| 00:00 |          |              |
-| 01:00 |          |              |
-| 02:00 |          |              |
-| 03:00 |          |              |
-| 04:00 |          |              |
-| 05:00 |          |              |
-| 06:00 |          |              |
-| 07:00 |          |              |
-| 08:00 |          |              |
-| 09:00 |          |              |
-| 10:00 |          |              |
-| 11:00 |          |              |
-| 12:00 |          |              |
-| 13:00 |          |              |
-| 14:00 |          |              |
-| 15:00 |          |              |
-| 16:00 |          |              |
-| 17:00 |          |              |
-| 18:00 |          |              |
-| 19:00 |          |              |
-| 20:00 |          |              |
-| 21:00 |          |              |
-| 22:00 |          |              |
-| 23:00 |          |              |
-| 24:00 |          |              |
+| Hour (UTC) |        Channels        |          Support Team            |
+|------------|------------------------|----------------------------------|
+| 00:00      | Drift, Google, Discord | IN                               |        
+| 01:00      | Drift, Google, Discord | IN                               |
+| 02:00      | Drift, Google, Discord | IN                               |
+| 03:00      | Drift, Google, Discord | IN                               |
+| 04:00      | Drift, Google, Discord | IN                               |
+| 05:00      | Drift, Google, Discord | IN                               |
+| 06:00      | Drift, Google, Discord | IN                               |
+| 07:00      | Drift, Google, Discord | EU (09:00AM CET)                 |
+| 08:00      | Drift, Google, Discord | EU (10:00AM CET)                 |
+| 09:00      | Drift, Google, Discord | EU (11:00AM CET)                 |
+| 10:00      | Drift, Google, Discord | EU (12:00PM CET)                 |
+| 11:00      | Drift, Google, Discord | EU (13:00PM CET)                 |
+| 12:00      | Drift, Google, Discord | EU (14:00PM CET)                 |
+| 13:00      | Drift, Google, Discord | NA (09:00AM ET) + EU (15:00 CET) |
+| 14:00      | Drift, Google, Discord | NA (10:00AM ET) + EU (16:00 CET) |
+| 15:00      | Drift, Google, Discord | NA (11:00AM ET)                  |
+| 16:00      | Drift, Google, Discord | NA (12:00PM ET)                  |
+| 17:00      | Drift, Google, Discord | NA (13:00PM ET)                  |
+| 18:00      | Drift, Google, Discord | NA (14:00PM ET)                  |
+| 19:00      | Drift, Google, Discord | NA (15:00PM ET)                  |
+| 20:00      | Drift, Google, Discord | NA (16:00PM ET)                  |
+| 21:00      | Drift, Google, Discord | IN                               |
+| 22:00      | Drift, Google, Discord | IN                               |
+| 23:00      | Drift, Google, Discord | IN                               |
+| 24:00      | Drift, Google, Discord | IN                               |
