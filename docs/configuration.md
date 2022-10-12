@@ -910,7 +910,7 @@ fi
 You can set a cron job to execute the scripts on every 15 minutes and the whole process can be automated. 
 
 ```
-15 * * * * bash /root/diskspacecheck.sh
-15 * * * * bash /root/healthchech.sh
-15 * * * * bash /root/memorycheck.sh
+*/15 * * * * bash /root/diskspacecheck.sh
+*/15 * * * * bash /root/healthchech.sh
+*/15 * * * * bash /root/memorycheck.sh
 ```
