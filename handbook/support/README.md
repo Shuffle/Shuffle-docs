@@ -52,3 +52,38 @@ Support Team Legend: NA = North America, EU = Europe, IN = India.
 | 22:00      | Drift, Google, Discord | IN                               |
 | 23:00      | Drift, Google, Discord | IN                               |
 | 24:00      | Drift, Google, Discord | IN                               |
+
+---
+
+### Discord Support
+
+Discord has various channels that need to be checked out periodically as users reach out to us for help. Other than the mention at the beginning of this document regarding being mindful of your communication style and etiquette, please also keep in mind that users often do their best to explain their issue as best as possible, but often do not provide adequate detail to support them properly. In this case we need to request more detail which may happen at times. In order to maintain some order in the different discord channels, it is helpful to use the reply feature in order to keep the conversation flowing in one place. Additionally, providing an example and screenshots along with your response can help with comprehension on the user side. A screenshot has been placed below as reference of an example interaction.
+
+#### Support Example: 
+
+![image](https://user-images.githubusercontent.com/58112539/197282955-c5a7052c-36cb-4eb1-827e-4d6f3a3b8b5b.png)
+
+### Google Groups
+
+You will need to request access to the google groups channel. Once access is obtained, you will log into your gmail inbox and use the upper right hand corner to access the menu to click on [Google groups](https://groups.google.com/).
+
+![image](https://user-images.githubusercontent.com/58112539/197284935-e04a24ce-7ee6-4588-96f1-16a7887fca4c.png)
+
+After doing so you will see the Shuffle Support group. Click on that :)
+
+![image](https://user-images.githubusercontent.com/58112539/197285218-291dd6da-62da-4386-b249-f7d99bd7b083.png)
+
+From there you can see all of the outstanding conversations that need to be addressed.
+
+![image](https://user-images.githubusercontent.com/58112539/197285468-3a63dd50-9f32-480c-8a27-53433cc8a96b.png)
+
+Lastly, keep in mind that after completing a conversation you will want to check the completed box so that others who are performing support in the Google groups will know that additional follow up is not needed and can be "closed".
+
+![image](https://user-images.githubusercontent.com/58112539/197286001-074c95df-5039-4d30-85f6-2101a4c37640.png)
+
+### Drift Support
+
+TBD 
+
+![image](https://user-images.githubusercontent.com/58112539/197286250-c831e34b-552d-4d2f-a9f4-6325f15c3fbd.png)
+
