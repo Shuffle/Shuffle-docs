@@ -116,7 +116,7 @@ There are multiple ways to access the API. The first is through the UI and a log
 - Execution token: The execution token is a unique token (UUID) provided to each [workflow execution](#workflow_execution_model). As soon as an execution is triggered, it gives a temporary token which is valid as long as the workflow is running, but which is no longer valid after the workflow finishes. This has access to certain API's used by Apps themselves (files, cache, setting/changing the execution), with most other API's being off limit. 
 
 ### App authentication
-App authentication is how we authenticate and store an apps' configuration. If an app requires authentication, and the user adds them, these will be encrypted and stored in the database, along with being cached in their encrypted form (AES-256). These values can and should NEVER be decrypted to be seen by a process or human other than during a workflow execution.
+App authentication is how we authenticate and store an app's configuration. If an app requires authentication, and the user adds the authentication credentials, these credentials will be encrypted and stored in the database, along with being cached in their encrypted form (AES-256). These values can and should NEVER be decrypted to be seen by a process or human other than during a workflow execution.
 
 How are these values being used then? If they're encrypted, how does the app get access to them? Here's how:
 
