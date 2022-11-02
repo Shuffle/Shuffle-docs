@@ -2,6 +2,7 @@
 Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Table of contents
+* [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Load all apps locally](#load_all_apps_locally)
 * [Orborus can't connect to backend](#orborus_can_not_reach_backend)
 * [How to stop executions in loop](#how_to_stop_executions_in_loop)
@@ -14,7 +15,6 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Updates Failing](#updates_failing)
 * [Database not starting](#database_not_starting)
 * [TLS timeout error](#tls_timeout_error)
-* [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Shuffle on ARM](#shuffle_on_arm)
 * [Orborus can't connect to backend](#orborus_backend_connection_problems)
 * [Permission denied on file upload](#permission_denied_on_files)
