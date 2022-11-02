@@ -25,6 +25,31 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Troubleshooting for executions not running, in swarm](#Troubleshooting_for_executions_not_running,_in_swarm)
 * [Find app creator Python function](#find_code_openapi_app)
 
+## Orborus backend connection problems
+Due to the nature of Shuffle at scale, there are bound to be network issues. As Shuffle runs in Docker, and sometimes in swarm with k8s networking, it complicates the matter even further. Here's a list of things to help with debugging networking. If all else fails; reboot the machine & docker.
+
+1. Is the Orborus container speaking to an IP in the same network? Check with docker inspect shuffle-oroburs -> is the same CIDR / network address to be seen in the list of Network IPs?
+2. Do all the required networks exist?
+   1. WITHOUT swarm: minimum 1 bridge network.
+   1. WITH swarm: 3 networks (ingress, shuffle_shuffle, shuffle_swarm_executions). All in overlay mode.
+3. Are all the networks configured properly? If in swarm mode; delete the networks, then restart Orborus (it will remake them).
+4. Are the right network modes in use? Bridge (normal) vs Overlay (swarm). This depends on the server structure (1 vs. many).
+5. Is net.ipv4.ip_forward=1 set in the /etc/sysctl.conf file? If not, add it to the file, then exit it and type `sysctl -p`. This allows network cards to talk to each other on the same machine.
+6. Is DNS available inside the container? You can configure DNS in ALL docker containers on a server by editing this file: /etc/docker/daemon.json. To add DNS entries, add them as such:
+```
+{
+    "dns": ["10.0.0.2", "8.8.8.8"]
+}
+```
+
+"Fixes" (in order):
+- Remake all networks (docker network rm)
+- Restart Docker (systemctl stop -> start)
+- Reboot (the whole server)
+
+## Orborus can not reach backend
+In certain cases there may be DNS issues, leading to hanging executions. This is in most cases due to apps not being able to find the backend in some way. That's why the best solution _if possible_ is to use the IP as hostname for Orborus -> Backend communication.
+
 ## Load all apps locally
 In certain cases, you may have an issue loading apps into Shuffle. If this is the case, it most likely means you have proxy issues, and can't reach github.com, where [our apps are hosted](https://github.com/shuffle/python-apps).
 
@@ -42,8 +67,6 @@ git clone https://github.com/shuffle/python-apps
 
 **Alternatively:** You can go download [the latest Shuffle apps](https://github.com/Shuffle/python-apps/archive/refs/heads/master.zip) in your browser, and manually extract the `.zip` file into the `./shuffle/shuffle-apps` folder.
 
-## Orborus can not reach backend
-In certain cases there may be DNS issues, leading to hanging executions. This is in most cases due to apps not being able to find the backend in some way. That's why the best solution _if possible_ is to use the IP as hostname for Orborus -> Backend communication.
 
 ## How to stop executions in loop
 1. Run **docker ps**
@@ -323,21 +346,6 @@ networks:
 docker network create --driver=overlay --ingress=false --attachable=true -o "com.docker.network.driver.mtu"="1450" shuffle_swarm_executions
 ```
 
-## Orborus backend connection problems
-Due to the nature of Shuffle at scale, there are bound to be network issues. As Shuffle runs in Docker, and sometimes in swarm with k8s networking, it complicates the matter even further. Here's a list of things to help with debugging networking. If all else fails; reboot the machine & docker.
-
-1. Is the Orborus container speaking to an IP in the same network? Check with docker inspect shuffle-oroburs -> is the same CIDR / network address to be seen in the list of Network IPs?
-1. Do all the required networks exist?
-   1. WITHOUT swarm: minimum 1 bridge network.
-   1. WITH swarm: 3 networks (ingress, shuffle_shuffle, shuffle_swarm_executions). All in overlay mode.
-1. Are all the networks configured properly? If in swarm mode; delete the networks, then restart Orborus (it will remake them).
-1. Are the right network modes in use? Bridge (normal) vs Overlay (swarm). This depends on the server structure (1 vs. many).
-
-"Fixes" (in order):
-- Remake all networks (docker network rm)
-- Restart Docker (systemctl stop -> start)
-- Reboot (the whole server)
-
 ## Shuffle on ARM
 ARM is currently not supported for Shuffle, as can be seen in issue [#665 on Github](https://github.com/frikky/Shuffle/issues/665). We don't have the capability to build it as of now, but can work with you to get it working if you want to try it.
 
@@ -470,6 +478,8 @@ df -h
 ```
 
 To get more space, either delete some files, clean up the Opensearch instance or add more disk space.
+
+
 
 
 ## How to handle wrong or bad images on old versions of docker.
