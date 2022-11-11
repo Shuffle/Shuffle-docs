@@ -43,6 +43,7 @@ If you would like to learn more about how to create, test and automate your task
 
 ## What you need to know
 We encourage everyone to have checked out our [Workflow Development Exercises](https://github.com/Shuffle/Shuffle-docs/blob/master/handbook/engineering/workflow_development_exercises.md) before becoming a creator. This makes sure you know the fundamentals of using Shuffle, as seen below:
+
 1. Variables
 2. JSON
 3. Loops
