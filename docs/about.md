@@ -8,17 +8,20 @@ To make every security operations center share their processes, automations and 
 Focus for Shuffle has moved to an entirely open ecosystem. This includes, but is not limited to; the Shuffle product, open workflows, open apps, open standards (OpenAPI, Swagger).
 
 ## Roadmap
-This roadmap is meant more as a guide than as the exact order of operations.
+This roadmap is meant more as a guide than as the exact order of operations. It's mainly focused on the Open Source side of Shuffle, but also focuses on the creator and growth aspects of Shuffle.
+
+- [Slides for 2022-2023](https://docs.google.com/presentation/d/1eqfeYOgfGV8srb_0Cox4ZDK_KuykiwB8LpxHHrTgw5o/edit?usp=sharing)
 
 * 0.1 - 0.5: Created basic features for automation, as well as use cases and frontend. This was before the project was open sourced.
 * 0.6 - Usability: High focus on the workflow and app editor, as well as bugfixing after open sourcing. 
 * 0.7 - Improve: First larger release of Shuffle. Focus on users, schedules, app authentication and a better overview in general through the admin view.
 * 0.8 - Integrate (current): Hybrid cloud features and file control 
-* 0.9 - Features: Search engine for apps, workflows, executions etc. AWS (S3 & Lambda), GCP (Storage & Functions) integrations.
-* **1.0 - Launch**: Categorized apps, proper use-cases, and a real tutorial mapped to use-cases. 
-* 1.1 - Business: Dashboard control, Reporting, Risk transparency (management focus)
-* 1.2 - OSS: [Open Source tool expansion](https://twitter.com/shuffleio/status/1322913024617844737?s=20)
-
+* 0.9 - Features: Search engine for apps, workflows, executions etc. GCP (Storage & Functions) integration usage for cloud.
+* **1.0 - Launch**: Categorized apps, proper use-cases, and a real tutorial mapped to use-cases. Enterprise-ready (SSO/SAML, MFA, Reporting, Statistics, Replayability)
+* 1.1 - **Creator onboarding:** Workflow, App & Usecase discovery. Stability & Scalability everywhere with multi-region deployments. HUGE focus on on-boarding and workflow templates. Expected release Q4 2022.
+* 1.2 - Creator proliferation: Dashboards, Statistics, Auditing. Kubernetes, Lambda & EKS integrations. Partnerships with top 10 relevant tools in each category. Threat Intel management with Shuffle Datastore. Expected release Q2 2023. 
+* 1.3 - Detection & Standardization: Mitre Att&ck, Yara, Sigma, Ansible, OSQuery, Sublime emails. OASIS OpenC2 & CACAO fully working. Support for JSON-schema & Postman Collections. Expected release Q4 2023.
+    
 ## Blogposts
 * [Introducing Shuffle](https://medium.com/security-operation-capybara/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12)
 * [Getting started with Shuffle](https://medium.com/@Frikkylikeme/getting-started-with-shuffle-an-open-source-soar-platform-part-2-1d7c67a64244)
