@@ -9,6 +9,7 @@ Documentation for configuring Shuffle.
 * [Introduction](#introduction)
 * [Updating Shuffle](#updating_shuffle)
 * [Production readiness](#production_readiness)
+* [Shuffle Scaling](#scaling_shuffle_with_swarm)
 * [No Internet Install](#no_internet_install)
 * [Proxy Configuration](#proxy_configuration)
 * [HTTPS](#https)
@@ -221,9 +222,68 @@ networks:
     driver: bridge
 ```
 
-### Hybrid Configuration
+### Hybrid Cloud Configuration
 
-If you want to try using Hybrid Shuffle, giving you access to cloud executions, failovers and backups - [Email us](mailto:frikky@shuffler.io)
+* Onprem: If you want to try using Hybrid Shuffle, see [Cloud sync documentation](/docs/organizations#cloud_synchronization)
+* Cloud: If you want access to on-premises resources and API's, [set up extra Environments](/docs/organizations#environments)
+
+## Scaling Shuffle with Swarm
+Orborus can run in Docker-swarm mode, and in early 2023, with Kubernetes. This makes the workflow executions A LOT faster, use less resources, and makes it more scalable across multiple servers. This [is a paid service](https://shuffler.io/pricing2), and requires the [Enterprise / Scale license](https://shuffler.io/pricing2). There are ways to achieve the same by [using multiple environments without swarm](/docs/organizations#environments).
+
+You will be provided with a url to download the Worker image from Shuffle. Orborus does not need changing.
+
+1. Download the new worker you were provided:
+```
+    wget URL # URL is the url provided by Shuffle
+    docker load -i shuffle-worker.zip
+    rm shuffle-worker.zip
+```
+
+2. Initialize Docker Swarm
+```
+    docker swarm init
+```
+
+3. Set Orborus to latest in your docker-compose.yml file
+```
+    image: ghcr.io/shuffle/shuffle-orborus:latest
+```
+
+4. Add and change environment variables for Orborus in the docker-compose.yml file. BASE_URL is the external URL of the server you're running Shuffle on (the one you visit Shuffle with in your browser):
+```
+    SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker-scale:latest
+    SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
+    SHUFFLE_SCALE_REPLICAS=1
+    SHUFFLE_SWARM_CONFIG=run
+    BASE_URL=http://SERVER-URL:3443
+```
+
+5. When all is done, take down the stack and pull it back up AFTER initializing swarm:
+```
+docker swarm init
+docker-compose down
+docker-compose up -d
+```
+
+PS: In certain scenarios you may need extra configurations, e.g. for network MTU's, docker download locations, proxies etc. See more in the [production readiness](/docs/configuration#production_readiness) section.
+
+### Verify swarm
+
+Run the following command to get logs from Orborus:
+
+```
+docker logs -f shuffle-orborus
+```
+
+And to check if services have started:
+
+```
+docker service ls
+```
+
+If the list is empty, or you see any of the "replicas" have 0/1, then something is wrong. In case of any swarm issues, contact us at (support@shuffler.io](mailto:support@shuffler.io) or contact your account representative.
+
+![](Aspose.Words.81096d25-bbff-47b2-a5ee-1ac38ad8ca4e.001.jpeg)
 
 ### Environment Variables
 
@@ -798,52 +858,6 @@ TBD - expand these topics:
 3. Set to use https by default (https://shuffle-opensearch:9200)
 4. Remove 9200 from being exposed
 
-## Shuffle swarm Orborus setup
-
-Orborus can run in swarm mode. This makes the system A LOT faster, use less resources and more scalable across multiple servers. This is a paid service, and requires the [Enterprise or MSSP license](https://shuffler.io/pricing).
-
-You will be provided with the custom docker image by Shuffle.
-
-1. Set Orborus to latest
-
-2. Set Worker to latest
-
-3. Add/change environments for Orborus. BASE_URL is the backends' external URL (the one you visit Shuffle with in the UI):
-   
-   ```
-   SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
-   SHUFFLE_SCALE_REPLICAS=1
-   SHUFFLE_SWARM_CONFIG=run
-   BASE_URL=http://shuffle-url:3443
-   ```
-
-When this is done, take down the stack and pull it back up AFTER initializing swarm:
-
-```
-docker swarm init
-docker-compose down
-docker-compose up -d
-```
-
-PS: In certain scenarios you may need extra configurations, e.g. for network MTU's, docker download locations, proxies etc. See more in the [production readiness](/docs/configuration#production_readiness) section.
-
-### Verify swarm
-
-Run the following command to get logs from Orborus:
-
-```
-docker logs -f shuffle-orborus
-```
-
-And to check if services have started:
-
-```
-docker service ls
-```
-
-If the list is empty, or you see any of the "replicas" have 0/1, then something is wrong. In case of any swarm issues, contact us at (support@shuffler.io](mailto:support@shuffler.io) or contact your account representative.
-
-![](Aspose.Words.81096d25-bbff-47b2-a5ee-1ac38ad8ca4e.001.jpeg)
 
 ## Shuffle Server Healthcheck
 
