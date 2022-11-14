@@ -53,9 +53,9 @@ Setting up cloud synchronization requires two things:
 ![Cloud sync local features](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-6.png?raw=true)
 
 ### Hybrid Features 
-Updated 10.04.2020
+Updated November 14th, 2022
 
-Want to try it out? [Send us an email](mailto:frikky@shuffler.io)
+Want to try it out? Hybrid Access is Free. 
 
 There are many features that make Shuffle more usable. These are mainly related to accessibility, scalability and collaboration - in that order. For the initial release (v0.8) of Shuffle, we've decided to focus entirely on accessibility. Every feature comes with some of the same basic features, so that you know what you're getting into.
 
@@ -99,20 +99,16 @@ The three levels we'll keep to are:
 Whenever we add new features that can help Shuffle work better by leveraging cloud resources, you'll automatically get access to it if you're on that tier.
 
 These are our tiers:
-* Basic
-* Community 
-* Pro 
+* Free 
+* Enterprise / Scale 
 
-#### Basic
+#### Free 
 The basic tier is meant as a way for people to support Shuffle. It will give more perks over time, but to start of, it gives you and your team an onboarding meeting with Shuffle to get you kickstarted as well as some community support features.
 
-#### Community
-Community is the tier where you may get core hybird features, as well as become a part of the community. The key starting features you'll get use of are the triggers and outbound features we've made: Schedules, Webhooks, User Input continuations and SMS / Email sending through Shuffle. We'll soon expand this to doing cloud executions with Shuffle. 
-
-#### Pro
+#### Enterprise/Scale 
 Pro is the full package. It is meant for those of you who want everything from support to auditlogging, datacenter choices, compliance overviews, data retention control, reporting, and more. This package is currently not available as 
 
-Get in touch at [frikky@shuffler.io](mailto:frikky@shuffler.io) if you want something more specific.
+Get in touch at [support@shuffler.io](mailto:support@shuffler.io) if you want something more specific.
 
 ## User management
 ![User management Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-9.png?raw=true)
@@ -188,7 +184,7 @@ Environments are a core part of Shuffle's open source build. Think of it as phys
 
 ![Environments in Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-19.png?raw=true)
 
-The default environment is called "Shuffle". You can add as many as you want, but you'll only get access to "cloud" environments through cloud synchronization.  
+The default environment is called "Shuffle" in your on-premises environment, and "Cloud" in your cloud environment. You can add as many as you want, but you'll only get access to "cloud" environments through cloud synchronization.  
 
 ### Environment fields
 * Name 						- The name to use. This is the identifier used by orborus. 
