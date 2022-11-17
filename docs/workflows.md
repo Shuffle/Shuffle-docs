@@ -42,21 +42,22 @@ Workflows are the backbone of Shuffle, empowering you to automate your daily tas
 If you would like to learn more about how to create, test and automate your tasks, read on. 
 
 ## What you need to know
-We encourage everyone to have checked out our [Workflow Development Exercises](https://github.com/Shuffle/Shuffle-docs/blob/master/handbook/engineering/workflow_development_exercises.md) before becoming a creator. This makes sure you know the fundamentals of using Shuffle, as seen below:
+We encourage everyone to have checked out our [Workflow Development Exercises](https://github.com/Shuffle/Shuffle-docs/blob/master/handbook/engineering/workflow_development_exercises.md) before becoming a creator. This makes sure you know the fundamentals of using Shuffle and can build _anything_. The items below that aren't linked do have documentation, but may be missing a video.
 
-1. Variables
-2. JSON
+1. Variables & nodes
+2. JSON autocompletion
 3. Loops
 4. Nestedloops
-5. Start node
+5. [Start nodes](https://shuffler.io/workflows/0285a05e-8dc0-4614-840b-88606d6a1e59)
 6. Triggers
-7. [Liquid formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d)
-8. Subflows
-9. [Shuffle Cache](https://shuffler.io/workflows/f39a3c37-4f38-4ca0-952a-a9425080b44e)
+7. Subflows
+8. [App Authentication](https://shuffler.io/workflows/d65d228a-f406-4227-9fa7-f7d9303f8411)
+9. Loop filtering
 10. [Shuffle File storage](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349)
-11. App Authentication
-12. Loop filtering
-13. Rest APIs
+11. [Shuffle Datastore (Cache)](https://shuffler.io/workflows/f39a3c37-4f38-4ca0-952a-a9425080b44e)
+12. Deduplication
+13. [Liquid formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d)
+14. [HTTP & Rest APIs](https://shuffler.io/workflows/b8a3a70a-f3f9-459f-99b3-7a2723a1a4b8)
 
 ## Finding relevant workflows
 You may often want to start with a template. To build a Workflow in Shuffle from scratch is much harder than having something to go off. That's why we always encourage you to [search public workflows](/search?tab=workflows) first.

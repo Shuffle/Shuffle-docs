@@ -99,18 +99,12 @@ The webserver is where your users and our API is. It is RAM heavy as we're doing
 
 #### Docker configuration
 
-These are the Docker configurations for the different servers. To use them, put the files in files called docker-compose.yml, and run
-
-```
-docker-compose up -d
-```
-
-to start the containers.
+These are the Docker configurations for the two different servers described above. To use them, put the information in files called docker-compose.yml on each respective server, to start the containers.
 
 PS: The data below is based on [this docker-compose file](https://github.com/frikky/Shuffle/blob/master/docker-compose.yml)
 
 **Orborus**
-Below is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the Shuffle backend location. It can be modified to reduce or increase load, to add proxies, change backend environment to execute and much more. See [environment variables](#environment_variables) for all options.
+Below is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the external Shuffle backend URL. It can be modified to reduce or increase load, to add proxies, and much more. See [environment variables](#environment_variables) for all options.
 
 **PS**: Replace SHUFFLE-BACKEND with the IP of Shuffle backend in the specification below. Using Hostname MAY [cause issues](https://github.com/frikky/Shuffle/issues/537) in certain environments.
 **PPS**: By default, the environments (executions) are NOT authenticated.
@@ -120,7 +114,7 @@ version: '3'
 services:
   orborus:
     #build: ./functions/onprem/orborus
-    image: ghcr.io/frikky/shuffle-orborus:latest
+    image: ghcr.io/shuffle/shuffle-orborus:latest
     container_name: shuffle-orborus
     hostname: shuffle-orborus
     networks:
@@ -129,16 +123,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - BASE_URL=http://SHUFFLE-BACKEND:5001
-      - SHUFFLE_APP_SDK_VERSION=1.0.0
+      - SHUFFLE_APP_SDK_VERSION=1.1.0
       - SHUFFLE_WORKER_VERSION=latest
       - ORG_ID=Shuffle
       - ENVIRONMENT_NAME=Shuffle
       - DOCKER_API_VERSION=1.40
-      - SHUFFLE_ORBORUS_EXECUTION_TIMEOUT=600
       - SHUFFLE_BASE_IMAGE_NAME=frikky
       - SHUFFLE_BASE_IMAGE_REGISTRY=ghcr.io
       - SHUFFLE_BASE_IMAGE_TAG_SUFFIX="-1.0.0"
       - CLEANUP=true
+      - SHUFFLE_ORBORUS_EXECUTION_TIMEOUT=600
     restart: unless-stopped
 networks:
   shuffle:
@@ -159,7 +153,7 @@ docker-compose.yml:
 version: '3'
 services:
   frontend:
-    image: ghcr.io/frikky/shuffle-frontend:latest
+    image: ghcr.io/shuffle/shuffle-frontend:latest
     container_name: shuffle-frontend
     hostname: shuffle-frontend
     ports:
@@ -173,7 +167,7 @@ services:
     depends_on:
       - backend
   backend:
-    image: ghcr.io/frikky/shuffle-backend:latest
+    image: ghcr.io/shuffle/shuffle-backend:latest
     container_name: shuffle-backend
     hostname: ${BACKEND_HOSTNAME}
     # Here for debugging:
@@ -194,7 +188,7 @@ services:
     depends_on:
       - opensearch
   opensearch:
-    image: opensearchproject/opensearch:1.0.0
+    image: opensearchproject/opensearch:2.3.0
     hostname: shuffle-opensearch
     container_name: shuffle-opensearch
     environment:
@@ -325,6 +319,12 @@ SHUFFLE_PASS_WORKER_PROXY=true
 
 # Decides if the Apps should use the same proxy as Orborus (HTTP_PROXY). Default=false
 SHUFFLE_PASS_WORKER_PROXY=true
+
+
+### PAID: The environment variables below only work when you've acquired a paid license of Shuffle (useful for scale):
+SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
+SHUFFLE_SCALE_REPLICAS=1
+SHUFFLE_SWARM_CONFIG=run
 ```
 
 ### Redundancy
