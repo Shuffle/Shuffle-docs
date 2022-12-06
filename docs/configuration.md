@@ -10,6 +10,7 @@ Documentation for configuring Shuffle.
 * [Updating Shuffle](#updating_shuffle)
 * [Production readiness](#production_readiness)
 * [Shuffle Scaling](#scaling_shuffle_with_swarm)
+* [Distributed Caching](#distributed_caching)
 * [No Internet Install](#no_internet_install)
 * [Proxy Configuration](#proxy_configuration)
 * [HTTPS](#https)
@@ -327,6 +328,22 @@ SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
 SHUFFLE_SCALE_REPLICAS=1
 SHUFFLE_SWARM_CONFIG=run
 ```
+
+### Distributed Caching
+Once you have a Scalable version of Shuffle, using Docker swarm, it becomes important for data to flow correctly throughout the platform. In version 1.1 of Shuffle, we introduce distributed caching [in the form of Memcached](https://hub.docker.com/_/memcached). Memcached helps reduce the load on the database, as well as to ensure all executions are handled adequately. These services are supported:
+
+- Backend
+- Orborus
+- Worker
+
+To make use of Memcached, you have to start a memcached service locally on a host Shuffle can access, before configuring each service to use it with a single environment variable. The default port is 11211. Here is a quickstart:
+```
+docker run --name shuffle-cache -d memcached memcached -m 1024 -p 11211:11211
+```
+
+Once this is up, it will be listening on port 11211. From here, you may set up the `MEMCACHED` environment variable on the previously mentioned services. We recommend starting with the backend.
+
+If you need help with this, [please contact us](mailto:support@shuffler.io).
 
 ### Redundancy
 You may configure multiple instances with a load balancer and docker-swarm/kubernetes. An official guide for high availability is still in the making. Please [contact us](https://shuffler.io/contact) if this is a need.
