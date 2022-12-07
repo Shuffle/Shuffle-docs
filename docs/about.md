@@ -19,7 +19,7 @@ This roadmap is meant more as a guide than as the exact order of operations. It'
 * 0.9 - Features: Search engine for apps, workflows, executions etc. GCP (Storage & Functions) integration usage for cloud.
 * 1.0 - Launch: Categorized apps, proper use-cases, and a real tutorial mapped to use-cases. Enterprise-ready (SSO/SAML, MFA, Reporting, Statistics, Replayability)
 * **1.1 - [Creator onboarding](https://github.com/Shuffle/Shuffle/releases/tag/1.1.0):** Workflow, App & Usecase discovery. Stability & Scalability everywhere with multi-region deployments. HUGE focus on on-boarding and workflow templates. Expected release Q4 2022.
-* 1.2 - Usability: Autocompletes, Suggestion engines, Dashboards, Statistics, Auditing. Kubernetes, Lambda & EKS integrations. Partnerships with top 10 relevant tools in each category. Threat Intel management with Shuffle Datastore. Expected release Q2 2023. 
+* 1.2 - Usability: Autocompletes, Suggestion engines, Dashboards, Statistics, Auditing. Kubernetes, Lambda & EKS integrations. Partnerships with top 5 relevant tools in each [App Category](https://shuffler.io/welcome?tab=2). Threat Intel management with Shuffle Datastore. Expected release Q2 2023. 
 * 1.3 - Detection & Standardization: Mitre Att&ck, Yara, Sigma, Ansible, OSQuery, Sublime emails. OASIS OpenC2 & CACAO fully working. Support for JSON-schema & Postman Collections. Expected release Q4 2023.
     
 ## Blogposts
