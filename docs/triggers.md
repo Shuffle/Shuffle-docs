@@ -15,7 +15,13 @@ Triggers are the operators used to execute a [workflow](/docs/workflow) automati
 
 This image shows a simple workflow with two triggers: Webhook & Scheduler. 
 <div style="position: relative; padding-bottom: 56.22254758418741%; height: 0;"><iframe src="https://www.loom.com/embed/9811d94782c249f899703491f286004c" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
-[![Learning Triggers]("https://www.loom.com/embed/9811d94782c249f899703491f286004c)]("https://www.loom.com/embed/9811d94782c249f899703491f286004c "Learning Triggers")
+[![Learning Triggers]
+(https://www.loom.com/embed/9811d94782c249f899703491f286004c)]
+(https://www.loom.com/embed/9811d94782c249f899703491f286004c "Learning Triggers")
+
+[![Now in Android: 55]          // Title
+(https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg)] // Thumbnail
+(https://www.youtube.com/watch?v=Hc79sDi3f0U "Now in Android: 55")    // Video Link
 
 ## About
 Triggers, along side apps and variables, can be found on the left hand side, in a tab called "Triggers". 
