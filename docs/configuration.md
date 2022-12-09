@@ -295,6 +295,10 @@ SHUFFLE_ENCRYPTION_MODIFIER=YOUR KEY HERE
 
 # PS: Encryption is available from Shuffle backend version >=0.9.17.
 ## PPS: There's a [known bug](https://github.com/frikky/Shuffle/issues/528) with Proxies and git
+
+# Set up distributed memcaching. See "Distributed Caching" for more.
+SHUFFLE_MEMCACHED=<IP>:PORT
+
 ```
 
 Orborus:
@@ -323,10 +327,14 @@ SHUFFLE_PASS_WORKER_PROXY=true
 SHUFFLE_PASS_WORKER_PROXY=true
 
 
-### PAID: The environment variables below only work when you've acquired a paid license of Shuffle (useful for scale):
+### PAID: The environment variables below only work when you've acquired a paid license of Shuffle (not required, but VERY useful when scaling Shuffle):
+SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker-scale:latest
 SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
 SHUFFLE_SCALE_REPLICAS=1
 SHUFFLE_SWARM_CONFIG=run
+
+# Set up distributed caching for Orborus & Worker(s). See "Distributed Caching" for more.
+SHUFFLE_MEMCACHED=<IP>:PORT
 ```
 
 ### Distributed Caching
