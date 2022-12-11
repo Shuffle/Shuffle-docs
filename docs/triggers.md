@@ -13,7 +13,7 @@ Documentation for triggers, running workflow executions
 ## Introduction
 Triggers are the operators used to execute a [workflow](/docs/workflow) automatically. They are connected to a actions within workflows - often the starting node. Triggers usually take an execution argument that will be used to execute the workflow in question.
 
-This image shows a simple workflow with two triggers: Webhook & Scheduler. 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/kkKT79iPzAQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## About
 Triggers, along side apps and variables, can be found on the left hand side, in a tab called "Triggers". 
