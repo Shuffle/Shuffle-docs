@@ -65,7 +65,7 @@ Discord has various channels that need to be checked out periodically as users r
 
 ### Google Groups
 
-You will need to request access to the google groups channel. Once access is obtained, you will log into your gmail inbox and use the upper right hand corner to access the menu to click on [Google groups](https://groups.google.com/).
+You will need to request access to the google groups channel. Once access is obtained, you will log into your gmail inbox and use the upper right hand corner to access the menu to click on [Google groups](https://groups.google.com/a/shuffler.io/g/shuffle-support). You have to be invited, so if you're lacking access, request it from frikky@shuffler.io.
 
 ![image](https://user-images.githubusercontent.com/58112539/197284935-e04a24ce-7ee6-4588-96f1-16a7887fca4c.png)
 
@@ -75,11 +75,11 @@ After doing so you will see the Shuffle Support group. Click on that :)
 
 From there you can see all of the outstanding conversations that need to be addressed.
 
-![image](https://user-images.githubusercontent.com/58112539/197285468-3a63dd50-9f32-480c-8a27-53433cc8a96b.png)
+![image](https://user-images.githubusercontent.com/5719530/207633046-21ae7e99-5d33-48b4-8a0c-cda1f8c7fbad.png)
 
 Lastly, keep in mind that after completing a conversation you will want to check the completed box so that others who are performing support in the Google groups will know that additional follow up is not needed and can be "closed".
 
-![image](https://user-images.githubusercontent.com/58112539/197286001-074c95df-5039-4d30-85f6-2101a4c37640.png)
+![image](https://user-images.githubusercontent.com/5719530/207633743-c7df23f6-de8c-4f77-a743-de14d531f761.png)
 
 ### Drift Support
 
