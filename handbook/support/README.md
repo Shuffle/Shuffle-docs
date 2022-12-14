@@ -73,7 +73,7 @@ After doing so you will see the Shuffle Support group. Click on that :)
 
 ![image](https://user-images.githubusercontent.com/58112539/197285218-291dd6da-62da-4386-b249-f7d99bd7b083.png)
 
-From there you can see all of the outstanding conversations that need to be addressed.
+From there you can see all of the outstanding conversations that need to be addressed. If they are missing the "Done" tick on the right-hand side, or is un-read (highlighted), it needs to be handled. Click a conversation to handle it.
 
 ![image](https://user-images.githubusercontent.com/5719530/207633046-21ae7e99-5d33-48b4-8a0c-cda1f8c7fbad.png)
 
