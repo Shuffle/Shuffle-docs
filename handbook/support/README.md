@@ -83,7 +83,25 @@ Lastly, keep in mind that after completing a conversation you will want to check
 
 ### Drift Support
 
-TBD 
+Drift is our chatting platform which shows up in the bottom right corner of Shuffle itself, whether in the Cloud or On-premises. When you click this button (try it yourself), a message will reach the support team at Shuffle through the [Drift App](https://app.drift.com/conversations). To support properly, we suggest downloading the Desktop AND Mobile app as well, and setting yourself to "available" for the times you're at work.
+
+![image](https://user-images.githubusercontent.com/5719530/208101745-a16153cd-1afb-4225-9584-471efcb75d83.png)
+
+First things first;
+- Make sure you are in the "Conversations" tab on the left side
+- Make sure you can see "All inboxes" at the top of your screen
+- Make sure you are in the "All conversations" sub-menu
+
+Support goal: Get the **"Open" conversations to 0**
+
+![image](https://user-images.githubusercontent.com/5719530/208103486-37a6be14-669d-4a97-b148-36e9fb476c03.png)
+
+
+
+If you don't have access to Drift as a support personell, please contact david@shuffler.io or binu@shuffler.io to get access.
+
+
+
 
 ![image](https://user-images.githubusercontent.com/58112539/197286250-c831e34b-552d-4d2f-a9f4-6325f15c3fbd.png)
 
