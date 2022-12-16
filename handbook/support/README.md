@@ -97,10 +97,10 @@ Support goal: Get the **"Open" conversations to 0**
 ![image](https://user-images.githubusercontent.com/5719530/208103486-37a6be14-669d-4a97-b148-36e9fb476c03.png)
 
 These are the types of chat's you'll see, from MOST information to least:
-- Full names: These are emails that are given to us, usually from a potential customer, that are associated to an organization. You have a lot of info on these. Usually these questions are related to sales or product on https://shuffler.io.
+- Full name or Email: These are emails that are given to us, usually from a potential customer, that are associated to an organization. You have a lot of info on these. Usually these questions are related to sales or product on https://shuffler.io.
 - "Cloud <email>": These are Cloud users (on https://shuffler.io), that most likely have a product related problem on Cloud.
-- "OSS <username>": These are Open Source (on-premises, self hosted), that most likely 
-
+- "OSS <username>": These are Open Source (on-premises, self hosted), that most likely are a product related problem on Open Source.
+- "Site Visitor": These are people who most likely haven't given enough info for us to converse or answer their problem properly. 
 
 
 If you don't have access to Drift as a support personell, please contact david@shuffler.io or binu@shuffler.io to get access.
