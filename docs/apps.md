@@ -30,7 +30,7 @@ A subset of available apps can be found at [https://shuffler.io/apps](https://sh
 ## How they work
 Apps are the primary building blocks in workflows. Apps can be auto-generated from [OpenAPI](https://swagger.io/specification/) specifications or using Shuffle's app sdk. To enforce stability and usability, we use a versioning system to prevent sudden updates to apps.
 
-Apps can contain multiple actions, which can take multiple variables. They are made to be able to interact with each other by using each-others' data. Apps have the ability to be in multiple [environment](/docs/environments) with different data (e.g. different credentials), before passing them on.
+Apps can contain multiple actions, which can take multiple variables. They are made to be able to interact with each other by using each-others' data. Apps have the ability to be in multiple [environment](/docs/organizations#environments) with different data (e.g. different credentials), before passing them on.
 
 PS: In a future iteration, focus will move to an optional hybrid execution model (e.g. use cloud resources).
 
