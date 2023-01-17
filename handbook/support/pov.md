@@ -10,8 +10,8 @@ as possible, as fast as possible.
 
 ### Outline
 - Scale support
+- Make sure Apps are supported
 - 3 Workflows of their choosing
-- Custom supported apps and APIs
 
 ## Process
 - Before first technical call: discuss among ourselves what our recommendations from the start will be
