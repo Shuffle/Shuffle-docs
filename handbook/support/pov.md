@@ -19,13 +19,23 @@ A typical PoV lasts a maximum of 3 months, but can be done as soon as the contra
   - Add them to the CRM
   - Have introduction call(s) to figure out their needs (apps, workflows, onprem/cloud)
   - ensure they understand 
+  - Start the procurement & vendor onboarding process
+
 2. Before technical call:
   - Make a document in their Google Drive to document PoV progress and their needs
   - Check if we have a working version of all apps
   - Check if we have workflows to match their usecases 
   - Check other usecases that they may have not thought about
+  
 3. Start implementation 
-  - Set up regular calls (if applicable)
+  - Set up regular calls (if necessary)
   - ensure all apps can: Connect & Authenticate
   - ensure we understand the necessary actions for each app
+  - ensure they have a Notification Workflow we can also track 
+  - ensure workflows work without problems over multiple weeks
+
+4. Finalize the PoV when it's nearing the end of the PoV:
+  - ensure vendor onboarding & procurement processes are in place
+  - 
+  - ... Get paid :)
   
