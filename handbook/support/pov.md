@@ -36,6 +36,6 @@ A typical PoV lasts a maximum of 3 months, but can be done as soon as the contra
 
 **4. Finalize the PoV when it's nearing the end of the PoV:**
   - ensure vendor onboarding & procurement processes are in place
-  - 
+  - ensure all PoV points from step 3 are in place!
   - ... Get paid :)
   
