@@ -24,7 +24,7 @@ A typical PoV lasts a maximum of 3 months, but can be done as soon as the contra
 **2. Before technical call:**
   - Make a document in their Google Drive to document PoV progress and their needs
   - Check if we have a working version of all apps
-  - Check if we have workflows to match their usecases 
+  - Check if we have workflows to match their usecases: research in the Google Sheet as well
   - Check other usecases that they may have not thought about
   
 **3. Start implementation**
