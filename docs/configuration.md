@@ -296,6 +296,10 @@ SHUFFLE_ENCRYPTION_MODIFIER=YOUR KEY HERE
 
 # PS: Encryption is available from Shuffle backend version >=0.9.17.
 ## PPS: There's a [known bug](https://github.com/frikky/Shuffle/issues/528) with Proxies and git
+
+# Set up distributed memcaching. See "Distributed Caching" for more.
+SHUFFLE_MEMCACHED=<IP>:PORT
+
 ```
 
 Orborus:
@@ -324,10 +328,14 @@ SHUFFLE_PASS_WORKER_PROXY=true
 SHUFFLE_PASS_WORKER_PROXY=true
 
 
-### PAID: The environment variables below only work when you've acquired a paid license of Shuffle (useful for scale):
+### PAID: The environment variables below only work when you've acquired a paid license of Shuffle (not required, but VERY useful when scaling Shuffle):
+SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker-scale:latest
 SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
 SHUFFLE_SCALE_REPLICAS=1
 SHUFFLE_SWARM_CONFIG=run
+
+# Set up distributed caching for Orborus & Worker(s). See "Distributed Caching" for more.
+SHUFFLE_MEMCACHED=<IP>:PORT
 ```
 
 ### Distributed Caching
@@ -337,12 +345,21 @@ Once you have a Scalable version of Shuffle, using Docker swarm, it becomes impo
 - Orborus
 - Worker
 
-To make use of Memcached, you have to start a memcached service locally on a host Shuffle can access, before configuring each service to use it with a single environment variable. The default port is 11211. Here is a quickstart:
+To make use of Memcached, you have to start a memcached service locally on a host Shuffle can access, before configuring each service to use it with a single environment variable. The default port is 11211. Here is a quickstart that reserves 1024 Mb of memory:
 ```
 docker run --name shuffle-cache -d memcached memcached -m 1024 -p 11211:11211
 ```
 
-Once this is up, it will be listening on port 11211. From here, you may set up the `MEMCACHED` environment variable on the previously mentioned services. We recommend starting with the backend.
+Once this is up, it will be listening on port 11211. From here, you may set up the `SHUFFLE_MEMCACHED` environment variable on the previously mentioned services. We recommend starting with the backend. Here's an example that fits into your docker-compose file:
+```
+services:
+  image: ghcr.io/shuffle/shuffle-backend:latest
+  environment:
+    - SHUFFLE_MEMCACHED=10.0.0.1:11211
+    ...
+  ...
+  
+```
 
 If you need help with this, [please contact us](mailto:support@shuffler.io).
 

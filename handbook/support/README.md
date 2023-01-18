@@ -65,7 +65,7 @@ Discord has various channels that need to be checked out periodically as users r
 
 ### Google Groups
 
-You will need to request access to the google groups channel. Once access is obtained, you will log into your gmail inbox and use the upper right hand corner to access the menu to click on [Google groups](https://groups.google.com/).
+You will need to request access to the google groups channel. Once access is obtained, you will log into your gmail inbox and use the upper right hand corner to access the menu to click on [Google groups](https://groups.google.com/a/shuffler.io/g/shuffle-support). You have to be invited, so if you're lacking access, request it from frikky@shuffler.io.
 
 ![image](https://user-images.githubusercontent.com/58112539/197284935-e04a24ce-7ee6-4588-96f1-16a7887fca4c.png)
 
@@ -73,17 +73,40 @@ After doing so you will see the Shuffle Support group. Click on that :)
 
 ![image](https://user-images.githubusercontent.com/58112539/197285218-291dd6da-62da-4386-b249-f7d99bd7b083.png)
 
-From there you can see all of the outstanding conversations that need to be addressed.
+From there you can see all of the outstanding conversations that need to be addressed. If they are missing the "Done" tick on the right-hand side, or is un-read (highlighted), it needs to be handled. Click a conversation to handle it.
 
-![image](https://user-images.githubusercontent.com/58112539/197285468-3a63dd50-9f32-480c-8a27-53433cc8a96b.png)
+![image](https://user-images.githubusercontent.com/5719530/207633046-21ae7e99-5d33-48b4-8a0c-cda1f8c7fbad.png)
 
 Lastly, keep in mind that after completing a conversation you will want to check the completed box so that others who are performing support in the Google groups will know that additional follow up is not needed and can be "closed".
 
-![image](https://user-images.githubusercontent.com/58112539/197286001-074c95df-5039-4d30-85f6-2101a4c37640.png)
+![image](https://user-images.githubusercontent.com/5719530/207633743-c7df23f6-de8c-4f77-a743-de14d531f761.png)
 
 ### Drift Support
 
-TBD 
+Drift is our chatting platform which shows up in the bottom right corner of Shuffle itself, whether in the Cloud or On-premises. When you click this button (try it yourself), a message will reach the support team at Shuffle through the [Drift App](https://app.drift.com/conversations). To support properly, we suggest downloading the Desktop AND Mobile app as well, and setting yourself to "available" for the times you're at work.
+
+![image](https://user-images.githubusercontent.com/5719530/208101745-a16153cd-1afb-4225-9584-471efcb75d83.png)
+
+First things first;
+- Make sure you are in the "Conversations" tab on the left side
+- Make sure you can see "All inboxes" at the top of your screen
+- Make sure you are in the "All conversations" sub-menu
+
+Support goal: Get the **"Open" conversations to 0**
+
+![image](https://user-images.githubusercontent.com/5719530/208103486-37a6be14-669d-4a97-b148-36e9fb476c03.png)
+
+These are the types of chat's you'll see, from MOST information to least:
+- Full name or Email: These are emails that are given to us, usually from a potential customer, that are associated to an organization. You have a lot of info on these. Usually these questions are related to sales or product on https://shuffler.io.
+- "Cloud <email>": These are Cloud users (on https://shuffler.io), that most likely have a product related problem on Cloud.
+- "OSS <username>": These are Open Source (on-premises, self hosted), that most likely are a product related problem on Open Source.
+- "Site Visitor": These are people who most likely haven't given enough info for us to converse or answer their problem properly. 
+
+
+If you don't have access to Drift as a support personell, please contact david@shuffler.io or binu@shuffler.io to get access.
+
+
+
 
 ![image](https://user-images.githubusercontent.com/58112539/197286250-c831e34b-552d-4d2f-a9f4-6325f15c3fbd.png)
 
