@@ -168,9 +168,10 @@ sudo chown 1000:1000 -R shuffle-database
 ```
 
 ## Recover admin user
+You can reset your password in your local instance by doing the following: 
 1. docker exec to get bash session into OpenSearch container `docker exec -it <container_id> bash`
 
-1. Dump the results of users index query into `users.log` file
+2. Dump the results of users index query into `users.log` file
    ```
    curl -X GET "localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d'
    {
@@ -180,23 +181,23 @@ sudo chown 1000:1000 -R shuffle-database
    }
    ' > users.log
    ```
-1. open the `users.log` file with `less` and search for the admin user. Once found, scroll down to the `apikey` section. this value will be the api key of the admin user.
+3. open the `users.log` file with `less` and search for the admin user. Once found, scroll down to the `apikey` section. this value will be the api key of the admin user.
 
-1. I jumped onto another server within the same vlan as my Shuffle server but these could be ran on local host too. We will create a new user and update the user's role to admin with the Shuffle API.
+4. I jumped onto another server within the same vlan as my Shuffle server but these could be ran on local host too. We will create a new user and update the user's role to admin with the Shuffle API.
 
-1. Create a new user
+5. Create a new user
    ```
    curl https://ip of shuffle server/api/v1/users/register -H "Authorization: Bearer APIKEY" -d '{"username": "username", "password": "P@ssw0rd"}'
    ```
-1. Retrieve all the users and identify the user_id of the newly created user
+6. Retrieve all the users and identify the user_id of the newly created user
    ```
    curl https://ip of shuffle server/api/v1/users/getusers -H "Authorization: Bearer APIKEY"
    ```
-1. Assign the new user to the admin role.
+7. Assign the new user to the admin role.
    ```
    curl https://ip of shuffle server*/api/v1/users/updateuser -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "admin"}'
    ```
-1. Log into webui with the new user, and you should now have admin rights.
+8. Log into webui with the new user, and you should now have admin rights.
 
 
 ## Useful OpenSearch Queries
