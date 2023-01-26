@@ -236,17 +236,12 @@ You will be provided with a url to download the Worker image from Shuffle. Orbor
     rm shuffle-worker.zip
 ```
 
-2. Initialize Docker Swarm
-```
-    docker swarm init
-```
-
-3. Set Orborus to latest in your docker-compose.yml file
+2. Set Orborus to latest in your docker-compose.yml file
 ```
     image: ghcr.io/shuffle/shuffle-orborus:latest
 ```
 
-4. Add and change environment variables for Orborus in the docker-compose.yml file. BASE_URL is the external URL of the server you're running Shuffle on (the one you visit Shuffle with in your browser):
+3. Add and change environment variables for Orborus in the docker-compose.yml file. BASE_URL is the external URL of the server you're running Shuffle on (the one you visit Shuffle with in your browser):
 ```
     SHUFFLE_LOGS_DISABLED=true
     SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker-scale:latest
@@ -256,7 +251,7 @@ You will be provided with a url to download the Worker image from Shuffle. Orbor
     BASE_URL=http://SERVER-URL:3443
 ```
 
-5. When all is done, take down the stack and pull it back up AFTER initializing swarm:
+4. When all is done, take down the stack and pull it back up AFTER initializing swarm:
 ```
 docker swarm init
 docker-compose down
