@@ -343,8 +343,10 @@ Once you have a Scalable version of Shuffle, using Docker swarm, it becomes impo
 
 To make use of Memcached, you have to start a memcached service locally on a host Shuffle can access, before configuring each service to use it with a single environment variable. The default port is 11211. Here is a quickstart that reserves 1024 Mb of memory:
 ```
-docker run --name shuffle-cache -d memcached memcached -m 1024 -p 11211:11211
+docker run --name shuffle-cache -p 11211:11211 -d memcached -m 1024
 ```
+
+**PS: This requires swap limit capabilities on the Docker host. [More about running it in Docker here](https://hub.docker.com/_/memcached)**
 
 Once this is up, it will be listening on port 11211. From here, you may set up the `SHUFFLE_MEMCACHED` environment variable on the previously mentioned services. We recommend starting with the backend. Here's an example that fits into your docker-compose file:
 ```
