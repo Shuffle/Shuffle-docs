@@ -168,7 +168,7 @@ sudo chown 1000:1000 -R shuffle-database
 ```
 
 ## Recover admin user
-You can reset your password in your local instance by doing the following: 
+You can reset your lost password in your local instance by doing the following: 
 1. docker exec to get bash session into OpenSearch container `docker exec -it <container_id> bash`
 
 2. Dump the results of users index query into `users.log` file
