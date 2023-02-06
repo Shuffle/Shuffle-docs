@@ -401,7 +401,7 @@ All you'll need to do is allow orborus to have access to the backend port and yo
 
 HTTPS is enabled by default on port 3443 with a self-signed certificate for localhost. If you would like to change this, the only way (currently) is to add configure and rebuild the frontend. If you don't have HTTPS enabled, check [updating shuffle](#updating_shuffle) to get the latest configuration.
 
-**PS: Another workaround is to set up an [Nginx reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) you can control yourself**
+**PS: Another workaround is to set up an [Nginx reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) you can control yourself. See further down for more details**
 
 Necessary info for the truststore:
 
@@ -417,6 +417,26 @@ After changing certificates, you can rebuild the entire frontend by running (./f
 ```
 ./run.sh
 ```
+
+### Using the Nginx Reverse Proxy for TLS/SSL
+If you intend to use Nginx as a Reverse Proxy, the main steps are below. [Here is the basic network architecture for it](https://jamboard.google.com/d/1zJU8yMzbsu-XWeZnch_5MoDwmMNkkN8ZmoGNLCaHPlU/edit?usp=sharing).
+1. [Install Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04) on your server (find the correct distro)
+2. Make sure you have a VALID certificate that matches your domain/hostname and [add this to your Nginx server](https://phoenixnap.com/kb/install-ssl-certificate-nginx)
+3. In the nginx.conf file, under "server", add the following. Make sure to change the "proxy_pass" part
+```
+		location /api/v1 {
+			proxy_pass SHUFFLE FRONTENDIP;
+			proxy_buffering off;
+			proxy_http_version 1.1;
+
+			proxy_connect_timeout 900;
+			proxy_send_timeout 900;
+			proxy_read_timeout 900;
+			send_timeout 900;
+      proxy_ssl_verify off;
+    }
+```
+4. Restart Nginx! `systemctl restart nginx`
 
 ## IPv6
 
