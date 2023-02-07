@@ -403,7 +403,7 @@ HTTPS is enabled by default on port 3443 with a self-signed certificate for loca
 
 **PS: Another workaround is to set up an [Nginx reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) you can control yourself. See further down for more details**
 
-Necessary info for the truststore:
+Necessary info for the truststore to create TLS/SSL certificates:
 
 * Certificates are located in ./frontend/certs.
 * ./frontend/README.md contains information on generating a self-signed cert
