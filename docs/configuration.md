@@ -82,10 +82,18 @@ Shuffle is by default configured to be easy to start using. This means we've had
 
 ### Servers
 
-When setting up Shuffle for production, we always recommend using a minimum of two servers (VMs). This is because you don't want your executions to clog the webserver, which again clogs the executions (orborus). You can put Orborus on multiple servers with different environments to ensure better availability, or [talk to us about Kubernetes/Swarm](https://shuffler.io/contact)
+When setting up Shuffle for production, we always recommend using a minimum of two servers (VMs). This is because you don't want your executions to clog the webserver, which again clogs the executions (orborus). You can put Orborus on multiple servers with different environments to ensure better availability, or [talk to us about Kubernetes/Swarm](https://shuffler.io/contact). These are MINIMUM requirements, and we recommend adding more.
+
+Basic network overview below. [Architecture](https://github.com/frikky/Shuffle/raw/main/frontend/src/assets/img/shuffle_architecture.png).
+```
+- Shuffle backend starts a backend listener on port 5001 (default)
+- Orborus POLLS for Jobs. Orborus needs access to port 5001 on backend (default)
+- Orborus creates a worker for each job.
+- The Worker runs the workflow and sends the payload back to the backend on port 5001 (default)
+```
 
 **Orborus**
-Runs all workflows - CPU heavy. If you do a lot of file transfers or memory analysis, make sure to add RAM accordingly.
+Runs all workflows and may be CPU heavy, along with Memory heavy when running at scale with gigabytes of data flowing through. If you do a lot of file transfers, deal with large API payloads, or memory analysis, make sure to add RAM accordingly. No persistent storage necessary.
 
 - Services: Orborus, Worker, Apps
 - CPU: 4vCPU
@@ -98,7 +106,7 @@ The webserver is where your users and our API is. It is RAM heavy as we're doing
 - Services: Frontend, Backend, Database
 - CPU: 2vCPU
 - RAM: 8Gb
-- Disk: 100Gb (SSD)
+- Disk: >100Gb (SSD)
 
 #### Docker configuration
 
