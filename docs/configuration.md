@@ -429,11 +429,11 @@ After changing certificates, you can rebuild the entire frontend by running (./f
 ### Using the Nginx Reverse Proxy for TLS/SSL
 If you intend to use Nginx as a Reverse Proxy, the main steps are below. [Here is a basic single-server architecture for it](https://jamboard.google.com/d/1zJU8yMzbsu-XWeZnch_5MoDwmMNkkN8ZmoGNLCaHPlU/edit?usp=sharing).
 
-1. [Install Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04) on your server (find the correct distro)
+1. [Install Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04) on your server (find the correct distro), or in a [Docker container by itself](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Docker-Nginx-reverse-proxy-setup-example).
 2. Make sure you have a VALID certificate that matches your domain/hostname and [add this to your Nginx server](https://phoenixnap.com/kb/install-ssl-certificate-nginx)
-3. In the nginx.conf file, under "server", add the following. Make sure to change the "proxy_pass" part
+3. In the nginx.conf file (/etc/nginx/conf.d/default.conf or similar), under "server", add the information below. Make sure to change the "proxy_pass" part. This is how it will redirect all /api requests.
 ```
-location /api/v1 {
+location / {
     proxy_pass SHUFFLE FRONTENDIP;
     proxy_buffering off;
     proxy_http_version 1.1;
