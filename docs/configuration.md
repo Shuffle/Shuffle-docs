@@ -251,12 +251,13 @@ You will be provided with a url to download the Worker image from Shuffle. Orbor
 
 3. Add and change environment variables for Orborus in the docker-compose.yml file. BASE_URL is the external URL of the server you're running Shuffle on (the one you visit Shuffle with in your browser):
 ```
+    SHUFFLE_WORKER_SERVER_URL=http://shuffle-workers
     SHUFFLE_LOGS_DISABLED=true
     SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker-scale:latest
     SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
     SHUFFLE_SCALE_REPLICAS=1
     SHUFFLE_SWARM_CONFIG=run
-    BASE_URL=http://SERVER-URL:3443
+    BASE_URL=http://YOUR-BACKEND-URL:5001
 ```
 
 4. When all is done, take down the stack and pull it back up AFTER initializing swarm:
