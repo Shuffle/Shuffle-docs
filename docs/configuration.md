@@ -493,7 +493,7 @@ production.cloudflare.docker.com     # Protects of DockerHub
 When using Shuffle in the cloud (*.shuffler.io), the incoming IP to your services by default will be be from our cloud functions. The range is not static, and may wary based on region. Here's a list (mostly IPv6 as of 2023):
 
 ```
-Default (London): 2600:1900:2000:2a:400::0 -> 2600:1900:2000:2a:400::ff
+Default (London): 2600:1900:2000:2a:400::0 -> 2600:1900:2000:2a:400::ffff
 Euroean Union (eu): TBA
 United States (us): TBA
 Canada (ca): TBA
