@@ -1,8 +1,6 @@
 # Configure Shuffle
 
-Documentation for configuring Shuffle.
-
-**PS: This is only for on-prem / open-source, not cloud**
+Documentation for configuring Shuffle. Most information is related to onprem and hybrid versions of Shuffle.
 
 ## Table of contents
 
@@ -492,12 +490,16 @@ production.cloudflare.docker.com     # Protects of DockerHub
 
 ### Incoming Domain Whitelisting
 
-When using Shuffle in the cloud, the incoming IP by defaut will be be from our cloud functions. The range is not static, and may wary wildly based on region. Here's a list:
+When using Shuffle in the cloud (*.shuffler.io), the incoming IP to your services by default will be be from our cloud functions. The range is not static, and may wary based on region. Here's a list (mostly IPv6 as of 2023):
 
 ```
-Default: 107.178.231.0/24
+Default (London): 2600:1900:2000:2a:400::0 -> 2600:1900:2000:2a:400::ff
+Euroean Union (eu): TBA
+United States (us): TBA
+Canada (ca): TBA
+India (in): TBA
+
 Test: 107.178.232.0/24
-Canada: TBD
 ```
 
 ### Proxy settings
