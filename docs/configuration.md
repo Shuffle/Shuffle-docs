@@ -197,7 +197,7 @@ services:
     depends_on:
       - opensearch
   opensearch:
-    image: opensearchproject/opensearch:2.3.0
+    image: opensearchproject/opensearch:2.5.0
     hostname: shuffle-opensearch
     container_name: shuffle-opensearch
     environment:
@@ -581,7 +581,7 @@ Shuffle need a few base images to work:
 - shuffle-subflow
 
 ```
- docker pull ghcr.io/frikky/shuffle-backend & docker pull ghcr.io/frikky/shuffle-frontend & docker pull ghcr.io/frikky/shuffle-orborus &  docker pull frikky/shuffle:app_sdk & docker pull ghcr.io/frikky/shuffle-worker & docker pull opensearchproject/opensearch:1.3.2 & docker pull registry.hub.docker.com/frikky/shuffle:shuffle-subflow_1.0.0
+ docker pull ghcr.io/frikky/shuffle-backend & docker pull ghcr.io/frikky/shuffle-frontend & docker pull ghcr.io/frikky/shuffle-orborus &  docker pull frikky/shuffle:app_sdk & docker pull ghcr.io/frikky/shuffle-worker & docker pull opensearchproject/opensearch:2.5.0 & docker pull registry.hub.docker.com/frikky/shuffle:shuffle-subflow_1.0.0
 ```
 
 Be careful with the versioning for opensearch, all other are going to use the tag "latest". 
@@ -601,7 +601,7 @@ docker save ghcr.io/frikky/shuffle-frontend > frontend.tar
 docker save ghcr.io/frikky/shuffle-orborus > orborus.tar
 docker save frikky/shuffle:app_sdk > app_sdk.tar
 docker save ghcr.io/frikky/shuffle-worker:latest > worker.tar
-docker save opensearchproject/opensearch:1.3.2 > opensearch.tar
+docker save opensearchproject/opensearch:2.5.0 > opensearch.tar
 docker save registry.hub.docker.com/frikky/shuffle:shuffle-subflow_1.0.0 > sublow.tar
 
 git pull https://github.com/Shuffle/python-apps.git
