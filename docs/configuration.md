@@ -886,11 +886,9 @@ ssh user@10.0.0.2
 docker load wazuh.tar
 ```
 
-TBD: We'll make this an API-call for ContainerD later.
-
 ## Docker socket
 
-For now, the docker socket is required to run Shuffle. Whether you run with Kubernetes or another clustering technology, Shuffle WILL need access to ContainerD, which is what the docker socket provides.  
+For now, the docker socket is required to run Shuffle. Whether you run with Kubernetes or another clustering technology, Shuffle WILL need access to ContainerD, which is what the docker socket provides. If this is against internal policies and you want a single point of contact for controlling permissions, please have a look at [docker socket proxy](#docker_socket_proxy) farther down.
 
 **Usage of the socket**:
 
@@ -904,26 +902,44 @@ For now, the docker socket is required to run Shuffle. Whether you run with Kube
 * Orborus: Download and Remove images. Make, List and Remove containers. Make, List and Remove services.
 * Worker: Download and Remove images. Make, List and Remove containers. Make, List and Remove services.
 
-## Hardening
+### Docker Socket Proxy
+In certain scenarios or environments, you may find the docker socket to not have the right permissions, or running the socket directly on your software to be against internal policies. To solve this problem, we've built support for the [docker socket proxy](https://github.com/Tecnativa/docker-socket-proxy), which will give the containers the same permissions, but without the socket being directly mounted in the same container. Another good reason to use the docker socket proxy is to control the docker permissions required.
 
-This is a section to expand on hardening possibilities of the Shuffle environment, seeing as may use a lot of access, and allows for remote code execution.
+To use the docker socket proxy, add the following to your docker-compose.yml as a service. This will lauch it together with the rest:
+```
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy
+    privileged: true
+    environment:
+      - SERVICES=1
+      - TASKS=1
+      - NETWORKS=1
+      - NODES=1
+      - BUILD=1
+      - IMAGES=1
+      - GRPC=1
+      - CONTAINERS=1
+      - PLUGINS=1
+      - SYSTEM=1
+      - VOLUMES=1
+      - INFO=1
+      - DISTRIBUTION=1
+      - POST=1
+      - AUTH=1
+      - SECRETS=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - shuffle
 
-TBD - expand these topics:
+```
 
-* Docker rootless
-* Docker proxy
-* Docker image regex
-* Locked down server image (don't allow other commands than Docker)
+When done, remove the "/var/run/docker.sock" volume from the backend and orborus services in the docker-compose. To enable the docker rerouting, add this environment variable to both of them
+```
+      - DOCKER_HOST=tcp://docker-socket-proxy:2375
+```
 
-## Database configuration
-
-**TBD:** Everything below is tbd including swarm
-
-1. Disable security options for docker-compose
-2. Set username & password for opensearch to default admin:admin
-3. Set to use https by default (https://shuffle-opensearch:9200)
-4. Remove 9200 from being exposed
-
+This will route all docker traffic through the docker-socket-proxy giving you granular access to each API. 
 
 ## Shuffle Server Healthcheck
 
