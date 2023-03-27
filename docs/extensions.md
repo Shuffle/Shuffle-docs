@@ -536,8 +536,7 @@ Done! Whenever a file is downloaded, it will be analyzed by Yara, checking match
 
 **QRadar send offense webhook to Shuffle.**
 
-***STEP 1: Add the Script to QRadar & Config***
-
+#### STEP 1: Add the Script to QRadar & Config
 > **Bash Code:**
 ```
 #!/bin/bash
@@ -559,38 +558,30 @@ EOF
 
 What you should do to use it:
 
+1. Log In to QRadar;			
+2. Go to Admin > Custom Actions > **Define Actions**;	
+3. Click **Add**;
+4. Fill the Basic Information (name & description);
+5. In the Script Configuration set **bash** as interpreter, and import the bash script attached to this message;	
+6.** For the Script Parameters, add the parameters in the following order:**
+
 ```
-a) Log In to QRadar;
-			
-b) Go to Admin > Custom Actions > **Define Actions**;	
-			
-c) Click **Add**;
-			
-d) Fill the Basic Information (name & description);
-			
-e) In the Script Configuration set **bash** as interpreter, and import the bash script attached to this message;	
-			
-f) For the Script Parameters, add the parameters in the following order:
-			
-1. [Fixed Property] **shuffle_url** - As value insert the Shuffle Webhook URI, for example https://shuffle.local/api/v1/hooks/webhook_15acc....
-			
-2. [Fixed Property] **authorization** - Insert the Required headers (**SAuthorization**), for example in Shuffle webhook if you set **SAuthorization=s873hn872n_s298ns2-98ns2ns** in the Required headers you authorization value will be "s873hn872n_s298ns2-98ns2ns". *If you change the token name, don't forget to change it in the bash code too*.
-			
-3. [Network Event Property] **offense_id** - Insert **offense_id** as value 
-			
-g) Save
-			
-h) Deploy Changes
+1. [Fixed Property] **shuffle_url** - As value insert the Shuffle Webhook URI, for example https://shuffle.local/api/v1/hooks/webhook_15acc....	
+2. [Fixed Property] **authorization** - Insert the Required headers (**SAuthorization**), for example in Shuffle webhook if you set **SAuthorization=s873hn872n_s298ns2-98ns2ns** in the Required headers you authorization value will be "s873hn872n_s298ns2-98ns2ns". *If you change the token name, don't forget to change it in the bash code too*.			
+3. [Network Event Property] **offense_id** - Insert **offense_id** as value
 ```
+
+7. Save	
+8. Deploy Changes
 
 ![image](https://user-images.githubusercontent.com/21691729/152444978-d360680a-a0b1-40b0-bd04-fa7395cf4d85.png)
 ![image](https://user-images.githubusercontent.com/21691729/152445000-0d2a1828-ee1d-41b1-a549-5417c9a48c75.png)
-		
-***STEP 2: Create new offense alert rule***
+
+
+#### STEP 2: Create new offense alert rule
 			
-a) Go to Offenses > **Rules**;
-			
-b) Click Actions > **New Event Rule**:
+1. Go to Offenses > **Rules**;			
+2. Click Actions > **New Event Rule**:
 ```
     Rule Description
       Apply Shuffle new offense alert on events which are detected by the Local system
@@ -602,16 +593,15 @@ and when the event QID is one of the following (28250369) Offense Created
 This Rule will be: Enabled
 ```
 
-***Conclusion***
->  **Why use this use case?**
+#### QRadar Overview			
+- Easy, this way each time a new offense dispatches in QRadar it will send a webhook to Shuffle containing the offense_id, then the webhook node will receive this info and pass it to the next node (QRadar App) that will perform a **get offense** ~~data~~ action using the received offense id as key.
 			
- Easy, this way each time a new offense dispatches in QRadar it will send a webhook to Shuffle containing the offense_id, then the webhook node will receive this info and pass it to the next node (QRadar App) that will perform a **get offense** ~~data~~ action using the received offense id as key.
-			
- This way you won't need to execute an api call every x time and save the last offense id. This is a better solution and improves the SLA, coz if you set 1 minute as you x time, you may have 1 minute delay or less, besides you are getting all "ungotten" offenses at once, when you can use shuffle to handle with multiple at the same time if it happen to dispatch more than one offense in QRadar at the same time or with just some seconds of difference.
+This way you won't need to execute an api call every x time and save the last offense id. This is a better solution and improves the SLA, coz if you set 1 minute as you x time, you may have 1 minute delay or less, besides you are getting all "ungotten" offenses at once, when you can use shuffle to handle with multiple at the same time if it happen to dispatch more than one offense in QRadar at the same time or with just some seconds of difference.
+	
 
 ### FortiSIEM
 FortiSiEM is the SIEM of Fortigate. It has the possibility of notifying Shuffle through a webhook when a rule triggers, which is exatly what this documentation section is for. The main caveat: all data is XML and needs to be transformed with the Shuffle Tools "XML to JSON" formatter.
-	
+
 **1. Create a Workflow which will receive alerts**
 This one is pretty easily explained. Go to Shuffle an make a new Workflow.
 
@@ -634,6 +624,8 @@ With the Notification Endpoint specified in the previous step, we need to decide
 
 That's it! It's now time to wait for an alert to actually trigger. When it has, make sure to send Execution Argument from the webhook ($exec) straight into an XML to JSON parser. That way you can use it easily in Shuffle.
 
+	
+	
 ### Splunk SIEM 
 Splunk is a SIEM tool for security operations. There are multiple ways to forward the Splunk alerts to  external systems. Simplest way to forward splunk alerts to Shuffle is with using webhook.
 
