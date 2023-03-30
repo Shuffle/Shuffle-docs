@@ -13,6 +13,8 @@ Documentation for Shuffle API v1.0. Will be generated from OpenAPI by Shuffle ve
 * [Notifications](#notifications)
 * [Environments - TBA](#environments)
 * [Organizations - TBA](#organizations)
+* [Integration Layer](#integration_layer)
+
 
 ## Introduction
 Shuffle is a platform to build and execute [workflows](/docs/workflows) to help with automation and reduce burnout. It's built with an API structure in mind, and everything done has an API endpoint. The listed API's are built and generated with our own [OpenAPI creator](/docs/apps#create_openapi_app). All API's listed are for both versions of Shuffle (cloud/onprem), unless otherwise specified. Our OpenAPI specification can be [downloaded here](https://shuffler.io/apps/edaa73d40238ee60874a853dc3ccaa6f). Below are the base URL's for the API.
@@ -675,12 +677,61 @@ Below are the endpoints related to organization creation, editing, listing and m
 
 
 
+## Integration Layer
+The Integration Layer of Shuffle is a way to interact with apps a new way. It utilizes Apps that are categorized and labeled, and gives access to API's for specific actions for each of those labels. Behind the scenes there is always a workflow for each of these, and Shuffle wants to give granular control of each individual Workflow if wanted. 
+	
+Here are the current categories and labels (subject to change):
+
+- Communication: List Messages, Send Message, Get Message, Search messages,
+- SIEM: Search, List Alerts", Close Alert, Create detection, Add to lookup list,
+- Eradication (EDR): List Alerts, "Close Alert", "Create detection", "Block hash", "Search Hosts", "Isolate host", "Unisolate host"],
+- Cases: List tickets, "Get ticket", "Create ticket", "Close ticket", "Add comment", "Update ticket"
+- Assets: List Assets", "Get Asset", "Search Assets", "Search Users", "Search endpoints", "Search vulnerabilities
+- ~~Intel: "Get IOC", "Search IOC", "Create IOC", "Update IOC", "Delete IOC",],~~
+- ~~IAM: Reset Password", "Enable user", "Disable user", "Get Identity", "Get Asset", "Search Identity"~~
+- Network: Get Rules", "Allow IP", "Block IP",
+
+### Get Active Categories
+To find what categories with what apps you have that are active, run this API. It will return with what categories and actions for those categories you have available. This is based on the current organization.
+	
+Methods: GET 
+
+```
+curl https://shuffler.io/api/v1/apps/categories -H "Authorization: Bearer APIKEY"
+```
 
 
+**Success response** 
+```
+[{"name":"Cases","color":"","icon":"cases","action_labels":["Create ticket"], "app_labels": 
+	[{
+		"app_name":"PagerDuty","large_image":"","id":"50af6d9f18134b90aabca9180b37ea01","labels":[{"category":"Cases","label":"Create ticket"}]
+	]}
+}]
+```
+		
+### Run a Category Action
+Runs the category action in a standardized format.
+	
+Methods: POST 
 
-
-
-
+```
+curl -XPOST https://shuffler.io/api/v1/apps/categories/run -H "Authorization: Bearer APIKEY" -d '{
+	"app_name": "PagerDuty",
+	"category": "cases",
+	"label": "create_ticket",
+	"fields": [{
+		"key": "title",
+		"value": "This is the title"
+	}, {
+		"key": "description",
+		"value": "This is the description"
+	}, {
+		"key": "source",
+		"value": "Shuffle"
+	}]
+}'
+```
 
 
 
