@@ -679,17 +679,6 @@ Below are the endpoints related to organization creation, editing, listing and m
 
 ## Integration Layer
 The Integration Layer of Shuffle is a way to interact with apps a new way. It utilizes Apps that are categorized and labeled, and gives access to API's for specific actions for each of those labels. Behind the scenes there is always a workflow for each of these, and Shuffle wants to give granular control of each individual Workflow if wanted. 
-	
-Here are the current categories and labels (subject to change):
-
-- Communication: List Messages, Send Message, Get Message, Search messages,
-- SIEM: Search, List Alerts", Close Alert, Create detection, Add to lookup list,
-- Eradication (EDR): List Alerts, "Close Alert", "Create detection", "Block hash", "Search Hosts", "Isolate host", "Unisolate host"],
-- Cases: List tickets, "Get ticket", "Create ticket", "Close ticket", "Add comment", "Update ticket"
-- Assets: List Assets", "Get Asset", "Search Assets", "Search Users", "Search endpoints", "Search vulnerabilities
-- ~~Intel: "Get IOC", "Search IOC", "Create IOC", "Update IOC", "Delete IOC",],~~
-- ~~IAM: Reset Password", "Enable user", "Disable user", "Get Identity", "Get Asset", "Search Identity"~~
-- Network: Get Rules", "Allow IP", "Block IP",
 
 ### Get Active Categories
 To find what categories with what apps you have that are active, run this API. It will return with what categories and actions for those categories you have available. This is based on the current organization.
