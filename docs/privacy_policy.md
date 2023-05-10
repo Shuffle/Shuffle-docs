@@ -1,5 +1,5 @@
 # Privacy Policy
-This is the initial privacy policy for Shuffle cloud. Valid as of this file's last change date on [Github](https://github.com/frikky/shuffle-docs/blob/master/docs/privacy_policy.md).
+This is the initial privacy policy for Shuffle cloud. Valid as of this file's last change date on [Github](https://github.com/frikky/shuffle-docs/blob/master/docs/privacy_policy.md)
 
 ## Table of contents
 * [Introduction](#introduction)
