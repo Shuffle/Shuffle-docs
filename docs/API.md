@@ -223,7 +223,7 @@ Uploads a python app. You should upload a zip file with the following like file 
 
 To zip an app, go to the folder's version, e.g. shuffle-tools/1.2.0, then type in the following (\*nix):
 ```
-zip App.zip -r *
+zip app.zip -r appname/version/*
 ```
 
 This will give you the following structure.
@@ -239,7 +239,7 @@ App.zip
 Methods: POST
 
 ```
-curl https://shuffler.io/api/v1/apps/upload -H "Authorization: Bearer APIKEY" -F 'shuffle_file=@./your_file/file_path/App.zip'
+curl https://shuffler.io/api/v1/apps/upload -H "Authorization: Bearer APIKEY" -F 'shuffle_file=@./your_file/file_path/app.zip'
 ```
 **Success response** 
 ```
