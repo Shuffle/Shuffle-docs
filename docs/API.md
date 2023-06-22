@@ -7,13 +7,15 @@ Documentation for Shuffle API v1.0. Will be generated from OpenAPI by Shuffle ve
 * [Responses](#responses)
 * [Workflows](#workflow_api)
 * [Apps](#app_api)
+* [App Authentication - TBA](#app_authentication_api)
 * [Users](#user_api)
 * [Files](#file_api)
-* [Triggers](#triggers)
-* [Notifications](#notifications)
+* [Datastore - TBA](#datastore_api)
+* [Priorities - TBA](#priorities)
+* [Notifications - TBA](#notifications)
 * [Environments - TBA](#environments)
 * [Organizations - TBA](#organizations)
-* [Integration Layer](#integration_layer)
+* [Integration Layer - TBA](#integration_layer)
 
 
 ## Introduction
@@ -26,9 +28,9 @@ Shuffle is a platform to build and execute [workflows](/docs/workflows) to help 
 <b>PS:</b> API's are due to change before the full release, but nothing major at this point.
 
 ## Authentication
-Shuffle uses [Bearer auth](https://swagger.io/docs/specification/authentication/bearer-authentication/) for authentication. This means that every request you send to the API, you need to send it with the header "Authorization: Bearer <APIKEY>".  
+Shuffle uses [Bearer auth](https://swagger.io/docs/specification/authentication/bearer-authentication/) for authentication. This means that every request you send to the API, you need to send it with the header "Authorization: Bearer <APIKEY>". If Shuffle is multi-tenancy configured, you may have multiple organizations. If you want to specify the organization to use, you may add the header "Org-Id: <ORGID>". It will otherwise use the current active organization.
 
-While logged in, you can go to https://shuffler.io/settings to get your APIkey. Keep this safe. 
+While logged in, you can go to https://shuffler.io/settings or /settings in your local instance to get your APIkey. Keep this safe. 
 
 **Get all apps example**
 ```

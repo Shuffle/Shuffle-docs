@@ -1,5 +1,7 @@
 #### MANAGEMENT
 
+[Handling leads](/finding-leads)
+
 #### Business Process Document
 
 #### SALES PROCESS
@@ -348,17 +350,3 @@ and problems.
 ### Algolia
 
 ### Google Analytics
-
-# Sponsor Acceptance 
-
-Approved by the Project Sponsor:
-
-Date:
-
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-Fredrik S Ødegårdstuen
-
-CEO & Co-founder
-
-# 
