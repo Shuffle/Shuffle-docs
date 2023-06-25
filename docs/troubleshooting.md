@@ -14,7 +14,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Rebuilding an OpenSearch index](#rebuilding_an_opsearch_index)
 * [Updates Failing](#updates_failing)
 * [Database not starting](#database_not_starting)
-* [TLS timeout error](#tls_timeout_error)
+* [TLS timeout error/Timeout Errors/EOF Errors](#tls_timeout_error)
 * [Shuffle on ARM](#shuffle_on_arm)
 * [Orborus can't connect to backend](#orborus_backend_connection_problems)
 * [Permission denied on file upload](#permission_denied_on_files)
@@ -323,28 +323,41 @@ In certain cases, you may experience OpenSearch continuously restarting. PS: All
 1. Do you have security enabled (https & username & password), but not configured it in the `.env` file?
 
 
-## TLS timeout error
-In certain cases, you may experience a TLS timeout error, or a similar network request issue. This is most likely due to the network configuration of your Shuffle instances not matching the server it's running on. 
+## TLS timeout error/Timeout Errors/EOF Errors
+In certain cases, especially when you're running in swarm mode, you may experience timeouts, EOFs. Or maybe, in different cases a TLS timeout error, or a similar network request issue. This is most likely due to the network configuration of your Shuffle instances not matching the server it's running on. 
 
-The main configuration is "MTUs", AKA Maximum Transmission Unit. This has to match _exactly_ - with the Docker default being 1500.
+The main configuration is "MTUs", AKA Maximum Transmission Unit. This has to match _exactly_ - with the both the docker network driver bridge and shuffle_swarm_executions.
 
-Find MTU:
+Find the MTU of your preferred network interface:
 ```
 ip addr | grep mtu
 ```
+<img width="697" alt="Screenshot 2023-06-23 at 7 17 56 AM" src="https://github.com/Shuffle/Shuffle-docs/assets/60684641/b1aff6a8-7cae-4707-ac4a-cda1af484b79">
 
-To set the MTU in Docker, do it in the docker-compose, in the networking section. Say the MTU you found was 1450, then use 1450, as can be seen below. When done, restart the docker-compose.
+It is usually the network interface in the second line. Get it's MTU!
+
+To set the MTU in Docker, do it in the docker-compose, in the networking section. Say the MTU you found was 1460, then use 1460, as can be seen below.
 ```
 networks:
   shuffle:
     driver: bridge
       driver_opts:
-        com.docker.network.driver.mtu: 1450
+        com.docker.network.driver.mtu: 1460
 ```
 
-**NOTE:** If you run Shuffle in swarm mode, the MTU has to be set for that network manually as well. That means we need to make a network named the same as the environment SHUFFLE_SWARM_NETWORK_NAME for Orborus (default: shuffle_swarm_executions):
+Next, if you're running on swarm mode, delete the existing `shuffle_swarm_executions` network if it already exists. You can do that by using:
+
 ```
-docker network create --driver=overlay --ingress=false --attachable=true -o "com.docker.network.driver.mtu"="1450" shuffle_swarm_executions
+sudo docker network rm shuffle_swarm_executions
+```
+
+If it requires removing dependant services, proceed to do that.
+
+When done, restart the docker-compose. Now the issue should be automatically taken care of. If not, and you're on swarm mode, Proceed to the next step of manually setting the network MTU:
+
+We need to make a network named the same as the environment SHUFFLE_SWARM_NETWORK_NAME for Orborus (default: shuffle_swarm_executions):
+```
+docker network create --driver=overlay --ingress=false --attachable=true -o "com.docker.network.driver.mtu"="1460" shuffle_swarm_executions
 ```
 
 ## Shuffle on ARM
