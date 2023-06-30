@@ -351,9 +351,9 @@ Next, if you're running on swarm mode, delete the existing `shuffle_swarm_execut
 sudo docker network rm shuffle_swarm_executions
 ```
 
-If it requires removing dependant services, proceed to do that.
+**If it requires removing dependant services, proceed to do that.**
 
-When done, restart the docker-compose. Now the issue should be automatically taken care of. If not, and you're on swarm mode, Proceed to the next step of manually setting the network MTU:
+When done, restart the docker-compose. Now the **issue should be automatically taken care of. If not, and you're on swarm mode, Proceed to the next step of manually setting the network MTU:**
 
 We need to make a network named the same as the environment SHUFFLE_SWARM_NETWORK_NAME for Orborus (default: shuffle_swarm_executions):
 ```
