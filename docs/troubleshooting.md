@@ -341,8 +341,13 @@ To set the MTU in Docker, do it in the docker-compose, in the networking section
 networks:
   shuffle:
     driver: bridge
-      driver_opts:
-        com.docker.network.driver.mtu: 1460 # this should be present as a comment in the docker-compose file.
+
+    # uncomment to set MTU for swarm mode.
+    # MTU should be whatever is your host's preferred MTU is.
+    # Refer to this doc to figure out what your host's MTU is:
+    # https://shuffler.io/docs/troubleshooting#TLS_timeout_error/Timeout_Errors/EOF_Errors
+     driver_opts: # removed comment from here
+       com.docker.network.driver.mtu: 1460 # removed comment from here.
 ```
 
 Next, if you're running on swarm mode, delete the existing `shuffle_swarm_executions` network if it already exists. You can do that by using:
@@ -350,6 +355,8 @@ Next, if you're running on swarm mode, delete the existing `shuffle_swarm_execut
 ```
 sudo docker network rm shuffle_swarm_executions
 ```
+
+This might be an essential step to enforce what we did in the last step. Shuffle things a lot of things under the hood and syncing up the right interfaces is one of them so that you don't have to worry about it.
 
 **If it requires removing dependant services, proceed to do that.**
 
