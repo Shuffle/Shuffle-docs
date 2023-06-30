@@ -324,7 +324,7 @@ In certain cases, you may experience OpenSearch continuously restarting. PS: All
 
 
 ## TLS timeout error/Timeout Errors/EOF Errors
-In certain cases, especially when you're running in swarm mode, you may experience timeouts, EOFs. Or maybe, in different cases a TLS timeout error, or a similar network request issue. This is most likely due to the network configuration of your Shuffle instances not matching the server it's running on. 
+In certain cases, especially when you're running in swarm mode (Make sure ports: 2377, 7946 and 4789 between your machines **internally**), you may experience timeouts, EOFs. Or maybe, in different cases a TLS timeout error, or a similar network request issue. This is most likely due to the network configuration of your Shuffle instances not matching the server it's running on. 
 
 The main configuration is "MTUs", AKA Maximum Transmission Unit. This has to match _exactly_ - with the both the docker network driver bridge and shuffle_swarm_executions.
 
@@ -342,7 +342,7 @@ networks:
   shuffle:
     driver: bridge
       driver_opts:
-        com.docker.network.driver.mtu: 1460
+        com.docker.network.driver.mtu: 1460 # this should be present as a comment in the docker-compose file.
 ```
 
 Next, if you're running on swarm mode, delete the existing `shuffle_swarm_executions` network if it already exists. You can do that by using:
@@ -359,6 +359,8 @@ We need to make a network named the same as the environment SHUFFLE_SWARM_NETWOR
 ```
 docker network create --driver=overlay --ingress=false --attachable=true -o "com.docker.network.driver.mtu"="1460" shuffle_swarm_executions
 ```
+
+If the issue still persists, Please look into changing the environment variable `SHUFFLE_SWARM_BRIDGE_DEFAULT_INTERFACE`. Shuffle takes care of syncing the docker0 bridge interface to the preferred interface of the container. Changing this value might help docker sync up things better. We assume that the interface name is "eth0" by default, which is the default setting.
 
 ## Shuffle on ARM
 ARM is currently not supported for Shuffle, as can be seen in issue [#665 on Github](https://github.com/frikky/Shuffle/issues/665). We don't have the capability to build it as of now, but can work with you to get it working if you want to try it.
