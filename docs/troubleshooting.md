@@ -22,7 +22,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Server is slow](#server_is_slow)
 * [How to handle wrong or bad images on old versions of docker](#how-to-handle-wrong-or-bad-images-on-old-versions-of-docker)
 * [Docker not working](#docker_not_working)
-* [Troubleshooting for executions not running, in swarm](#Troubleshooting_for_executions_not_running,_in_swarm)
+* [Troubleshooting for executions not running in swarm mode](#Troubleshooting_for_executions_not_running_in_swarm_mode)
 * [Find app creator Python function](#find_code_openapi_app)
 
 ## Orborus backend connection problems
@@ -562,7 +562,7 @@ service docker start
 
 Now restart the Shuffle stack again, and all the containers should be gone
 
-## Troubleshooting for executions not running, in swarm
+## Troubleshooting for executions not running in swarm mode
 
 * You'll need to check whether swarm is configured properly and running. Do this by orborus logs using the following command.
 
