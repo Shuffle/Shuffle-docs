@@ -14,7 +14,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Rebuilding an OpenSearch index](#rebuilding_an_opsearch_index)
 * [Updates Failing](#updates_failing)
 * [Database not starting](#database_not_starting)
-* [TLS timeout error/Timeout Errors/EOF Errors](#tls_timeout_error)
+* [TLS timeout error/Timeout Errors/EOF Errors](#TLS_timeout_error/Timeout_Errors/EOF_Errors)
 * [Shuffle on ARM](#shuffle_on_arm)
 * [Orborus can't connect to backend](#orborus_backend_connection_problems)
 * [Permission denied on file upload](#permission_denied_on_files)
