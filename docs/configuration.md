@@ -233,9 +233,29 @@ networks:
 ## Scaling Shuffle with Swarm
 Orborus can run in Docker-swarm mode, and in early 2023, with Kubernetes. This makes the workflow executions A LOT faster, use less resources, and makes it more scalable across multiple servers. This [is a paid service](https://shuffler.io/pricing2), and requires the [Enterprise / Scale license](https://shuffler.io/pricing2). There are ways to achieve the same by [using multiple environments without swarm](/docs/organizations#environments).
 
-You will be provided with a url to download the Worker image from Shuffle. Orborus does not need changing.
+To begin with, Let's sort out the pre-requisites:
 
-1. Download the new worker you were provided:
+Our setup would end up looking like this:
+<img width="834" alt="Screenshot 2023-07-01 at 3 41 53 AM" src="https://github.com/0x0elliot/Shuffle-docs/assets/60684641/1a485fb8-53d7-40ac-bfcf-11c3dc69e98f">
+
+
+Let's begin with setting up Docker, Docker Compose, and creating a Docker Swarm network with two manager nodes involves several steps. Below is a step-by-step guide to achieve this:
+
+**Step 1: Install Docker**
+
+Install Docker on both machines by following the official Docker installation guide for your operating system.
+Docker Installation Guide: https://docs.docker.com/get-docker/
+
+**Step 2: Install Docker Compose**
+
+Install Docker Compose on both machines by following the official Docker Compose installation guide.
+Docker Compose Installation Guide: https://docs.docker.com/compose/install/
+
+**Now, Let's begin with setting up the docker swarm network in Machine A:**
+
+You will be provided with a url to download the Worker image from Shuffle. Orborus does not need changing. 
+
+1. Download the new worker you were provided: (Bare in mind, `URL` is a place holder)
 ```
     wget URL # URL is the url provided by Shuffle
     docker load -i shuffle-worker.zip
@@ -255,17 +275,33 @@ You will be provided with a url to download the Worker image from Shuffle. Orbor
     SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
     SHUFFLE_SCALE_REPLICAS=1
     SHUFFLE_SWARM_CONFIG=run
-    BASE_URL=http://YOUR-BACKEND-URL:5001
+    BASE_URL=http://YOUR-BACKEND-URL:5001 # YOUR-BACKEND-URL can be replaced by your public IP (considering your ports are open)
 ```
+
+To make swarm work, Please make sure that [these ports are open](https://docs.docker.com/engine/swarm/swarm-tutorial/#open-protocols-and-ports-between-the-hosts) on both your machines (to at least, both of these machines internally): 2377, 7946 and 4789
+
+**It is recommended to make sure that these ports are ONLY open internally just to be sure that everything is secure.**
 
 4. When all is done, take down the stack and pull it back up AFTER initializing swarm:
 ```
 docker swarm init
 docker-compose down
 docker-compose up -d
+docker swarm join-token manager # copy the command given
 ```
 
 PS: In certain scenarios you may need extra configurations, e.g. for network MTU's, docker download locations, proxies etc. See more in the [production readiness](/docs/configuration#production_readiness) section.
+
+# Add the other machine (Machine B) on docker swarm:
+
+Again, Make sure docker works here. Then paste the output from the above last command. It adds the network in the docker swarm network as a manager (It is required to orchestrate the app containers).
+
+It should look something like this:
+
+```
+docker swarm join --token SWMTKN-1-{token} {internal IP}:2377
+```
+
 
 ### Verify swarm
 
@@ -281,7 +317,7 @@ And to check if services have started:
 docker service ls
 ```
 
-If the list is empty, or you see any of the "replicas" have 0/1, then something is wrong. In case of any swarm issues, contact us at (support@shuffler.io](mailto:support@shuffler.io) or contact your account representative.
+If the list is empty, or you see any of the "replicas" have 0/1, then something is wrong. In case of any swarm issues, contact us at [support@shuffler.io](mailto:support@shuffler.io) or contact your account representative.
 
 ![](Aspose.Words.81096d25-bbff-47b2-a5ee-1ac38ad8ca4e.001.jpeg)
 
