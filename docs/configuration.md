@@ -302,7 +302,6 @@ It should look something like this:
 docker swarm join --token SWMTKN-1-{token} {internal IP}:2377
 ```
 
-
 ### Verify swarm
 
 Run the following command to get logs from Orborus:
@@ -318,6 +317,8 @@ docker service ls
 ```
 
 If the list is empty, or you see any of the "replicas" have 0/1, then something is wrong. In case of any swarm issues, contact us at [support@shuffler.io](mailto:support@shuffler.io) or contact your account representative.
+
+If you get EOFs or timeouts for workers in machine B, look [here](https://shuffler.io/docs/troubleshooting#TLS_timeout_error/Timeout_Errors/EOF_Errors).
 
 ![](Aspose.Words.81096d25-bbff-47b2-a5ee-1ac38ad8ca4e.001.jpeg)
 
