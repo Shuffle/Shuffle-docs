@@ -14,7 +14,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Rebuilding an OpenSearch index](#rebuilding_an_opsearch_index)
 * [Updates Failing](#updates_failing)
 * [Database not starting](#database_not_starting)
-* [TLS timeout error/Timeout Errors/EOF Errors](#tls_timeout_error)
+* [TLS timeout error/Timeout Errors/EOF Errors](#TLS_timeout_error/Timeout_Errors/EOF_Errors)
 * [Shuffle on ARM](#shuffle_on_arm)
 * [Orborus can't connect to backend](#orborus_backend_connection_problems)
 * [Permission denied on file upload](#permission_denied_on_files)
@@ -22,7 +22,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Server is slow](#server_is_slow)
 * [How to handle wrong or bad images on old versions of docker](#how-to-handle-wrong-or-bad-images-on-old-versions-of-docker)
 * [Docker not working](#docker_not_working)
-* [Troubleshooting for executions not running, in swarm](#Troubleshooting_for_executions_not_running,_in_swarm)
+* [Troubleshooting for executions not running in swarm mode](#Troubleshooting_for_executions_not_running_in_swarm_mode)
 * [Find app creator Python function](#find_code_openapi_app)
 
 ## Orborus backend connection problems
@@ -324,7 +324,7 @@ In certain cases, you may experience OpenSearch continuously restarting. PS: All
 
 
 ## TLS timeout error/Timeout Errors/EOF Errors
-In certain cases, especially when you're running in swarm mode, you may experience timeouts, EOFs. Or maybe, in different cases a TLS timeout error, or a similar network request issue. This is most likely due to the network configuration of your Shuffle instances not matching the server it's running on. 
+In certain cases, especially when you're running in swarm mode (Make sure ports: 2377, 7946 and 4789 between your machines **internally**), you may experience timeouts, EOFs. Or maybe, in different cases a TLS timeout error, or a similar network request issue. This is most likely due to the network configuration of your Shuffle instances not matching the server it's running on. 
 
 The main configuration is "MTUs", AKA Maximum Transmission Unit. This has to match _exactly_ - with the both the docker network driver bridge and shuffle_swarm_executions.
 
@@ -341,8 +341,13 @@ To set the MTU in Docker, do it in the docker-compose, in the networking section
 networks:
   shuffle:
     driver: bridge
-      driver_opts:
-        com.docker.network.driver.mtu: 1460
+
+    # uncomment to set MTU for swarm mode.
+    # MTU should be whatever is your host's preferred MTU is.
+    # Refer to this doc to figure out what your host's MTU is:
+    # https://shuffler.io/docs/troubleshooting#TLS_timeout_error/Timeout_Errors/EOF_Errors
+     driver_opts: # removed comment from here
+       com.docker.network.driver.mtu: 1460 # removed comment from here.
 ```
 
 Next, if you're running on swarm mode, delete the existing `shuffle_swarm_executions` network if it already exists. You can do that by using:
@@ -351,14 +356,20 @@ Next, if you're running on swarm mode, delete the existing `shuffle_swarm_execut
 sudo docker network rm shuffle_swarm_executions
 ```
 
-If it requires removing dependant services, proceed to do that.
+This might be an essential step to enforce what we did in the last step. Shuffle things a lot of things under the hood and syncing up the right interfaces is one of them so that you don't have to worry about it.
 
-When done, restart the docker-compose. Now the issue should be automatically taken care of. If not, and you're on swarm mode, Proceed to the next step of manually setting the network MTU:
+**If it requires removing dependant services, proceed to do that.**
+
+When done, restart the docker-compose. Now the **issue should be automatically taken care of. If not, and you're on swarm mode, Proceed to the next step of manually setting the network MTU:**
 
 We need to make a network named the same as the environment SHUFFLE_SWARM_NETWORK_NAME for Orborus (default: shuffle_swarm_executions):
 ```
 docker network create --driver=overlay --ingress=false --attachable=true -o "com.docker.network.driver.mtu"="1460" shuffle_swarm_executions
 ```
+
+If the issue still persists, Please look into changing the environment variable `SHUFFLE_SWARM_BRIDGE_DEFAULT_INTERFACE`. Shuffle takes care of syncing the docker0 bridge interface to the preferred interface of the container. Changing this value might help docker sync up things better. We assume that the interface name is "eth0" by default, which is the default setting.
+
+If none of this works, Often times it's simply because of the virtualisation used by your cloud provider. For example, We have found these issues to be persistent with providers using VMware underneath, [Refer to this for a fix](https://portal.portainer.io/knowledge/known-issues-with-vmware)
 
 ## Shuffle on ARM
 ARM is currently not supported for Shuffle, as can be seen in issue [#665 on Github](https://github.com/frikky/Shuffle/issues/665). We don't have the capability to build it as of now, but can work with you to get it working if you want to try it.
@@ -562,7 +573,7 @@ service docker start
 
 Now restart the Shuffle stack again, and all the containers should be gone
 
-## Troubleshooting for executions not running, in swarm
+## Troubleshooting for executions not running in swarm mode
 
 * You'll need to check whether swarm is configured properly and running. Do this by orborus logs using the following command.
 
