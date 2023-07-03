@@ -369,6 +369,8 @@ docker network create --driver=overlay --ingress=false --attachable=true -o "com
 
 If the issue still persists, Please look into changing the environment variable `SHUFFLE_SWARM_BRIDGE_DEFAULT_INTERFACE`. Shuffle takes care of syncing the docker0 bridge interface to the preferred interface of the container. Changing this value might help docker sync up things better. We assume that the interface name is "eth0" by default, which is the default setting.
 
+If none of this works, Often times it's simply because of the virtualisation used by your cloud provider. For example, We have found these issues to be persistent with providers using VMware underneath, [Refer to this for a fix](https://portal.portainer.io/knowledge/known-issues-with-vmware)
+
 ## Shuffle on ARM
 ARM is currently not supported for Shuffle, as can be seen in issue [#665 on Github](https://github.com/frikky/Shuffle/issues/665). We don't have the capability to build it as of now, but can work with you to get it working if you want to try it.
 
