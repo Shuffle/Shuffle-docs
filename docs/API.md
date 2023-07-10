@@ -438,7 +438,7 @@ curl -XDELETE https://shuffler.io/api/v1/apps/authentication/{authentication_id}
 ```
 
 ## Datastore API
-Below are the endpoints related to datastore (cache) creation, listing, deletion and more. This API is available to Python apps by using self.set_cache("key", "value") and self.get_cache("key")
+Datastore is a persistent storage mechanism you can use for workflows to talk to each other between executions, or for normal storage. Below are the endpoints related to datastore (cache) creation, listing, deletion and more. This API is available to Python apps by using self.set_cache("key", "value") and self.get_cache("key")
 
 ### Add a key
 To add or edit a cache key use 
