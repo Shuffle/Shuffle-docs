@@ -11,8 +11,8 @@ Documentation for Shuffle API v1.0. Will be generated from OpenAPI by Shuffle ve
 * [Users](#user_api)
 * [Files](#file_api)
 * [Datastore (Cache)](#datastore_api)
-* [Priorities - TBA](#priorities)
 * [Notifications](#notifications)
+  [Priorities - TBA](#priorities)
 * [Environments - TBA](#environments)
 * [Organizations - TBA](#organizations)
 * [Integration Layer - TBA](#integration_layer)
@@ -429,6 +429,71 @@ Methods: DELETE
 
 ```
 curl -XDELETE https://shuffler.io/api/v1/apps/authentication/{authentication_id} -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"success": true}
+```
+
+## Datastore API
+Below are the endpoints related to datastore (cache) creation, listing, deletion and more. This API is available to Python apps by using self.set_cache("key", "value") and self.get_cache("key")
+
+### Add a key
+To add or edit a cache key use 
+
+Methods: POST, PUT
+
+```
+curl https://shuffler.io/api/v1/orgs/{org_id}/set_cache -H "Authorization: Bearer APIKEY" -d '{"key":"hi", "value":"1234"}'
+```
+
+
+**Success response** 
+```
+{"success": true}
+```
+
+### Get a key
+Search for a cache key. For keys set in a workflow, it may unavailable with the normal API, and require execution_id & authorization in the JSON body.
+
+Methods: POST
+
+```
+curl https://shuffler.io/api/v1/orgs/{org_id}/get_cache -H "Authorization: Bearer APIKEY" -d '{"org_id": "ORG_ID", "key": "hi"}'
+```
+
+
+**Success response** 
+```
+{"success":false,"workflow_id":"99951014-f0b1-473d-a474-4dc9afecaa75","execution_id":"f0b2b4e9-90ca-4835-bdd4-2889ef5f926f","org_id":"2e7b6a08-b63b-4fc2-bd70-718091509db1","key":"hi","value":"1234"}
+```
+
+
+### List all keys
+List existing datastore (cache) keys
+
+Methods: GET
+
+```
+curl https://shuffler.io/api/v1/orgs/{org_id}/list_cache -H "Authorization: Bearer APIKEY"
+```
+
+
+**Success response** 
+```
+{"success":true,"keys":[{"success":false,"workflow_id":"99951014-f0b1-473d-a474-4dc9afecaa75","execution_id":"f0b2b4e9-90ca-4835-bdd4-2889ef5f926f","org_id":"2e7b6a08-b63b-4fc2-bd70-718091509db1","key":"hi","value":"1234"}]}
+```
+
+### Delete a key
+Deletes a key, completely removing all references to it
+
+Methods: DELETE
+
+```
+curl -XDELETE https://shuffler.io/api/v1/orgs/{org_id}/cache/{cache_key} -H "Authorization: Bearer APIKEY"
+
 ```
 
 
