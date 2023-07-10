@@ -7,12 +7,12 @@ Documentation for Shuffle API v1.0. Will be generated from OpenAPI by Shuffle ve
 * [Responses](#responses)
 * [Workflows](#workflow_api)
 * [Apps](#app_api)
-* [App Authentication - TBA](#app_authentication_api)
+* [App Authentication](#app_authentication_api)
 * [Users](#user_api)
 * [Files](#file_api)
-* [Datastore - TBA](#datastore_api)
+* [Datastore (Cache)](#datastore_api)
 * [Priorities - TBA](#priorities)
-* [Notifications - TBA](#notifications)
+* [Notifications](#notifications)
 * [Environments - TBA](#environments)
 * [Organizations - TBA](#organizations)
 * [Integration Layer - TBA](#integration_layer)
@@ -313,8 +313,6 @@ Describes how to download remote apps from a Github repository, including privat
 ## User API
 Below are the endpoints related to user creation, editing, listing, apikey generation and more. 
 
-**PS: These are NOT accurate for https://shuffler.io yet.**
-
 ### List users
 Lists all available users. Requires admin rights.
 
@@ -391,6 +389,53 @@ curl https://shuffler.io/api/v1/users/generateapikey -H "Authorization: Bearer A
 {"success": true, "username": "username", "verified": false, "apikey": "new apikey"}
 ```
 
+## App Authentication API
+App Authentication is an API for handling authentication of apps themselves. You can interact with it through a workflow, an app, the admin panel, or the /apps/authentication UI. To use an authentication after it's made, it has to be mapped to an action in a workflow by it's ID.
+
+### Create a new authentication
+To use authentication, you first have to make one. Use the `configuration` fields for an app (get the app first to find these), and add them as fields with key:value in the request. 
+
+Methods: POST 
+
+```
+curl https://shuffler.io/api/v1/apps/authentication -H "Authorization: Bearer APIKEY" -d '{"app":{"name":"Elasticsearch","app_version":"1.0.0","id":"971706758e274c2e4083f2621fb5a6f7"},"fields":[{"key":"username_basic","value":"asd"},{"key":"password_basic","value":"asd"},{"key":"url","value":"asd"}],"label":"Auth for Elasticsearch","id":"80dcedb1-bd43-4253-b837-a0470ce6681e","active":true}'
+```
+
+
+**Success response** 
+```
+{"success": true, "id": "80dcedb1-bd43-4253-b837-a0470ce6681e"}
+```
+
+### List auth
+Gets all app auth
+
+Methods: GET 
+
+```
+curl https://shuffler.io/api/v1/apps/authentication -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+[{"app":{"name":"Elasticsearch","app_version":"1.0.0","id":"971706758e274c2e4083f2621fb5a6f7"},"fields":[{"key":"username_basic","value":"asd"},{"key":"password_basic","value":"asd"},{"key":"url","value":"asd"}],"label":"Auth for Elasticsearch","id":"80dcedb1-bd43-4253-b837-a0470ce6681e","active":true, "usage": []}]
+```
+
+### Delete an authentication
+Deletes an authentication. 
+
+Methods: DELETE
+
+```
+curl -XDELETE https://shuffler.io/api/v1/apps/authentication/{authentication_id} -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"success": true}
+```
 
 ## File API
 Below are the endpoints related to file creation, uploading, downloading, listing and more. This API is available to Python apps by using self.set_files(files) and self.get_file(file_id)
