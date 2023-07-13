@@ -24,6 +24,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Docker not working](#docker_not_working)
 * [Troubleshooting for executions not running in swarm mode](#Troubleshooting_for_executions_not_running_in_swarm_mode)
 * [Find app creator Python function](#find_code_openapi_app)
+* [Tenants/Suborgs seem to be lost](#Reinstate lost tenants)
 
 ## Orborus backend connection problems
 Due to the nature of Shuffle at scale, there are bound to be network issues. As Shuffle runs in Docker, and sometimes in swarm with k8s networking, it complicates the matter even further. Here's a list of things to help with debugging networking. If all else fails; reboot the machine & docker.
@@ -630,3 +631,28 @@ def post_importscan_create(self,...)
 ```
 
 Copy everything indented under this function and sent to support@shuffler.io for further help!
+
+## Tenants/Suborgs seem to be lost
+
+If you loose your tenants/suborgs for any reason at all and you need to reinstate them then you will need to do the following;
+
+1. Get the org id's from your backend logs 
+```
+docker logs shuffle-backend 
+```
+2. After you've identified the org id's for the orgs you want to reinstate, docker exec to get bash session into OpenSearch container or any other container so long as the said container can communicate to the Opensearch container 
+```
+docker exec -it <container_id> bash 
+```
+3. Once in the container from step 2 above, run the following command.
+```
+curl -k -u admin:admin -H 'Content-Type: application/json' 'https://shuffle-opensearch:9200/organizations/_update/<org_id goes here>/' -d '{"doc": {"id": "org-id-goes-here", "name": "org-name-goes-here"}}'
+```
+4. Exit out of the container
+
+5. Restart docker
+```
+$docker-compose down
+$docker-compose up -d
+```
+Go back to your shuffle instance and you should see the org in question reinstated in the tenants tab. 
