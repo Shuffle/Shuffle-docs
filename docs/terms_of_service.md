@@ -27,13 +27,13 @@ Our acceptable use policy sets per-organization usage limits and was designed to
 All monthly limits are per organization, including its sub-organizations. 
 
 ### Free Plan
-- **App Executions** - 5000 
+- **App Executions** - 10.000 
 - **Bandwidth** - 10GB in and 10GB out of Shuffle 
 
-### Enterprise & MSSP Plan
-- **App Executions** - Minimum 150.000 
+### Scale, Enterprise & MSSP Plan
+- **App Executions** - Minimum 100.000 or 8 CPU cores
 - **Bandwidth** - 1000 GB in and 1000 GB out of Shuffle 
-- **Extended limits** - Varies based on agreement - by default $0.0009/app execution above normal limit, or $75 per CPU core supported above normal limit. Please [contact us](https://shuffler.io/contact) us for more information.
+- **Extended limits** - Varies based on agreement - by default $0.0042/app execution above normal limit, or $75 per CPU core supported above normal limit. Please [contact us](https://shuffler.io/contact) us for more information.
 
 ## The system
 1. Use of the System. During the Term and provided that this Agreement has not been terminated by either party, and in consideration of the payment of the System Fees, Customer may access and use the System pursuant and subject to: (a) the terms of any outstanding Customer Order, including such features and functions as the Customer Order provides and any limitations on the number of Users, data volume and capacity as the Customer Order imposes; and (b) AUP and Shuffle’s other policies posted on its Website at shuffler.io, as such policies may be updated from time to time.
