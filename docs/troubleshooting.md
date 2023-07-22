@@ -24,7 +24,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Docker not working](#docker_not_working)
 * [Troubleshooting for executions not running in swarm mode](#Troubleshooting_for_executions_not_running_in_swarm_mode)
 * [Find app creator Python function](#find_code_openapi_app)
-* [Tenants/Suborgs seem to be lost](#Reinstate lost tenants)
+* [Tenants/Suborgs seem to be lost](#reinstate_lost_tenants)
 
 ## Orborus backend connection problems
 Due to the nature of Shuffle at scale, there are bound to be network issues. As Shuffle runs in Docker, and sometimes in swarm with k8s networking, it complicates the matter even further. Here's a list of things to help with debugging networking. If all else fails; reboot the machine & docker.
