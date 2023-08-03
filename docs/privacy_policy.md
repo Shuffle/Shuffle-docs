@@ -17,7 +17,7 @@ This is the initial privacy policy for Shuffle cloud. Valid as of this file's la
 We are Shuffle AS, and this privacy policy will tell you how we use and protect your personal data.
 
 ## How we protect your personal data
-We understand the importance of the data we collect on our customers, and the sensitivity of what our customers may want to use our platform for. The following items 
+We understand the importance of the data we collect on our customers, and the sensitivity of what our customers may want to use our platform for. The following explanations go into more detail on how your data is being processed and stored.  
 
 ### Encryption
 Shuffle utilizes [Google Cloud Platform's Datastore](https://cloud.google.com/datastore/docs/concepts/encryption-at-rest) and [Google Cloud Storage](https://cloud.google.com/storage). We encrypt all your data by default, and have extra mechanisms for API-keys and secrets inserted. [All our code for encryption can be accessed here.](https://github.com/Shuffle/shuffle-shared)
