@@ -85,4 +85,5 @@ We use the third party payment processor [Stripe](https://stripe.com/us/privacy)
 
 ### Contact Information
 Data Controller: Shuffle AS
-Contact info: [frikky@shuffler.io](mailto:frikky@shuffler.io)
+
+Contact info: [privacy@shuffler.io](mailto:privacy@shuffler.io)
