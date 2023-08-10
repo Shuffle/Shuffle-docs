@@ -262,6 +262,21 @@ curl https://shuffler.io/api/v1/apps/authentication -H "Authorization: Bearer AP
 {"success": true, "data": []}
 ```
 
+### Set Authentication Everywhere
+When you have an authentication available, it is possible to set it everywhere using an API. This will update all your current workflows that uses that app to use the specified authentication.
+
+Methods: POST
+
+```
+curl -XPOST https://shuffler.io/api/v1/apps/authentication/{authentication_id}/config -H "Authorization: Bearer APIKEY" -d '{"action"
+: "assign_everywhere", "id": "authentication_id"}'
+```
+
+**Success response**
+```
+{"success": true}
+```
+
 ### Delete App Authentication
 Delete an authentication. PS: This does NOT change the ID of every workflow that utilizes the app.
 
