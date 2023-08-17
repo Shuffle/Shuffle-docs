@@ -10,11 +10,11 @@ Documentation for Shuffle API v1.0. Will be generated from OpenAPI by Shuffle ve
 * [App Authentication](#app_authentication_api)
 * [Users](#user_api)
 * [Files](#file_api)
+* [Organizations & Tenants](#organizations)
 * [Datastore (Cache)](#datastore_api)
 * [Notifications](#notifications)
-  [Priorities - TBA](#priorities)
+* [Priorities - TBA](#priorities)
 * [Environments - TBA](#environments)
-* [Organizations - TBA](#organizations)
 * [Integration Layer - TBA](#integration_layer)
 
 
@@ -798,10 +798,75 @@ curl https://shuffler.io/api/v1/notifications/{notificationId}/markasread -H "Au
 TBA
 
 ## Organization API
-Below are the endpoints related to organization creation, editing, listing and more. These will probably not be live until 1.0.0.
+Below are the endpoints related to organization/tenant creation, editing, listing and more.
 
-**TBA**
+### Get an Organization
+Get an Organization by its ID
 
+Methods: GET 
+
+```
+curl https://shuffler.io/api/v1/orgs/{org_id} -H "Authorization: Bearer APIKEY" 
+```
+
+
+**Success response** 
+```
+{"name":"Testing","description":"Description","company_type":"","image": "base64 image", "id":"583816e5-40ab-4212-8c7a-e54c8edd6b51","org":"new suborg","users":[],"role":"","roles":["admin","user"],"active_apps":["eb6b633ebbb77575ad17789eecf36cdf"],"cloud_sync":false,"cloud_sync_active":true,"sync_config":{"interval":0,"api_key":"","source":""},"sync_features": {}, "invites":null,"child_orgs":[],"manager_orgs":null,"creator_org":"PARENT_ORG_ID","disabled":false,"partner_info":{"reseller":false,"reseller_level":""},"sso_config":{"sso_entrypoint":"","sso_certificate":"","client_id":"","client_secret":"","openid_authorization":"","openid_token":""},"main_priority":"","region":"","region_url":"","tutorials":[]} 
+```
+
+### Create a Suborg
+Creates an organization that will be the child of your current organization. Can not be done from a existing Child org. Required fields: org_id and name. OrgId needs to match your CURRENT organization.
+
+Methods: POST 
+```
+curl -XPOST https://shuffler.io/api/v1/orgs/{org_id} -H "Authorization: Bearer APIKEY" -d '{"org_id": "org_id", "name": "Child Org Name"}'
+```
+
+**Success response** 
+```
+{"success": true, "reason": "Successfully created new sub-org"}
+```
+
+### Change current Organization
+Shuffle is based on your CURRENT organization. This means you have to swap between your Organizations to get the the relevant information. If you want access to force the usage of another organization than your currently active one, use ?org_id=<org_id> in the API query.
+
+Methods: POST 
+```
+curl -XPOST https://shuffler.io/api/v1/orgs/{CURRENT_ORG_ID}/change -H "Authorization: Bearer APIKEY" -d '{"org_id": "ORG TO CHANGE TO"}'
+```
+
+**Success response** 
+```
+{"success": true, "reason": "Changed Organization", "region_url": "New API endpoint IF applicable"}
+```
+
+### Edit Organization
+Edit an Organization. Each field is individually managed, except org_id which is required.
+
+Methods: POST 
+```
+curl -XPOST https://shuffler.io/api/v1/orgs/{org_id} -H "Authorization: Bearer APIKEY" -d '{"org_id": "current org id", "name": "New Organization Name", "image": "Base64 image", "description": "New Description"}'
+```
+
+**Success response** 
+```
+{"success": true, "reason": "Changed Organization", "region_url": "New API endpoint IF applicable"}
+```
+
+### Lists Organizations
+Lists the available organizations to your account
+
+Methods: GET 
+
+```
+curl https://shuffler.io/api/v1/orgs -H "Authorization: Bearer APIKEY" 
+```
+
+**Success response** 
+```
+[{"name":"Testing","description":"Description","company_type":"","image": "base64 image", "id":"583816e5-40ab-4212-8c7a-e54c8edd6b51","org":"new suborg","users":[],"role":"","roles":["admin","user"],"active_apps":["eb6b633ebbb77575ad17789eecf36cdf"],"cloud_sync":false,"cloud_sync_active":true,"sync_config":{"interval":0,"api_key":"","source":""},"sync_features": {}, "invites":null,"child_orgs":[],"manager_orgs":null,"creator_org":"PARENT_ORG_ID","disabled":false,"partner_info":{"reseller":false,"reseller_level":""},"sso_config":{"sso_entrypoint":"","sso_certificate":"","client_id":"","client_secret":"","openid_authorization":"","openid_token":""},"main_priority":"","region":"","region_url":"","tutorials":[]}]
+```
 
 
 ## Integration Layer
