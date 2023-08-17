@@ -1,5 +1,5 @@
 # Shuffle API 
-Documentation for Shuffle API v1.0. Will be generated from OpenAPI by Shuffle version 1.0.0 and be replicable in our [API Explorer](https://shuffler.io/apps/edaa73d40238ee60874a853dc3ccaa6f)
+Documentation for Shuffle API. Change https://shuffler.io with your local domain/IP for on-premises usage.
 
 ## Table of contents
 * [Introduction](#introduction)
