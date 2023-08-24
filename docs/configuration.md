@@ -463,7 +463,7 @@ After changing certificates, you can rebuild the entire frontend by running (./f
 ```
 
 ### Using the Nginx Reverse Proxy for TLS/SSL
-If you intend to use Nginx as a Reverse Proxy, the main steps are below. [Here is a basic single-server architecture for it](https://jamboard.google.com/d/1zJU8yMzbsu-XWeZnch_5MoDwmMNkkN8ZmoGNLCaHPlU/edit?usp=sharing).
+If you intend to use Nginx as a Reverse Proxy, the main steps are below. [Here is a basic single-server architecture for it](https://jamboard.google.com/d/1zJU8yMzbsu-XWeZnch_5MoDwmMNkkN8ZmoGNLCaHPlU/edit?usp=sharing). The Docker version is further down.
 
 1. [Install Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04) on your server (find the correct distro), or in a [Docker container by itself](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Docker-Nginx-reverse-proxy-setup-example).
 2. Make sure you have a VALID certificate that matches your domain/hostname and [add this to your Nginx server](https://phoenixnap.com/kb/install-ssl-certificate-nginx)
@@ -482,6 +482,49 @@ location / {
 }
 ```
 4. Restart Nginx! `systemctl restart nginx`
+
+### Nginx in Docker
+1. Add the following service to your docker-compose.yml
+```
+  nginx-proxy:
+    image: nginx:latest
+    container_name: shuffle-nginx-proxy
+    networks:
+      - shuffle
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-conf:/etc/nginx/conf.d
+      - ./certs:/etc/nginx/certs
+    restart: always
+```
+
+2. Add a new nginx configuration file called `nginx-conf` with the following (you may add additional Nginx configuration to this):
+```
+server {
+    listen 443 ssl;
+    server_name yourdomain.com;
+
+    ssl_certificate /etc/nginx/certs/cert.crt;
+    ssl_certificate_key /etc/nginx/certs/cert.key;
+
+    location / {
+        proxy_pass http://shuffle-frontend:80;
+
+        proxy_buffering off;
+        proxy_http_version 1.1;
+
+        proxy_connect_timeout 900;
+        proxy_send_timeout 900;
+        proxy_read_timeout 900;
+        send_timeout 900;
+        proxy_ssl_verify off;
+    }
+}
+```
+
+3. Add a folder called "certs" with **your certificates** named `cert.crt` and `cert.key`.
+4. Restart everything: `docker-compose down; docker-compose up -d`
 
 ## IPv6
 
