@@ -829,7 +829,7 @@ curl -XPOST https://shuffler.io/api/v1/orgs/{org_id} -H "Authorization: Bearer A
 ```
 
 ### Change current Organization
-Shuffle is based on your CURRENT organization. This means you have to swap between your Organizations to get the the relevant information. If you want access to force the usage of another organization than your currently active one, use ?org_id=<org_id> in the API query.
+Shuffle is based on your CURRENT organization. This means you have to swap between your Organizations to get the the relevant information. If you want access to force the usage of another organization than your currently active one, use "Org-Id=<org_id>" as a Header. This is a further outlined in the Authentication section.
 
 Methods: POST 
 ```
