@@ -87,8 +87,8 @@ curl https://shuffler.io/api/v1/workflows/{workflow_id}/executions -H "Authoriza
 ```
 
 
-### Get specific workflow
-Returns a given workflow
+### Get a workflow
+Returns a given workflow. This is the same as exporting the workflow.
 
 Method: GET
 
