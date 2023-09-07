@@ -443,9 +443,15 @@ All you'll need to do is allow orborus to have access to the backend port and yo
 
 ## HTTPS
 
-HTTPS is enabled by default on port 3443 with a self-signed certificate for localhost. If you would like to change this, the only way (currently) is to add configure and rebuild the frontend. If you don't have HTTPS enabled, check [updating shuffle](#updating_shuffle) to get the latest configuration.
+HTTPS is enabled by default on port 3443 with a self-signed certificate for localhost. If you would like to change this, the only way (currently) is to add configure and rebuild the frontend. If you don't have HTTPS enabled, check [updating shuffle](#updating_shuffle) to get the latest configuration. Another workaround is to set up an [Nginx reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) you can control yourself. See further down for more details
 
-**PS: Another workaround is to set up an [Nginx reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) you can control yourself. See further down for more details**
+```
+After setting this up, make sure to change the BASE_URL for Orborus to talk to your new HTTPS url if you want encrypted traffic everywhere.
+Default Routing: Orborus -> Backend:5001.
+New Routing: Orborus -> Nginx -> Frontend -> Backend.
+
+The New Routing steps are automatic as long as you update the BASE_URL to point to your new reverse proxy URL.
+```
 
 Necessary info for the truststore to create TLS/SSL certificates:
 
@@ -525,6 +531,14 @@ server {
 
 3. Add a folder called "certs" with **your certificates** named `cert.crt` and `cert.key`.
 4. Restart everything: `docker-compose down; docker-compose up -d`
+
+## Internal Certificate Authority
+By default, certificates are not being verified when outbound traffic goes from Shuffle. This is due to the massive use of self-signed certificates when using internal services. If you want to accept your Certificate Authority for all requests, there are a few ways to do this:
+
+1. Docker Daemon level (recommended) - point to your cert: `$ dockerd --tlscacert=/path/to/custom-ca-cert.pem`
+2. Add it to every app (per-image configuration). You can do this by modifying the Dockerfile for an app and manually building it with the certificate in the Dockerfile of each Docker image. Restart Shuffle after this is done.
+
+As this may require advanced Docker understanding, reach out to ask us about it: [support@shuffler.io](mailto:support@shuffler.io) 
 
 ## IPv6
 
