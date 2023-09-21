@@ -201,20 +201,21 @@ The Python SDK has a couple of utility functions and data you can utilize. These
 
 ```
 # Basic data 
-self.url									# The URL to interact with for file and cache control
-self.base_url							# The URL to send results to. MAY point to a Worker.
-self.action								# The current action being executed
-self.authorization				# The authorization key for current execution
+self.url			# The URL to interact with for file and cache control
+self.base_url			# The URL to send results to. MAY point to a Worker.
+self.action			# The current action being executed
+self.authorization		# The authorization key for current execution
 self.current_execution_id	# The current execution ID
-self.full_execution				# All data for current execution
-self.start_time						# The start time for this function
+self.full_execution		# All data for current execution
+self.start_time			# The start time for this function
 
 # Utility functions
-self.get_file(file_id) 							# Get a file from the backend 			(v0.8.60+)
-self.set_files(file_id) 						# SETS multiple files, returns ids	(v0.8.60+)
-self.get_file_namespace(namespace) 	# Get ALL files for a namespace 		(v0.9.11+)
-self.get_cache(key)									# Get an item from key:value store 	(v0.8.97+)
-self.set_cache(key, value)					# SETS cache in the key:value store (v0.8.97+)
+self.get_file(file_id) 			# Get a file from the backend 			
+self.set_files(file_id) 		# SETS multiple files, returns ids	
+self.get_file_namespace(namespace) 	# Get ALL files for a namespace 		
+self.get_cache(key)			# Get an item from key:value store 	(v0.8.97)
+self.set_cache(key, value)		# SETS cache in the key:value store (v0.8.97)
+self.delete_cache(key)			# DELETES a cache key (v1.2.0)
 ```
 
 Example file API usage:
