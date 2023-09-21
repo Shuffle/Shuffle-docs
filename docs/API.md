@@ -730,21 +730,6 @@ curl -XDELETE https://shuffler.io/api/v1/hooks/{webhook_id} -H "Authorization: B
 {"success":true, "reason": "Stopped webhook"}
 ```
 
-### Create Outlook Subscription
-TBA
-
-### Delete Outlook Subscription
-TBA
-
-### Create Gmail Subscription
-TBA
-
-### Get Gmail Subscription
-TBA
-
-### Delete Gmail Subscription
-TBA
-
 
 ## Notifications 
 Below are the API's associated with Notifications in Shuffle. These can be listed, marked as read, and cleared.
@@ -820,7 +805,7 @@ Creates an organization that will be the child of your current organization. Can
 
 Methods: POST 
 ```
-curl -XPOST https://shuffler.io/api/v1/orgs/{org_id} -H "Authorization: Bearer APIKEY" -d '{"org_id": "org_id", "name": "Child Org Name"}'
+curl -XPOST https://shuffler.io/api/v1/orgs/{org_id}/create_sub_org -H "Authorization: Bearer APIKEY" -d '{"org_id": "org_id", "name": "Child Org Name"}'
 ```
 
 **Success response** 
@@ -854,7 +839,7 @@ curl -XPOST https://shuffler.io/api/v1/orgs/{org_id} -H "Authorization: Bearer A
 {"success": true, "reason": "Changed Organization", "region_url": "New API endpoint IF applicable"}
 ```
 
-### Lists Organizations
+### List Organizations
 Lists the available organizations to your account
 
 Methods: GET 
@@ -866,6 +851,22 @@ curl https://shuffler.io/api/v1/orgs -H "Authorization: Bearer APIKEY"
 **Success response** 
 ```
 [{"name":"Testing","description":"Description","company_type":"","image": "base64 image", "id":"583816e5-40ab-4212-8c7a-e54c8edd6b51","org":"new suborg","users":[],"role":"","roles":["admin","user"],"active_apps":["eb6b633ebbb77575ad17789eecf36cdf"],"cloud_sync":false,"cloud_sync_active":true,"sync_config":{"interval":0,"api_key":"","source":""},"sync_features": {}, "invites":null,"child_orgs":[],"manager_orgs":null,"creator_org":"PARENT_ORG_ID","disabled":false,"partner_info":{"reseller":false,"reseller_level":""},"sso_config":{"sso_entrypoint":"","sso_certificate":"","client_id":"","client_secret":"","openid_authorization":"","openid_token":""},"main_priority":"","region":"","region_url":"","tutorials":[]}]
+```
+
+### Delete Organizations
+Deletes an organization. Only possible for sub-organizations. 
+
+**This requires you to have already removed all workflows, and will NOT clean up all the data in the database until it expires (3 months~)**
+
+Methods: DELETE 
+
+```
+curl -XDELETE https://shuffler.io/api/v1/orgs/{org_id} -H "Authorization: Bearer APIKEY" 
+```
+
+**Success response** 
+```
+{"success": true}
 ```
 
 
