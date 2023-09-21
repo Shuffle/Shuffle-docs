@@ -779,10 +779,7 @@ curl https://shuffler.io/api/v1/notifications/{notificationId}/markasread -H "Au
 {"success":true}
 ```
 
-## Environments 
-TBA
-
-## Organization API
+## Organizations
 Below are the endpoints related to organization/tenant creation, editing, listing and more.
 
 ### Get an Organization
