@@ -349,7 +349,7 @@ systemctl restart THeHive
 Run this curl command (change the URL, username and password), which activates TheHive forwarding to Shuffle. 
 **PS: Make sure you have access to the organization you want the Webhook for**
 ```
-curl -XPUT -u $thehive_user:$thehive_password -H 'Content-type: application/json' $thehive_url/api/config/organisation/notification -d '
+curl -XPUT -u thehive_user:thehive_password -H 'Content-type: application/json' thehive_url/api/config/organisation/notification -d '
 {
   "value": [
     {
