@@ -236,8 +236,7 @@ Orborus can run in Docker-swarm mode, and in early 2023, with Kubernetes. This m
 To begin with, Let's sort out the pre-requisites:
 
 Our setup would end up looking like this:
-<img width="834" alt="Screenshot 2023-07-01 at 3 41 53 AM" src="https://github.com/0x0elliot/Shuffle-docs/assets/60684641/1a485fb8-53d7-40ac-bfcf-11c3dc69e98f">
-
+![Screenshot](https://github.com/0x0elliot/Shuffle-docs/assets/60684641/1a485fb8-53d7-40ac-bfcf-11c3dc69e98f)
 
 Let's begin with setting up Docker, Docker Compose, and creating a Docker Swarm network with two manager nodes involves several steps. Below is a step-by-step guide to achieve this:
 
@@ -255,7 +254,7 @@ Docker Compose Installation Guide: https://docs.docker.com/compose/install/
 
 You will be provided with a url to download the Worker image from Shuffle. Orborus does not need changing. 
 
-1. Download the new worker you were provided: (Bare in mind, `URL` is a place holder)
+1. Download the new worker you were provided: (Bare in mind, "URL" is a place holder)
 ```
     wget URL # URL is the url provided by Shuffle
     docker load -i shuffle-worker.zip
