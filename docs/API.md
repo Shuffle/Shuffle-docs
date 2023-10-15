@@ -19,13 +19,11 @@ Documentation for Shuffle API. Change https://shuffler.io with your local domain
 
 
 ## Introduction
-Shuffle is a platform to build and execute [workflows](/docs/workflows) to help with automation and reduce burnout. It's built with an API structure in mind, and everything done has an API endpoint. The listed API's are built and generated with our own [OpenAPI creator](/docs/apps#create_openapi_app). All API's listed are for both versions of Shuffle (cloud/onprem), unless otherwise specified. Our OpenAPI specification can be [downloaded here](https://shuffler.io/apps/edaa73d40238ee60874a853dc3ccaa6f). Below are the base URL's for the API.
+Shuffle is a platform to build and execute automation [workflows](/docs/workflows). It's built API-first, and everything available on the frontend has an API endpoint. The listed API's are built and generated with our own [OpenAPI creator](/docs/apps#create_openapi_app). All API's listed are for both versions of Shuffle (cloud/onprem), unless otherwise specified. Our OpenAPI specification can be [downloaded here](https://shuffler.io/apps/edaa73d40238ee60874a853dc3ccaa6f). Below are the base URL's for the API.
 
 **Cloud:** https://shuffler.io/api/v1
 
 **Onprem:** https://<endpoint>:<port>/api/v1
-
-<b>PS:</b> API's are due to change before the full release, but nothing major at this point.
 
 ## Authentication
 Shuffle uses [Bearer auth](https://swagger.io/docs/specification/authentication/bearer-authentication/) for authentication. This means that every request you send to the API, you need to send it with the header "Authorization: Bearer <APIKEY>". If Shuffle is multi-tenancy configured, you may have multiple organizations. If you want to specify the organization to use, you may add the header "Org-Id: <ORGID>". It will otherwise use the current active organization.
