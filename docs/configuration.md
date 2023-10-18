@@ -75,7 +75,7 @@ Shuffle is by default configured to be easy to start using. This means we've had
 - [Servers](#servers)
 - [Hybrid access](#hybrid_configuration)
 - [Environment Variables](#environment_variables)
-- [Redundancy](#redundancy)
+- [Disaster Recovery/High Availability](#Disaster_Recovery/High_Availability)
 - [Proxies](#proxy_configuration)
 
 ### Servers
@@ -404,10 +404,112 @@ services:
 
 If you need help with this, [please contact us](mailto:support@shuffler.io).
 
-### Redundancy
-You may configure multiple instances with a load balancer and docker-swarm/kubernetes. An official guide for high availability is still in the making. Please [contact us](https://shuffler.io/contact) if this is a need.
+### Disaster Recovery/High Availability
 
-A good place to start is this blogpost by one of our contributors: https://azgaviperr.github.io/3-nodes-swarm/DockerSwarm/Stacks/Shuffler/
+In a production system within a high-criticality environment concerning requirements and security, it is crucial that all our tools possess the property of High Availability or, at least, Disaster Recovery.
+
+The following architecture illustrates how Shuffle should be deployed in its On-Premise free mode to achieve at least Disaster Recovery, which ensures that even if one node of the system fails, there will be no loss of information. In the worst case scenario, if it was a critical node, it should be able to resume operation promptly.
+
+The first step to ensure this is to distribute the database in a way that guarantees the property that even if one node fails, there will be no data loss.
+
+The second point to consider is that for Workflows to continue running even if one Orborus node goes down, there should be another node of the same type to ensure this.
+
+In this manner, we can ensure that, in the worst case, the backend+frontend may experience negative consequences due to being in a Docker container. However, its automatic restart can be configured, and in any case, bringing this node back into operation is swift.
+
+The resulting architecture that emerges after applying these properties is as follows:
+
+![DisasterRecovery On Premmise Deploy](../assets/configuration-disaster-recovery-onprem-deploy.png)
+
+To implement this, follow these steps:
+
+- Define in all your nodes the list of hostnames in /etc/hosts so all the machines can do the necessary IP resolutions when they have a hostname.
+
+- Configure an OpenSearch database cluster. For this step, it is recommended to follow the official documentation [https://opensearch.org/docs/latest/tuning-your-cluster/index/](https://opensearch.org/docs/latest/tuning-your-cluster/index/). Anyways to achieve this in a easy way you just need to change this settings in each opensearch node and reload the service:
+```
+cluster.name -> Set its new value to "shuffle-cluster".
+node.name -> Set its new value to the hostname of the current node.
+network.host -> Set its new value to the IP of your node(you need to be able to ping this IP from each one of the opensearch nodes and also from the backend+frontend one).
+discovery.seed_hosts -> Set its new value to a list that contains each one of the hostnames of the OpenSearch nodes for example like this: ['opensearchReplica0', 'opensearchReplica1', 'opensearchReplica2']
+cluster.initial_cluster_manager_nodes -> All the nodes should be able to be masters so as done before use that list of hostnames like: ['opensearchReplica0', 'opensearchReplica1', 'opensearchReplica2']
+```
+
+- Deploy a node containing both the frontend and backend components. In the configurations of this node, all nodes of the database cluster should be included to experience the effects of the previous step. The dockerfile should look like this:
+
+```Dockerfile
+version: '3'
+services:
+  frontend:
+    image: ghcr.io/shuffle/shuffle-frontend:latest
+    container_name: shuffle-frontend
+    hostname: shuffle-frontend
+    ports:
+      - "${FRONTEND_PORT}:80"
+      - "${FRONTEND_PORT_HTTPS}:443"
+    networks:
+      - shuffle
+    environment:
+      - BACKEND_HOSTNAME=${BACKEND_HOSTNAME}
+    restart: unless-stopped
+    depends_on:
+      - backend
+  backend:
+    image: ghcr.io/shuffle/shuffle-backend:latest
+    container_name: shuffle-backend
+    hostname: ${BACKEND_HOSTNAME}
+    # Here for debugging:
+    ports:
+      - "${BACKEND_PORT}:5001"
+    networks:
+      - shuffle
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${SHUFFLE_APP_HOTLOAD_LOCATION}:/shuffle-apps     
+      - ${SHUFFLE_FILE_LOCATION}:/shuffle-files
+      #- ${SHUFFLE_OPENSEARCH_CERTIFICATE_FILE}:/shuffle-files/es_certificate
+    env_file: .env
+    environment:
+      - SHUFFLE_APP_HOTLOAD_FOLDER=/shuffle-apps
+      - SHUFFLE_FILE_LOCATION=/shuffle-files
+    restart: unless-stopped
+networks:
+  shuffle:
+    driver: bridge
+```
+Also for this step you need to change the value of a variable inside the .env so it looks like this:`SHUFFLE_OPENSEARCH_URL=SHUFFLE_OPENSEARCH_URL=https://192.168.0.30:9200,https://192.168.0.31:9200,https://192.168.0.32:9200`. Each one of that IPs is the corresponding one to each opensearch node.
+
+- Deploy as many Orborus nodes as desired. At a minimum, it is recommended to deploy 2 nodes. If scaling is required regarding the maximum number of concurrently executing Workflows, the number of these nodes can be increased. The dockerfile of each one of the orborus nodes should look like this:
+
+```Dockerfile
+version: '3'
+services:
+  orborus:
+    #build: ./functions/onprem/orborus
+    image: ghcr.io/shuffle/shuffle-orborus:latest
+    container_name: shuffle-orborus
+    hostname: shuffle-orborus
+    networks:
+      - shuffle
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - BASE_URL=http://192.168.0.49:5001
+      - SHUFFLE_APP_SDK_VERSION=1.1.0
+      - SHUFFLE_WORKER_VERSION=latest
+      - ORG_ID=Shuffle
+      - ENVIRONMENT_NAME=Shuffle
+      - DOCKER_API_VERSION=1.40
+      - SHUFFLE_BASE_IMAGE_NAME=frikky
+      - SHUFFLE_BASE_IMAGE_REGISTRY=ghcr.io
+      - SHUFFLE_BASE_IMAGE_TAG_SUFFIX="-1.0.0"
+      - CLEANUP=true
+      - SHUFFLE_ORBORUS_EXECUTION_TIMEOUT=600
+    restart: unless-stopped
+networks:
+  shuffle:
+    driver: bridge
+```
+
+You need to change the value of the environment `BASE_URL` of this Dockerfile, so it aims to the IP of your Shuffle frontend+backend node.
 
 ## Proxy configuration
 
