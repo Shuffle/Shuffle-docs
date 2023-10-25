@@ -6,6 +6,7 @@ Documentation for Shuffle API. Change https://shuffler.io with your local domain
 * [Authentication](#authentication)
 * [Responses](#responses)
 * [Workflows](#workflow_api)
+* [Triggers](#triggers)
 * [Apps](#app_api)
 * [App Authentication](#app_authentication_api)
 * [Users](#user_api)
