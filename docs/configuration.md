@@ -82,7 +82,7 @@ Shuffle is by default configured to be easy to start using. This means we've had
 
 When setting up Shuffle for production, we always recommend using a minimum of two servers (VMs). This is because you don't want your executions to clog the webserver, which again clogs the executions (orborus). You can put Orborus on multiple servers with different environments to ensure better availability, or [talk to us about Kubernetes/Swarm](https://shuffler.io/contact). These are MINIMUM requirements, and we recommend adding more.
 
-Basic network overview below. [Architecture](https://github.com/frikky/Shuffle/raw/main/frontend/src/assets/img/shuffle_architecture.png).
+Basic network overview below. [Architecture](https://github.com/shuffle/Shuffle/raw/main/frontend/src/assets/img/shuffle_architecture.png).
 ```
 - Shuffle backend starts a backend listener on port 5001 (default)
 - Orborus POLLS for Jobs. Orborus needs access to port 5001 on backend (default)
@@ -110,12 +110,12 @@ The webserver is where your users and our API is. It is RAM heavy as we're doing
 
 These are the Docker configurations for the two different servers described above. To use them, put the information in files called docker-compose.yml on each respective server, to start the containers.
 
-PS: The data below is based on [this docker-compose file](https://github.com/frikky/Shuffle/blob/master/docker-compose.yml)
+PS: The data below is based on [this docker-compose file](https://github.com/shuffle/Shuffle/blob/master/docker-compose.yml)
 
 **Orborus**
 Below is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the external Shuffle backend URL. It can be modified to reduce or increase load, to add proxies, and much more. See [environment variables](#environment_variables) for all options.
 
-**PS**: Replace SHUFFLE-BACKEND with the IP of Shuffle backend in the specification below. Using Hostname MAY [cause issues](https://github.com/frikky/Shuffle/issues/537) in certain environments.
+**PS**: Replace SHUFFLE-BACKEND with the IP of Shuffle backend in the specification below. Using Hostname MAY [cause issues](https://github.com/shuffle/Shuffle/issues/537) in certain environments.
 **PPS**: By default, the environments (executions) are NOT authenticated.
 
 ```
@@ -418,7 +418,7 @@ In this manner, we can ensure that, in the worst case, the backend+frontend may 
 
 The resulting architecture that emerges after applying these properties is as follows:
 
-![DisasterRecovery On Premmise Deploy](../assets/configuration-disaster-recovery-onprem-deploy.png)
+![DisasterRecovery On Premmise Deploy](https://github.com/Shuffle/Shuffle-docs/blob/master/assets/configuration-disaster-recovery-onprem-deploy.png?raw=true)
 
 To implement this, follow these steps:
 
@@ -535,7 +535,7 @@ To set up proxies in individual containers, open docker-compose.yml and add the 
 
 **PS: Make sure to use uppercase letters, and not lowercase (HTTP_PROXY, NOT http_proxy)**
 
-![Proxy containers](https://github.com/frikky/shuffle-docs/blob/master/assets/proxy-containers.png?raw=true)
+![Proxy containers](https://github.com/shuffle/shuffle-docs/blob/master/assets/proxy-containers.png?raw=true)
 
 ### Orborus running on a different network
 
@@ -918,7 +918,7 @@ docker-compose pull
 docker-compose up         # PS: Notice that we don't add -d here. This to make it easier to follow the logs. It's ok as we'll stop the instance later.
 ```
 
-![Migration-1](https://github.com/frikky/shuffle-docs/blob/master/assets/migration-1.png?raw=true)
+![Migration-1](https://github.com/shuffle/shuffle-docs/blob/master/assets/migration-1.png?raw=true)
 
 ### 3. Find your API-key!
 
@@ -942,7 +942,7 @@ Change the part that says "APIKEY" to your actual API key from the previous step
 curl -XPOST -v localhost:5001/api/v1/migrate_database -H 'Authorization: Bearer APIKEY'
 ```
 
-![Migration-2](https://github.com/frikky/shuffle-docs/blob/master/assets/migration-2.png?raw=true)
+![Migration-2](https://github.com/shuffle/shuffle-docs/blob/master/assets/migration-2.png?raw=true)
 
 ### 5. Change database back to Opensearch
 
@@ -966,7 +966,7 @@ Error getting containers: Error response from daemon: client version 1.40 is too
 
 To fix this issue, we need to set the version from 1.40 down to 1.35 in the Shuffle environment. This can be done by opening the docker-compose.yml file, then changing environment variable "DOCKER_API_VERSION" from 1.40 to 1.35 for the "orborus" service as seen below, then restarting Shuffle.
 
-![Error with Docker version](https://github.com/frikky/shuffle-docs/blob/master/assets/configuration-error-1.png?raw=true)
+![Error with Docker version](https://github.com/shuffle/shuffle-docs/blob/master/assets/configuration-error-1.png?raw=true)
 
 ## Debugging
 
@@ -1005,7 +1005,7 @@ As previously stated, a lot can go wrong. Here's the most common issues:
 This part is mean to describe how to go about finding the issue you're having with executions. In most cases, you should start from the top of the list previously described in the following way:
 
 1. Find out what environment your action(s) are running under by clicking the App and seeing "Environment" dropdown. In this case (and default) is "Shuffle". Environments can be specified / changed under the path /admin
-   ![Check execution 3](https://github.com/frikky/shuffle-docs/blob/master/assets/check_execution_3.png?raw=true)
+   ![Check execution 3](https://github.com/shuffle/shuffle-docs/blob/master/assets/check_execution_3.png?raw=true)
 
 2. Check if the workflow executed at all by finding the execution line in the shuffle-backend container. Take note that it mentions environment "Shuffle", as found in the previous step.
    
@@ -1013,7 +1013,7 @@ This part is mean to describe how to go about finding the issue you're having wi
    docker logs -f shuffle-backend
    ```
 
-![Check execution 1](https://github.com/frikky/shuffle-docs/blob/master/assets/check_execution_1.png?raw=true)
+![Check execution 1](https://github.com/shuffle/shuffle-docs/blob/master/assets/check_execution_1.png?raw=true)
 
 3. If it executed, check whether Orborus is running, before checking it's logs for "Container \<container_id\> is created. The container_id is the worker it has deployed. Take not of the environment again at the end of the line. If you don't see this line, it's most likely because it's running in the wrong environment.
 
@@ -1029,7 +1029,7 @@ Find whether it was deployed or not
 docker logs -f shuffle-orborus  # Get logs from shuffle-orborus
 ```
 
-![Check execution 2](https://github.com/frikky/shuffle-docs/blob/master/assets/check_execution_2.png?raw=true)
+![Check execution 2](https://github.com/shuffle/shuffle-docs/blob/master/assets/check_execution_2.png?raw=true)
 
 Check environment of running shuffle-orborus container.
 
@@ -1038,7 +1038,7 @@ docker inspect shuffle-orborus | grep -i "ENV"
 ```
 
 Expected env result where "Shuffle" corresponds to the environment
-![Check execution 4](https://github.com/frikky/shuffle-docs/blob/master/assets/check_execution_4.png?raw=true)
+![Check execution 4](https://github.com/shuffle/shuffle-docs/blob/master/assets/check_execution_4.png?raw=true)
 
 4. Check whether the worker executed your app. Remember that we found \<container_id\> previously by checking the logs of shuffle-orborus? Now we need that one. Workers are and will always be verbose, specifically for the reason of potential debugging.
 
@@ -1048,7 +1048,7 @@ Find logs from a docker container
 docker logs -f CONTAINER_ID
 ```
 
-![Check execution 5](https://github.com/frikky/shuffle-docs/blob/master/assets/check_execution_5.png?raw=true)
+![Check execution 5](https://github.com/shuffle/shuffle-docs/blob/master/assets/check_execution_5.png?raw=true)
 
 As can be seen in the image above, is shows the exact execution order it takes. It starts by finding the parents, before executing the child process after it's finished. Take note of the specific apps being executed as well. It says "Time to execute \<app_id\> with app \<app_name:app_version\>. This indicates the app THAT WILL be executed. The following lines saying "Container \<container_id\> is the container created with this app.
 
