@@ -33,12 +33,13 @@ With Shuffle being a rather complex automation platform, we have made continuous
 As we're still just doing inbound sales, the process is rather simple. Here are the basic steps when we get **INBOUND messages**:
 1. Customer asks for demo/POV. Show Shuffle, with the main goal to learn why and what they want to automate. If you need it; **Sample Powerpoint**
 2. If necessary, give the possibility of a free POV. This is to help them initially get set up with Apps and Workflows. 
-3. Make a folder for them, and prepare a contract / NDA though [Google Drive](https://drive.google.com/drive/folders/1zVvwwkbQXW3p-DJYa0GBDzFo_ZnV_I_5) by creating a folder for them. They may provide their own NDA as well. This stage can take a lot of time, especially with public companies due to compliance needs. 
-4. If they don't have one already, Create an organization for them in [Shuffle Cloud](https://shuffler.io). This is where the customer can get billing management and such done well. When inside the organization, invite the appropriate users with their Email(s). **Make sure to select the appropriate stage they are in**. By selecting "POV" or "Customer", they will have an extra license show up in the License tab! PS: Select "Open Source" + "Customer" to get them an Onprem contract.
+3. If they don't have one already, Create an organization for them in [Shuffle Cloud](https://shuffler.io). This is where the customer can get billing management and such done well. When inside the organization, invite the appropriate users with their Email(s). **Make sure to select the appropriate stage they are in**. By selecting "POV" or "Customer", they will have an extra license show up in the License tab! PS: Select "Open Source" + "Customer" to get them an Onprem contract.
 
 <img width="588" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/befa8c87-0fbb-4e45-a14e-2d6c1a77d3f2">
 
-5. Get them to the finish-line. This means: Help them fullfil their POV by giving access to licenses and the support they want. Send them an invoice through Stripe. 
+Make a folder for them, and prepare a contract / NDA though [Google Drive](https://drive.google.com/drive/folders/1zVvwwkbQXW3p-DJYa0GBDzFo_ZnV_I_5). They may provide their own NDA as well in certain cases. This stage can take a lot of time, especially with public companies due to compliance needs.  
+
+5. Get them to the finish-line. This means: Help them fullfil their POV by giving access to licenses and the support they want. Set up a subscription for them through Stripe.
 
 <div style="display=flex;">
    <img width="717" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/560c98cc-02e8-437a-8dc8-a772f08c3711">
