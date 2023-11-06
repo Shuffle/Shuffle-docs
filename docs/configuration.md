@@ -7,7 +7,7 @@ Documentation for configuring Shuffle. Most information is related to onprem and
 * [Introduction](#introduction)
 * [Updating Shuffle](#updating_shuffle)
 * [Production readiness](#production_readiness)
-* [Shuffle Scaling](#scaling_shuffle_with_swarm)
+* [Shuffle Scaling](#scaling_shuffle)
 * [Distributed Caching](#distributed_caching)
 * [No Internet Install](#no_internet_install)
 * [Proxy Configuration](#proxy_configuration)
@@ -230,8 +230,8 @@ networks:
 * Onprem: If you want to try using Hybrid Shuffle, see [Cloud sync documentation](/docs/organizations#cloud_synchronization)
 * Cloud: If you want access to on-premises resources and API's, [set up extra Environments](/docs/organizations#environments)
 
-## Scaling Shuffle with Swarm
-Orborus can run in Docker-swarm mode, and in early 2023, with Kubernetes. This makes the workflow executions A LOT faster, use less resources, and makes it more scalable across multiple servers. This [is a paid service](https://shuffler.io/pricing2), and requires the [Enterprise / Scale license](https://shuffler.io/pricing2). There are ways to achieve the same by [using multiple environments without swarm](/docs/organizations#environments).
+## Scaling Shuffle
+Orborus can run in Docker-swarm mode, and in early 2023, with Kubernetes. This makes the workflow executions A LOT faster, use less resources, and makes it more scalable across multiple servers. This [is a paid service](https://shuffler.io/pricing2), and requires the [Enterprise / Scale license](https://shuffler.io/pricing). There are ways to achieve the same by [using multiple environments without swarm](/docs/organizations#environments). All licenses can be found in your organization on [https://shuffler.io](https://shuffler.io/admin?admin_tab=billing) under the "Billing" tab, where you can freely re-download them at any time.
 
 To begin with, Let's sort out the pre-requisites:
 
@@ -254,11 +254,10 @@ Docker Compose Installation Guide: https://docs.docker.com/compose/install/
 
 You will be provided with a url to download the Worker image from Shuffle. Orborus does not need changing. 
 
-1. Download the new worker you were provided: (Bare in mind, "URL" is a place holder)
+1. Download the new worker you were provided: (Bare in mind, "URL" is a place holder). You can find this URL in the admin->license section of [https://shuffler.io](https://shuffler.io/admin?admin_tab=billing) if you are in the Proof of Value stage, or a customer of Shuffle.
 ```
     wget URL # URL is the url provided by Shuffle
     docker load -i shuffle-worker.zip
-    rm shuffle-worker.zip
 ```
 
 2. Set Orborus to latest in your docker-compose.yml file
