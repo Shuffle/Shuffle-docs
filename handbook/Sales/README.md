@@ -1,24 +1,10 @@
-# Finding leads 
-This document is made to be a practical guide to handling sales leads in Shuffle
+# Shuffle Sales
+This document is made to be a practical guide to handling sales in Shuffle
 
 ## What?
 With Shuffle being a rather complex automation platform, we have made continuous efforts to improve it iteratively. We practice something called "Product-led growth", meaning we are building a platform that requires less direct sales efforts, and more product development. This document will outline how to handle leads captured from our website https://shuffler.io , and not cold leads. This means we got to cover two parts:
 - Shuffle as a product
 - The sales process itself
-
-**Useful info:**
-- We get 40-70 new signups to https://shuffler.io per week, and hundreds of downloads
-- Average license cost is $15.000/year, growing towards $20.000 going into 2024
-- [Licensing](https://shuffler.io/pricing) is based on how much someone uses Shuffle, split into the following:
-    * shuffler.io users: How many apps they run 
-    * Open Source: How many CPU cores they run Shuffle on
-- Additional things to sell:
-    * Training
-    * Support packages
-
-**With pricing being based on usage, this means two things:**
-- We have a huge incentive to help our customers solve automation problems. Product-led growth is the only way.
-- Our customers may hit a limit at where they can't run Shuffle anymore without a license (mainly due to SLA's)
 
 **Relevant sales platforms:**
 - [Google Sheets - Find new leads](https://docs.google.com/spreadsheets/d/1-nHOAtAq-5pqaSwjlAmSvG4LxoazCxZViYkf10jnPFA/edit)
@@ -30,7 +16,37 @@ With Shuffle being a rather complex automation platform, we have made continuous
 - [Docusign - contract management](https://docusign.com) 
 - [Stripe - payments](https://stripe.com)
 
-## How?
+**Useful info:**
+- We get 40-70 new signups to https://shuffler.io per week, and hundreds of downloads of the open source platform
+- Average license cost is $15.000/year, growing towards $20.000 going into 2024
+- [Licensing](https://shuffler.io/pricing) is based on how much someone uses Shuffle, split into the following:
+    * shuffler.io users: How many apps they run 
+    * Open Source: How many CPU cores they run Shuffle on
+- Additional things to sell:
+    * Training - $4999 for 2 days, 4 hours each
+
+**With pricing being based on usage, this means two things:**
+- We have a huge incentive to help our customers solve automation problems. Product-led growth is the only way.
+- Our customers may hit a limit at where they can't run Shuffle anymore without a license (mainly due to SLA's)
+
+## Sales Process
+As we're still just doing inbound sales, the process is rather simple. Here are the basic steps when we get **INBOUND messages**:
+1. Customer asks for demo/POV. Show Shuffle, with the main goal to learn why and what they want to automate. If you need it; **Sample Powerpoint**
+2. If necessary, give the possibility of a free POV. This is to help them initially get set up with Apps and Workflows. 
+3. Make a folder for them, and prepare a contract / NDA though [Google Drive](https://drive.google.com/drive/folders/1zVvwwkbQXW3p-DJYa0GBDzFo_ZnV_I_5) by creating a folder for them. They may provide their own NDA as well. This stage can take a lot of time, especially with public companies due to compliance needs. 
+4. If they don't have one already, Create an organization for them in [Shuffle Cloud](https://shuffler.io). This is where the customer can get billing management and such done well. When inside the organization, invite the appropriate users with their Email(s). **Make sure to select the appropriate stage they are in**. By selecting "POV" or "Customer", they will have an extra license show up in the License tab! PS: Select "Open Source" + "Customer" to get them an Onprem contract.
+
+<img width="588" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/befa8c87-0fbb-4e45-a14e-2d6c1a77d3f2">
+
+5. Get them to the finish-line. This means: Help them fullfil their POV by giving access to licenses and the support they want. Send them an invoice through Stripe. 
+
+<div style="display=flex;">
+   <img width="717" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/560c98cc-02e8-437a-8dc8-a772f08c3711">
+</div>
+
+6. Customer Success! Check in with your customers once in a while. It is normal that onboarding for the first 1-2 months take up more support work, while anything after that is not very
+
+## Finding Leads
 Below is a step by step guide to check out leads in Shuffle, aiming to get each one down to about 5 minutes. This is not meant to be exhaustive, so use some common sense as well! Remember that the main goal is to improve Shuffle as a platform to, and not to always go for a single customer no matter what. Useful information product-wise are things like:
 - Where do most people get stuck? (pages/workflows/apps etc..)
 - Were they able to solve any problems themselves? (which ones..?)
@@ -61,7 +77,7 @@ If you notice anything related to these questions, make sure to note it down so 
 
 6. When all is filled out, hit send! :)
 
-## Why?
-We get a lot of leads and want to learn more. This process is of course to help us earn money, but the main thing is to learn more to help improve the product as for it to sell itself. 
+
+
 
 If you need more details, or want a walkthrough the first time, reach out to binu or frikky.
