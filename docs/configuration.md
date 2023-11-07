@@ -290,7 +290,7 @@ docker swarm join-token manager # copy the command given
 
 PS: In certain scenarios you may need extra configurations, e.g. for network MTU's, docker download locations, proxies etc. See more in the [production readiness](/docs/configuration#production_readiness) section.
 
-# Add the other machine (Machine B) on docker swarm:
+### Add the other machine (Machine B) on docker swarm:
 
 Again, Make sure docker works here. Then paste the output from the above last command. It adds the network in the docker swarm network as a manager (It is required to orchestrate the app containers).
 
