@@ -7,18 +7,18 @@ The customer provides Shuffle with a list of tools and services in use, along wi
 # 2. In-depth scoping
 The Account Executive and TAM will coordinate a call with technical resources on the customer side. On the call, we will cover all the technical details relevant to the project such as, but not limited to:
 
-Tools in use based on our automation & detection framework
-Access rights to these tools
-What services are most critical to automate first
-An overview of the customers’ infrastructure
-Expected scale of operations
-Oauth Application creations
-Single Sign-On
-Access to the Shuffle console
-Hybrid configuration
-Security Policies
-Integration meeting schedules
-Unique configurations within the environment
+* Tools in use based on our automation & detection framework
+* Access rights to these tools
+* What services are most critical to automate first
+* An overview of the customers’ infrastructure
+* Expected scale of operations
+* Oauth Application creations
+* Single Sign-On
+* Access to the Shuffle console
+* Hybrid configuration
+* Security Policies
+* Integration meeting schedules
+* Unique configurations within the environment
 
 Please note that this list is only a guide, other scoping elements will be included per your specific requirements. We ask that the customer ensure all relevant technical resources are available for this meeting to ensure a thorough scope is attained. 
 
@@ -26,11 +26,11 @@ Please note that this list is only a guide, other scoping elements will be inclu
 # 3. Integration Phase
 The TAM and engineers assigned to the project from Shuffle will begin the integration and implementation as per the scope. They will be following a detailed plan formulated from the scoping sessions, including expected timestamps for each of the deliverables. The steps are typically as follows, but may vary:
 
-Set up the required on-premises and cloud access and infrastructure for the customer
-Configure required proxies, scalability, hybrid access, etc. 
-Work with customer to set up and authenticate specified tools within Shuffle
-Build initial Workflow(s) for the discussed use-cases. Starts with inbound information in most cases, e.g. from a SIEM or Email to Shuffle.
-Further tune the Workflow(s) to best fit the customer’s environment
+* Set up the required on-premises and cloud access and infrastructure for the customer
+* Configure required proxies, scalability, hybrid access, etc. 
+* Work with customer to set up and authenticate specified tools within Shuffle
+* Build initial Workflow(s) for the discussed use-cases. Starts with inbound information in most cases, e.g. from a SIEM or Email to Shuffle.
+* Further tune the Workflow(s) to best fit the customer’s environment
 
 These steps typically take 4-6 weeks, depending on the complexity of the customer’s environment.
 
