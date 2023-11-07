@@ -1,8 +1,8 @@
 # 1. Onboarding
 Here, we will take care of all general on-boarding tasks. Here is a list of actions that will take place:
-Service agreement signed/reviewed
-Shuffle or the Customer will prepare the initial cloud organization and give all the required access rights to the customer
-The customer provides Shuffle with a list of tools and services in use, along with basic automation priorities
+* Service agreement signed/reviewed
+* Shuffle or the Customer will prepare the initial cloud organization and give all the required access rights to the customer
+* The customer provides Shuffle with a list of tools and services in use, along with basic automation priorities
 
 # 2. In-depth scoping
 The Account Executive and TAM will coordinate a call with technical resources on the customer side. On the call, we will cover all the technical details relevant to the project such as, but not limited to:
