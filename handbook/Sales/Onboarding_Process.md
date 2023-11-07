@@ -20,6 +20,7 @@ The Account Executive and TAM will coordinate a call with technical resources on
 * Integration meeting schedules
 * Unique configurations within the environment
 * Notification Workflow
+* Distributed Caching
 
 Please note that this list is only a guide, other scoping elements will be included per your specific requirements. We ask that the customer ensure all relevant technical resources are available for this meeting to ensure a thorough scope is attained. 
 
