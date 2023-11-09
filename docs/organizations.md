@@ -4,6 +4,7 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 ## Table of contents
 * [Introduction](#introduction)
 * [Organization Overview](#organization_overview)
+* [Statistics](#statistics)
 * [Cloud Synchronization](#cloud_synchronization)
 * [Data collection](#data_collection)
 * [Pricing](#pricing)
@@ -12,23 +13,26 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 * [Environments](#environments)
 * [Schedules](#schedules)
 * [Files](#files)
-* [User Roles](#user_roles)
-* [App Categories](#app_categories)
+* [Tenants](#tenants)
 
 ## Introduction
-With version 0.8.0, Shuffle was released with an Admin panel. This gives access to configure an organization, and will over time get more features. With the latest release, Shuffle introduced cloud synchronization, which gives access to certain cloud features on-premises. 
-
-Keep in mind that everything in this document is **PER ORGANIZATION**. This is paramount to remember, as all features should be connected to a user within a specific organization.
+Organizations are Shuffle's way of organizing data, and can be thought of as tenants. Data from Apps, Workflows, Notifications, Files etc. are all related to an organization from which users gain access based on their access rights. This document is made to explain what the different options for organizations are.
 
 ## Organization overview
-The organization overview gives access to a few things:
+The organization overview gives access to these things:
 * Name Change
 * Description Change
 * Image change
 * Cloud synchronization
 * Hybrid Feature overview
+* Single Signon options
+* Notification Workflows
+* Priorities & Notifications
+* Licensing (Beta until v1.4.0)
+* Statistics (Beta until v1.4.0)
+* Branding (Beta until v1.4.0)
 
-The point of this view is to get access to new features more easily. It can tell you about new updates, features and more that we have in store. The view is slightly different from the cloud version to the on-premises version. Here's how:
+This view outlines the basic details of your organizations, which any Admin can change at any time. It can tell you about new updates, features and more that we have in store. The view is slightly different from the cloud version to the on-premises version. Here's how:
 * The **cloud** version shows you an API-key. This can be used in the open source version.
 * The **open source** version gives you an API-key field. This can be used in the cloud version.
 ![Organization view](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-1.png?raw=true)
@@ -220,9 +224,3 @@ This view is an overview of files created within workflows. These are a way of l
 [Click here to see further usage documentation](/docs/workflows#file_handling) 
 
 ![File view](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-19.png?raw=true)
-
-## User Roles
-**TBD** Granular access (role based) rights is an upcoming feature for organizations and users. It will allow you to control what specifically an account has access to.
-
-## App Categories 
-**TBD** App categories are a way to keep an overview of your current apps and their use-cases. SIEM is SIEM. EDR is EDR. Ticketing system is Ticketing system. VMS is VMS. That's what this is for. A way to swap your workflows in an easy fashion. 
