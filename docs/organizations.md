@@ -4,7 +4,6 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 ## Table of contents
 * [Introduction](#introduction)
 * [Organization Overview](#organization_overview)
-* [Statistics](#statistics)
 * [Cloud Synchronization](#cloud_synchronization)
 * [Data collection](#data_collection)
 * [Pricing](#pricing)
@@ -13,7 +12,9 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 * [Environments](#environments)
 * [Schedules](#schedules)
 * [Files](#files)
+* [Datastore](#datastore)
 * [Tenants](#tenants)
+* [Statistics](#statistics)
 
 ## Introduction
 Organizations are Shuffle's way of organizing data, and can be thought of as tenants. Data from Apps, Workflows, Notifications, Files etc. are all related to an organization from which users gain access based on their access rights. This document is made to explain what the different options for organizations are.
