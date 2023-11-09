@@ -7,6 +7,7 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 * [Cloud Synchronization](#cloud_synchronization)
 * [Data collection](#data_collection)
 * [Pricing](#pricing)
+* [Licensing](#licensing)
 * [User Management](#user_management)
 * [App Authentication](#app_authentication)
 * [Environments](#environments)
