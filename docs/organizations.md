@@ -215,13 +215,4 @@ docker run \
 
 ```
 
-## Schedules
-This view is an overview of schedules created within workflows. You can stop them from here, but you'll have to visit the workflow itself to edit the schedule.
-![Schedule view](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-18.png?raw=true)
 
-## Files 
-This view is an overview of files created within workflows. These are a way of looking for a specific file and downloading them (November 2020). Files are created from Actions in Workflows, and are restricted per Organization.
-
-[Click here to see further usage documentation](/docs/workflows#file_handling) 
-
-![File view](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-19.png?raw=true)
