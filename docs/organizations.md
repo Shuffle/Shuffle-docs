@@ -16,6 +16,8 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 * [Datastore](#datastore)
 * [Tenants](#tenants)
 * [Statistics](#statistics)
+* [Health](#health)
+* [Notifications](#notifications)
 
 ## Introduction
 Organizations are Shuffle's way of organizing data, and can be thought of as tenants. Data from Apps, Workflows, Notifications, Files etc. are all related to an organization from which users gain access based on their access rights. This document is made to explain what the different options for organizations are.
@@ -216,4 +218,26 @@ docker run \
 
 ```
 
+### Health
+
+We now have a health check API that can be used to check the health of your shuffle instance. It's related endpoints are available at:
+
+-  `/api/v1/health`: This gives you the result of the cached execution (doesn't require an API key)
+-  `/api/v1/stats`: This gives you historical data about the health of your instance (doesn't require an API key)
+
+You can also force a run by making an API call at:
+- `/api/v1/health?force=true` (calling this requires the API key of an admin user)
+
+For the time being, this health check automatically runs every 15 minutes by default. 
+
+
+### Notifications
+
+Notifications are a way for Shuffle to tell inform you of an error in your workflows. We send you notifications in two ways:
+- Through the UI: You'll see a bell icon with a number next to it, on the top right when you're logged in. This indicates the amount of notifications you have. Clicking it will show you the notifications.
+- Through workflows: If you go to `https://shuffler.io/admin?admin_tab=organization`, you'll see a section called "Notification Workflow". Click on it to select an appropriate workflow. This workflow will be executed whenever a notification is created. This can be used to automate opening tickets, sending emails, or whatever you want to do when there is an error in your notification.
+
+We use some sort of "bucketing" of notifications, to prevent you from getting spammed. This means, every time a notification is created 2 times under 2 minutes, we'll only send you one notification. This is to prevent you from getting spammed.
+
+If you're on the open-source side, you can change this by changing the `SHUFFLE_NOTIFICATION_BUCKETING_MINUTES` environment variable. This is set to 2 minutes by default.
 
