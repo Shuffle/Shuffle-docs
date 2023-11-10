@@ -16,6 +16,7 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 * [Datastore](#datastore)
 * [Tenants](#tenants)
 * [Statistics](#statistics)
+* [Health](#health)
 * [Notifications](#notifications)
 
 ## Introduction
@@ -217,7 +218,7 @@ docker run \
 
 ```
 
-### Statistics
+### Health
 
 We now have a health check API that can be used to check the health of your shuffle instance. It's related endpoints are available at:
 
