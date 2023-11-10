@@ -93,7 +93,85 @@ Creating or editing an app in Shuffle is made to be as simple and fast as possib
 * Tags: Add 1-5 tags that seem to fit. 
 
 ## Authentication
-### There are many ways to authenticate Shuffle apps. The most important thing is to understand how authentication is reflected in a Workflow. Let's use "GreyNoise" as an example.
+There are many ways to authenticate Shuffle apps. The most important thing is to understand how authentication is reflected in a Workflow. Authentication fields become "required" fields, and can be stored in the App Authentication, utilized in a workflow. These are the authentication Options found in the App Creator:
+
+- No Authentication
+- API Key
+- Bearer Auth
+- Basic Auth
+- Oauth2
+- JWT
+- Extra Authentication
+
+Below is an explanation for each of these. 
+
+**PS: Do not add your API key(s) to the App itself. This is done during authentication**
+
+### No Authentication
+Self-explanatory - no authentication is added, meaning no new required fields. 
+
+### API Key
+API-key allows you to add a Header or a Query (?field=value in URL) to the HTTP request. This will additionally add a URL field to the authentication, so that both the authentication and URL can be encrypted and re-used. 
+
+Normally used for keys like: "X-API-KEY" or "?auth=<apikey>"
+
+Additionally, you can add a Prefix. This is NOT your API key itself. Example:
+- You want to add a Header key that is "apikey=token <apikey>"
+- Fill in the Key to be "apikey", and choose Field Type "Header". 
+- To make this convenient, fill in "token " in the Value Prefix field.
+- The user now only has to fill in the apikey part, as Shuffle will add the prefix automatically
+
+<img width="767" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/ca91b8a4-0953-4a6d-8d22-aea0a614cf91">
+
+
+### Bearer Auth
+Bearer Auth is a special authentication that is very close to API key. It does the previous authentication does, but in a very specific way. If Bearer Auth is enabled, the Header that is added will ALWAYS look like this:
+
+```
+Authorization=Bearer <apikey>
+```
+
+This is used widely enough that we decided to add it as it's own authentication type.
+
+### Basic Auth
+Basic Auth is like a Login. It uses a Username and Password which has to be filled in. This will then get translated into base64 in the following format: base64(username:password), and further added as a Header to the request in the following format:
+
+```
+Authorization=Basic base64(username:password)
+```
+
+Very widely used in older systems.
+
+### Oauth2
+Oauth2 is a special kind of **multi-step** authentication, meaning Shuffle will run a request to authorize your user's access before the actual HTTP request runs. There are two main forms of it that are widely used by larger companies: Delegated and Application. 
+
+- **Delegated Permissions** are a way for you to give access to something from your (typically) individual account. This can be an account at work, but is still from an individual's account. This will create a popup where you need to accept these permissions. Requires Client ID + Client Secret + Scope + user login
+- **Application Permissions** require a Client ID + Client Secret + Scope, and are the typical way to use Oauth2 for security. It uses permissions from the platform itself, and usually has more permissions than delegated, but doesn't allow you to delve into the personal access of an individual.
+
+**PS: As of October 2023, we only support Delegated Permissions in the App Creator (Application is TBA).**
+
+As the creator of the app, you will need to fill in three (3) fields to help Shuffle and the user with Authorization: 
+- Authorization URL
+- Token URL (does refresh as well typically)
+- Scopes
+
+All of these should be retrieved from the 3rd party platform itself. The Scopes are options the user can use to Authenticate the app, and we suggest adding as many relevant ones as possible to the list, with the most popular first.
+
+<img width="600" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/c1f67779-ac20-4aea-83bf-bc9a4365b5e0">
+
+For the most well-known apps, Shuffle may have even added a "One-step signin" for an app. If you want this for your app to make it easier for users, [contact us](https://shuffler.io/contact). If this is not in place, the user needs to fill in a Client ID and Client Secret themselves.
+
+<img width="250" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/3227d072-614a-48a2-b6af-efbb7b63afad">
+
+
+
+
+### Extra Authentication
+Additionally, there is a field called "Extra Authentication". This is meant to add extra REQUIRED 
+
+
+
+Let's use "GreyNoise" as an example.
 
 GreyNoise uses the URL "https://api.greynoise.io" and authentication type of "API key" with the header "key". 
 ![Apps view 8](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-8.png?raw=true)
