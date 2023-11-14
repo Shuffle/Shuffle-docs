@@ -23,7 +23,8 @@ With Shuffle being a rather complex automation platform, we have made continuous
     * shuffler.io users: How many apps they run 
     * Open Source: How many CPU cores they run Shuffle on
 - Additional things to sell:
-    * Training - $4999 for 2 days, 4 hours each
+    * Training - $4999 for 2 days, 4 hours each (total 8 hours)
+    * Consultancy - $129/hour. Only for custom Workflow and App development
 
 **With pricing being based on usage, this means two things:**
 - We have a huge incentive to help our customers solve automation problems. Product-led growth is the only way.
