@@ -30,7 +30,11 @@ With Shuffle being a rather complex automation platform, we have made continuous
 - Our customers may hit a limit at where they can't run Shuffle anymore without a license (mainly due to SLA's)
 
 ## Sales Process
-As we're still just doing inbound sales, the process is rather simple. Here are the basic steps when we get **INBOUND messages**:
+As we're still just doing inbound sales, the process is rather simple. 
+
+<img width="985" alt="helpful sales links" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/38e8c1f8-bc38-460f-b00b-a534944c4f0f">
+
+Here are the basic steps when we get **INBOUND messages**:
 1. Customer asks for demo/POV. Show Shuffle, with the main goal to learn why and what they want to automate. If you need it; **Sample Powerpoint**
 2. If necessary, give the possibility of a free POV. This is to help them initially get set up with Apps and Workflows. 
 3. If they don't have one already, Create an organization for them in [Shuffle Cloud](https://shuffler.io). This is where the customer can get billing management and such done well. When inside the organization, invite the appropriate users with their Email(s). **Make sure to select the appropriate stage they are in**. By selecting "POV" or "Customer", they will have an extra license show up in the License tab! PS: Select "Open Source" + "Customer" to get them an Onprem contract.
