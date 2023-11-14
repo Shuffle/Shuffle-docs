@@ -30,7 +30,7 @@ With Shuffle being a rather complex automation platform, we have made continuous
 - Our customers may hit a limit at where they can't run Shuffle anymore without a license (mainly due to SLA's)
 
 ## Sales Process
-As we're still just doing inbound sales, the process is rather simple. 
+As we're just doing inbound sales, the process is rather simple. The following links from within an account may be helpful to configure their account. You can only see these if your account has support access.
 
 <img width="985" alt="helpful sales links" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/38e8c1f8-bc38-460f-b00b-a534944c4f0f">
 
