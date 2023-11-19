@@ -125,7 +125,7 @@ Additionally, you can add a Prefix. This is NOT your API key itself. Example:
 
 
 ### Bearer Auth
-Bearer Auth is a special authentication that is very close to API key. It does the previous authentication does, but in a very specific way. If Bearer Auth is enabled, the Header that is added will ALWAYS look like this:
+Bearer Auth is a special authentication that is very close to API key. It does what the previous authentication does, but in a very specific way. If Bearer Auth is enabled, the Header that is added will ALWAYS look like this:
 
 ```
 Authorization=Bearer <apikey>
@@ -258,7 +258,7 @@ Apps using Python can do pretty much anything you can do on a computer. As an ex
 One of the first things you have to do is select an SDK. There are three images currently in Shuffle, Alpine, Kali, and Blackarch. Alpine is your standard slim docker image. Kali allows you access to Kali tooling, and Blackarch is arch, with a kitchen sink approach to tools.
 
 In our example, we are going to develop an app that connects to an API for Office365, pulls some log data and returns it as a JSON data structure.
-We first think about the 3 primary elements:<br>
+We first think about the 3 primary elements:
 * What **actions / functions** will we create?
 	* We will have a function to poll the last 10 minutes of audit logs from the Office API.
 	* We will have a function to poll the last 23 hours of audit logs from the Office API -- testing only purposes.
@@ -351,7 +351,7 @@ Shuffle
 ```
 
 There is a template app called python-playground that we will clone and edit.
-First make your app folder. Note: This folder should not contain spaces.
+First make your app folder. Note: This folder name should not contain spaces.
 
 ```
 cd /Shuffle/shuffle-apps
@@ -362,7 +362,7 @@ cp -R /Shuffle/shuffle-apps/python-playground/* .
 
 The above will make your app folder and copy the template files from python-playground to your app. Upload your python code files to the /src/ directory of your app's folder.
 
-Now that your app's .py script is uploaded under /Shuffle/shuffle-apps/office365mgmt/src, you'll tell Shuffle how to use it.
+Now that your app's .py script is uploaded under /Shuffle/python-apps/office365mgmt/src, you'll tell Shuffle how to use it.
 
 We will modify 4 files:
 * api.yaml
