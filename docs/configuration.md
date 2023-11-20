@@ -11,6 +11,7 @@ Documentation for configuring Shuffle. Most information is related to onprem and
 * [Distributed Caching](#distributed_caching)
 * [No Internet Install](#no_internet_install)
 * [Proxy Configuration](#proxy_configuration)
+* [App Certificates](#app_certificates)
 * [HTTPS](#https)
 * [IPv6](#ipv6)
 * [Kubernetes](#kubernetes)
@@ -525,8 +526,10 @@ Proxies are another requirement to many enterprises, hence it's an important fea
 
 To configure these, there are two options:
 
+* Internal vs External proxy (shuffle vs apps)
 * Individual containers
 * Globally for Docker
+
 
 ### Global Docker proxy configuration
 
@@ -541,10 +544,35 @@ To set up proxies in individual containers, open docker-compose.yml and add the 
 ![Proxy containers](https://github.com/shuffle/shuffle-docs/blob/master/assets/proxy-containers.png?raw=true)
 
 ### Orborus running on a different network
+All you'll need to do is allow orborus to have access to the backend OR frontend of Shuffle.
 
-All you'll need to do is allow orborus to have access to the backend port and your setup will work fine.
+### Internal vs External proxy
+As of November 2023, we added another way to configure a difference between these two:
+- Internal tools like Backend -> Orborus -> Worker <-> Apps
+- Apps -> External tools
 
+This is in order to make it possible to have the an internal proxy different from those apps use for external services. These environment variables should be added to the "Orborus" container.
 
+```
+HTTP_PROXY=<external proxy>                     # used by default for everything
+
+SHUFFLE_INTERNAL_HTTP_PROXY=<internal proxy>     # Overrides HTTP_PROXY, making internal services in Shuffle use this proxy instead of HTTP_PROXY.
+```
+
+**PS: This is in beta. Reach out to support@shuffler.io if you have any trouble with this.
+**
+## App Certificates
+As of November 2023, it's now possible to mount folders into apps. This is in order for you to have better control of what Shuffle Apps can do, with the main reason being to manage certificates. 
+
+To mount in certificates, add the following environment variable to the "Orborus" container, but change the source and destination folder. The item BEFORE the colon (:) is the source folder on your machine, with the one AFTER the colon (:) being for the destination folder in the app itself.
+
+If you want more folders mounted, add them with a comma.
+```
+SHUFFLE_VOLUME_BINDS="/etc/ssl/certs:/usr/local/share/ca-certificates,srcfolder2:dstfolder2"
+```
+
+**PS: This is in beta. Reach out to support@shuffler.io if you have any trouble with this.
+**
 ## HTTPS
 
 HTTPS is enabled by default on port 3443 with a self-signed certificate for localhost. If you would like to change this, the only way (currently) is to add configure and rebuild the frontend. If you don't have HTTPS enabled, check [updating shuffle](#updating_shuffle) to get the latest configuration. Another workaround is to set up an [Nginx reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) you can control yourself. See further down for more details
