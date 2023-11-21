@@ -98,12 +98,12 @@ In [certain cases](https://github.com/Shuffle/Shuffle/issues/848), you may get J
 
 A node with the name "nodename" has the following value:
 ```
-{"_source": {"kibana.alert.rule.name": "Agent Spoofing - Multiple Hosts Using Same Agent", "siem.thresholdRule", "kibana.alert.rule.uuid": "abcde12345"}}
+{"body": {"_source": {"kibana.alert.rule.name": "Agent Spoofing - Multiple Hosts Using Same Agent", "siem.thresholdRule", "kibana.alert.rule.uuid": "abcde12345"}}}
 ```
 
 How would you get the field "._source.agent.alert.rule.name" within Shuffle? The answer is a workaround that utilizes Python, where you can work around dot notations with Python's bracket syntax.
 ```
-{% python %}import json; print(json.loads($nodename)["_source"]["kibana.alert.rule.name"]){% endpython %}
+{% python %}import json; print(json.loads('''$nodename.body''')["_source"]["kibana.alert.rule.name"]){% endpython %}
 ```
 
 Keep in mind this is not optimal nor an intended solution in many other scenarios. Just when keys are not represented in a useful way.
