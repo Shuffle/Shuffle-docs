@@ -11,24 +11,24 @@ Image from where you can modify this for a user in Shuffle:
 
 Each section below describes these better
 
-## Contacted
+## 1. Contacted
 Someone who tried out Shuffle, who we reached out to. We get ~10 of these a day [updated in the stats](https://docs.google.com/spreadsheets/d/1-nHOAtAq-5pqaSwjlAmSvG4LxoazCxZViYkf10jnPFA/edit#gid=2026695909) 
 document, and if we reach out to them, they should be set to contacted.
 
 If they reach out to us, go to the next stage (lead)
 
-## Lead
+## 2. Lead
 A lead is anyone who is confirmed to be interested in Shuffle. They could reach out through Drift, our support chat or be a reply to one of our emails from the previous step. 
 
 This needs to be manually set in most cases.
 
-## POV
+## 3. POV
 Someone who has the intent of buying a license for Shuffle, whether cloud or onprem. This means they should get the same treatment as a customer, as the goal is converting them to one. 
 
 **Contracts should be signed before this is done.
 **
 
-## Customer
+## 4. Customer
 A customer is someone who has signed and paid for Shuffle. Full stop.
 
 
