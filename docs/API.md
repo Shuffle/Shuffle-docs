@@ -270,7 +270,7 @@ curl https://shuffler.io/api/v1/apps/upload -H "Authorization: Bearer APIKEY" -F
 ```
 
 ## App Authentication
-App Authentication is a way to store authentication keys in an encrypted fashion, available through using their ID. 
+App Authentication is a way to store authentication keys encrypted and safe, available through using their ID. You can interact with it through a workflow, an app or the admin panel at /admin?tab=app_auth. To use an authentication after it's made, it has to be mapped to an action in a workflow by it's ID.
 	
 ### List App Authentication
 Get a list of all app authentication. These are all the authentication currently available to YOUR organization. These can be distributed from Parent org to Child org.
@@ -294,6 +294,21 @@ Methods: POST
 ```
 curl -XPOST https://shuffler.io/api/v1/apps/authentication/{authentication_id}/config -H "Authorization: Bearer APIKEY" -d '{"action"
 : "assign_everywhere", "id": "authentication_id"}'
+```
+
+**Success response**
+```
+{"success": true}
+```
+
+### Allow suborgs to use auth
+Parent organizations have the option to allow child orgs to use the same auth. The suborgs can not modify the auth they get access to. Intended for use where you e.g. have one ticketing system as an MSSP which you want to create tickets in from your child orgs (customers).
+
+Methods: POST
+
+```
+curl -XPOST https://shuffler.io/api/v1/apps/authentication/{authentication_id}/config -H "Authorization: Bearer APIKEY" -d '{"action"
+: "suborg_distribute", "id": "authentication_id"}'
 ```
 
 **Success response**
@@ -445,54 +460,6 @@ curl https://shuffler.io/api/v1/users/generateapikey -H "Authorization: Bearer A
 **Success response** 
 ```
 {"success": true, "username": "username", "verified": false, "apikey": "new apikey"}
-```
-
-## App Authentication API
-App Authentication is an API for handling authentication of apps themselves. You can interact with it through a workflow, an app, the admin panel, or the /apps/authentication UI. To use an authentication after it's made, it has to be mapped to an action in a workflow by it's ID.
-
-### Create a new authentication
-To use authentication, you first have to make one. Use the `configuration` fields for an app (get the app first to find these), and add them as fields with key:value in the request. 
-
-Methods: POST 
-
-```
-curl https://shuffler.io/api/v1/apps/authentication -H "Authorization: Bearer APIKEY" -d '{"app":{"name":"Elasticsearch","app_version":"1.0.0","id":"971706758e274c2e4083f2621fb5a6f7"},"fields":[{"key":"username_basic","value":"asd"},{"key":"password_basic","value":"asd"},{"key":"url","value":"asd"}],"label":"Auth for Elasticsearch","id":"80dcedb1-bd43-4253-b837-a0470ce6681e","active":true}'
-```
-
-
-**Success response** 
-```
-{"success": true, "id": "80dcedb1-bd43-4253-b837-a0470ce6681e"}
-```
-
-### List auth
-Gets all app auth
-
-Methods: GET 
-
-```
-curl https://shuffler.io/api/v1/apps/authentication -H "Authorization: Bearer APIKEY" 
-```
-
-
-**Success response** 
-```
-[{"app":{"name":"Elasticsearch","app_version":"1.0.0","id":"971706758e274c2e4083f2621fb5a6f7"},"fields":[{"key":"username_basic","value":"asd"},{"key":"password_basic","value":"asd"},{"key":"url","value":"asd"}],"label":"Auth for Elasticsearch","id":"80dcedb1-bd43-4253-b837-a0470ce6681e","active":true, "usage": []}]
-```
-
-### Delete an authentication
-Deletes an authentication. 
-
-Methods: DELETE
-
-```
-curl -XDELETE https://shuffler.io/api/v1/apps/authentication/{authentication_id} -H "Authorization: Bearer APIKEY" 
-```
-
-
-**Success response** 
-```
-{"success": true}
 ```
 
 ## Datastore API
