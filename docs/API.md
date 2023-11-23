@@ -267,10 +267,13 @@ curl https://shuffler.io/api/v1/apps/upload -H "Authorization: Bearer APIKEY" -F
 **Success response** 
 ```
 {"success": true, "id": "798f1234c4fb8b4a6300da3c546af45a"}
-```	
+```
+
+## App Authentication
+App Authentication is a way to store authentication keys in an encrypted fashion, available through using their ID. 
 	
-### Get App Authentication
-Get a list of all app authentication
+### List App Authentication
+Get a list of all app authentication. These are all the authentication currently available to YOUR organization. These can be distributed from Parent org to Child org.
 
 Methods: GET
 
@@ -315,10 +318,27 @@ curl https://shuffler.io/api/v1/apps/authentication/{authentication_id} -H "Auth
 ### Add App Authentication
 Add authentication to an app, available through e.g. the Workflow editor, or authentication explorer. When adding this, make sure the app has an ID (uuid) and name attached to it, and that the fields are matching the apps' description.
 
+You can find the fields following these steps:
+1. Get the app you want to use (e.g. Jira)
+2. Find a sample Action (doesn't matter which)
+3. Loop through the Action's parameter's and look 
+
 Method: PUT
 
 ```
-curl -XPUT https://shuffler.io/api/v1/apps/authentication -H "Authorization: Bearer APIKEY" '{"app":{"name":"Jira","is_valid":true,"id":"1836c9786bb54748bd8913c0617d50fd","link":"","app_version":"1.0.0","sharing_config":"","generated":true,"downloaded":false,"sharing":false,"verified":false,"invalid":false,"activated":true,"tested":false,"hash":"","private_id":"1836c9786bb54748bd8913c0617d50fd","description":"The Jira app for creating and managing issues from shuffle workflow.","environment":"Shuffle","small_image":"","large_image":"","contact_info":{"name":"","url":""},"reference_info":{"documentation_url":"","github_url":""},"folder_mount":{"folder_mount":false,"source_folder":"","destination_folder":""},"actions":[],"authentication":{"type":"","required":true,"parameters":[{"description":"","id":"","name":"username_basic","example":"username","multiline":false,"required":false,"in":"","schema":{"type":"basic"},"scheme":"basic"},{"description":"","id":"","name":"password_basic","example":"*****","multiline":false,"required":false,"in":"","schema":{"type":"basic"},"scheme":"basic"},{"description":"The URL of the app","id":"","name":"url","example":"https://api-url","value":"https://api-url","multiline":false,"required":true,"in":"","schema":{"type":"string"},"scheme":""}],"redirect_uri":"","token_uri":"","refresh_uri":"","scope":null,"client_id":"","client_secret":""},"tags":["Case Management"],"categories":["Cases"],"created":0,"edited":0,"last_runtime":0,"versions":null,"loop_versions":null,"owner":"2b3a37f3-fdd2-4965-b78d-f5d2fe9a2572","public":false,"reference_org":"","reference_url":"","action_file_path":"","documentation":""},"fields":[{"key":"username_basic","value":"asd"},{"key":"password_basic","value":"qwe"},{"key":"url","value":"https://api-url"}],"label":"Auth for Jira","usage":[{"workflow_id":"a816852a-e197-4b02-ba4f-0b67bb1baf3d"}],"id":"04825afa-e37b-44ce-a571-a67c2e2fb956","active":true}'
+curl -XPUT https://shuffler.io/api/v1/apps/authentication -H "Authorization: Bearer APIKEY" '{
+	"label":"Auth for Jira",
+	"app": {
+		"name":"Jira",
+		"id":"1836c9786bb54748bd8913c0617d50fd",
+		"app_version":"1.0.0"
+	}, "fields":[
+		{"key":"username_basic","value":"asd"},
+		{"key":"password_basic","value":"qwe"},
+		{"key":"url","value":"https://api-url"}
+	],
+	"active":true
+}'
 ```
 
 **Success response** 
