@@ -21,9 +21,7 @@ Describes the features included with Shuffle.
 * [Automation Triggers](#triggers_of_all_kinds)
 * [SSO and MFA](#sso_and_mfa)
 * [Marketplace](#marketplace)
-* [Mitre Att&ck](#mitre_auto-tagging)
 * [Development AI](#development_ai)
-* [Reporting, RBA & dashboards](#dashboards)
 
 ## Introduction
 With the problems described in [our about page](/docs/about) in mind, this document describes the features we have and will be implementing to ensure **anyone** can build on the Shuffle platform. Shuffle is not to only be used by developers, but by anyone curious about automation.
@@ -112,18 +110,7 @@ The Shuffle marketplace is where you can go and find the integrations and workfl
 
 ![Shuffle marketplace](https://github.com/frikky/shuffle-docs/blob/master/assets/features-9.png?raw=true)
 
-### Mitre Auto-Tagging
-Mitre Att&ck is more an more important. That's why we're working on a mechanism for auto-tagging data with Mitre Att&ck techniques based on what the data is from an endpoint. This is a self-built model, and will be improved over time as more people get to use it.
-
 ### Development AI  
 We're developing technology to allow for apps and workflows to be built based on text. This is based on OpenAPI's GPT-3 model, and can make it even easier for anyone to automate long-term. 
 
-### RBA 
-RBA is planned for the 1.1 release. Our current authentication system is easily extendible for RBA, but the focus hasn't been here yet.
-
-### Dashboards 
-Dashboards are planned for 1.0 release. There are a few standard ones in place, but these will become customizable.
-
-### Reporting 
-Reporting is necessary to any organization. That's why our focus is on having a reporting mechanism on launch, built directly into Workflows themselves.
-
+This is available for testing at [https://shuffler.io/chat](https://shuffler.io/chat) and will be open sourced soon~
