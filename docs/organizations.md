@@ -203,24 +203,23 @@ The default environment is called "Shuffle" in your on-premises environment, and
 * Archived				- Tells you whether it's archived. There's a toggle at the top to edit it.
 
 ### Orborus configuration
-If you would like to run Orborus towards a different environment, you'll have to specify the environment variables "ENVIRONMENT_NAME", "ORG", "AUTH" and "BASE_URL". AUTH and ORG may not be required.
+If you would like to run Orborus towards a different environment, you will have to specify the environment variables "ENVIRONMENT_NAME", "ORG", "AUTH" and "BASE_URL". AUTH and ORG may not be required.
 
-Here's an example, where the environment's name is "Hallo" and it's using https://shuffler.io as it's backend. This works on-premises as well.
+Below is an example, where the environment's name is "Hallo" and it's using `https://shuffler.io` as it's backend. This works on-premises as well if you change out the BASE_URL.
 ```
 docker run \
 	--volume /var/run/docker.sock:/var/run/docker.sock \
 	-e ENVIRONMENT_NAME="Another env" \
 	-e AUTH="Auth from the environment" \
 	-e ORG="Your org ID from the /admin UI top right" \
-  -e DOCKER_API_VERSION=1.40 \
-	-e BASE_URL=http://192.168.86.51:5002 \
+        -e DOCKER_API_VERSION=1.40 \
+	-e BASE_URL=https://shuffler.io \
 	ghcr.io/frikky/shuffle-orborus:nightly
 
 ```
 
 ### Health
-
-We now have a health check API that can be used to check the health of your shuffle instance. It's related endpoints are available at:
+Shuffle has a health check API that can be used to check the health of your Shuffle instance. It's related endpoints are available at:
 
 -  `/api/v1/health`: This gives you the result of the cached execution (doesn't require an API key)
 -  `/api/v1/stats`: This gives you historical data about the health of your instance (doesn't require an API key)
@@ -228,16 +227,26 @@ We now have a health check API that can be used to check the health of your shuf
 You can also force a run by making an API call at:
 - `/api/v1/health?force=true` (calling this requires the API key of an admin user)
 
-For the time being, this health check automatically runs every 15 minutes by default. 
-
+For the time being, this health check automatically runs every 15 minutes by default and can be disabled with the `SHUFFLE_HEALTHCHECK_DISABLED=true` environment variable.
 
 ### Notifications
 
-Notifications are a way for Shuffle to tell inform you of an error in your workflows. We send you notifications in two ways:
-- Through the UI: You'll see a bell icon with a number next to it, on the top right when you're logged in. This indicates the amount of notifications you have. Clicking it will show you the notifications.
-- Through workflows: If you go to `https://shuffler.io/admin?admin_tab=organization`, you'll see a section called "Notification Workflow". Click on it to select an appropriate workflow. This workflow will be executed whenever a notification is created. This can be used to automate opening tickets, sending emails, or whatever you want to do when there is an error in your notification.
+Notifications are a way for Shuffle to inform you of a potential error in your workflows. We recommend you investigate them to see if the issue is an actual issue or not. 
+They are organization-wide, meaning if you dismiss them, they get dismissed for everyone. A dismissed notification will show back up if it happens again. 
 
-We use some sort of "bucketing" of notifications, to prevent you from getting spammed. This means, every time a notification is created 2 times under 2 minutes, we'll only send you one notification. This is to prevent you from getting spammed.
+**Notification sources:**
+- Failed workflows (Status: ABORTED)
+- Workflows that take more than 10 minutes (without delays)
+- Actions where the result JSON contains `"success": false`
+- Actions where the result JSON contains `"status"` more than or equal to 300 (usually failed workflows)
+- Failed Liquid formatting
+- **We may add more without warning in the future. They are only added for things that represent typical things you want to see**
 
-If you're on the open-source side, you can change this by changing the `SHUFFLE_NOTIFICATION_BUCKETING_MINUTES` environment variable. This is set to 2 minutes by default.
+<img width="384" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/ff16e86b-5db4-4300-97b4-4071a96b4aed">
+
+**Accessing Notifications:**
+- **Through the UI**: You can see a bell icon with a number next to it in the top right bar, when you are logged in. This indicates the amount of notifications you have. Clicking it will show you the notifications. If you see a number next to the notification, this is the amount of it that has occurred.
+- **Selecting a Notification Workflow**: If you go to `/admin?admin_tab=organization`, you can see a section called "Notification Workflow". Click on it to select an appropriate workflow. This workflow will be ran whenever a notification is created, except when bucketed. This can be used to automate opening tickets, sending emails, or whatever you want to do when there is an error in your notification.We use some sort of "bucketing" of notifications, to prevent you from getting spammed. This means, every time a notification is created 2 times under 2 minutes, we'll only send you one notification. This is to prevent you from getting spammed.
+
+If you are on the open-source side, you can change the bucketing timeout by changing the `SHUFFLE_NOTIFICATION_BUCKETING_MINUTES` environment variable. This is set to 2 minutes by default.
 
