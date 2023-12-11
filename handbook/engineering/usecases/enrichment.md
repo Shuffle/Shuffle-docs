@@ -7,7 +7,7 @@ The input should be sent into a Subflow. The basic process goes like this:
 0. Start from a Schedule
 1. Get tickets/alerts
 2. Deduplicate them
-**3. Send each ticket for enrichment**
+3. **Send each ticket for enrichment**
 4. Send further
 
 We focus on step 3 in this part - the subflow itself.
@@ -16,7 +16,7 @@ We focus on step 3 in this part - the subflow itself.
 Build the general enrichment subflow to do the following: 
 
 1. Find different IOC types
-**2. Send each IOC type to another subflow**
+2. **Send each IOC type to another subflow**
 3. Get each IOC type back
 4. Standardize the output (remember to set Default Output in the Edit Workflow section)
 
