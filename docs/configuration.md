@@ -138,7 +138,7 @@ services:
       - ORG_ID=Shuffle
       - ENVIRONMENT_NAME=Shuffle
       - DOCKER_API_VERSION=1.40
-      - SHUFFLE_BASE_IMAGE_NAME=frikky
+      - SHUFFLE_BASE_IMAGE_NAME=shuffle
       - SHUFFLE_BASE_IMAGE_REGISTRY=ghcr.io
       - SHUFFLE_BASE_IMAGE_TAG_SUFFIX="-1.0.0"
       - CLEANUP=true
