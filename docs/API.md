@@ -76,7 +76,7 @@ curl https://shuffler.io/api/v1/workflows -H "Authorization: Bearer APIKEY"
 ```
 
 
-### List workflow executions
+### List workflow runs
 Returns a list of executions for a given workflow. Use "top=10" to get 10 last results. Use "cursor=<cursor>" to get next page.
 
 Method: GET
@@ -91,6 +91,7 @@ curl https://shuffler.io/api/v1/workflows/{workflow_id}/executions -H "Authoriza
   "success": true,
   "executions": [],
   "cursor": "cursor"
+}
 ```
 
 ### List workflow executions (old)
