@@ -174,6 +174,10 @@ Methods: POST, GET
 curl -XPOST https://shuffler.io/api/v1/workflows/{workflow_id}/execute -H "Authorization: Bearer APIKEY" -d {"execution_argument": "DATA TO EXECUTE WITH", "start": "",}
 ```
 
+Additional info:
+- If you don't send JSON to the API, but a random string, we will tkae the entire string as the execution argument.
+- You can add dynamic app authentication when starting a workflow by using the following header: `appauth`. Example: `appauth: jira:auth for jira;elasticsearch:elasticsearch auth`. This works both with the name of the auth, and the ID. 
+
 **Success response** 
 ```
 {"success": true, "execution_id": "6e58639e-a24f-4af8-b62b-d6fcc2bc10f4", "authorization": "26fb304f-92c9-4ca5-9735-9173ce80569e"}
@@ -718,6 +722,10 @@ Methods: POST
 ```
 curl -XPOST https://shuffler.io/api/v1/hooks -H "Authorization: Bearer APIKEY" -d '{"name":"Webhook_1","type":"webhook","id":"db434f8c-a9cb-47ec-abf8-ad8fb10e5809","workflow":"7b8ffd74-5e67-4700-bf79-751d1ac7e5e4","start":"6601f07f-92f2-45d3-88bf-328db7bfdfa0","environment":"cloud","auth":""}'
 ```
+
+**Additional info when RUNNING a webhook:**
+
+- You can add dynamic app authentication when running a webhook by using the following header: `appauth`. Example: `appauth: jira:auth for jira;elasticsearch:elasticsearch auth`. This works both with the name of the auth, and the ID. 
 
 
 **Success response** 
