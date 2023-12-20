@@ -91,6 +91,14 @@ Basic network overview below. [Architecture](https://github.com/shuffle/Shuffle/
 - The Worker runs the workflow and sends the payload back to the backend on port 5001 (default)
 ```
 
+**Webserver**
+The webserver is where your users and our API is. Opensearch is RAM heavy as we're doing A LOT of caching to ensure scalability.
+
+- Services: Frontend, Backend, Opensearch (Database)
+- CPU: 2vCPU
+- RAM: 8Gb
+- Disk: >100Gb (SSD)
+
 **Orborus**
 Runs all workflows and may be CPU heavy, along with Memory heavy when running at scale with gigabytes of data flowing through. If you do a lot of file transfers, deal with large API payloads, or memory analysis, make sure to add RAM accordingly. No persistent storage necessary.
 
@@ -98,14 +106,6 @@ Runs all workflows and may be CPU heavy, along with Memory heavy when running at
 - CPU: 4vCPU
 - RAM: 4Gb
 - Disk: 10Gb (SSD)
-
-**Webserver**
-The webserver is where your users and our API is. It is RAM heavy as we're doing A LOT of caching to ensure scalability.
-
-- Services: Frontend, Backend, Database
-- CPU: 2vCPU
-- RAM: 8Gb
-- Disk: >100Gb (SSD)
 
 #### Docker configuration
 
