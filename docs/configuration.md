@@ -133,7 +133,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - BASE_URL=http://SHUFFLE-BACKEND:5001
-      - SHUFFLE_APP_SDK_VERSION=1.1.0
+      - SHUFFLE_APP_SDK_VERSION=1.3.1
       - SHUFFLE_WORKER_VERSION=latest
       - ORG_ID=Shuffle
       - ENVIRONMENT_NAME=Shuffle
@@ -143,6 +143,7 @@ services:
       - SHUFFLE_BASE_IMAGE_TAG_SUFFIX="-1.0.0"
       - CLEANUP=true
       - SHUFFLE_ORBORUS_EXECUTION_TIMEOUT=600
+      - SHUFFLE_STATS_DISABLED=true
     restart: unless-stopped
 networks:
   shuffle:
