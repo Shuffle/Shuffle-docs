@@ -172,7 +172,7 @@ Executes a given workflow with optional arguments "execution_argument" and "star
 Methods: POST, GET
 
 ```
-curl -XPOST https://shuffler.io/api/v1/workflows/{workflow_id}/execute -H "Authorization: Bearer APIKEY" -d {"execution_argument": "DATA TO EXECUTE WITH", "start": "",}
+curl -XPOST https://shuffler.io/api/v1/workflows/{workflow_id}/execute -H "Authorization: Bearer APIKEY" -d '{"execution_argument": "DATA TO EXECUTE WITH", "start": ""}'
 ```
 
 Additional info:
