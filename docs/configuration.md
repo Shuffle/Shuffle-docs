@@ -271,14 +271,16 @@ You will be provided with a url to download the Worker image from Shuffle. Orbor
 # Required:
     SHUFFLE_LOGS_DISABLED=true
     SHUFFLE_SWARM_CONFIG=run
-    BASE_URL=http://YOUR-BACKEND-URL:5001 # YOUR-BACKEND-URL can be replaced by your public IP (considering your ports are open)
+    BASE_URL=http://YOUR-BACKEND-URL:5001     # YOUR-BACKEND-URL NEEDS to be replaced by the backend's public IP
     SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker-scale:latest
 
 # Optional configuration:
-    SHUFFLE_WORKER_SERVER_URL=http://shuffle-workers
-    SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions
-    SHUFFLE_SCALE_REPLICAS=1
-    SHUFFLE_APP_REPLICAS=1
+    SHUFFLE_AUTO_IMAGE_DOWNLOAD=false                       # This should be set to false IF images are already downloaded
+    SHUFFLE_WORKER_SERVER_URL=http://shuffle-workers        # Internal Docker Worker URL (don't modify if not necessary)
+    SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions     # If you want a special network name in the executions
+    SHUFFLE_SCALE_REPLICAS=1                                # The amount of worker container replicas PER NODE 
+    SHUFFLE_APP_REPLICAS=1                                  # The amount of app container replicas PER NODE 
+
 ```
 
 To make swarm work, Please make sure that [these ports are open](https://docs.docker.com/engine/swarm/swarm-tutorial/#open-protocols-and-ports-between-the-hosts) on both your machines (to at least, both of these machines internally): 2377, 7946 and 4789
