@@ -172,7 +172,7 @@ sudo chown 1000:1000 -R shuffle-database
 ## Delete user
 **We recommend you to know what you're doing when you delete a user! It can have unpredictable consequences**
 
-1. Find the ID of the user (Replace `<USERNAME>` with the username of your user) 
+1. Find the ID of the user (Replace the username of your user in the query with the placeholder!)
     ```
     curl -X GET "https://localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d' { "query": { "match": {"username": "<USERNAME>"} } } --insecure -u <opensearch_user>:<opensearch_password>
     ```
