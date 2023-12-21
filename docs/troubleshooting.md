@@ -190,12 +190,12 @@ sudo chown 1000:1000 -R shuffle-database
     ```
 
 ## Recover admin user
-You can reset your lost password in your local instance by doing the following: 
+If you find yourself in a situation where you have forgotten your passowrd, You can reset your lost password in your local instance by doing the following: 
 1. docker exec to get bash session into OpenSearch container `docker exec -it <container_id> bash`
 
 2. Dump the results of users index query into `users.log` file
    ```
-   curl -X GET "localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d'
+   curl -X GET "https://localhost:9200/users/_search?pretty" --insecure  -u <opensearch_user>:<opensearch_password> -H 'Content-Type: application/json' -d'
    {
        "query": {
            "match_all": {}
@@ -227,20 +227,19 @@ You can reset your lost password in your local instance by doing the following:
 ### Find a user and their Orgs
 
 ```
-curl -X GET "localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d' { "query": { "match": {"username": "myuser"} } }
-
+curl -X GET "https://localhost:9200/users/_search?pretty"  -u <opensearch_user>:<opensearch_password> --insecure -H 'Content-Type: application/json' -d' { "query": { "match": {"username": "myuser"} } }
 ```
 
 ### Find all org
 
 ```
-curl -X GET "localhost:9200/organizations/_search?pretty" -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}'
+curl -X GET "https://localhost:9200/organizations/_search?pretty"  -u <opensearch_user>:<opensearch_password> --insecure -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}'
 ```
 
 Find all org IDs
 
 ```
-curl -X GET "localhost:9200/organizations/_search?pretty" -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' | grep "\"id\" : \"" | sed 's/ *$//g' | sed 's/^[ \t]*//;s/[ \t]*$//' | uniq -u
+curl -X GET "https://localhost:9200/organizations/_search?pretty"  -u <opensearch_user>:<opensearch_password> --insecure -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' | grep "\"id\" : \"" | sed 's/ *$//g' | sed 's/^[ \t]*//;s/[ \t]*$//' | uniq -u
 ```
 
 ## Extract all workflows
@@ -249,7 +248,7 @@ This procedure can help you extract workflows directly from OpenSearch even if t
 
 1. Extract the index info from OpenSearch. **NOTE:** You may need to create a bind mount for the location where the workflows will be extracted to.
    ```
-   curl -X GET "localhost:9200/workflow/_search?pretty" -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' > /mnt/backup/workflows.json
+   curl -X GET "https://localhost:9200/workflow/_search?pretty"  -u <opensearch_user>:<opensearch_password> --insecure -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' > /mnt/backup/workflows.json
    ```
  
 1. Script to separate all workflows
@@ -296,11 +295,11 @@ If you lost an index due to corruption or other causes, there is no easy way to 
    ```
 1. Start refilling the index with info. For environments, make sure the "org_id" is correct according to the ID you can find in the /admin UI or the org index.
    ```
-   curl -XPOST -H "Content-Type: application/json" "http://localhost:9200/environments/_doc" -d '{"Name" : "Shuffle","Type" : "onprem","Registered" : false,"default" : true,"archived" : false,"id" : "26ae5c79-a6f3-4225-be18-39fa6018cdba","org_id" : "49eeb866-c8b4-4ea0-bc19-9e650e3bba9e"}'
+   curl -XPOST -H "Content-Type: application/json" "https://localhost:9200/environments/_doc"  -u <opensearch_user>:<opensearch_password> --insecure -d '{"Name" : "Shuffle","Type" : "onprem","Registered" : false,"default" : true,"archived" : false,"id" : "26ae5c79-a6f3-4225-be18-39fa6018cdba","org_id" : "49eeb866-c8b4-4ea0-bc19-9e650e3bba9e"}'
    ```
 1. Check the index
    ```
-   curl http://localhost:9200/environments/_search?pretty
+   curl https://localhost:9200/environments/_search?pretty  -u <opensearch_user>:<opensearch_password> --insecure
    ```
    
 ## OpenSearch consumes too much memory
