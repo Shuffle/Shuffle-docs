@@ -9,6 +9,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
 * [Opensearch permission errors](#opensearch_permissions_error)
 * [Recover admin user](#recover_admin_user)
+* [Delete user](#delete_user)
 * [Useful OpenSearch Queries](#useful_opensearch_queries)
 * [Extract all workflows](#extract_all_workflows)
 * [Rebuilding an OpenSearch index](#rebuilding_an_opsearch_index)
@@ -167,6 +168,21 @@ Set the ownership of the shuffle-database folder that the `shuffle-opensearch` c
 ```
 sudo chown 1000:1000 -R shuffle-database
 ```
+
+## Delete user
+**We recommend you to know what you're doing when you delete a user! It can have unpredictable consequences**
+
+1. Find the ID of the user
+    ```
+    curl -X GET "https://localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d' { "query": { "match": {"username": "myyser"} } } --insecure -u <opensearch_user>:<opensearch_password>
+    ```
+
+Take the "_id" value of the user.
+
+2. Delete the user
+    ```
+    curl -X DELETE "https://localhost:9200/users/_doc/<user_id>?pretty" -H 'Content-Type: application/json' --insecure -u <opensearch_user>:<opensearch_password>
+    ```
 
 ## Recover admin user
 You can reset your lost password in your local instance by doing the following: 
