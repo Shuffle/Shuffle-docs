@@ -176,8 +176,8 @@ curl -XPOST https://shuffler.io/api/v1/workflows/{workflow_id}/execute -H "Autho
 ```
 
 Additional info:
-- If you don't send JSON to the API, but a random string, we will tkae the entire string as the execution argument.
-- You can add dynamic app authentication when starting a workflow by using the following header: `appauth`. Example: `appauth: jira=auth for jira;elasticsearch=elasticsearch auth`. This works both with the name of the auth, and the ID. 
+- If you don't send JSON to the API, but a random string, we will take the entire string as the execution argument.
+- You can add dynamic app authentication when starting a workflow by using the following header: 'appauth'. Example: 'appauth: jira=auth for jira;elasticsearch=elasticsearch auth'. This works both with the name of the auth, and the ID. 
 
 **Success response** 
 ```
