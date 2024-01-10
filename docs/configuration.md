@@ -409,6 +409,21 @@ services:
   
 ```
 
+You can additionally add this do your docker compose with the following setting:
+```
+  memcached:
+    image: memcached:latest
+    container_name: shuffle-cache
+    hostname: shuffle-cache
+    mem_limit: 1024m
+    environment:
+      - MEMCACHED_MEMORY=1024
+      - MEMCACHED_MAX_CONNECTIONS=2500
+    ports:
+      - 11211:11211
+```
+
+
 If you need help with this, [please contact us](mailto:support@shuffler.io).
 
 ### Disaster Recovery/High Availability
