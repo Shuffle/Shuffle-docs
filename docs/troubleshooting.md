@@ -26,6 +26,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Troubleshooting for executions not running in swarm mode](#Troubleshooting_for_executions_not_running_in_swarm_mode)
 * [Find app creator Python function](#find_code_openapi_app)
 * [Tenants/Suborgs seem to be lost](#reinstate_lost_tenants)
+* [Find top index items opensearch](#find-top-index-items-opensearch)
 
 ## Orborus backend connection problems
 Due to the nature of Shuffle at scale, there are bound to be network issues. As Shuffle runs in Docker, and sometimes in swarm with k8s networking, it complicates the matter even further. Here's a list of things to help with debugging networking. If all else fails; reboot the machine & docker.
@@ -676,3 +677,21 @@ $docker-compose down
 $docker-compose up -d
 ```
 Go back to your shuffle instance and you should see the org in question reinstated in the tenants tab. 
+
+## Find top index items opensearch (NOT FULLY DISCOVERED YET)
+As the Opensearch index may fill up over time, it is important to be able to debug the the available indexes. One particular issue we have had has been that it takes >60 seconds to load apps onprem at times. Here is how to resolve them.
+
+Get into the Opensearch container of port 9200 is not exposed by default:
+```
+docker exec -u0 -it shuffle-opensearch bash
+```
+
+[Get the indexes and look at them:](https://opensearch.org/docs/latest/api-reference/cat/cat-indices/)
+```
+curl https://localhost:9200/_cat/indices?v -u admin:admin
+```
+
+Find the largest items in the workflowapp index (for apps in shuffle):
+```
+curl https://localhost:9200/workflowapp/_search?v -u admin:admin
+```
