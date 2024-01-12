@@ -394,8 +394,7 @@ If the issue still persists, Please look into changing the environment variable 
 If none of this works, Often times it's simply because of the virtualisation used by your cloud provider. For example, We have found these issues to be persistent with providers using VMware underneath, [Refer to this for a fix](https://portal.portainer.io/knowledge/known-issues-with-vmware)
 
 ## Shuffle on ARM
-ARM is currently not supported for Shuffle, as can be seen in issue [#665 on Github](https://github.com/frikky/Shuffle/issues/665). We don't have the capability to build it as of now, but can work with you to get it working if you want to try it.
-
+ARM is supported on Shuffle since 1.3.0!
 
 ## Permission denied on files 
 In certain scenarios, permissions inside and outside a container may be different. This has a lot of causes, and we'll try to help figure them out below. Thankfully most fixes are relatively simple. To test this try to go to /admin?tab=files in Shuffle, and upload a file. If the file is uploaded and it says status "active", all is good. If it's not being uploaded, then it's most likely a permission issue.
