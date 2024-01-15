@@ -31,8 +31,6 @@ Architecture auditing is here to ensure you can achieve high availability and ha
 - [] Have you disabled Swap on servers with Opensearch?
 - [] Are there multiple instances (nodes) of Opensearch? 
 - [] Do you have NFS for Opensearch to handle scaling?
-
-  
 - [] Do you have Log forwarding enabled?
 - [] Do you have detections in the Log forwarding for [ERROR]?  
 
