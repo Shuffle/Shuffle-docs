@@ -9,8 +9,9 @@ The goal with this document is to make it easy to have automation infrastructure
 ## Workflows
 The goal of workflow auditing is to make them work the same at all times.
 
-- [] EXECUTING: Are there any workflows runs with status EXECUTING? Fix them.
-- [] ABORTED: Are there any workflows runs with status ABORTED? Fix them.
+[] EXECUTING: Are there any workflows runs with status EXECUTING? Fix them.
+[] ABORTED: Are there any workflows runs with status ABORTED? Fix them.
+
 - [] Notifications: Do you have outstanding notifications? Fix them.
 - [] Is the queue held up, or is it at 0 (/admin?tab=environments)?
 - [] Are all apps you want to work, working (actions missing, weird auth...)?
