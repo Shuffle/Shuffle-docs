@@ -30,17 +30,19 @@ Architecture auditing is here to ensure you can achieve high availability and ha
 - [] Do you have NFS for Opensearch to handle scaling?
 
 ## Storage & Memory
-- [] Are you using distributed caching?
+- [] Are you using distributed caching? (memcached in docker-compose.yml file)
 - [] Do you have enough memory to run your workflows efficiently? 
 - [] Do you have enough storage for Opensearch?
 
 ## Security
 
 - [] Encryption Modifier: Do you have an encryption modifier set in .env?
-- [] Are ports exposed that shouldn't be? (Opensearch 9200, Backend 5001..)
-- [] Are you using HTTPS instead of HTTP?
-- [] Do you have an nginx reverse proxy to handle certificate management?
-- 
-
+- [] Are ports exposed that shouldn't be? (Opensearch 9200, Backend 5001, Frontend HTTP 3001)
+- [] Are you using HTTP instead of HTTPS?  
+- [] Do you have an nginx reverse proxy to handle certificates management?
+- [] Does the server have internet? [It may not be necessary](https://shuffler.io/docs/configuration#Domain%20Whitelisting).
+- [] Are [proxy configurations](https://shuffler.io/docs/configuration#Internal%20vs%20External%20proxy) set up appropriately (if necessary)?
 
 ## Scale
+- [] Environment stats
+- [] Optimizing bottleneck? 
