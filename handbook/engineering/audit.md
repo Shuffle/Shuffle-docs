@@ -67,7 +67,6 @@ Scaling Shuffle can be a difficult on your own without a checklist. These config
 
 - [] Do you have any outstanding workers not finishing and closing down? This indicates workflows not finalizing properly.
 - [] Do you have enough CPU/Memory to run what you want to run without any problems?
-- [] Are you surpassing 500.000 App runs in a month? At this point, [it gets hard to scale on your own](https://shuffler.io/pricing?tab=onprem).
 - [] Is the `CLEANUP` or `SHUFFLE_CONTAINER_AUTO_CLEANUP` environment set to true? This cleans up containers on the fly.
 - [] Are Logs disabled for apps? Logging and sending logs makes workflows slower. Disable with `SHUFFLE_LOGS_DISABLED=true`
 - [] Have you changed the max concurrent workflows that can run? Default is 7. `SHUFFLE_ORBORUS_EXECUTION_CONCURRENCY=5`
@@ -75,5 +74,6 @@ Scaling Shuffle can be a difficult on your own without a checklist. These config
 - [] Environment stats: Have you disabled these at scale? `SHUFFLE_STATS_DISABLED=true`
 - [] Are you running in Swarm/K8s instead of the default setup? 
 - [] Are Reruns and Aborts running as expected? Check Workflow run debugger (/workflows/debug) for old workflow runs in EXECUTING or ABORTED mode. If they are NOT aborted but instead EXECUTING, then this is not working as expected.
+- [] Are you surpassing 500.000 App runs in a month? At this point, [it gets hard to scale on your own](https://shuffler.io/pricing?tab=onprem).
 
 Got any other potential bottlenecks? [Contact us](https://shuffler.io/contact)
