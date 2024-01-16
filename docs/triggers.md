@@ -144,17 +144,62 @@ Schedules are based on [google's cloud scheduler](https://cloud.google.com/sched
 ![Triggers-view-3](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-3.png?raw=true)
 
 ### User input
-The user input node is a way to temporarily pause an execution until someone MANUALLY clicks something. This can currently be through Email and SMS, but we will introduce many other options, including chat systems and running other workflows.
+User Input is an app located within triggers. It provides a method to temporarily pause ongoing executions in a workflow, awaiting approval or denial from a human through a manual click before proceeding with or stopping subsequent executions.
 
-The point of the node is to wait for manual approval before running some automation. E.g. management approval for new scan schedule. E.g. analyst approval for cleanup up a host. 
+This can currently be acheived through Subflows (Preffered for production), Email and SMS for rapid testing on the fly, but we will introduce many other options, including chat systems. 
 
-![User input node Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-4.png?raw=true)
+Note:
+If you have any suggestions pertaining to this, please let us know via a feature request on github.
 
-* Email		- What emails do you want to send the workflow information to?
-* SMS 		- What numbers do you want to send the workflow information to?
+The point of the user input node is that it acts as a crucial control point, allowing human oversight and decision-making within automated processes.
+e.g. 
 
-When the email/sms is sent, it will look like the image below. We will optimize this over time to reflect everything from Shuffle, but during our initial proof of concept, this is for you to understand. You will get to answer: yes or no? If you answer yes, the workflow execution will continue from where it left off. If you answer no, it will be stopped. This action can be sent to multiple people, but the link will only work once.
-![User input email Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-5.png?raw=true)
+Scenario 1: Granting or revoking user access privileges.
+User Input: Authorization from appropriate personnel before modifying user roles or permissions.
+
+Scenario 2: Rolling out software updates across a network.
+User Input: Approval from IT administrators before deploying updates to servers or critical systems.
+
+Scenario 3: Investigating and responding to security incidents.
+User Input: Analyst decision for remediation actions, such as isolating a compromised system or blocking a suspicious IP address.
+
+#### User Input Example
+1. In the bottom left corner select the triggers tab
+![num1](https://github.com/Shuffle/Shuffle-docs/assets/31187099/76f3e499-3f27-4215-bcc2-060e8bd30e61) 
+
+2. Drag in the user input node into your workflow
+
+3. Set it up where you will want approval before proceeding with subsequent nodes in the workflow.
+- Select Subflow as the input option (This is always preffered). You can use email and sms to rapidly test on the fly.
+  ![Screenshot 2024-01-16 100608](https://github.com/Shuffle/Shuffle-docs/assets/31187099/5f854f72-c2ea-4029-9e65-359582db1818)
+
+4. Set up your "trigger workflow" in my example it is the workflow labeled "UI test trigger" and select it in your user input node settings (as shown above). We will use this workflow to further customize our user input making how to use it limitless. (This is why this method is preferred). The example below shows how vesartile it can be
+![Screenshot 2024-01-16 102648](https://github.com/Shuffle/Shuffle-docs/assets/31187099/7a8ed5f4-718f-48e0-af5d-a002d65f970a)
+  
+5. When we execute our workflow then jump into our "UI test trigger" workflow (This is our "trigger workflow"), we should get an execution argument as follows.
+
+![Screenshot 2024-01-16 100516](https://github.com/Shuffle/Shuffle-docs/assets/31187099/a6db51b0-8f4f-4ef2-b3bd-e7699dba9b9f)
+
+6. Using the execution argument provided, we can then send a well structured request to a user asking for the approval or denial before an event takes place.
+![Screenshot 2024-01-16 110322](https://github.com/Shuffle/Shuffle-docs/assets/31187099/4199d32f-7510-4bbb-968a-02b1a1a95404)
+
+- Which appears as shown below in a users email inbox requesting for the users input. Remember this action can be sent to whatever communication channel you use. It can also be sent to multiple users but can only be triggered once for now. (We may add multiple users approval for this in the future)
+![Screenshot 2024-01-16 105926](https://github.com/Shuffle/Shuffle-docs/assets/31187099/5ec22cd0-802b-47a0-85b0-41548e5c19e1)
+
+- Frontend_continue and frontend_abort should open a new tab with a shuffle UI prompting you to either click on proceed or abort.
+  ![image](https://github.com/Shuffle/Shuffle-docs/assets/31187099/0e9ecad1-c10c-4544-a994-ad1abf5146b9)
+
+- API_continue and API_abort this opens a new tab informing you if the operation you selected was a success or not. As shown below
+  ![Screenshot 2024-01-16 110009](https://github.com/Shuffle/Shuffle-docs/assets/31187099/8f8f6be5-3480-4785-810d-a1015667eb94)
+
+7. The Workflow run debugger is a new feature implemented in shuffle V 1.3.0 that helps you dig through and audit the perfomance of workflows, the errors encountered, logs and the current status of executions in you workflows. [Found here](https://shuffler.io/workflows/debug)
+  ![num7](https://github.com/Shuffle/Shuffle-docs/assets/31187099/04c5f00e-71cd-4871-b16b-fd892ddbd009)
+- With that said, you can use the Workflow run debugger to check whether or not the approval was granted and on which workflow was the request sent and on which workflow is a response expected, if the actions of the workflow are finished or whether or not we are still waiting for the user input. Think of this as a way to audit status of executions and workflows.
+![num7 1](https://github.com/Shuffle/Shuffle-docs/assets/31187099/07356e00-9474-47bd-9e1f-8303db2eae18)
+- Using this you can see if the action was completed or not under the status tab marked as 1 above and the workflow name right besides it.
+- If you hover above the start times for the executions you should see pop up info with regards to what the error is, errored out workflows start times are usually highlighted in red as shown in the image above
+- In label 3 as shown in the image a pop out takes you to the target workflow directly and 4 shows you the logs. 
+
 
 ### Email
 TBD: This has been made to work with both cloud and hybrid version of Shuffle. Can't work 100% onprem because webhooks from Office365 and Google Workspaces can't reach your host.
