@@ -144,23 +144,23 @@ Schedules are based on [google's cloud scheduler](https://cloud.google.com/sched
 ![Triggers-view-3](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-3.png?raw=true)
 
 ### User input
-User Input is an app located within triggers. It provides a method to temporarily pause ongoing executions in a workflow, awaiting approval or denial from a human through a manual click before proceeding with or stopping subsequent executions.
+- User Input is an app located within triggers. It provides a method to temporarily pause ongoing executions in a workflow, awaiting approval or denial from a human through a manual click before proceeding with or stopping subsequent executions.
 
-This can currently be acheived through Subflows (Preffered for production), Email and SMS for rapid testing on the fly, but we will introduce many other options, including chat systems. 
+- This can currently be acheived through Subflows (Preffered for production), Email and SMS for rapid testing on the fly, but we will introduce many other options, including chat systems. 
 
-Note:
+- Note:
 If you have any suggestions pertaining to this, please let us know via a feature request on github.
 
-The point of the user input node is that it acts as a crucial control point, allowing human oversight and decision-making within automated processes.
+- The point of the user input node is that it acts as a crucial control point, allowing human oversight and decision-making within automated processes.
 e.g. 
 
-Scenario 1: Granting or revoking user access privileges.
+- Scenario 1: Granting or revoking user access privileges.
 User Input: Authorization from appropriate personnel before modifying user roles or permissions.
 
-Scenario 2: Rolling out software updates across a network.
+- Scenario 2: Rolling out software updates across a network.
 User Input: Approval from IT administrators before deploying updates to servers or critical systems.
 
-Scenario 3: Investigating and responding to security incidents.
+- Scenario 3: Investigating and responding to security incidents.
 User Input: Analyst decision for remediation actions, such as isolating a compromised system or blocking a suspicious IP address.
 
 #### User Input Example
