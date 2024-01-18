@@ -8,7 +8,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [How to stop executions in loop](#how_to_stop_executions_in_loop)
 * [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
 * [Opensearch permission errors](#opensearch_permissions_error)
-* [Recover admin user](#recover_admin_user)
+* [Recover admin user](#recover-admin-user)
 * [Delete user](#delete_user)
 * [Useful OpenSearch Queries](#useful_opensearch_queries)
 * [Extract all workflows](#extract_all_workflows)
@@ -191,7 +191,7 @@ sudo chown 1000:1000 -R shuffle-database
     ```
 
 ## Recover admin user
-If you find yourself in a situation where you have forgotten your passowrd, You can reset your lost password in your local instance by doing the following: 
+If you find yourself in a situation where you have forgotten your passowrd and need a reset for your user, you can reset your lost password in your local instance by doing the following: 
 1. docker exec to get bash session into OpenSearch container `docker exec -it <container_id> bash`
 
 2. Dump the results of users index query into `users.log` file
