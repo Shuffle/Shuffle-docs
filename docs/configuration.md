@@ -279,8 +279,9 @@ You will be provided with a url to download the Worker image from Shuffle. Orbor
     SHUFFLE_AUTO_IMAGE_DOWNLOAD=false                       # This should be set to false IF images are already downloaded
     SHUFFLE_WORKER_SERVER_URL=http://shuffle-workers        # Internal Docker Worker URL (don't modify if not necessary)
     SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions     # If you want a special network name in the executions
-    SHUFFLE_SCALE_REPLICAS=1                                # The amount of worker container replicas PER NODE 
-    SHUFFLE_APP_REPLICAS=1                                  # The amount of app container replicas PER NODE 
+    SHUFFLE_SCALE_REPLICAS=1                                # The amount of worker container replicas PER NODE  (since 1.2.0)
+    SHUFFLE_APP_REPLICAS=1                                  # The amount of app container replicas PER NODE     (since 1.2.1)
+    SHUFFLE_MAX_SWARM_NODES=1                               # The max amount of swarm nodes shuffle can use     (since 1.3.2)
 
 ```
 
