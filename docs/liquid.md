@@ -96,6 +96,8 @@ Want to merge the data in both of these lists? Use the "Merge lists" action, and
 ### Dot notation
 In [certain cases](https://github.com/Shuffle/Shuffle/issues/848), you may get JSON that has invalid keys. In these cases, we have workarounds using python to get the information. Here's an example based on an older issue someone had:
 
+**PS: Dot notation no longer requires Liquid formatting and can be used the same as any other variable (January 2024)**
+
 A node with the name "nodename" has the following value:
 ```
 {"body": {"_source": {"kibana.alert.rule.name": "Agent Spoofing - Multiple Hosts Using Same Agent", "siem.thresholdRule", "kibana.alert.rule.uuid": "abcde12345"}}}
