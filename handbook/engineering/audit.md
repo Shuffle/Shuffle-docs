@@ -14,6 +14,7 @@ The goal of workflow auditing is to make them work the same at all times.
 - [] EXECUTING: Are there any workflows runs with status EXECUTING? Fix them. (/workflows/debug)
 - [] ABORTED: Are there any workflows runs with status ABORTED? Fix them. (/workflows/debug)
 - [] Notifications: Do you have outstanding notifications? Fix them. (/admin?admin_tab=priorities)
+- [] Unused Workflows: Are Webhooks or Schedules running with data for non-important workflows?
 - [] Is the queue held up, or is it at 0 (/admin?tab=environments)?
 - [] Are all apps you want to work, working (actions missing, weird auth...)?
 - [] Conditions: Do every workflow have good conditions to cover edgecases? (e.g. authorization timeouts leading to 403s)
