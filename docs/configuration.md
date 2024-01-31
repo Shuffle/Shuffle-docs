@@ -38,7 +38,7 @@ Check out the [installation guide](https://github.com/frikky/shuffle/blob/master
 System requirements may be found further down in the [Servers](#servers) section.
 
 ```
-git clone https://github.com/frikky/Shuffle
+git clone https://github.com/shuffle/Shuffle
 cd Shuffle
 docker-compose up -d
 ```
