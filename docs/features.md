@@ -9,19 +9,19 @@ Describes the features included with Shuffle.
 
 ## Table of contents
 * [Introduction](#introduction)
-* [Best in class App Creator](#best_in_class_app_creator)
-* [The workflow designer](#the_workflow_designer)
-* [Default use-cases](#standard_workflows_and_apps)
-* [Cloud and Open Source](#local,_hosted,_cloud_and_hybrid)
-* [Multi-Org for free](#multi-tenancy_and_multi-org)
-* [File analysis](#file_storage)
-* [Key Value Store](#key_value_store)
-* [Encrypted Authentication Storage](#encrypted_authentication_storage)
-* [Built-in Documentation](#built-in_documentation)
-* [Automation Triggers](#triggers_of_all_kinds)
-* [SSO and MFA](#sso_and_mfa)
+* [Best in class App Creator](#best-in-class-app-creator)
+* [The workflow designer](#the-workflow-designer)
+* [Default use-cases](#standard-workflows-and-apps)
+* [Cloud and Open Source](#local,-hosted,-cloud-and-hybrid)
+* [Multi-Org for free](#multi-tenancy-and-multi-org)
+* [File analysis](#file-storage)
+* [Key Value Store](#key-value-store)
+* [Encrypted Authentication Storage](#encrypted-authentication-storage)
+* [Built-in Documentation](#built-in-documentation)
+* [Automation Triggers](#triggers-of-all-kinds)
+* [SSO and MFA](#sso-and-mfa)
 * [Marketplace](#marketplace)
-* [Development AI](#development_ai)
+* [Development AI](#development-ai)
 
 ## Introduction
 With the problems described in [our about page](/docs/about) in mind, this document describes the features we have and will be implementing to ensure **anyone** can build on the Shuffle platform. Shuffle is not to only be used by developers, but by anyone curious about automation.
