@@ -914,7 +914,7 @@ curl https://shuffler.io/api/v1/apps/categories -H "Authorization: Bearer APIKEY
 			"category":"Cases",
 			"label":"Create ticket"
 		}]
-	]}
+	}]
 }]
 ```
 		
