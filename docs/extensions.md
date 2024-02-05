@@ -3,12 +3,12 @@ This is documentation for integrating and sending data from third-party services
 
 ## Table of contents
 * [Introduction](#introduction)
-* [Single Signon](#single_signon_sso)
+* [Single Signon](#single-signon-sso)
   * [Okta](#okta)
   * [Auth0](#auth0)
-  * [PingIdentity](#ping_id)
+  * [PingIdentity](#ping-id)
   * [Keycloak - OpenID](#keycloak)
-  * [Azure AD - OpenID](#azure_ad)
+  * [Azure AD - OpenID](#azure-ad)
 * [Webhooks](#webhooks)
   * [Wazuh Webhook](#wazuh)
   * [TheHive Webhook](#thehive)
