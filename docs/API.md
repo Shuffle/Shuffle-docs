@@ -894,7 +894,7 @@ To find what categories with what apps you have that are active, run this API. I
 	
 Methods: GET 
 
-```
+```bash
 curl https://shuffler.io/api/v1/apps/categories -H "Authorization: Bearer APIKEY"
 ```
 
@@ -923,7 +923,7 @@ Runs the category action in a standardized format.
 	
 Methods: POST 
 
-```
+```bash
 curl -XPOST https://shuffler.io/api/v1/apps/categories/run -H "Authorization: Bearer APIKEY" -d '{
 	"app_name": "PagerDuty",
 	"category": "cases",
