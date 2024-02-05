@@ -900,10 +900,20 @@ curl https://shuffler.io/api/v1/apps/categories -H "Authorization: Bearer APIKEY
 
 
 **Success response** 
-```
-[{"name":"Cases","color":"","icon":"cases","action_labels":["Create ticket"], "app_labels": 
-	[{
-		"app_name":"PagerDuty","large_image":"","id":"50af6d9f18134b90aabca9180b37ea01","labels":[{"category":"Cases","label":"Create ticket"}]
+```json
+[{
+	"name":"Cases",
+	"color":"",
+	"icon":"cases",
+	"action_labels":["Create ticket"],
+	"app_labels": [{
+		"app_name":"PagerDuty",
+		"large_image":"",
+		"id":"50af6d9f18134b90aabca9180b37ea01",
+		"labels": [{
+			"category":"Cases",
+			"label":"Create ticket"
+		}]
 	]}
 }]
 ```
