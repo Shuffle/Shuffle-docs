@@ -5,18 +5,18 @@ Documentation to understand the Shuffle architecture and thoughts behind our cho
 
 ## Table of contents
 * [Introduction](#introduction)
-* [Overview](#architecture_overview)
+* [Overview](#architecture-overview)
 * [Frameworks](#frameworks)
-* [Automation Engine](#automation_engine)
+* [Automation Engine](#automation-engine)
 * [Technologies](#technologies)
-* [How it works](#how_it_works)
+* [How it works](#how-it-works)
 * [Authentication](#authentication)
-* [Data access mode](#data_access_model)
-* [Encryption and Hashing](#encryption_and_hashing)
-* [Backend API access](#backend_api_access)
-* [Workflow execution model](#workflow_execution_model)
-* [Docker container control](#docker_container_control)
-* [Learn more](#learn_more)
+* [Data access mode](#data-access_model)
+* [Encryption and Hashing](#encryption-and-hashing)
+* [Backend API access](#backend-api-access)
+* [Workflow execution model](#workflow-execution-model)
+* [Docker container control](#docker-container-control)
+* [Learn more](#learn-more)
 
 ## Introduction
 With a long-term vision of having an Open(API) ecosystem with a hybrid model between cloud and on-prem, this document will be a guide to understand some underlying aspects of Shuffle and how things fit together. Shuffle does **NOT** require internet to work.
