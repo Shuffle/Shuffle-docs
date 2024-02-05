@@ -6,10 +6,10 @@ Documentation for everything about creators. Become a creator by [signing up her
 ## Table of contents
 * [Introduction](#introduction)
 * [FAQ](#FAQ)
-* [Become a creator](#become_a_creator)
-  * [Your Creator Profile](#your_creator_profile)
-  * [Get verified](#get_verified)
-  * [Verified perks](#verified_perks)
+* [Become a creator](#become-a-creator)
+  * [Your Creator Profile](#your-creator-profile)
+  * [Get verified](#get-verified)
+  * [Verified perks](#verified-perks)
 
 ## Introduction
 The Shuffle ecosystem is built on open source code, and since the start, we've focused on openness and building as good a service as we can. We do however know that we don't know everything, and need help from the community to create as good of a service for our customers as possible. That's why we've launched the creator program - a way we can share revenue with everyone who spend time helping Shuffle grow by creating content like Apps, Workflows and Documentation, along with Blogposts, videos and who do support and github contributions.
