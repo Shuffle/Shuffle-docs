@@ -937,10 +937,20 @@ curl -XPOST https://shuffler.io/api/v1/apps/categories/run -H "Authorization: Be
 	}, {
 		"key": "source",
 		"value": "Shuffle"
-	}]
+	}],
+	"skip_workflow": true
 }'
 ```
 
+**Success response** 
+**200** means the app ran and performed both input and output translation properly
+```json
+Default Label Output
+```
+
+**202** means the app ran, but the output translation failed. This will return the DEFAULT output of the action that ran.
+
+**Other status codes**: They are based on the API from the app itself, and indicates something went wrong.
 
 
 
