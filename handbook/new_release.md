@@ -17,7 +17,9 @@ With this in mind, we made the following milestones:
 - Recommendations
 - Scaling Shuffle
 
-These milestones should reflect the overarching goal of the release itself, and should be a maximum of 4-5.
+These milestones should reflect the overarching goal of the release itself, and should be a maximum of 4 major objectives. 
+
+[Milestones can be assigned to an issue](https://github.com/Shuffle/Shuffle/milestones), and when all milestones are fullfiled, that means the version should be completed and released.
 
 ## Product
 Product is at the head of release, and someone from Engineering should always be in charge of the release itself. As an example, @frikky was in charge of 1.2.0, and @0x0elliot is in charge of release 1.3.0.
