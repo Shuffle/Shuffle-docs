@@ -2,7 +2,7 @@
 New releases are exciting, and requires broad collaboration across the entire team. Here is a basic overview of what it entails.
 
 **Release Structure**
-* Release version
+* Release version (1.4.0: Native Actions & Multiregion management)
   * Milestones
     * Issues
       * Title & Description
