@@ -5,7 +5,9 @@ New releases are exciting, and requires broad collaboration across the entire te
 * Release version
   * Milestones
     * Issues
-      * Assignments
+      * Title & Description
+      * User assignment
+      * Tags
 
 ## Overview
 A new release happens about once every 4-6 months, with minor releases for important features and nightly builds inbetween. This is to allow power-users to try features immediately instead of waiting. 
