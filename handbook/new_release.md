@@ -1,6 +1,12 @@
 # New release
 New releases are exciting, and requires broad collaboration across the entire team. Here is a basic overview of what it entails.
 
+**Release Structure**
+* Release version
+  * Milestones
+    * Issues
+      * Assignments
+
 ## Overview
 A new release happens about once every 4-6 months, with minor releases for important features and nightly builds inbetween. This is to allow power-users to try features immediately instead of waiting. 
 Releases are meant to contain new features along with bug fixes. 
