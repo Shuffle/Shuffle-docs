@@ -168,7 +168,7 @@ PS: When the user is signed in, they have the access rights of a "user" in the d
 ### Other
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
 
-# KMS
+## KMS
 Shuffle by default allows you to store authentication tokens within Shuffle itself, which are encrypted in the database. Since February 2024, we additionally support the use of external KMS systems to handle authentication, which is based on [Native Actions](https://shuffler.io/docs/extensions#native-actions) and [Schemaless](https://github.com/frikky/schemaless). Native Actions run in the background to perform the "Get KMS key" action, and the run of the app is NOT stored.
 
 The Shuffle KMS system is built as a third party Key:Value provider. You can reference keys from the KMS in any field marked as "Authentication" in the UI, or from within a Shuffle authentication itself (meaning you can authenticate the authentication..). The way you reference the keys is path-based, starting with `kms/`. Requirements:
@@ -190,9 +190,19 @@ If all of this is fulfilled, you can run the workflow, and Shuffle will automati
 <img width="989" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/8a24c8f1-c00d-4481-bf56-ece2b7749fed">
 
 
-# Native Actions
+## Native Actions
+Native Actions are a new way Shuffle interacts with data, built brick by brick since introducing Shuffle's Integration Layer API in late 2022. The goal of Native Actions is to enable ourselves and others to be able to perform actions towards a specific API, without necessarily know how to do it specifically for that system. 
 
+As of early 2024, this system is in active development, and we will implement features with it and help third party platforms do the same throughout the next few years.
 
+**Example usecases:**
+- Listing assets from your asset management system/CMDB to make a list of assets, without needing to know the Assets' API
+- Blocking an Endpoint without knowing how to use the EDR API. Add this as a button to the list from the previous usecase
+- Shuffle Notification Workflow: Get notifications directly to your ticketing system with minimal configuration
+
+<img width="736" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/d9c5831c-af53-4bd2-9b34-7dd8c2daab32">
+
+The Native Actions system is based on [generative AI for automatic mapping of fields (Schemaless)](https://github.com/frikky/schemaless), uses Github to [store configurations (Standards)](https://github.com/shuffle/standards), and uses [Shuffle's Integration Layer API](https://shuffler.io/docs/API#integration-layer) to run the actions. 
 
 ## Webhooks
 ### Wazuh
