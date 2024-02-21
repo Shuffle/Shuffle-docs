@@ -9,12 +9,15 @@ This is documentation for integrating and sending data from third-party services
   * [PingIdentity](#ping-id)
   * [Keycloak - OpenID](#keycloak)
   * [Azure AD - OpenID](#azure-ad)
+  * [Other SSO providers](#other)
+* [KMS](#KMS)
+* [Native Actions](#native-actions)
 * [Webhooks](#webhooks)
   * [Wazuh Webhook](#wazuh)
   * [TheHive Webhook](#thehive)
   * [Logz.io Webhook](#logzio)
   * [MISP forwarder](#misp)
-  * [AWS S3 forwarder](#aws_s3_forwarder)
+  * [AWS S3 forwarder](#aws-s3-forwarder)
   * [QRadar Webhook](#qradar)
   * [FortiSIEM Webhook](#fortisiem)
   * [ELK Webhook](#elk)
@@ -164,6 +167,32 @@ PS: When the user is signed in, they have the access rights of a "user" in the d
 	
 ### Other
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
+
+# KMS
+Shuffle by default allows you to store authentication tokens within Shuffle itself, which are encrypted in the database. Since February 2024, we additionally support the use of external KMS systems to handle authentication, which is based on [Native Actions](https://shuffler.io/docs/extensions#native-actions) and [Schemaless](https://github.com/frikky/schemaless). Native Actions run in the background to perform the "Get KMS key" action, and the run of the app is NOT stored.
+
+The Shuffle KMS system is built as a third party Key:Value provider. You can reference keys from the KMS in any field marked as "Authentication" in the UI, or from within a Shuffle authentication itself (meaning you can authenticate the authentication..). The way you reference the keys is path-based, starting with `kms/`. Requirements:
+
+* Have an Authentication called **kms shuffle storage** in Shuffle
+* The Authentication needs to be associated with an App in the IAM category
+* The App needs to have an action labeled as "Get KMS key"
+
+When these requirements are fullfilled, you can do the following to use the KMS system:
+
+* Find the required parameters for the action. The first image below shows the parameters IN ORDER for Hashicorp Cloud Platform Vault.
+* Use the following format: `kms/field1/field2/field3/field4/...`. This NEEDS to start with `kms/`
+* Example referencing the "username" in the app name "Jira": `kms/998067a9-33f2-4c4d-bbb6-4a997d784def/2e9a877f-1a89-4394-a242-f2c6d9dd2420/jira/username`
+
+<img width="617" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/0b354dc6-1d8e-4366-9f38-2cff2fe94486">
+
+If all of this is fulfilled, you can run the workflow, and Shuffle will automatically reference the KMS correctly. **If it fails to authenticate**, you should see a Notification show up like in the following image.
+
+<img width="989" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/8a24c8f1-c00d-4481-bf56-ece2b7749fed">
+
+
+# Native Actions
+
+
 
 ## Webhooks
 ### Wazuh
