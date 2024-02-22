@@ -250,3 +250,9 @@ They are organization-wide, meaning if you dismiss them, they get dismissed for 
 
 If you are on the open-source side, you can change the bucketing timeout by changing the `SHUFFLE_NOTIFICATION_BUCKETING_MINUTES` environment variable. This is set to 2 minutes by default.
 
+**Creating Custom Notifications:**
+You can create notifications yourself with the Notification Creation API from Shuffle. These will act the same as any other notification by both being added to the UI, as well as being sent to your notification Workflow.
+
+**Disabling a Notification:**
+You can ignore/disable a notification by clicking the "Disable" button next to any of them.  
+
