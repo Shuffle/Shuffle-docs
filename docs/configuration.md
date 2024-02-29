@@ -549,7 +549,7 @@ To configure these, there are two options:
 * Individual containers
 * Globally for Docker
 
-To **DISABLE** proxy for internal Shuffle traffic (required whne running optimized), add the following environment variable to Orborus ([sketch](https://jamboard.google.com/d/1KNr4JJXmTcH44r5j_5goQYinIe52lWzW-12Ii_joi-w/edit?usp=sharing)):
+To **DISABLE** proxy for **internal** Shuffle traffic, add the following environment variable to Orborus ([origin](https://jamboard.google.com/d/1KNr4JJXmTcH44r5j_5goQYinIe52lWzW-12Ii_joi-w/edit?usp=sharing)):
 ```
 - SHUFFLE_INTERNAL_HTTP_PROXY=noproxy
 - SHUFFLE_INTERNAL_HTTPS_PROXY=noproxy
