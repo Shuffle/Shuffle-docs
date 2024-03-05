@@ -621,8 +621,10 @@ If you want to change this, edit ./frontend/Dockerfile and ./frontend/nginx.conf
 After changing certificates, you can rebuild the entire frontend by running (./frontend)
 
 ```
-./run.sh
+./run.sh --latest
 ```
+
+Make sure that the output image is the same in your docker-compose.yml file. This should work seemlessly for you next.
 
 ### Using the Nginx Reverse Proxy for TLS/SSL
 If you intend to use Nginx as a Reverse Proxy, the main steps are below. [Here is a basic single-server architecture for it](https://jamboard.google.com/d/1zJU8yMzbsu-XWeZnch_5MoDwmMNkkN8ZmoGNLCaHPlU/edit?usp=sharing). The Docker version is further down.
