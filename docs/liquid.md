@@ -44,16 +44,16 @@ print(",".join(list))
 
 ## Most used
 ### Get the date for tomorrow 
-By adding 86400 seconds to the string "now", before adding a date format, we get the timestamp for tomorrow.
+By adding 86400 seconds to the string "now", before adding a date format, we get the timestamp for tomorrow at this time. date: "%s" returns seconds since January 1st, 1970 (unix timestamp)
 
 **Expression:**
 ```
-{{ "now" | plus:  86400 | date: "%Y%m%d" }}
+{{ "now" | date: "%s" | plus: 86400 | date: "%Y-%m-%dT%H:%M:%S"}}
 ```
 
 **Result:**
 ```
-20220117
+2024-03-08T19:59:58
 ```
 ### Create an epoch Unix timestamp 
 By using the string "now", and changing the date format to seconds, it will give you the epoch timestamp.
