@@ -51,7 +51,7 @@ All monthly limits are per organization, including its sub-organizations.
 
 4. Data Accuracy. Shuffle shall have no responsibility or liability for the accuracy of data uploaded to the System by Customer, including without limitation Customer Data and any other data uploaded by Users.
 
-5. Data Deletion. Shuffle may permanently erase Customer Data if Customer’s account is delinquent, suspended, or terminated for 30 days or more, or if the Customer has scheduled such data to be deleted.
+5. Data Deletion. Shuffle will permanently erase Customer Data if Customer’s account is delinquent, suspended, or terminated for 30 days or more, or if the Customer has scheduled such data to be deleted.
 
 6. Excluded Data. Customer represents and warrants that Customer Data does not and will not include, and Customer has not and shall not upload or transmit to Shuffle's computers, servers, network or other media, any data that is subject to heightened security requirements as a result of Customer’s internal policies or practices or by law or regulation (examples include but are not limited to the Health Insurance Portability and Accountability Act (HIPAA), the Gramm–Leach–Bliley Act (GLBA), Family Educational Rights and Privacy Act (FERPA), General Data Protection Regulation (GDPR), etc. (the "Excluded Data Laws"))(such Customer Data collectively, “Excluded Data”). CUSTOMER RECOGNIZES AND AGREES THAT: (a) SHUFFLE HAS NO LIABILITY FOR ANY FAILURE TO PROVIDE PROTECTIONS SET FORTH IN THE EXCLUDED DATA LAWS OR OTHERWISE TO PROTECT EXCLUDED DATA; AND (b) SHUFFLE’S SYSTEMS, INCLUDING THE SYSTEM, ARE NOT INTENDED FOR MANAGEMENT OR PROTECTION OF EXCLUDED DATA AND MAY NOT PROVIDE ADEQUATE OR LEGALLY REQUIRED SECURITY FOR EXCLUDED DATA.
 
