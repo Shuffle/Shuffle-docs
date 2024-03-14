@@ -169,13 +169,14 @@ PS: When the user is signed in, they have the access rights of a "user" in the d
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
 
 ## KMS
-Shuffle by default allows you to store authentication tokens within Shuffle itself, which are encrypted in the database. Since February 2024, we additionally support the use of external KMS systems to handle authentication, which is based on [Native Actions](https://shuffler.io/docs/extensions#native-actions) and [Schemaless](https://github.com/frikky/schemaless). Native Actions run in the background to perform the "Get KMS key" action, and the run of the app is NOT stored.
+Shuffle by default allows you to store authentication tokens within Shuffle itself, which are encrypted in the database. Since February 2024, we additionally support the use of external KMS systems to handle authentication, which is based on [Native Actions](https://shuffler.io/docs/extensions#native-actions) and [Schemaless](https://github.com/frikky/schemaless). Native Actions run in the background to perform the "Get KMS key" action, and the run of the app is NOT stored. 
 
 The Shuffle KMS system is built as a third party Key:Value provider. You can reference keys from the KMS in any field marked as "Authentication" in the UI, or from within a Shuffle authentication itself (meaning you can authenticate the authentication..). The way you reference the keys is path-based, starting with `kms/`. Requirements:
 
 * Have an Authentication called **kms shuffle storage** in Shuffle
 * The Authentication needs to be associated with an App in the IAM category
 * The App needs to have an action labeled as "Get KMS key"
+* If it's the FIRST translation, it may fail out without internet access to github.com.
 
 When these requirements are fullfilled, you can do the following to use the KMS system:
 
@@ -189,6 +190,13 @@ If all of this is fulfilled, you can run the workflow, and Shuffle will automati
 
 <img width="989" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/8a24c8f1-c00d-4481-bf56-ece2b7749fed">
 
+**KMS failure handling**
+If your KMS translation fails, it is most likely due to network connectivity OR translation errors [for the standard](https://github.com/Shuffle/standards/blob/main/translation_standards/get_kms_key.json) in use. After running a translation, you should see the following three file categories in the admin panel:
+- translation input
+- translation output
+- translation standards
+
+IF your translation fails, the first area to look at is the "translation output", as this is where the translation for the schema happens. The hash will match the data you have sent in, which can be found in the "translation input" folder. Documentation about schemaless explains [how translations happen](https://github.com/frikky/schemaless?tab=readme-ov-file#example), and how they can be fixed. If you need further help, contact support@shuffler.io
 
 ## Native Actions
 Native Actions are a new way Shuffle interacts with data, built brick by brick since introducing Shuffle's Integration Layer API in late 2022. The goal of Native Actions is to enable ourselves and others to be able to perform actions towards a specific API, without necessarily know how to do it specifically for that system. 
