@@ -192,9 +192,9 @@ If all of this is fulfilled, you can run the workflow, and Shuffle will automati
 
 **KMS failure handling**
 If your KMS translation fails, it is most likely due to network connectivity OR translation errors [for the standard](https://github.com/Shuffle/standards/blob/main/translation_standards/get_kms_key.json) in use. After running a translation, you should see the following three file categories in the admin panel:
-- translation input
-- translation output
-- translation standards
+- translation standards 	- The available translation standards
+- translation input		- The data FROM the kms used for translation. Does NOT contain values, only keys.
+- translation output		- The translation OUTPUT. Includes JSON paths to the correct keys
 
 IF your translation fails, the first area to look at is the "translation output", as this is where the translation for the schema happens. The hash will match the data you have sent in, which can be found in the "translation input" folder. Documentation about schemaless explains [how translations happen](https://github.com/frikky/schemaless?tab=readme-ov-file#example), and how they can be fixed. If you need further help, contact support@shuffler.io
 
