@@ -556,7 +556,7 @@ Uploads a file to an ID created with the "Create a file" API function. This is o
 Methods: POST 
 
 ```
-curl https://shuffler.io/api/v1/files/{file}/upload -H "Authorization: Bearer db0373c6-1083-4dec-a05d-3ba73f02ccd4" -F 'shuffle_file=@./your_file/file_path/with_a_file.txt'
+curl https://shuffler.io/api/v1/files/{file}/upload -H "Authorization: Bearer APIKEY" -F 'shuffle_file=@./your_file/file_path/with_a_file.txt'
 ```
 
 
