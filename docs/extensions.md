@@ -5,6 +5,7 @@ This is documentation for integrating and sending data from third-party services
 * [Introduction](#introduction)
 * [Single Signon](#single-signon-sso)
   * [Okta](#okta)
+  * [Google SSO - SAML](#google-saml-sso)
   * [Auth0](#auth0)
   * [PingIdentity](#ping-id)
   * [Keycloak - OpenID](#keycloak)
@@ -61,6 +62,38 @@ Once an application is made, it's time to find the required information. Go to t
 * X.509 																-> SSO Certificate (X509)
 
 After adding them, click "Save", saving the configuration. After saving, log out of your user to verify the SSO configuration. If you don't see a button for "Use SSO", you most likely configured the wrong organization.
+
+### Google SAML SSO
+• Log in to your Google Workspace portal as admin -> Apps -> Web and mobile apps.
+
+• Click Add app -> Add custom SAML app.
+
+• In the popup window, enter shuffle as the name of the app, you can upload the app icon here as well. Then click continue.
+
+• The next page will provide the IDP data. Download IdP metadata then click continue.
+
+• Next page will be the SP information, this is where you should provide the Single Sign On URL, and SP Entity ID.
+
+	- ACS URL : https://10.67.0.70:3443/api/v1/login_sso
+	- Entity ID : shuffle-saml
+	- Name ID: Basic Information > Primary Email
+ ![image](https://github.com/yogeshgurjar127/Shuffle-docs/assets/118437260/7958a55b-c932-4b5c-8910-dfb42703b695)
+
+ •	The next page is where you add the below attributes and click on Finish and the app is added to the Google Workspace.
+ ![image](https://github.com/yogeshgurjar127/Shuffle-docs/assets/118437260/2bd0c217-de1c-41a4-82b9-7672ed2a4984)
+
+ •	After completing the app creation on Google Workspace. You can select the shuffle app under the "Web and mobile apps". Click on the shuffle app, and note 
+        the SPID in the URL, that is the SPID that will be needed.
+
+ ![image](https://github.com/yogeshgurjar127/Shuffle-docs/assets/118437260/cfd1fc98-8efe-4aa2-a4af-4ea60d10a3d6)
+
+ •	Now we configure the Google SAML SSO in shuffle portal. Log in to your Shuffle web portal.
+ 
+ •	 Click on profile  -> Admin --> Edit Details --> Now add the Entrypoint (IdP) and SSO Certificate under the SAML SSO and click on save.
+
+  **Note : The IdP metadata contains the Idp ID and certificate. Use this link as your SSO entry point, substituting your SP ID for "YourSPID" and your IDP ID for "YourIDPId."**
+ 
+         - SSO Entrypoint (IdP) : https://accounts.google.com/o/saml2/initsso?idpid=C0ivw&spid=634181550209&forceauthn=false
 
 ### Auth0 
 To use Auth0 SSO with Shuffle, first make an app on [https://manage.auth0.com](https://manage.auth0.com). Documentation can be found [here](https://auth0.com/docs/configure/saml-configuration/configure-auth0-saml-identity-provider).
