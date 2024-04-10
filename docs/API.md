@@ -889,8 +889,7 @@ curl -XDELETE https://shuffler.io/api/v1/orgs/{org_id} -H "Authorization: Bearer
 ## Integration Layer
 The Integration Layer of Shuffle is a way to interact with apps a new way. It utilizes Apps that are Categorized and Labeled, and gives access to API's for specific actions for each of those labels. Behind the scenes there is always a workflow for each of these, and Shuffle wants to give granular control of each individual Workflow if wanted. 
 
-<img width="879" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/bed5197b-11f4-4201-99f0-1187fb3677a8">
-
+<img width="713" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/e806707d-9635-465b-8040-b3e26b1786a0">
 
 		
 ### Run a Category Action
