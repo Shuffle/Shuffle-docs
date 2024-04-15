@@ -16,7 +16,7 @@ Documentation for configuring Shuffle. Most information is related to onprem and
 * [IPv6](#ipv6)
 * [Kubernetes](#kubernetes)
 * [Database](#database)
-* [Database Change](#5-change-database-back-to-opensearch)
+* [Database Change](#change-the-database-from-opensearch-to-elasticsearch)
 * [Network Configuration](#network-configuration)
 * [Docker Version error](#docker-version-error)
 * [Database indexes](#database-indexes)
