@@ -16,6 +16,7 @@ Documentation for configuring Shuffle. Most information is related to onprem and
 * [IPv6](#ipv6)
 * [Kubernetes](#kubernetes)
 * [Database](#database)
+* [Database Change](#change-the-database-from-opensearch-to-elasticsearch)
 * [Network Configuration](#network-configuration)
 * [Docker Version error](#docker-version-error)
 * [Database indexes](#database-indexes)
@@ -717,6 +718,23 @@ To configure Kubernetes, you need to specify a single environment variable for O
 In most enterprise environments, Shuffle will be behind multiple firewalls, proxies and other networking equipment. If this is the case, below are the requirements to make Shuffle work anywhere. The most common issue has to do with downloads from Alpine linux during runtime.
 
 **PS:** If external connections are blocked, you may further have issues running Apps. Read more about [manual image transfers here](#manual_docker_image_transfers).
+
+### Change the Database from OpenSearch to Elasticsearch
+
+-	Open the Docker-compose.yml file in the Shuffle directory. Find the OpenSearch container section and either comment out or remove the details. Save your modifications to the file.
+  
+ 	![image](https://github.com/yogeshgurjar127/Shuffle-docs/assets/118437260/5a9ff541-14f4-4ddc-8c04-08a874ffc3ff)
+
+- Now open the .env file and change the below value in the .env  from false to true for Elasticsearch database enable.
+  
+  ![image](https://github.com/yogeshgurjar127/Shuffle-docs/assets/118437260/f1116c97-daa2-48ba-80f4-f14803c1629d)
+
+-	Find the part in the .env file that defines database configurations. Update the Elasticsearch host configuration using your Elasticsearch IP address.
+  
+  ![image](https://github.com/yogeshgurjar127/Shuffle-docs/assets/118437260/13277ad5-269d-44a7-ab3b-13916bb9ce0e)
+
+
+
 
 ### Domain Whitelisting
 
