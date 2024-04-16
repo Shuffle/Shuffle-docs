@@ -341,7 +341,7 @@ Add authentication to an app, available through e.g. the Workflow editor, or aut
 You can find the fields following these steps:
 1. Get the app you want to use (e.g. Jira)
 2. Find a sample Action (doesn't matter which)
-3. Loop through the Action's parameter's and look
+3. Loop through the Action's parameter's and find fields tagged with `"configuration": true`
 
 **If you want it auto distributed to all existing workflows in your org, add `"auto_distribute": true` to the JSON body**
 
