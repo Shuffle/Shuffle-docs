@@ -9,12 +9,12 @@ Documentation for configuring Shuffle. Most information is related to onprem and
 * [Production readiness](#production-readiness)
 * [Shuffle Scaling](#scaling-shuffle)
 * [Distributed Caching](#distributed-caching)
+* [Kubernetes](#kubernetes)
 * [No Internet Install](#no-internet-install)
 * [Proxy Configuration](#proxy-configuration)
 * [App Certificates](#app-certificates)
 * [HTTPS](#https)
 * [IPv6](#ipv6)
-* [Kubernetes](#kubernetes)
 * [Database](#database)
 * [Database Change](#change-the-database-from-opensearch-to-elasticsearch)
 * [Network Configuration](#network-configuration)
@@ -535,6 +535,15 @@ networks:
 
 You need to change the value of the environment `BASE_URL` of this Dockerfile, so it aims to the IP of your Shuffle frontend+backend node.
 
+## Kubernetes
+
+Shuffle use with Kubernetes is now possible due to help from our contributors. You can read more about how it works on our [Github page](https://github.com/Shuffle/Shuffle/tree/main/functions/kubernetes), which includes extensive helm charts and configuration possibilities.
+
+Due to Kubernetes not being capable of building Shuffle Apps directly, an additional container for building them is available.
+
+## Orborus with Kubernetes
+To configure Kubernetes, you need to specify a single environment variable for Orborus: RUNNING_MODE. By setting the environment variable RUNNING_MODE=kubernetes, execution should work as expected!
+
 ## Proxy configuration
 
 Proxies are another requirement to many enterprises, hence it's an important feature to support. There are two places where proxies can be implemented:
@@ -705,13 +714,6 @@ Shuffle supports IPv6 in Docker by default, but your docker engine may not. IPv6
 
 [https://docs.docker.com/config/daemon/ipv6/](https://docs.docker.com/config/daemon/ipv6/)
 
-## Kubernetes
-
-Shuffle use with Kubernetes is now possible due to help from our contributors. This has not extensively been tested, so please reach out to @frikkylikeme if you're having execution issues.
-
-### Configuring Kubernetes
-
-To configure Kubernetes, you need to specify a single environment variable for Orborus: RUNNING_MODE. By setting the environment variable RUNNING_MODE=kubernetes, execution should work as expected!
 
 ## Network configuration
 
