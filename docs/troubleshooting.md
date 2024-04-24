@@ -687,10 +687,10 @@ docker exec -u0 -it shuffle-opensearch bash
 
 [Get the indexes and look at them:](https://opensearch.org/docs/latest/api-reference/cat/cat-indices/)
 ```
-curl https://localhost:9200/_cat/indices?v -u admin:admin
+curl https://localhost:9200/_cat/indices?v -u admin:admin -k
 ```
 
 Find the largest items in the workflowapp index (for apps in shuffle):
 ```
-curl https://localhost:9200/workflowapp/_search?v -u admin:admin
+curl https://localhost:9200/workflowapp/_search?v -u admin:admin -k
 ```
