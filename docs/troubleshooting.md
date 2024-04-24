@@ -694,3 +694,8 @@ Find the largest items in the workflowapp index (for apps in shuffle):
 ```
 curl https://localhost:9200/workflowapp/_search?v -u admin:admin -k
 ```
+
+Delete an index if it's too large (normal ones to delete if problems: workflowexecution, workflowqueue-shuffle, environment_stats) 
+```
+curl https://localhost:9200/workflowqueue-shuffle -u admin:admin -k
+```
