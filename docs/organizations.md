@@ -190,7 +190,7 @@ These parameters are specified exactly as a parameter within an action. The func
 ## Environments
 Environments are a core part of Shuffle's open source build. Think of it as physical location where you want an agent of Shuffle running (Orborus). Orborus is the tool that keeps your workflow running. But Orborus needs to know what jobs to run. After all, we'd like it you to be able to run parts of a workflow in the cloud and parts of it in all your different datacenters. 
 
-![Environments in Shuffle](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-19.png?raw=true)
+<img width="832" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/48acd5c4-0a86-4379-8f76-8d3b877ae5a4">
 
 The default environment is called "Shuffle" in your on-premises environment, and "Cloud" in your cloud environment. You can add as many as you want, but you'll only get access to "cloud" environments through cloud synchronization.  
 
