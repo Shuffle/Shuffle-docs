@@ -32,8 +32,10 @@ Architecture auditing is here to ensure you can achieve high availability and ha
 - [] Have you disabled Swap on servers with Opensearch?
 - [] Are there multiple instances (nodes) of Opensearch? 
 - [] Do you have NFS for Opensearch to handle scaling?
-- [] Do you have Log forwarding enabled?
-- [] Do you have detections in the Log forwarding for [ERROR]?  
+- [] Do you have [Log forwarding enabled](https://docs.docker.com/config/containers/logging/configure/)?
+- [] Do you have detections in the Log forwarding for [ERROR]?
+- [] Do you have a [workflow retention manager workflow](https://shuffler.io/workflows/a621b818-3fea-49f2-83e2-814edda48770?queryID=9174110e354921cc133a6d203fb587e5)?
+
 
 ## Storage & Memory
 Storage and Memory management is always difficult, as we don't know how much is required until workflows have ran for a while.
@@ -41,9 +43,8 @@ Storage and Memory management is always difficult, as we don't know how much is 
 - [] Do you have enough storage available? We recommend >500Gb of storage when scaling, as to not have random crashes due to full disk.
 - [] Is enough memory assigned to Opensearch instance(s) for indexing? It should have about half the memory of the server assigned. 
 - [] Are you using distributed caching and is it assigned to Backend(s) and Orborus(s)? (memcached in docker-compose.yml file)
-- [] Do you have a [workflow retention manager workflow](https://shuffler.io/workflows/a621b818-3fea-49f2-83e2-814edda48770?queryID=9174110e354921cc133a6d203fb587e5)?
-- [] Are you checking the indexes of Opensearch if they make sense? `curl -k http://localhost:9200/_cat/indices?v`
-- [] Do you have too many files on disk in the `shuffle-files` repository? 
+- [] Are you checking the indexes of Opensearch if they make sense? `curl -k localhost:9200/_cat/indices?v`. Check if there are too many items in an index, or if their sizes are too large.
+- [] Do you have too many files on disk in the `shuffle-files` repository? Are you using Local storage, S3 or NFS?
 
 ## Security
 There are a lot of areas related to security in any platform. For Shuffle, it is important to both audit the user side, and the infrastructure side.
