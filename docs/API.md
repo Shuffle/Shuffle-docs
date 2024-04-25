@@ -586,7 +586,7 @@ Gets the file CONTENT of a file
 Methods: GET 
 
 ```
-curl https://shuffler.io/api/v1/files/{file_id}/content -H "Authorization: Bearer APIKEY" 
+curl https://shuffler.io/api/v1/files/{id}/content -H "Authorization: Bearer APIKEY" 
 ```
 
 
@@ -601,7 +601,7 @@ Gets metadata for a file, as well as some security relevant info like MD5 and Sh
 Methods: POST 
 
 ```
-curl https://shuffler.io/api/v1/files/{file_id} -H "Authorization: Bearer APIKEY" 
+curl https://shuffler.io/api/v1/files/{id} -H "Authorization: Bearer APIKEY" 
 ```
 
 
@@ -616,7 +616,7 @@ Deletes a file. The file meta is left intact, but the file itself is removed fro
 Methods: DELETE
 
 ```
-curl -XDELETE https://shuffler.io/api/v1/files/{file_id} -H "Authorization: Bearer APIKEY" 
+curl -XDELETE https://shuffler.io/api/v1/files/{id} -H "Authorization: Bearer APIKEY" 
 ```
 
 
@@ -631,7 +631,7 @@ Edit an active file with existing content (/upload) for first uploads. The file 
 Methods: PUT
 
 ```
-curl -XPUT https://shuffler.io/api/v1/files/{file_id}/edit -H "Authorization: Bearer APIKEY" -d 'this is the new content of the file'
+curl -XPUT https://shuffler.io/api/v1/files/{id}/edit -H "Authorization: Bearer APIKEY" -d 'this is the new content of the file'
 ```
 
 
