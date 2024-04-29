@@ -218,6 +218,11 @@ docker run \
 
 ```
 
+### Using Multiple Environments
+The reason you would...
+
+TBD
+
 ### Health
 Shuffle has a health check API that can be used to check the health of your Shuffle instance. It's related endpoints are available at:
 
