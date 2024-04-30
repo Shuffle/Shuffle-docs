@@ -2,6 +2,7 @@
 Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Table of contents
+* [Re-add user to lost org](#re-add_user_to_lost_org)
 * [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Load all apps locally](#load_all_apps_locally)
 * [Orborus can't connect to backend](#orborus_can_not_reach_backend)
@@ -701,4 +702,24 @@ curl https://localhost:9200/workflowapp/_search?v -u admin:admin -k
 Delete an index if it's too large (normal ones to delete if problems: workflowexecution, workflowqueue-shuffle, environment_stats) 
 ```
 curl https://localhost:9200/workflowqueue-shuffle -u admin:admin -k
+```
+
+## Re-add user to lost org
+If you have lost access to Shuffle, it usually due to an unforeseen disconnect to the Database during startup, leading to more Organizations being added. To fix this, your user needs to be re-added to the original Organization
+
+Find the Organization and User Id of your account. They are in the UUID format `550e8400-e29b-41d4-a716-446655440000`
+```
+docker logs -f shuffle-backend
+```
+
+Get into the Opensearch container of port 9200 is not exposed by default:
+```
+docker exec -u0 -it shuffle-opensearch bash
+```
+
+
+
+Update the USERID and ORGID, ORGNAME fields, then run this command to re-add your account to the right org
+```
+curl -k -u admin:admin https://localhost:9200/users/_update/USERID -d '{"doc": {"active_org.id": "ORGID", "active_org.name": "ORGNAME", "orgs": ["ORGID"]}}' -H "Content-Type: application/json"
 ```
