@@ -250,10 +250,10 @@ This procedure can help you extract workflows directly from OpenSearch even if t
 
 1. Extract the index info from OpenSearch. **NOTE:** You may need to create a bind mount for the location where the workflows will be extracted to.
    ```
-   curl -X GET "https://localhost:9200/workflow/_search?pretty"  -u <opensearch_user>:<opensearch_password> --insecure -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' > /mnt/backup/workflows.json
+   curl -X GET "https://localhost:9200/workflow/_search?pretty"  -u admin:admin -k -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' > workflows.json
    ```
  
-1. Script to separate all workflows
+2. Script to separate all workflows
 
    ```
    import json
