@@ -656,18 +656,21 @@ Copy everything indented under this function and sent to support@shuffler.io for
 
 If you loose your tenants/suborgs for any reason at all and you need to reinstate them then you will need to do the following;
 
-1. Get the org id's from your backend logs 
+1. Get the org id's from your backend logs. It's a UUID in the format `550e8400-e29b-41d4-a716-446655440000`. 
 ```
 docker logs shuffle-backend 
 ```
+
 2. After you've identified the org id's for the orgs you want to reinstate, docker exec to get bash session into OpenSearch container or any other container so long as the said container can communicate to the Opensearch container 
 ```
-docker exec -it <container_id> bash 
+docker exec -it shuffle-opensearch bash 
 ```
+
 3. Once in the container from step 2 above, run the following command.
 ```
 curl -k -u admin:admin -H 'Content-Type: application/json' 'https://shuffle-opensearch:9200/organizations/_update/<org_id goes here>/' -d '{"doc": {"id": "org-id-goes-here", "name": "org-name-goes-here"}}'
 ```
+
 4. Exit out of the container
 
 5. Restart docker
