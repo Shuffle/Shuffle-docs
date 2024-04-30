@@ -219,9 +219,37 @@ docker run \
 ```
 
 ### Using Multiple Environments
-The reason you would...
+It's possible to create and use multiple environments by clicking on the "Add Environment" button. 
+![SCR-20240430-evx](https://github.com/Shuffle/Shuffle-docs/assets/100738099/bbcdb5e3-d953-4e82-b87c-515644a84eae)
 
-TBD
+Once you add an environment, it will be displayed on the list. 
+
+You can set a specific environment as the default one for all workflows by clicking on the "Default" button. 
+![SCR-20240430-exd](https://github.com/Shuffle/Shuffle-docs/assets/100738099/d549f76c-9fe2-40ce-aa74-103d3dc964fd)
+
+Alternatively, you can select a different environment for a particular workflow in the workflow settings.
+![SCR-20240430-ey9](https://github.com/Shuffle/Shuffle-docs/assets/100738099/b754ad50-6cf6-4f97-82f6-b4f838e04e7e)
+
+To run the respective environment, you need to copy the Onborus command and modify the necessary fields such as "ENVIRONMENT_NAME", "AUTH" and "ORG", and ensure they are correctly filled in.
+![SCR-20240430-ftw](https://github.com/Shuffle/Shuffle-docs/assets/100738099/67be6b9c-4533-4500-964c-b3cdb8cb0ecc)
+
+To check if the Onborus command is set up correctly, look for a change in status from "not running" to "running". 
+
+
+If you want to change the Onborus from "nightly" to a different worker, in this example "test", go to BASE_URL and after "/shuffle-orborus:" change "nightly" to "test".
+```
+docker run \
+	--volume /var/run/docker.sock:/var/run/docker.sock \
+	-e ENVIRONMENT_NAME="Another env" \
+	-e AUTH="Auth from the environment" \
+	-e ORG="Your org ID from the /admin UI top right" \
+        -e DOCKER_API_VERSION=1.40 \
+	-e BASE_URL=https://shuffler.io \
+	ghcr.io/frikky/shuffle-orborus:test
+
+```
+
+Further documentation on running Orborus in production at scale, whether onprem or with hybrid environments: https://shuffler.io/docs/configuration#scaling-shuffle
 
 ### Health
 Shuffle has a health check API that can be used to check the health of your Shuffle instance. It's related endpoints are available at:
