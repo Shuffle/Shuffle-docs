@@ -209,19 +209,25 @@ If you find yourself in a situation where you have forgotten your passowrd and n
 
 4. I jumped onto another server within the same vlan as my Shuffle server but these could be ran on local host too. We will create a new user and update the user's role to admin with the Shuffle API.
 
-5. Create a new user
+5. (Optional step): If you have multiple organizations, Change active org like this and repeat for each org:
+
+   ```
+   curl 'https://ip of shuffle server/api/v1/orgs/{org_id}/change' \ -H ' "Authorization: Bearer {API_KEY}' --data-raw '{"org_id":"{org_id}"}'
+   ```
+
+6. Create a new user
    ```
    curl https://ip of shuffle server/api/v1/users/register -H "Authorization: Bearer APIKEY" -d '{"username": "username", "password": "P@ssw0rd"}'
    ```
-6. Retrieve all the users and identify the user_id of the newly created user
+7. Retrieve all the users and identify the user_id of the newly created user
    ```
    curl https://ip of shuffle server/api/v1/users/getusers -H "Authorization: Bearer APIKEY"
    ```
-7. Assign the new user to the admin role.
+8. Assign the new user to the admin role.
    ```
-   curl https://ip of shuffle server*/api/v1/users/updateuser -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "admin"}'
+   curl https://ip of shuffle server*/api/v1/users/updateuser -H "Authorization: Bearer APIKEY" -d '{"user_id": "USERID", "role": "admin"}' -X PUT
    ```
-8. Log into webui with the new user, and you should now have admin rights.
+9. Log into webui with the new user, and you should now have admin rights.
 
 
 ## Useful OpenSearch Queries
