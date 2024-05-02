@@ -11,7 +11,7 @@ Documentation to understand the Shuffle architecture and thoughts behind our cho
 * [Technologies](#technologies)
 * [How it works](#how-it-works)
 * [Authentication](#authentication)
-* [Data access mode](#data-access_model)
+* [Data access mode](#data-access-model)
 * [Encryption and Hashing](#encryption-and-hashing)
 * [Backend API access](#backend-api-access)
 * [Workflow execution model](#workflow-execution-model)
@@ -81,10 +81,10 @@ Shuffle is a quite complex platform, with lots of different [features](/docs/fea
 6. The frontend takes the data and shows it in the UI.
 
 ## Authentication
-There are two types of authentication tokens in Shuffle: API access and App authentication. 
+There are two types of authentication tokens in Shuffle: API/Session access, and App authentication. 
 
 ### Data access model
-Accessing data is done PER ORGANIZATION and per user. This means that you need to be a part of the organization you're querying data from. Pre RBAC: If you are an admin, you have access to all information within an Organization, while users only have access to their own resources, and the apps that are enabled.
+Accessing data is done **PER ORGANIZATION**, based on which one your user is in. This means that you need to be a part of the organization you're using the API for, and it will by default use this one [unless you use Org-Id header in your request](https://shuffler.io/docs/API#Authentication). If you are an Org admin, you have access to all information within an Organization, while Org-Users has access to read and modify Workflows, Apps, Files, Datastore and Trigger management. If you are a Org-Reader, you can READ the same data the Org User can read and modify.
 
 ### Encryption and hashing
 Hashed (bcrypt):
@@ -113,7 +113,12 @@ There are multiple ways to access the API. The first is through the UI and a log
 
 - Session Token: Defined in a users' browser as user logs in. 
 - Bearer Auth: This is a token provided to each user to be used with the [API](/docs/API)
-- Execution token: The execution token is a unique token (UUID) provided to each [workflow execution](#workflow_execution_model). As soon as an execution is triggered, it gives a temporary token which is valid as long as the workflow is running, but which is no longer valid after the workflow finishes. This has access to certain API's used by Apps themselves (files, cache, setting/changing the execution), with most other API's being off limit. 
+- Execution token: The execution token is a unique token (UUID) provided to each [workflow execution](#workflow_execution_model). As soon as an execution is triggered, it gives a temporary token which is valid as long as the workflow is running, but which is no longer valid after the workflow finishes. This has access to certain API's used by Apps themselves (files, cache, setting/changing the execution), with most other API's being off limit.
+
+### Session management
+Session management in Shuffle is currently quite basic, with the goal to drastically improve it in 2024. The current flowchart includes reusing the same session token across anyone using an account, with the only way to log out everyone else being to log our yourself. The goal is to make this use one session token per device. 
+
+<img width="588" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/94db4cc2-9d93-47f1-ad0c-ed01a1d46c4f">
 
 ### App authentication
 App authentication is how we authenticate and store an app's configuration. If an app requires authentication, and the user adds the authentication credentials, these credentials will be encrypted and stored in the database, along with being cached in their encrypted form (AES-256). These values can and should NEVER be decrypted to be seen by a process or human other than during a workflow execution.
