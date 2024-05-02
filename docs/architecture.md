@@ -1,8 +1,6 @@
 # Shuffle Architecture
 Documentation to understand the Shuffle architecture and thoughts behind our choices. Important to understand if you want to contribute or decide whether it works for your organization.
 
-**PS: This document is aimed at on-premises or Hybrid-Cloud (cloud -> onprem connections) installations**
-
 ## Table of contents
 * [Introduction](#introduction)
 * [Overview](#architecture-overview)
