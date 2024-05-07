@@ -18,7 +18,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install required packages
-        run: pip install gidgethub
+        run: pip install -r requirements.txt
 
       - name: Update Wiki Documents
         env:
