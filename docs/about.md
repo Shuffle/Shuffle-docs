@@ -1,6 +1,7 @@
 # About Shuffle
 Shuffle started as a project in mid-2019 because of a few automation related problems that needed more attention in the [CERT/SIRT](https://en.wikipedia.org/wiki/Computer_emergency_response_team) community. Available automation solutions in the security industry are trying to do everything at once; handle tickets, indicators, threat intel and much more in a single platform, while our goal is to build the best solution to fit all your existing tools following the [Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy#Do_One_Thing_and_Do_It_Well): "Do One Thing and Do It Well". 
 
+
 ## Mission
 To make every security operations center share their processes, automations and detections in a standardized way. Cybersecurity is not a competiton between companies, and shouldn't treated as such.
 
@@ -23,7 +24,6 @@ This roadmap is meant more as a guide than as the exact order of operations. It'
 * 1.3 - **Current release** Scale support, workflow statistics, stabilization and tracking.  Expected release Q4 2023.
 * 1.4 - **In development:** Realtime Workflow Collaboration (+support workflow support cloud->onprem), Workflow Generation based on text, MSSP Tenant & Workflow Management, Dynamic Authentication, Vaults, Improved Coding Editor with Code Generator & Shuffle Functions, Improved Trigger management and branding, Hybrid Workflow Access. Expected release Q2 2024. 
 * 1.5 - Detection & Standardization: **Schemaless**, Creator Earnings, Mitre Att&ck, Yara, Sigma, Ansible, OSQuery, Sublime emails. OASIS OpenC2 & CACAO fully working. Support for JSON-schema & Postman Collections. Expected release Q4 2024.
-
     
 ## Blogposts
 * [Introducing Shuffle](https://medium.com/security-operation-capybara/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12)
