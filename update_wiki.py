@@ -17,8 +17,18 @@ for root, dirs, files in os.walk("docs"):
         with open(os.path.join(root, file), "r") as f:
             content = f.read()
 
-        # Get the wiki page with the same name as the file
-        wiki_page = repo.get_wiki_page(file)
+        # Get or create the wiki page with the same name as the file
+        try:
+            wiki_page = repo.get_contents(file, ref="wiki")
+        except Exception as e:
+            print(f"Creating new wiki page for '{file}'...")
+            repo.create_file(file, f"Updated {file} from docs folder", content, branch="wiki")
+            print(f"Wiki page '{file}' created successfully.")
+            continue
 
         # Update the wiki page content with the content of the updated file
-        wiki_page.update(content=content)
+        try:
+            repo.update_file(wiki_page.path, f"Updated {file} from docs folder", content, wiki_page.sha, branch="wiki")
+            print(f"Wiki page '{file}' updated successfully.")
+        except Exception as e:
+            print(f"Error updating wiki page '{file}': {e}")
