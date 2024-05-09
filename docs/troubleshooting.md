@@ -2,7 +2,6 @@
 Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Table of contents
-* [Re-add user to lost org](#re-add_user_to_lost_org)
 * [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Load all apps locally](#load_all_apps_locally)
 * [Orborus can't connect to backend](#orborus_can_not_reach_backend)
@@ -29,6 +28,9 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Tenants/Suborgs seem to be lost](#reinstate_lost_tenants)
 * [Find top index items opensearch](#find-top-index-items-opensearch)
 * [Resetting MFA code](#resetting-mfa)
+* [Re-add user to lost organization](#add-user-to-lost-org)
+
+
 
 ## Resetting MFA
 MFA can be enabled for your account on the settings User page of an organization, or on your [settings page](https://shuffler.io/settings). If you have lost access to your account due to this however, follow these steps:
@@ -736,7 +738,7 @@ Delete an index if it's too large (normal ones to delete if problems: workflowex
 curl https://localhost:9200/workflowqueue-shuffle -u admin:admin -k
 ```
 
-## Re-add user to lost org
+## Add user to lost org
 If you have lost access to Shuffle, it usually due to an unforeseen disconnect to the Database during startup, leading to more Organizations being added. To fix this, your user needs to be re-added to the original Organization
 
 Find the Organization and User Id of your account. They are in the UUID format `550e8400-e29b-41d4-a716-446655440000`
