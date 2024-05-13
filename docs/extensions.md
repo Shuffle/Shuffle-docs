@@ -37,7 +37,7 @@ Shuffle added Single Signon (SAML) from version 0.9.16 & OpenID since 1.0.0. Thi
 
 PS: We suggest setting up SSO for a sub-organization first to see if it works, avoiding the potential problem of locking yourself out. We are currently building a system to make it possible to use SSO in an optional way (version 1.4.0~) 
 
-## Note 
+### Note 
 **ONPREM ONLY:** You will have to change the SSO_REDIRECT_URL variable in the .env file to match your front end server link i.e `SSO_REDIRECT_URL=http://<URL>:<PORT>` 
 
 ![Single Signon button](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-3.png?raw=true)
@@ -200,7 +200,7 @@ The URL is as such: `https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/aut
 	
 PS: When the user is signed in, they have the access rights of a "user" in the designated organization, and will have a username according to the ID decided in O365. This can be changed by admins.
 	
-### Other
+### Other Platforms
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
 
 ## KMS
@@ -225,7 +225,7 @@ If all of this is fulfilled, you can run the workflow, and Shuffle will automati
 
 <img width="989" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/8a24c8f1-c00d-4481-bf56-ece2b7749fed">
 
-**KMS failure handling**
+### KMS failure handling
 If your KMS translation fails, it is most likely due to network connectivity OR translation errors [for the standard](https://github.com/Shuffle/standards/blob/main/translation_standards/get_kms_key.json) in use. After running a translation, you should see the following three file categories in the admin panel:
 - translation standards 	- The available translation standards
 - translation input		- The data FROM the kms used for translation. Does NOT contain values, only keys.
