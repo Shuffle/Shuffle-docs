@@ -3,7 +3,6 @@ Getting started with Shuffle
 
 ## Table of contents
 * [Introduction](#introduction)
-* [FAQ](#faq)
 * [Usage Models](#usage_models)
 * [First workflow](#first_workflow)
 * [Shuffle 101](#shuffle_101)
@@ -11,7 +10,19 @@ Getting started with Shuffle
 * [Community Videos](#community_videos)
 * [Learn about Shuffle](#learn_about_shuffle)
 
-## Introduction
+## Overview
+
+### Usecases
+[Usecases are a collection of Workflows](/usecases) that perform a task together. This can be things like handling SIEM alerts, or doing phishing analysis. 
+
+### Workflows
+[Workflows](/docs/workflows) connect [Apps](/docs/apps) together to perform an action, typically getting and setting data with API's and using Shuffle's built in tools like Shuffle Tools to modify or format the data. They can be ran and stopped according to your needs, and typically have one starting point and multiple outputs. 
+
+### Apps
+[Apps](/docs/apps) are API's or Python scripts, and can be [modified and built by anyone](https://shuffler.io/docs/app_creation). To use an existing public app in a Workflow, you must first activate it. Public apps can be forked, meaning you can have your own version of them.
+
+
+### Blogposts
 * [1. Introducing Shuffle - an Open Source SOAR platform](https://medium.com/security-operation-capybara/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12)
 * [2. Getting started with Shuffle](https://medium.com/@Frikkylikeme/getting-started-with-shuffle-an-open-source-soar-platform-part-2-1d7c67a64244)
 * [3. Creating your first app - Virustotal and TheHive](https://medium.com/@Frikkylikeme/integrating-shuffle-with-virustotal-and-thehive-open-source-soar-part-3-8e2e0d3396a9)
@@ -20,13 +31,23 @@ Getting started with Shuffle
 ## Usage Models
 ![models](https://user-images.githubusercontent.com/5719530/167960847-53e81815-a240-4a26-abb9-96b9244be901.jpeg)
 
-## FAQ
+### Workflow Principles
+1. Variables & nodes
+2. JSON autocompletion
+3. Loops
+4. Nestedloops
+5. [Start nodes](https://shuffler.io/workflows/0285a05e-8dc0-4614-840b-88606d6a1e59)
+6. Triggers
+7. Subflows
+8. [App Authentication](https://shuffler.io/workflows/d65d228a-f406-4227-9fa7-f7d9303f8411)
+9. Loop filtering
+10. [Shuffle File storage](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349)
+11. [Shuffle Datastore (Cache)](https://shuffler.io/workflows/f39a3c37-4f38-4ca0-952a-a9425080b44e)
+12. Deduplication
+13. [Liquid formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d)
+14. [HTTP & Rest APIs](https://shuffler.io/workflows/b8a3a70a-f3f9-459f-99b3-7a2723a1a4b8)
 
-## First workflow
-
-![Hello world gif](https://github.com/frikky/shuffle-docs/blob/master/assets/Shuffle-hello-world.gif?raw=true)
-
-## Shuffle 101
+### Shuffle 101
 - [Learning Startnodes](https://shuffler.io/workflows/0285a05e-8dc0-4614-840b-88606d6a1e59?queryID=5775af43ac103d34ff77f11d27ea5bed)
 - [Learning the HTTP app](https://shuffler.io/workflows/b8a3a70a-f3f9-459f-99b3-7a2723a1a4b8?queryID=5775af43ac103d34ff77f11d27ea5bed)
 - [Cache Tutorial](https://shuffler.io/workflows/f39a3c37-4f38-4ca0-952a-a9425080b44e?queryID=5775af43ac103d34ff77f11d27ea5bed)
@@ -35,8 +56,8 @@ Getting started with Shuffle
 - [Learning Liquid Formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d?queryID=5775af43ac103d34ff77f11d27ea5bed)
 - [JSON within Shuffle](https://shuffler.io/workflows/ee334515-0224-4a09-af8c-ebc60886f154?queryID=7571057f529c8a4a9aabd5800c0d2b29)
 
-## Shuffle Youtube Videos
-### Learn about Shuffle - in depth
+### Shuffle Youtube Videos
+*Learn about Shuffle - in depth**
 Here's a training session we did on Shuffle.
 
 - 00:00 - 00:30: Introduction to Shuffle and what we're building
@@ -45,7 +66,7 @@ Here's a training session we did on Shuffle.
 
 [![Shuffle the SOC walkthrough](https://img.youtube.com/vi/PNuXCixYwDc/0.jpg)](https://www.youtube.com/watch?v=PNuXCixYwDc)
 
-## Community Videos
+### Community Videos
 - **Understanding Shuffle**: Our friends over at [OpenSecure](http://opensecure.co) made some good videos to learn about Shuffle. Check them out here!
 - **What is SOAR?**: [Shuffle getting started understanding shuffle](https://www.youtube.com/watch?v=_riaZjLnoXo)
 - **Installing Shuffle**: [How to install Shuffle](https://www.youtube.com/watch?v=YDUKZojg0vk)
