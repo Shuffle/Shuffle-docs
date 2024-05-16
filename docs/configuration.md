@@ -342,8 +342,8 @@ Backend:
 
 SHUFFLE_ENCRYPTION_MODIFIER=YOUR KEY HERE
 
-# PS: Encryption is available from Shuffle backend version >=0.9.17.
-## PPS: There's a [known bug](https://github.com/frikky/Shuffle/issues/528) with Proxies and git
+# **PS: Encryption is available from Shuffle backend version >=0.9.17.**
+# **PPS: There's a [known bug](https://github.com/frikky/Shuffle/issues/528) with Proxies and git**
 
 # Set up distributed memcaching. See "Distributed Caching" for more.
 SHUFFLE_MEMCACHED=<IP>:PORT
