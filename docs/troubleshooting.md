@@ -2,7 +2,6 @@
 Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Table of contents
-* [Re-add user to lost org](#re-add_user_to_lost_org)
 * [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Load all apps locally](#load_all_apps_locally)
 * [Orborus can't connect to backend](#orborus_can_not_reach_backend)
@@ -28,6 +27,35 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Find app creator Python function](#find_code_openapi_app)
 * [Tenants/Suborgs seem to be lost](#reinstate_lost_tenants)
 * [Find top index items opensearch](#find-top-index-items-opensearch)
+* [Resetting MFA code](#resetting-mfa)
+* [Re-add user to lost organization](#add-user-to-lost-org)
+
+
+
+## Resetting MFA
+MFA can be enabled for your account on the settings User page of an organization, or on your [settings page](https://shuffler.io/settings). If you have lost access to your account due to this however, follow these steps:
+
+**Cloud (shuffler.io):** Send an email to support@shuffler.io using the email you want MFA removed for.
+**Onprem:** It's a bit more tricky onprem, as we'll need to modify the Opensearch database. Here is how:
+
+1. Follow the backend logs WHILE logging into Shuffle to find your users' ID. It's a UUID in the format `550e8400-e29b-41d4-a716-446655440000`. 
+```
+docker logs shuffle-backend 
+```
+
+2. After you've identified the user id you want to remove MFA for, docker exec to get bash session into OpenSearch container or any other container so long as the said container can communicate to the Opensearch container 
+```
+docker exec -it shuffle-opensearch bash 
+```
+
+3. Once in the container from step 2 above, run the following command after modifying the USERID field.
+```
+curl -k -u admin:admin -H 'Content-Type: application/json' 'https://localhost:9200/users/_update/USERID' -d '{"doc": {"mfa_info.active": false, "mfa_info.active_code": "", "mfa_info.previous_code": ""}}'
+```
+
+4. Restart the backend server: `docker restart shuffle-backend`. This is to fix potential caching problems.
+
+ 
 
 ## Orborus backend connection problems
 Due to the nature of Shuffle at scale, there are bound to be network issues. As Shuffle runs in Docker, and sometimes in swarm with k8s networking, it complicates the matter even further. Here's a list of things to help with debugging networking. If all else fails; reboot the machine & docker.
@@ -710,7 +738,7 @@ Delete an index if it's too large (normal ones to delete if problems: workflowex
 curl https://localhost:9200/workflowqueue-shuffle -u admin:StrongShufflePassword321! -k
 ```
 
-## Re-add user to lost org
+## Add user to lost org
 If you have lost access to Shuffle, it usually due to an unforeseen disconnect to the Database during startup, leading to more Organizations being added. To fix this, your user needs to be re-added to the original Organization
 
 Find the Organization and User Id of your account. They are in the UUID format `550e8400-e29b-41d4-a716-446655440000`

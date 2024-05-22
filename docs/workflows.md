@@ -49,8 +49,8 @@ We encourage everyone to have checked out our [Workflow Development Exercises](h
 3. Loops
 4. Nestedloops
 5. [Start nodes](https://shuffler.io/workflows/0285a05e-8dc0-4614-840b-88606d6a1e59)
-6. Triggers
-7. Subflows
+6. Triggers: Webhooks & Schedules
+7. Subflows & User Input
 8. [App Authentication](https://shuffler.io/workflows/d65d228a-f406-4227-9fa7-f7d9303f8411)
 9. Loop filtering
 10. [Shuffle File storage](https://shuffler.io/workflows/dd5e3800-2f2e-4089-8055-b500e3b8b349)

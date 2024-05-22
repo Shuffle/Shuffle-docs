@@ -686,12 +686,18 @@ curl https://shuffler.io/api/v1/workflows/schedules -H "Authorization: Bearer AP
 ```
 
 ### Schedule a workflow
-Schedule a workflow to run at certain intervals. The node in the workflow must exist.
+Schedule a workflow to run at certain intervals. The node in the workflow must exist, and that the **execution argument MUST be a string**.
 
 Methods: POST 
 
 ```
-curl -XPOST https://shuffler.io/api/v1/workflows/{workflow_id}/schedule -H "Authorization: Bearer APIKEY" -d '{"name":"Schedule","frequency":"*/25 * * * *","execution_argument":"{\"example\": {\"json\": \"is cool\"}}","environment":"cloud","id":"cabaaffc-db53-4e19-ad8b-4f5fc0dc49c9"}'
+curl -XPOST https://shuffler.io/api/v1/workflows/{workflow_id}/schedule -H "Authorization: Bearer APIKEY" -d '{
+	"name":"Schedule",
+	"frequency":"*/25 * * * *",
+	"execution_argument": "{\"example\": {\"json\": \"is cool\"}}",
+	"environment":"cloud",
+	"id":"cabaaffc-db53-4e19-ad8b-4f5fc0dc49c9"
+}'
 ```
 
 
