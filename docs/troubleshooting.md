@@ -256,7 +256,7 @@ This procedure can help you extract workflows directly from OpenSearch even if t
 
 1. Extract the index info from OpenSearch. **NOTE:** You may need to create a bind mount for the location where the workflows will be extracted to.
    ```
-   curl -X GET "https://localhost:9200/workflow/_search?pretty"  -u admin:admin -k -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' > workflows.json
+   curl -X GET "https://localhost:9200/workflow/_search?pretty"  -u admin:StrongShufflePassword321! -k -H 'Content-Type: application/json' -d' { "size": 10000, "query": { "match_all": {}}}' > workflows.json
    ```
  
 2. Script to separate all workflows
@@ -315,14 +315,14 @@ After narrowing down your problem to opensearch is what is consuming your system
 
 1. You'll need to list out all indices in elasticsearch opensearch.
    ``` 
-   docker exec -u0 -it "opensearch_ID" curl https://localhost:9200/_cat/indices?pretty -k -u admin:admin    ```
+   docker exec -u0 -it "opensearch_ID" curl https://localhost:9200/_cat/indices?pretty -k -u admin:StrongShufflePassword321!    ```
 2. You could grep to narrow down on your search.
 ```
-docker exec -u0 -it "opensearch_ID" curl https://localhost:9200/_cat/indices?pretty -k -u admin:admin | grep -v security
+docker exec -u0 -it "opensearch_ID" curl https://localhost:9200/_cat/indices?pretty -k -u admin:StrongShufflePassword321! | grep -v security
 ```
 3. Once you see what's causing the problem in our case it was workflowexecution which was at 13 gb. We deleted it using the below command.
 ```
-docker exec -u0 -it "opensearch_ID" curl -X DELETE "https://localhost:9200/workflowexecution?pretty" -k -u admin:admin -v
+docker exec -u0 -it "opensearch_ID" curl -X DELETE "https://localhost:9200/workflowexecution?pretty" -k -u admin:StrongShufflePassword321! -v
 ```
 ## Disclaimer
 If you are doing this in a production server you will have to comb through the indices and delete them manually with respect to you organisations priorities, old executions and such.
@@ -675,7 +675,7 @@ docker exec -it shuffle-opensearch bash
 
 3. Once in the container from step 2 above, run the following command.
 ```
-curl -k -u admin:admin -H 'Content-Type: application/json' 'https://shuffle-opensearch:9200/organizations/_update/<org_id goes here>/' -d '{"doc": {"id": "org-id-goes-here", "name": "org-name-goes-here"}}'
+curl -k -u admin:StrongShufflePassword321! -H 'Content-Type: application/json' 'https://shuffle-opensearch:9200/organizations/_update/<org_id goes here>/' -d '{"doc": {"id": "org-id-goes-here", "name": "org-name-goes-here"}}'
 ```
 
 4. Exit out of the container
@@ -697,17 +697,17 @@ docker exec -u0 -it shuffle-opensearch bash
 
 [Get the indexes and look at them:](https://opensearch.org/docs/latest/api-reference/cat/cat-indices/)
 ```
-curl https://localhost:9200/_cat/indices?v -u admin:admin -k
+curl https://localhost:9200/_cat/indices?v -u admin:StrongShufflePassword321! -k
 ```
 
 Find the largest items in the workflowapp index (for apps in shuffle):
 ```
-curl https://localhost:9200/workflowapp/_search?v -u admin:admin -k
+curl https://localhost:9200/workflowapp/_search?v -u admin:StrongShufflePassword321! -k
 ```
 
 Delete an index if it's too large (normal ones to delete if problems: workflowexecution, workflowqueue-shuffle, environment_stats) 
 ```
-curl https://localhost:9200/workflowqueue-shuffle -u admin:admin -k
+curl https://localhost:9200/workflowqueue-shuffle -u admin:StrongShufflePassword321! -k
 ```
 
 ## Re-add user to lost org
@@ -727,5 +727,5 @@ docker exec -u0 -it shuffle-opensearch bash
 
 Update the USERID and ORGID, ORGNAME fields, then run this command to re-add your account to the right org
 ```
-curl -k -u admin:admin https://localhost:9200/users/_update/USERID -d '{"doc": {"active_org.id": "ORGID", "active_org.name": "ORGNAME", "orgs": ["ORGID"]}}' -H "Content-Type: application/json"
+curl -k -u admin:StrongShufflePassword321! https://localhost:9200/users/_update/USERID -d '{"doc": {"active_org.id": "ORGID", "active_org.name": "ORGNAME", "orgs": ["ORGID"]}}' -H "Content-Type: application/json"
 ```
