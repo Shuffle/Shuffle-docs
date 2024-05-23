@@ -48,7 +48,7 @@ We encourage everyone to have checked out our [Workflow Development Exercises](h
 2. JSON autocompletion
 3. Loops
 4. Nestedloops
-5. [Start nodes](https://shuffler.io/workflows/0285a05e-8dc0-4614-840b-88606d6a1e59)
+5. [Start nodes](https://shuffler.io/workflows/0285a05e-8dc0-4614-840b-88606d6a1e59) (Learn more about start nodes in this video [here](https://www.youtube.com/watch?v=hQcpuoCkXtw))
 6. Triggers: Webhooks & Schedules
 7. Subflows & User Input
 8. [App Authentication](https://shuffler.io/workflows/d65d228a-f406-4227-9fa7-f7d9303f8411)

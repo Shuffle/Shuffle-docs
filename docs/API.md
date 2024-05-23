@@ -276,6 +276,16 @@ curl https://shuffler.io/api/v1/apps/upload -H "Authorization: Bearer APIKEY" -F
 
 ## App Authentication
 App Authentication is a way to store authentication keys encrypted and safe, available through using their ID. You can interact with it through a workflow, an app or the admin panel at /admin?tab=app_auth. To use an authentication after it's made, it has to be mapped to an action in a workflow by it's ID.
+
+Here is a brief video that you can watch to learn more about it:
+
+
+
+
+[![App Authentication video](https://img.youtube.com/vi/LoDaAmHDhFg/0.jpg)](https://www.youtube.com/watch?v=LoDaAmHDhFg)
+
+
+
 	
 ### List App Authentication
 Get a list of all app authentication. These are all the authentication currently available to YOUR organization. These can be distributed from Parent org to Child org.

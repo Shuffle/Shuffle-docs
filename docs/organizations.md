@@ -218,6 +218,16 @@ docker run \
 
 ```
 
+### Files
+You can learn more about files in this Youtube video:
+
+
+
+[![Shuffle files tutorial](https://img.youtube.com/vi/DPYowyTbsSk/0.jpg)](https://www.youtube.com/watch?v=DPYowyTbsSk)
+
+
+
+
 ### Using Multiple Environments
 It's possible to create and use multiple environments for your Workflows. 
 

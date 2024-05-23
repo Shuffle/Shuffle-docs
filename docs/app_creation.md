@@ -324,6 +324,12 @@ if cacheret["success"] == True:
 	#	}
 ```
 
+You can learn more about the caching system in general in this Youtube video:
+
+
+[![Shuffle Caching System Video](https://img.youtube.com/vi/ZYc-bUVsUkc/0.jpg)](https://www.youtube.com/watch?v=ZYc-bUVsUkc)
+
+
 
 ### Directory structure
 
