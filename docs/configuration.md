@@ -239,7 +239,16 @@ Orborus can run in Docker-swarm mode, and in early 2023, with Kubernetes. This m
 To begin with, Let's sort out the pre-requisites:
 
 Our setup would end up looking like this:
+
+
+
+
 ![Screenshot](https://github.com/0x0elliot/Shuffle-docs/assets/60684641/1a485fb8-53d7-40ac-bfcf-11c3dc69e98f)
+
+
+
+
+
 
 Let's begin with setting up Docker, Docker Compose, and creating a Docker Swarm network with two manager nodes involves several steps. Below is a step-by-step guide to achieve this:
 

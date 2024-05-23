@@ -7,6 +7,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Orborus can't connect to backend](#orborus_can_not_reach_backend)
 * [How to stop executions in loop](#how_to_stop_executions_in_loop)
 * [Abort all specific workflow executions](#abort_all_running_executions_of_a_specific_workflow)
+* [Workflows are stuck](#workflows_are_stuck)
 * [Opensearch permission errors](#opensearch_permissions_error)
 * [Recover admin user](#recover-admin-user)
 * [Delete user](#delete_user)
@@ -352,6 +353,14 @@ docker exec -u0 -it "opensearch_ID" curl https://localhost:9200/_cat/indices?pre
 ```
 docker exec -u0 -it "opensearch_ID" curl -X DELETE "https://localhost:9200/workflowexecution?pretty" -k -u admin:StrongShufflePassword321! -v
 ```
+
+## Workflows are stuck
+
+If you're on the default setup for shuffle and you start to notice that your workflows are getting stuck, It might be because you're running out of CPU needed to run the workflows. 
+
+To fix this, You will have to move towards setting up shuffle for [production readiness](/docs/configuration#production_readiness) in our configuration documentation.
+
+
 ## Disclaimer
 If you are doing this in a production server you will have to comb through the indices and delete them manually with respect to you organisations priorities, old executions and such.
 
