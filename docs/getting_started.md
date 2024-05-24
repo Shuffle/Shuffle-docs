@@ -11,6 +11,15 @@ Getting started with Shuffle
 * [Learn about Shuffle](#learn_about_shuffle)
 
 ## Overview
+Shuffle is the Open Source automation platform for the Security industry. Run it for free:
+
+- [Open Source (onprem)](https://github.com/shuffle/shuffle/blob/main/.github/install-guide.md)
+- [Cloud Signup (SaaS)](https://shuffler.io)
+
+**Relevant pages to get help:**
+
+- [Professional Services](https://shuffler.io/pricing)
+- [Training](https://shuffler.io/training)
 
 ### Usecases
 [Usecases are a collection of Workflows](/usecases) that perform a task together. This can be things like handling SIEM alerts, or doing phishing analysis. 
@@ -20,7 +29,6 @@ Getting started with Shuffle
 
 ### Apps
 [Apps](/docs/apps) are API's or Python scripts, and can be [modified and built by anyone](https://shuffler.io/docs/app_creation). To use an existing public app in a Workflow, you must first activate it. Public apps can be forked, meaning you can have your own version of them.
-
 
 ### Blogposts
 * [1. Introducing Shuffle - an Open Source SOAR platform](https://medium.com/security-operation-capybara/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12)
