@@ -25,6 +25,7 @@ Documentation for configuring Shuffle. Most information is related to onprem and
 * [Execution Debugging](#execution-debugging)
 * [Known Bugs](#known-bugs)
 * [Shuffle Server Healthcheck](#shuffle-server-healthcheck)
+* [Using podman](#using-podman)
 
 ## Introduction
 
@@ -1291,3 +1292,66 @@ You can set a cron job to execute the scripts on every 15 minutes and the whole 
 */15 * * * * bash /root/healthchech.sh
 */15 * * * * bash /root/memorycheck.sh
 ```
+
+### Using podman
+
+Our main goal is to provide stable support for docker. But a lot of members from our community run podman (Especially because RHEL 8 uses it). We have tested Shuffle with podman and it works for most parts. While it's not our main focus, The way to run Shuffle with podman is nearly the same.
+
+1. Make sure to remove the usage of double quotes from .env after you git clone Shuffle. This is because podman doesn't support double quotes in the .env file.
+
+You can do it like this:
+
+
+
+```
+sed -E "s/(.*)=['\"]?([^'\"]*)['\"]?/\1=\2/" .env -i
+```
+
+
+2. Edit the existing docker-compose.yml to support podman by:
+
+In shuffle-backend, comment back in the volume: /var/run/docker.sock:/var/run/docker.sock
+And in environments, Comment back out:  # DOCKER_HOST=tcp://docker-socket-proxy:2375
+
+
+So that the shuffle-backend service block ends up looking like this:
+
+
+
+```yaml
+  backend:
+    image: ghcr.io/shuffle/shuffle-backend:latest
+    container_name: shuffle-backend
+    hostname: ${BACKEND_HOSTNAME}
+    # Here for debugging:
+    ports:
+      - "${BACKEND_PORT}:5001"
+    networks:
+      - shuffle
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${SHUFFLE_APP_HOTLOAD_LOCATION}:/shuffle-apps:z
+      - ${SHUFFLE_FILE_LOCATION}:/shuffle-files:z
+    env_file: .env
+    environment:
+      #- DOCKER_HOST=tcp://docker-socket-proxy:2375 # we commented this out
+      - SHUFFLE_APP_HOTLOAD_FOLDER=/shuffle-apps
+      - SHUFFLE_FILE_LOCATION=/shuffle-files
+```
+
+
+
+3. Run Shuffle with podman by:
+
+
+
+```bash
+sudo podman-compose -f docker-compose.yml pull
+sudo podman-compose -f docker-compose.yml up
+```
+
+
+
+
+
+
