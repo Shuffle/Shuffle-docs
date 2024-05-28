@@ -30,7 +30,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Find top index items opensearch](#find-top-index-items-opensearch)
 * [Resetting MFA code](#resetting-mfa)
 * [Re-add user to lost organization](#add-user-to-lost-org)
-* [No module named 'xyz' in 'execute python' (Shuffle Tools)](#no-module-named-xyz-in-'execute-python'-(Shuffle-Tools))
+* [No module named 'xyz' in 'execute python' (Shuffle Tools)](#no-module-named-'xyz'-in-'execute-python'-(Shuffle-Tools))
 
 
 ## Resetting MFA
