@@ -773,4 +773,4 @@ If you want to install a custom module like pandas (although, 'execute python' i
 
 There are two primary ways to it:
 - Learn about dynamic library loading in your code (not recommended)
-- Copy the Shuffle Tools app and add the libraries you want to it! Library configuration is over here: https://github.com/Shuffle/python-apps/blob/master/shuffle-tools/1.2.0/requirements.txt
+- Copy the Shuffle Tools app and add the libraries you want to it! Library configuration is over [here](https://github.com/Shuffle/python-apps/blob/master/shuffle-tools/1.2.0/requirements.txt)
