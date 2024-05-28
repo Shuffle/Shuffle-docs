@@ -772,5 +772,20 @@ curl -k -u admin:StrongShufflePassword321! https://localhost:9200/users/_update/
 If you want to install a custom module like pandas (although, 'execute python' isn't made for heavy processing. We recommend making a custom python app for it).
 
 There are two primary ways to it:
-- Learn about dynamic library loading in your code (not recommended)
-- Copy the Shuffle Tools app and add the libraries you want to it! Library configuration is over here: https://github.com/Shuffle/python-apps/blob/master/shuffle-tools/1.2.0/requirements.txt
+1. Learn about dynamic library loading in your code (not recommended)
+2. Build the Shuffle Tools app again locally and add the libraries you want to it! Library configuration is over in this [requirements.txt file](https://github.com/Shuffle/python-apps/blob/master/shuffle-tools/1.2.0/requirements.txt)
+
+
+
+
+To build this app again, I would:
+- Add in the requirement in requirements.txt linked above.
+- Rebuild the app again by doing:
+
+
+
+
+```bash
+sudo docker build -t shuffle-tools:1.2.0 .
+```
+
