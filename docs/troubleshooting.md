@@ -30,6 +30,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Find top index items opensearch](#find-top-index-items-opensearch)
 * [Resetting MFA code](#resetting-mfa)
 * [Re-add user to lost organization](#add-user-to-lost-org)
+* [Using custom modules in 'execute python' in shuffle-tools](#using-custom-modules-in-'execute-python'-in-shuffle-tools)
 
 
 
@@ -766,3 +767,11 @@ Update the USERID and ORGID, ORGNAME fields, then run this command to re-add you
 ```
 curl -k -u admin:StrongShufflePassword321! https://localhost:9200/users/_update/USERID -d '{"doc": {"active_org.id": "ORGID", "active_org.name": "ORGNAME", "orgs": ["ORGID"]}}' -H "Content-Type: application/json"
 ```
+
+## Using custom modules in 'execute python' in shuffle-tools
+
+If you want to install a custom module like pandas (although, 'execute python' isn't made for heavy processing. We recommend making a custom python app for it).
+
+There are two primary ways to it:
+- Learn about dynamic library loading in your code (not recommended)
+- Copy the Shuffle Tools app and add the libraries you want to it! Library configuration is over here: https://github.com/Shuffle/python-apps/blob/master/shuffle-tools/1.2.0/requirements.txt
