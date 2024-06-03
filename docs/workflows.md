@@ -110,7 +110,7 @@ If you want to test more, go to the bottom of this article [How-to continuation]
 
 If you want create a copy of a workflow you can do so by clicking the kebab (vertical 3 dots) menu and select "Duplicate Workflow".
 
-![Duplicate workflow in progress](https://github.com/frikky/shuffle-docs/blob/master/workflow-duplicate-1.png?raw=true)
+![Duplicate workflow in progress](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-duplicate-1.png?raw=true)
 
 A new workflow will be visible with an `_copy` suffix append to its name.
 
@@ -120,11 +120,11 @@ If you're finished with a workflow and no longer require a copy of it, you can d
 
 **NOTE: Any workflows that depend on this one will be impacted**
 
-![Confirm workflow deletion](https://github.com/frikky/shuffle-docs/blob/master/workflow-delete-1.png?raw=true)
+![Confirm workflow deletion](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-delete-1.png?raw=true)
 
 After confirming the deletion action, you'll see a notification of the workflow being deleted.
 
-![Workflow deletion confirmation](https://github.com/frikky/shuffle-docs/blob/master/workflow-delete-2.png?raw=true)
+![Workflow deletion confirmation](https://github.com/frikky/shuffle-docs/blob/master/assets/workflow-delete-2.png?raw=true)
 
 
 ## Nodes
