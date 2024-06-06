@@ -1087,7 +1087,7 @@ As previously stated, a lot can go wrong. Here's the most common issues:
 * Badly formed apps.
 * Bad environment
 
-#### General debugging
+### General debugging
 
 This part is mean to describe how to go about finding the issue you're having with executions. In most cases, you should start from the top of the list previously described in the following way:
 
