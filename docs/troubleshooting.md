@@ -2,6 +2,7 @@
 Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Table of contents
+* [Debugging Executions](#debugging_executions)
 * [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Load all apps locally](#load_all_apps_locally)
 * [Orborus can't connect to backend](#orborus_can_not_reach_backend)
