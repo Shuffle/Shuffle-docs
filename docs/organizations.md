@@ -60,7 +60,7 @@ Setting up cloud synchronization requires two things:
 4. See the features you get access to.
 ![Cloud sync local features](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-6.png?raw=true)
 
-### Hybrid Features 
+## Hybrid Features 
 Updated November 14th, 2022
 
 Want to try it out? Hybrid Access is Free. 
@@ -151,6 +151,33 @@ App authentication is a way for Shuffle to keep track of what credentials you ha
 ![Basic app authentication](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-11.png?raw=true)
 
 These are **NOT** editable outside of deletion as of november 2020, but we may add the possibility of changing without showing the previous value. 
+
+### KMS
+Shuffle supports the use of a KMS. [Please see the extension documentation for more](/docs/extensions#kms).
+
+### App Authentication Groups
+App Authentication groups are a way for you to group authentications together, enabling a single workflow to run with multiple different authentication options and environments. When a workflow runs with authentication groups selected, the workflow execution will replicate and run multiple versions of the same workflow at the same time, where the relevant authentication is filled in in real-time. 
+
+<img width="830" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/44e1d2f6-6e1c-4736-834a-a98e6419814e">
+
+**Requirements to use**
+- Create at least two App Auth groups
+- Have at least two different available authentications for an app in the same organization
+- Choose the App Auth group you want to use in the app
+
+If these requirements are fulfilled, the workflow will run as many times as there are App Auth groups selected in that workflow. If one app (e.g. Outlook) has selected to use App Auth groups in a workflow, we will distribute this to every node in the same workflow
+
+This is a Beta feature aimed at Service Providers / MSSP's, and is being fleshed out in Q3 2024. If you are interested, please reach out to support@shuffler.io.
+
+**App Auth Groups vs. Suborg Workflow distribution**
+A similar topic for running workflows is the Suborg Workflow distribution system, available in the Edit Workflow menu. 
+
+The difference:
+- App Auth Groups run in a single Organization, and may as of Q2 2024 not be distributed to suborgs. Will run multiple workflow executions in one organization.
+- Suborg Workflow distribution is used when you want to segregate where and how the data is stored per organization, or where your customer may want access to the workflow. This uses a background distribution system when the parent workflow is saved.
+
+<img width="520" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/7d02f2e2-fce5-445c-94e4-1cea239b1a7f">
+
 
 ### Authentication Field overview 
 The fields of authentication
