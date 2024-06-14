@@ -208,17 +208,19 @@ Shuffle by default allows you to store authentication tokens within Shuffle itse
 
 The Shuffle KMS system is built as a third party Key:Value provider. You can reference keys from the KMS in any field marked as "Authentication" in the UI, or from within a Shuffle authentication itself (meaning you can authenticate the authentication..). The way you reference the keys is path-based, starting with `kms/`. Requirements:
 
-* Have an Authentication called **kms shuffle storage** in Shuffle
+* Have an Authentication called **kms shuffle storage** in Shuffle. On the [Auth page](/admin?tab=app_auth), it should clearly stand out as a different type of authentication.
 * The Authentication needs to be associated with an App in the IAM category
 * The App needs to have an action labeled as "Get KMS key"
-* If it's the FIRST translation, it may fail out without internet access to github.com.
+* If it's the FIRST translation, it may fail out without internet access to github.com
 
 When these requirements are fullfilled, you can do the following to use the KMS system:
 
 * Find the required parameters for the action. The first image below shows the parameters IN ORDER for Hashicorp Cloud Platform Vault.
 * Use the following format: `kms/field1/field2/field3/field4/...`. This NEEDS to start with `kms/`
-* Example referencing the "username" in the app name "Jira": `kms/998067a9-33f2-4c4d-bbb6-4a997d784def/2e9a877f-1a89-4394-a242-f2c6d9dd2420/jira/username`
+* Make sure the Environment is correct. It uses your default environment to connect to the KMS if not otherwise specified on the [Auth page](/admin?tab=app_auth). 
+<img width="919" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/ba69ec4a-2206-4f30-9ee2-0d94390a9dde">
 
+* Example referencing the "username" in the app name "Jira": `kms/998067a9-33f2-4c4d-bbb6-4a997d784def/2e9a877f-1a89-4394-a242-f2c6d9dd2420/jira/username`
 <img width="617" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/0b354dc6-1d8e-4366-9f38-2cff2fe94486">
 
 If all of this is fulfilled, you can run the workflow, and Shuffle will automatically reference the KMS correctly. **If it fails to authenticate**, you should see a Notification show up like in the following image.
