@@ -241,6 +241,8 @@ KMS is supported for any system as long as the sections above are covered. It ha
 - Google Cloud Key Management
 - AWS Key Management Service
 - Hashicorp Cloud Platform
+- Github
+- AliCloud
 - ... and more! Ask if you need help.
 
 ## Native Actions
