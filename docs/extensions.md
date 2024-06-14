@@ -37,7 +37,7 @@ Shuffle added Single Signon (SAML) from version 0.9.16 & OpenID since 1.0.0. Thi
 
 PS: We suggest setting up SSO for a sub-organization first to see if it works, avoiding the potential problem of locking yourself out. We are currently building a system to make it possible to use SSO in an optional way (version 1.4.0~) 
 
-## Using ANY tool 
+### Using ANY SSO platform 
 **ONPREM ONLY:** You will have to change the SSO_REDIRECT_URL variable in the .env file to match your front end server link i.e `SSO_REDIRECT_URL=http://<URL>:<PORT>` 
 
 ![Single Signon button](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-3.png?raw=true)
