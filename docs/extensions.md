@@ -228,12 +228,27 @@ If all of this is fulfilled, you can run the workflow, and Shuffle will automati
 <img width="989" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/8a24c8f1-c00d-4481-bf56-ece2b7749fed">
 
 ### Failure handling and Debugging
+During the initial configuration of KMS, there are many things that CAN go wrong. After the setup is initially completed and it works, it should not fail again, meaning spending time to set it up properly the first time is well worth it.
+
+If you are using Shuffle onprem and have trouble with KMS translations, we suggest setting the environment variable `SHUFFLE_KMS_DEBUG=true` on the shuffle-backend container. This will allow you to test individual keys in ANY field, meaning you can e.g. print out the KMS value that it should translate to. This further means we will not be deleting the KMS execution, and you can see the execution on the [Workflow Runtime Debugger page.](/workflows/debug). **KMS debug mode is NOT enabled on shuffler.io**.
+
+<img width="275" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/b93fd28d-cb92-4a56-a9f3-9b2cd7a96d32">
+
 If your KMS translation fails, it is most likely due to network connectivity OR translation errors [for the standard](https://github.com/Shuffle/standards/blob/main/translation_standards/get_kms_key.json) in use. After running a translation, you should see the following three file categories in the admin panel:
 - translation standards 	- The available translation standards
 - translation input		- The data FROM the kms used for translation. Does NOT contain values, only keys.
 - translation output		- The translation OUTPUT. Includes JSON paths to the correct keys
 
-IF your translation fails, the first area to look at is the "translation output", as this is where the translation for the schema happens. The hash will match the data you have sent in, which can be found in the "translation input" folder. Documentation about schemaless explains [how translations happen](https://github.com/frikky/schemaless?tab=readme-ov-file#example), and how they can be fixed. If you need further help, contact support@shuffler.io
+IF your translation fails, the first area to look at is the "[translation output](/admin?tab=files&category=translation_output)" file category, as this is where the translation for the schema happens. The hash will match the data you have sent in, which can be found in the "translation input" folder. Documentation about schemaless explains [how translations happen](https://github.com/frikky/schemaless?tab=readme-ov-file#example), and how they can be fixed. If you need further help, contact support@shuffler.io
+
+A valid KMS translation file should be in the following format:
+```
+{
+   "kms_value": "path.in.kms.json"
+}
+```
+
+**The "kms_key" field is NOT relevant - the ONLY thing that is important is that the kms_value path is correct.**
 
 ### Using any KMS
 KMS is supported for any system as long as the sections above are covered. It has been tested for the following:
