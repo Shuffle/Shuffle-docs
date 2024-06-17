@@ -1,4 +1,4 @@
-# Shuffle App Creation in Python
+# Shuffle App Creation
 Documentation for app development with Python (as opposed to creating them with the app editor, e.g. with an OpenAPI specification).
 
 ## Table of contents
