@@ -747,7 +747,7 @@ curl https://localhost:9200/workflowapp/_search?v -u admin:StrongShufflePassword
 
 Delete an index if it's too large (normal ones to delete if problems: workflowexecution, workflowqueue-shuffle, environment_stats) 
 ```
-curl https://localhost:9200/workflowqueue-shuffle -u admin:StrongShufflePassword321! -k
+curl -XDELETE https://localhost:9200/workflowqueue-shuffle -u admin:StrongShufflePassword321! -k
 ```
 
 ## Add user to lost org
