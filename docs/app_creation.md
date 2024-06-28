@@ -44,20 +44,20 @@ The underlying design of Apps in Shuffle are based on [WALKOFF](https://walkoff.
 
 [More about apps](/docs/apps)
 
-## Why create a custom app?
+### Why create a custom app?
 There are many prebuilt apps in Shuffle, all performing unique actions. There may however be an integration you need that doesn't exist yet. You may either make this yourself or commission this to be made [through Shuffle](https://shuffler.io/contact) - we're always looking to expand our repository of apps!
 
-## Python or the App Creator
+### Python or the App Creator
 A normal question we get asked all the time - should I use the app creator or Python directly? Find out by answering these questions (will be expanded):
 ```
 1. Is the app a HTTP API? 	Use the App Creator.
 2. Does the app need to perform custom actions? Use Python.
 ```
 
-## How apps are built
+### How apps are built
 When you build an app in Shuffle, it goes through a validation process before building the app. This process ends in a fully working Docker Image containing your apps, pointing to the original app specification to ensure users can use it in the front-end as well.
 
-## App Creator Instructions
+## App Creator in Shuffle UI
 The app creator in Shuffle is built to handle any integration for HTTP apps you may think of. It's based on OpenAPI, and will generate the app using the Python SDK in the background. 
 
 [Here's an example from a workshop](https://youtu.be/PNuXCixYwDc?t=7822)
@@ -92,7 +92,7 @@ Creating or editing an app in Shuffle is made to be as simple and fast as possib
 * Categories: The category the app belongs to. Nothing fitting? Set it to "Other"
 * Tags: Add 1-5 tags that seem to fit. 
 
-## Authentication
+### Authentication
 There are many ways to authenticate Shuffle apps. The most important thing is to understand how authentication is reflected in a Workflow. Authentication fields become "required" fields, and can be stored in the App Authentication, utilized in a workflow. These are the authentication Options found in the App Creator:
 
 - No Authentication
@@ -203,7 +203,7 @@ After filling these in, you can now safely proceed to a Workflow to use the app.
 The former two will have to be found by the USER, as the point of this authentication type is to run as the user itself. This has to be documented well, either in the description of the app itself, or in the [OpenAPI documentation folder on Github]() to make it easily available to users. An example [for Microsoft app registration can be found here](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app), which includes how to get a client ID and secret. 
 
 
-## Actions
+### Actions
 Actions are the meat of how apps actually work. The action part of the app creator provides the ability to control each individual endpoint very specifically. 
 
 Action List information:
@@ -252,7 +252,7 @@ When building is done, you may want to test the app that you've built. This can 
 You may want to change an app later. This can be done by using the /apps UI to find the app, selecting the app, then clicking the "Edit" button. 
 ![Apps view 7](https://github.com/frikky/shuffle-docs/blob/master/assets/apps-view-7.png?raw=true)
 
-## Python Instructions
+## Python - Building apps manually
 Apps using Python can do pretty much anything you can do on a computer. As an example, most utility functions of Shuffle itself are written with as functions of Python in the app "Shuffle-Tools"
 
 One of the first things you have to do is select an SDK. There are three images currently in Shuffle, Alpine, Kali, and Blackarch. Alpine is your standard slim docker image. Kali allows you access to Kali tooling, and Blackarch is arch, with a kitchen sink approach to tools.
@@ -397,7 +397,7 @@ contact_info:
 ```
 
 
-#### Authentication
+### Authentication
 
 Not all apps need this step, but if yours requires a key, secret, or password, it is recommended to use a specialized "authentication" declaration in api.yaml, so those credentials are stored safely and not displayed in cleartext in your Shuffle workflow.
 
@@ -443,7 +443,7 @@ authentication:
 
 ```
 
-#### Actions
+### Actions
 
 Actions define the functions of your app, the args it accepts and the options available (static list of values for a given arg).
 * name: the python function name
@@ -483,7 +483,7 @@ actions:
         type: string
 ```
 
-#### Logos
+### Logos
 The app's logo can be encoded here using a base64 encoded representation of the image, listed after large_image, see example below, but omitted for brevity:
 ```
 large_image: data:image/jpg;base64,/9j/4AAQSkZJR
@@ -587,7 +587,7 @@ I have the function below, as specified in my api.yaml, that accepts the args I 
     def run_o365poller(self, planType,tenantID,clientID,clientSecret, PollInterval,json_data):
 ```
 
-## Hotloading your app
+### Hotloading your app
 Once your app has been tested, you've created the necessary metadata files and directory structure under your shuffle-apps folder, there is no need to restart your containers!
 
 Shuffle has an app hot reloading feature in the GUI. Go to Apps on the top left hand tool bar of the GUI, and then look for a Double Arrow refresh.
@@ -595,7 +595,7 @@ Give the system 20 or so seconds, and you'll see a pop up saying it was successf
 
 Once complete, any workflows you have that use the existing app, you'll have to delete old versions of the app and re-add them in the workflow.
 
-## Publishing your app
+### Publishing your app
 Just made an app and want others to get access to it? Here's how to get it in the hands of everyone:
 
 **OpenAPI:**
@@ -618,7 +618,7 @@ After making an app in Python, here's the steps to get it to everyone
 
 Both of these methods makes your app highlighted on https://shuffler.io to be used by hundreds if not thousands of organizations.
 
-## Debugging
+## Debugging Apps
 As Shuffle has a lot of individual parts, debugging can be quite tricky. To get started, here's a list of the different parts, with the latter three being modular / location-independent.
 
 | Type     | Container name    | Technology       | Note |
@@ -713,7 +713,7 @@ As you will notice, app logs can be quite verbose (optional in a later build). I
 
 Please [notify me](https://twitter.com/frikkylikeme) if you need help debugging app executions ASAP, as I've done a lot of it, but it's more tricky than the other steps.
 
-## FAQ
+### FAQ
 ```
 Q:  What is multiline? how is that represented when filling out the values?
 A: Multiline means the field will be larger and easier to use in the UI. E.g. you can use newlines.
