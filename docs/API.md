@@ -770,6 +770,22 @@ curl -XDELETE https://shuffler.io/api/v1/hooks/{webhook_id} -H "Authorization: B
 ## Notifications 
 Below are the API's associated with Notifications in Shuffle. These can be listed, marked as read, and cleared.
 
+### Create a notification
+Notifications can be manually created, and will show up on the /admin?tab=priorities tab. This API is automatically utilized if you are running onprem with the Worker. This WILL trigger the notification workflow if it has been set up, and they will be grouped according to normal Notification control rules.
+
+Methods: POST 
+
+```
+curl -XPOST https://shuffler.io/api/v1/notifications -H "Authorization: Bearer APIKEY" -d '{"title": "The title", "description": "The description of the notification", "reference_url": "URL for where to go when the user clicks explore", "org_id": "your org id"}
+```
+
+
+**Success response** 
+```
+{"success":true}
+```
+
+
 ### Get all notifications
 Get all notifications assigned to your user from your organizations 
 
