@@ -26,13 +26,6 @@ Documentation for app development with Python (as opposed to creating them with 
 * [Debugging apps](#debugging)
 * [FAQ](#faq)
 
-## App development process
-This page is about how to develop a new Shuffle app. Want to know how to decide whether to make something new? Checkout the [process document](https://github.com/frikky/shuffle-docs/blob/master/handbook/engineering/app_development.md) and then come back here.
-
-## Prerequisites
-* App creator: Understanding of HTTP
-* Python app: Base understanding of Python 3.x
-
 ## Introduction
 Apps are how work is done in Shuffle. They receive a piece of data, whether JSON or string, performs some action, then returns data back to the user. Apps are mostly community-made, and we aim to support that the best way we can. We allow apps to be made as Swagger/OpenAPI specifications using the app creator OR directly with Python. Each app contains multiple actions, which again can have multiple parameters. More about apps and [how they work here](/docs/apps).
 
@@ -43,6 +36,13 @@ The underlying design of Apps in Shuffle are based on [WALKOFF](https://walkoff.
 **PS: There is no way of creating a Python app easily for the cloud yet. Apps released on Github will eventually be available on https://shuffler.io too.**
 
 [More about apps](/docs/apps)
+
+### App development process
+This page is about how to develop a new Shuffle app. Want to know how to decide whether to make something new? Checkout the [process document](https://github.com/frikky/shuffle-docs/blob/master/handbook/engineering/app_development.md) and then come back here.
+
+### Prerequisites
+* App creator: Understanding of HTTP
+* Python app: Base understanding of Python 3.x
 
 ### Why create a custom app?
 There are many prebuilt apps in Shuffle, all performing unique actions. There may however be an integration you need that doesn't exist yet. You may either make this yourself or commission this to be made [through Shuffle](https://shuffler.io/contact) - we're always looking to expand our repository of apps!
@@ -57,7 +57,7 @@ A normal question we get asked all the time - should I use the app creator or Py
 ### How apps are built
 When you build an app in Shuffle, it goes through a validation process before building the app. This process ends in a fully working Docker Image containing your apps, pointing to the original app specification to ensure users can use it in the front-end as well.
 
-## App Creator in Shuffle UI
+## App Creator in the Shuffle UI
 The app creator in Shuffle is built to handle any integration for HTTP apps you may think of. It's based on OpenAPI, and will generate the app using the Python SDK in the background. 
 
 [Here's an example from a workshop](https://youtu.be/PNuXCixYwDc?t=7822)
