@@ -34,7 +34,10 @@ We do not permit our team direct access your organization or data within the Shu
 ### Data processing usage 
 We store your data for 3 years by default, to be used in an anonymous and sanitized way, to create algorithms for better workflow autocompletion.
 
-We intend to add a way for you to periodically clear your data in 2022.
+- We store your personal information for a period of time that is consistent with our business purposes.
+- We will retain your personal information for the length of time needed to fulfill the purposes outlined in this privacy policy unless a longer retention period is required or permitted by law.
+- When the data retention period expires for a given type of data, we will delete or destroy it.
+- You may request for your data to be deleted by contacting us at [support@shuffler.io](mailto:support@shuffler.io)
 
 ### Sharing of data with 3rd parties
 Shuffle does not share data with any 3rd parties, except our support partner [Infopercept](https://infopercept.com/). We do however have third party services where your data may be stored - all listed in the segmented details below.
