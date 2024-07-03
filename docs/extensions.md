@@ -32,12 +32,12 @@ From the start, Shuffle has been a platform about integrations. We've focused on
 
 These integrations will typically entail third party services connecting to Shuffle with inbound Webhooks as triggers in a workflow.
 
-## Single Signon SSO
+## OpenID & SAML/SSO - Single Signon
 Shuffle added Single Signon (SAML) from version 0.9.16 & OpenID since 1.0.0. This allows you to log into Shuffle from other sources, entirely controlled by your external environment. SSO is available for **onprem**, even without the Enterprise version of Shuffle cloud. It works by setting an Entrypoint (IdP) and X509 Certificate, both used to validate the requests. This can be added under /admin, and **only works for your PRIMARY organization**.
 
 PS: We suggest setting up SSO for a sub-organization first to see if it works, avoiding the potential problem of locking yourself out. We are currently building a system to make it possible to use SSO in an optional way (version 1.4.0~) 
 
-### Note 
+### Using ANY SSO platform 
 **ONPREM ONLY:** You will have to change the SSO_REDIRECT_URL variable in the .env file to match your front end server link i.e `SSO_REDIRECT_URL=http://<URL>:<PORT>` 
 
 ![Single Signon button](https://github.com/frikky/shuffle-docs/blob/master/assets/sso-3.png?raw=true)
@@ -175,7 +175,7 @@ Finally go back to shuffle and use SSO button to login.
 
 ![shuffle SSO](https://user-images.githubusercontent.com/31187099/162689445-8db0766c-6f18-4463-8a92-f6ae62213918.png?raw=true)
 
-## Azure AD
+### Azure AD
 To use OpenID with Azure AD, Shuffle supports OpenID connect with the use of Client IDs and Client secrets. To set up OpenID Connect with Azure, we use "ID_token" authentication. This entails a few normal steps regarding app creation in Azure App Registration.
 
 1. Set up an app in Azure AD with ID tokens enabled
@@ -208,30 +208,59 @@ Shuffle by default allows you to store authentication tokens within Shuffle itse
 
 The Shuffle KMS system is built as a third party Key:Value provider. You can reference keys from the KMS in any field marked as "Authentication" in the UI, or from within a Shuffle authentication itself (meaning you can authenticate the authentication..). The way you reference the keys is path-based, starting with `kms/`. Requirements:
 
-* Have an Authentication called **kms shuffle storage** in Shuffle
+* Have an Authentication called **kms shuffle storage** in Shuffle. On the [Auth page](/admin?tab=app_auth), it should clearly stand out as a different type of authentication.
 * The Authentication needs to be associated with an App in the IAM category
 * The App needs to have an action labeled as "Get KMS key"
-* If it's the FIRST translation, it may fail out without internet access to github.com.
+* If it's the FIRST translation, it may fail out without internet access to github.com
 
 When these requirements are fullfilled, you can do the following to use the KMS system:
 
 * Find the required parameters for the action. The first image below shows the parameters IN ORDER for Hashicorp Cloud Platform Vault.
 * Use the following format: `kms/field1/field2/field3/field4/...`. This NEEDS to start with `kms/`
-* Example referencing the "username" in the app name "Jira": `kms/998067a9-33f2-4c4d-bbb6-4a997d784def/2e9a877f-1a89-4394-a242-f2c6d9dd2420/jira/username`
+* Make sure the Environment is correct. It uses your default environment to connect to the KMS if not otherwise specified on the [Auth page](/admin?tab=app_auth). 
+<img width="919" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/ba69ec4a-2206-4f30-9ee2-0d94390a9dde">
 
+* Example referencing the "username" in the app name "Jira": `kms/998067a9-33f2-4c4d-bbb6-4a997d784def/2e9a877f-1a89-4394-a242-f2c6d9dd2420/jira/username`
 <img width="617" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/0b354dc6-1d8e-4366-9f38-2cff2fe94486">
 
 If all of this is fulfilled, you can run the workflow, and Shuffle will automatically reference the KMS correctly. **If it fails to authenticate**, you should see a Notification show up like in the following image.
 
 <img width="989" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/8a24c8f1-c00d-4481-bf56-ece2b7749fed">
 
-### KMS failure handling
+### Failure handling and Debugging
+During the initial configuration of KMS, there are many things that CAN go wrong. After the setup is initially completed and it works, it should not fail again, meaning spending time to set it up properly the first time is well worth it.
+
+If you are using Shuffle onprem and have trouble with KMS translations, we suggest setting the environment variable `SHUFFLE_KMS_DEBUG=true` on the shuffle-backend container. This will allow you to test individual keys in ANY field, meaning you can e.g. print out the KMS value that it should translate to. This further means we will not be deleting the KMS execution, and you can see the execution on the [Workflow Runtime Debugger page.](/workflows/debug). **KMS debug mode is NOT enabled on shuffler.io**.
+
+<img width="275" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/b93fd28d-cb92-4a56-a9f3-9b2cd7a96d32">
+
 If your KMS translation fails, it is most likely due to network connectivity OR translation errors [for the standard](https://github.com/Shuffle/standards/blob/main/translation_standards/get_kms_key.json) in use. After running a translation, you should see the following three file categories in the admin panel:
 - translation standards 	- The available translation standards
 - translation input		- The data FROM the kms used for translation. Does NOT contain values, only keys.
 - translation output		- The translation OUTPUT. Includes JSON paths to the correct keys
 
-IF your translation fails, the first area to look at is the "translation output", as this is where the translation for the schema happens. The hash will match the data you have sent in, which can be found in the "translation input" folder. Documentation about schemaless explains [how translations happen](https://github.com/frikky/schemaless?tab=readme-ov-file#example), and how they can be fixed. If you need further help, contact support@shuffler.io
+IF your translation fails, the first area to look at is the "[translation output](/admin?tab=files&category=translation_output)" file category, as this is where the translation for the schema happens. The hash will match the data you have sent in, which can be found in the "translation input" folder. Documentation about schemaless explains [how translations happen](https://github.com/frikky/schemaless?tab=readme-ov-file#example), and how they can be fixed. If you need further help, contact support@shuffler.io
+
+A valid KMS translation file should be in the following format:
+```
+{
+   "kms_value": "path.in.kms.json"
+}
+```
+
+**The "kms_key" field is NOT relevant - the ONLY thing that is important is that the kms_value path is correct.**
+
+### Using any KMS
+KMS is supported for any system as long as the sections above are covered. It has been tested for the following:
+
+- Microsoft Azure KMS 
+- Hashicorp Vault
+- Google Cloud Key Management
+- AWS Key Management Service
+- Hashicorp Cloud Platform
+- Github
+- AliCloud
+- ... and more! Ask if you need help.
 
 ## Native Actions
 Native Actions are a new way Shuffle interacts with data, built brick by brick since introducing Shuffle's Integration Layer API in late 2022. The goal of Native Actions is to enable ourselves and others to be able to perform actions towards a specific API, without necessarily know how to do it specifically for that system. 
@@ -247,7 +276,9 @@ As of early 2024, this system is in active development, and we will implement fe
 
 The Native Actions system is based on [generative AI for automatic mapping of fields (Schemaless)](https://github.com/frikky/schemaless), uses Github to [store configurations (Standards)](https://github.com/shuffle/standards), and uses [Shuffle's Integration Layer API](https://shuffler.io/docs/API#integration-layer) to run the actions. 
 
-## Webhooks
+## Inbound Webhooks
+This section describes inbound webhooks to Shuffle, and how to set them up in many commonly used third-party systems. If your system support outbound Webhooks, it can also forward to Shuffle as a GET or POST request. [More about webhook triggers](/triggers/#webhooks)
+
 ### Wazuh
 Wazuh is a SIEM platform for security operations. We've used it through their API multiple ways, but were missing an important component; alerting. That's why we've developed a simple alert forwarder from Wazuh to Shuffle. 
 

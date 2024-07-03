@@ -969,9 +969,6 @@ With the change from 0.8 to 0.9 we're changing databases from Google's Datastore
 - trigger_auth
 - workflowqueue
   
-  ```
-  
-  ```
 
 Before you start:
 If you have data of the same kind in the same index within Opensearch, these will be overwritten.
@@ -990,9 +987,6 @@ Example: you have the user "admin" in the index "users" within Opensearch and Da
 
 - 3. Set it to false; SHUFFLE_ELASTIC=false
      
-     ```
-     
-     ```
 
 ### 2. Set up Datastore and Opensearch
 
@@ -1087,7 +1081,7 @@ As previously stated, a lot can go wrong. Here's the most common issues:
 * Badly formed apps.
 * Bad environment
 
-#### General debugging
+### General debugging
 
 This part is mean to describe how to go about finding the issue you're having with executions. In most cases, you should start from the top of the list previously described in the following way:
 

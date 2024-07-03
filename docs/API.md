@@ -177,7 +177,8 @@ curl -XPOST https://shuffler.io/api/v1/workflows/{workflow_id}/execute -H "Autho
 
 Additional info:
 - If you don't send JSON to the API, but a random string, we will take the entire string as the execution argument.
-- You can add dynamic app authentication when starting a workflow by using the following header: 'appauth'. Example: 'appauth: jira=auth for jira;elasticsearch=elasticsearch auth'. This works both with the name of the auth, and the ID. 
+- You can add dynamic app authentication when starting a workflow by using the following header: 'appauth'. Example: 'appauth: jira=auth for jira;elasticsearch=elasticsearch auth'. This works both with the name of the auth, and the ID.
+- If you want to run the workflow with a different environment, use the "environment" header with the name. Example: 'environment: cloud'. The environment needs to be the name of an existing environment.
 
 **Success response** 
 ```
@@ -768,6 +769,22 @@ curl -XDELETE https://shuffler.io/api/v1/hooks/{webhook_id} -H "Authorization: B
 
 ## Notifications 
 Below are the API's associated with Notifications in Shuffle. These can be listed, marked as read, and cleared.
+
+### Create a notification
+Notifications can be manually created, and will show up on the /admin?tab=priorities tab. This API is automatically utilized if you are running onprem with the Worker. This WILL trigger the notification workflow if it has been set up, and they will be grouped according to normal Notification control rules.
+
+Methods: POST 
+
+```
+curl -XPOST https://shuffler.io/api/v1/notifications -H "Authorization: Bearer APIKEY" -d '{"org_id": "YOUR ORGID", "title": "The title", "description": "The description of the notification", "reference_url": "URL for where to go when the user clicks explore"}'
+```
+
+
+**Success response** 
+```
+{"success":true}
+```
+
 
 ### Get all notifications
 Get all notifications assigned to your user from your organizations 

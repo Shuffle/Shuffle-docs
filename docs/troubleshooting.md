@@ -2,6 +2,7 @@
 Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Table of contents
+* [Debugging Executions](#debugging_executions)
 * [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Load all apps locally](#load_all_apps_locally)
 * [Orborus can't connect to backend](#orborus_can_not_reach_backend)
@@ -32,6 +33,8 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [Re-add user to lost organization](#add-user-to-lost-org)
 * [No module named 'xyz' in 'execute python' (Shuffle Tools)](#no-module-named-'xyz'-in-'execute-python'-(Shuffle-Tools))
 
+## Debugging Executions
+Please check the [Debugging section in the Configuration documentation](/docs/configuration#Debugging)
 
 ## Resetting MFA
 MFA can be enabled for your account on the settings User page of an organization, or on your [settings page](https://shuffler.io/settings). If you have lost access to your account due to this however, follow these steps:
@@ -744,7 +747,7 @@ curl https://localhost:9200/workflowapp/_search?v -u admin:StrongShufflePassword
 
 Delete an index if it's too large (normal ones to delete if problems: workflowexecution, workflowqueue-shuffle, environment_stats) 
 ```
-curl https://localhost:9200/workflowqueue-shuffle -u admin:StrongShufflePassword321! -k
+curl -XDELETE https://localhost:9200/workflowqueue-shuffle -u admin:StrongShufflePassword321! -k
 ```
 
 ## Add user to lost org
