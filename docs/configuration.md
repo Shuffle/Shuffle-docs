@@ -554,6 +554,16 @@ Due to Kubernetes not being capable of building Shuffle Apps directly, an additi
 ## Orborus with Kubernetes
 To configure Kubernetes, you need to specify a single environment variable for Orborus: RUNNING_MODE. By setting the environment variable RUNNING_MODE=kubernetes, execution should work as expected!
 
+## k8s Scale
+To scale Shuffle in Kubernetes, use the following environment variables in the Orborus container:
+```bash
+SHUFFLE_SCALE_REPLICAS=3 # HPA coming soon. This is for static scaling.
+SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker-scale:nightly
+IS_KUBERNETES=true
+SHUFFLE_SWARM_CONFIG=run
+SHUFFLE_MEMCACHED=shuffle-memcached:11211 # this depends on your setup.
+```
+
 ## Proxy configuration
 
 Proxies are another requirement to many enterprises, hence it's an important feature to support. There are two places where proxies can be implemented:
