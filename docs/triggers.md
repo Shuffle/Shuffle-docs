@@ -15,7 +15,7 @@ Triggers are the operators used to execute a [workflow](/docs/workflow) automati
 
 <iframe width="560" height="315" src="https://www.loom.com/embed/9811d94782c249f899703491f286004c" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-## About
+### About
 Triggers, along side apps and variables, can be found on the left hand side, in a tab called "Triggers". 
 
 ![Triggers-view-1](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-1.png?raw=true)
@@ -34,7 +34,7 @@ There are currently six ways to execute workflows:
 * Cloud & Hybrid (paid): Webhook, Subflow, User Input, Schedule, Outlook, Gmail, Rest API
 * Onprem: Webhook, Subflow, User Input, Schedule, Rest API
 
-### Hybrid
+## Hybrid
 ALL triggers are available EVERYWHERE if you have a Shuffle subscription. This further allows routing executions through cloud (without saving any data) to your open source instance, without the need to open for inbound requests in your firewall(s).
 
 **Example:**
@@ -48,7 +48,7 @@ Read more about cloud synchronization in the [organization documentation](/docs/
 ### Finding executions
 When a trigger runs, you will NOT be notified about it anywhere. It will instead run behind the scenes. You can however discover their data and executions by going to the specific workflow's UI, then clicking "See all executions" on the bottom (the running person).
 
-### Webhook
+## Webhook
 [Webhooks](https://en.wikipedia.org/wiki/Webhook) are the real-time handler for Shuffle data. Webhooks were initially implemented to handle data from [Office365 connectors](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using) and [TheHive](https://github.com/TheHive-Project/TheHiveDocs/blob/master/admin/webhooks.md), but have turned into a generic trigger, taking any kind of HTTP data, as we saw the need for it. 
 
 HTTP Method(s):
@@ -63,7 +63,7 @@ In later versions of Shuffle, you further have access to an authentication field
 One header for each line. In the image below, the request would need to contain the headers "authorization" and "authorization2" with the exact valus specified.
 ![Triggers-view-6](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-6.png?raw=true)
 
-#### Webhook Example
+### Webhook Example
 To start using webhooks, you should have a service that supports webhooks (e.g. the two above mentioned). If you just want to test, you can also use cron.
 
 Once you have a service ready:
@@ -78,7 +78,7 @@ Test it! Say your URI is: https://shuffler.io/functions/webhooks/webhook_336a7aa
 curl -XPOST https://shuffler.io/functions/webhooks/webhook_336a7aa2-e785-47cc-85f4-31a4ab5b28b8 --data '{"test": "testing"}'
 ```
 
-### Subflow 
+## Subflow 
 Subflows is a trigger made to run workflows within other workflows. There's further a "parent/child" element to it where there's always a reference to where the execution came from. This can also run a subflow within itself or be recursive (infinite loops).
 
 Purposes we'll cover:
@@ -104,7 +104,7 @@ Requirements:
 
 ![Triggers-subflow-9](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-9.png?raw=true)
 
-#### Subflow Example
+### Subflow Example
 1. Drag a subflow into the PARENT view from the left side and click it
 ![Triggers-subflow-1](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-1.png?raw=true)
 
@@ -127,14 +127,14 @@ Requirements:
 ![Triggers-subflow-6](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-subflow-6.png?raw=true)
 
 
-### Schedule 
+## Schedule 
 **On-prem**
 Schedules on-prem are ran on the webserver itself. Rather than cron, it uses a scheduler that runs it every X seconds. This will become more sophisticated over time. Schedules persists in the database even when you turn off Shuffle, so don't be afraid to update.
 
 **Cloud**
 Schedules are based on [google's cloud scheduler](https://cloud.google.com/scheduler/) and are schedules that run based on [cron](https://en.wikipedia.org/wiki/Cron). It takes two arguments - the schedule you want to run it on and the Execution argument used in the workflow. A simple cron converter can be found [here](https://en.wikipedia.org/wiki/Cron). When you are ready to run, click "start". 
 
-#### Schedule Example
+### Schedule Example
 1. Drag a schedule into the view from the left side
 2. Click the schedule
 3. Type in the amount of seconds between execution (down to every 1 second)
@@ -143,7 +143,7 @@ Schedules are based on [google's cloud scheduler](https://cloud.google.com/sched
 
 ![Triggers-view-3](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-3.png?raw=true)
 
-### User input
+## User input
 - User Input is an app located within triggers. It provides a method to temporarily pause ongoing executions in a workflow, awaiting approval or denial from a human through a manual click before proceeding with or stopping subsequent executions.
 
 - This can currently be acheived through Subflows (Preffered for production), Email and SMS for rapid testing on the fly, but we will introduce many other options, including chat systems. 
@@ -163,7 +163,7 @@ User Input: Approval from IT administrators before deploying updates to servers 
 - Scenario 3: Investigating and responding to security incidents.
 User Input: Analyst decision for remediation actions, such as isolating a compromised system or blocking a suspicious IP address.
 
-#### User Input Example
+### User Input Example
 1. In the bottom left corner select the triggers tab
 ![num1](https://github.com/Shuffle/Shuffle-docs/assets/31187099/76f3e499-3f27-4215-bcc2-060e8bd30e61) 
 
@@ -201,5 +201,8 @@ User Input: Analyst decision for remediation actions, such as isolating a compro
 - In label 3 as shown in the image a pop out takes you to the target workflow directly and 4 shows you the logs. 
 
 
-### Email
-TBD: This has been made to work with both cloud and hybrid version of Shuffle. Can't work 100% onprem because webhooks from Office365 and Google Workspaces can't reach your host.
+## Email - Gmail & Outlook
+Email triggers no longer exist, and should be handled with Email schedules instead: [Gmail](https://shuffler.io/workflows/e506060f-0c58-4f95-a0b8-f671103d78e5), [Outlook](https://shuffler.io/workflows/31d1a492-9fe0-4c4a-807d-b44d9cb81fc0)
+
+## Pipelines
+TBA

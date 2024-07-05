@@ -270,7 +270,7 @@ You will be provided with a url to download the Worker image from Shuffle. Orbor
 1. Download the new worker you were provided: (Bare in mind, "URL" is a place holder). You can find this URL in the admin->license section of [https://shuffler.io](https://shuffler.io/admin?admin_tab=billing) if you are in the Proof of Value stage, or a customer of Shuffle.
 ```
     wget URL # URL is the url provided by Shuffle
-    docker load -i shuffle-worker.zip
+    docker load -i shuffle-worker.tar.gz
 ```
 
 2. Set Orborus to latest in your docker-compose.yml file
