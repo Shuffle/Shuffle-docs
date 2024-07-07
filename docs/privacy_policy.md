@@ -14,7 +14,7 @@ This is the initial privacy policy for Shuffle cloud. Valid as of this file's la
 * [Contact Information](#contact_information)
 
 ## Introduction
-We are Shuffle AS, and this privacy policy will tell you how we use and protect your personal data.
+We are Shuffle AS (and Shuffle LLC, the subsidiary), and this privacy policy will tell you how we use and protect your personal data.
 
 ## How we protect your personal data
 We understand the importance of the data we collect on our customers, and the sensitivity of what our customers may want to use our platform for. The following explanations go into more detail on how your data is being processed and stored.  
@@ -87,6 +87,6 @@ We use the third party payment processor [Stripe](https://stripe.com/us/privacy)
 * Google Workspace: Google drive, Gmail
 
 ### Contact Information
-Data Controller: Shuffle AS
+Data Controller: Shuffle AS and Shuffle LLC
 
 Contact info: [privacy@shuffler.io](mailto:privacy@shuffler.io)
