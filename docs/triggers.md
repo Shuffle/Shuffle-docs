@@ -13,7 +13,7 @@ Documentation for triggers, running workflow executions
 ## Introduction
 Triggers are the operators used to execute a [workflow](/docs/workflow) automatically. They are connected to a actions within workflows - often the starting node. Triggers usually take an execution argument that will be used to execute the workflow in question.
 
-<iframe width="560" height="315" src="https://www.loom.com/embed/9811d94782c249f899703491f286004c" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+[Watch the video](https://www.loom.com/embed/9811d94782c249f899703491f286004c)
 
 ### About
 Triggers, along side apps and variables, can be found on the left hand side, in a tab called "Triggers". 
@@ -205,4 +205,95 @@ User Input: Analyst decision for remediation actions, such as isolating a compro
 Email triggers no longer exist, and should be handled with Email schedules instead: [Gmail](https://shuffler.io/workflows/e506060f-0c58-4f95-a0b8-f671103d78e5), [Outlook](https://shuffler.io/workflows/31d1a492-9fe0-4c4a-807d-b44d9cb81fc0)
 
 ## Pipelines
-TBA
+
+A pipeline is a sequence of interconnected steps or stages that take input data, transform it through various operations, and produce an output. The data enters the pipeline at one end, undergoes transformations at each stage, and emerges as a refined output at the other end.
+
+### How Pipelines Work
+
+### Components of a Pipeline:
+
+#### Source:
+- **Definition**: The origin point where raw data is introduced into the pipeline.
+- **Examples**: Databases, APIs, log files, webhooks, etc.
+- **Function**: Captures and provides raw data for processing.
+
+#### Ingestion:
+- **Definition**: The process of extracting and importing data from the source into the pipeline.
+- **Function**: Ensures data is pulled into the pipeline efficiently and accurately.
+
+#### Transformation:
+- **Definition**: The stage where data undergoes various modifications to prepare it for the next steps or final use.
+- **Operations**:
+  - **Filtering**: Selecting relevant data based on specific criteria to ensure only necessary information is processed.
+  - **Format Conversion**: Changing data types or structures to ensure compatibility with the target system or further processing stages.
+
+#### Sink (Destination):
+- **Definition**: The endpoint where the transformed data is stored or delivered.
+- **Examples**: Databases, analytics systems, other applications.
+- **Function**: Stores or utilizes the processed data for analysis, reporting, or further action.
+
+## How Shuffle Uses Pipelines
+
+In Shuffle, we are currently using Tenzir data pipelines.
+
+### Pipeline Trigger Features
+
+- **Syslog Listener**: Used to ingest logs into the pipeline.
+
+- **Sigma Support**: Pipelines support Sigma rules, which allow us to define and customize detection rules. This gives Shuffle the ability to control what to detect and the rules governing these detections. Whenever logs match the Sigma rules, a workflow run is triggered in Shuffle.
+
+- **Kafka Forwarder**: Configures the pipeline to actively forward all messages from a specified topic to your workflow.
+
+![Features](../assets/pipeline_features.png)
+
+Additional features will be added in the future.
+
+### Setting Up Sigma Rules for Detection
+
+To start using pipelines for detection, you need to set up or download Sigma rules. This can be done by:
+
+1. Visiting the Sigma page: [http://localhost:3000/detections/sigma](http://localhost:3000/detections/sigma)
+2. This will automatically download all the Sigma rules from a remote GitHub repository into the Tenzir node, making the pipeline ready for detection.
+
+![download Rules](../assets/sigma_downlaod.png)
+
+#### Managing the Sigma Rules
+
+To view and manage the downloaded Sigma rules:
+
+1. Visit the Sigma page: [http://localhost:3000/detections/sigma](http://localhost:3000/detections/sigma)
+
+![Sigma Ui](../assets/sigma_ui.png)
+
+
+   - To edit an existing rule, click on the edit icon, make your changes, and save.
+
+   ![Edit Sigma](../assets/edit_sigma.png)
+
+
+2. You can disable or enable a particular rule file or globally enable or disable the rules.
+
+
+![Disable Rule ](../assets/disable_rule.png)
+
+![Global Enable Rule ](../assets/global_enable_rule.png)
+
+
+## Pipeline Example
+
+![Pipeline Example ](../assets/pipeline_example.png)
+
+1. Drag the "pipeline" trigger from the left-hand side into the main view, and it should automatically connect to your starting node.
+
+2. To start the syslog listener, click on the syslog listener. This will start the listener at 192.168.1.100:5162 on your host machine. You can connect to this endpoint via the TCP protocol and send your syslog data.
+
+![Syslog](../assets/syslog.png)
+
+
+3. For running detection rules, click on the Sigma rule search option. This will create a pipeline that takes the ingested logs and applies the Sigma rules that are downloaded and enabled. Whenever logs match the defined rules, the detected logs are sent, triggering the workflow run.
+
+4. For forwarding Kafka messages from a topic, click on the "follow Kafka queue" option. You will see a pop-up asking for Kafka-specific information that you need to provide, such as the topic name and bootstrap server address. Once you provide the required details, click submit and start. This will actively forward all incoming messages from your Kafka topic to the workflow.
+
+![Kafka ](../assets/kafka.png)
+
+5. To stop a pipeline, simply click on the stop button. This will stop the pipeline and its execution. If you want to delete the pipeline, you can delete the pipeline trigger from the workflow.
