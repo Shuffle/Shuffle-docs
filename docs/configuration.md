@@ -783,7 +783,7 @@ production.cloudflare.docker.com     # Protects of DockerHub
 
 ## Incoming IP Whitelisting
 
-When using Shuffle in the cloud (*.shuffler.io), the incoming IP to your services by default will be be from our cloud functions. The range is not static, and may wary based on region. Here's a list (mostly IPv6 as of 2023):
+When using Shuffle in the cloud (*.shuffler.io), the incoming IP to your services by default will be be from our cloud functions, if you are not using [Hybrid Environments](/admin?tab=environments). The range is **not static**, and may wary based on region. Here's a list (mostly IPv6 as of 2023):
 
 ```
 Default (London): 2600:1900:2000:2a:400::0 -> 2600:1900:2000:2a:400::ffff
@@ -791,9 +791,22 @@ Euroean Union (eu): TBA
 United States (us): TBA
 Canada (ca): TBA
 India (in): TBA
-
-Test: 107.178.232.0/24
 ```
+
+If you want direct access with ANY app in your on-premises environment, we recommend setting up a new environment on a server in the same network. Steps to set this up:
+
+1. Go to [/admin?tab=environments](/admin?tab=environments) and create a new environment
+2. Click the Copy button in the "Command" tab to copy the relevant Docker command. This requires Docker installed on the server in question.
+3. Run the copied command on your server on-premises.
+4. Change the Environment a workflow runs with to the new environment. When ran, it will automatically run on YOUR server, instead of on our cloud.
+5. Your server will now be reaching out to Shuffle cloud for jobs every few seconds. This requires outbound access from YOUR network to the domains shuffler.io and shuffle-backend-stbuwivzoq-nw.a.run.app.
+
+Environment page:
+<img width="1072" alt="image" src="https://github.com/user-attachments/assets/037ade5c-680f-4144-97ff-d117cb29035c">
+
+Architecture connecting from cloud to onprem (hybrid):
+![image](https://github.com/user-attachments/assets/7f0b6146-ebae-4133-bbc7-8b158d48c3a9)
+
 
 ## Proxy settings
 
