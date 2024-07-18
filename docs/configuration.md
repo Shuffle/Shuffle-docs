@@ -551,10 +551,10 @@ Shuffle use with Kubernetes is now possible due to help from our contributors. Y
 
 Due to Kubernetes not being capable of building Shuffle Apps directly, an additional container for building them is available.
 
-## Orborus with Kubernetes
+### Orborus with Kubernetes
 To configure Kubernetes, you need to specify a single environment variable for Orborus: RUNNING_MODE. By setting the environment variable RUNNING_MODE=kubernetes, execution should work as expected!
 
-## k8s Scale
+### Scaling Kubernetes
 To scale Shuffle in Kubernetes, use the following environment variables in the Orborus container:
 ```bash
 SHUFFLE_SCALE_REPLICAS=3 # HPA coming soon. This is for static scaling.
@@ -615,18 +615,6 @@ SHUFFLE_INTERNAL_HTTP_PROXY=<internal proxy>     # Overrides HTTP_PROXY, making 
 
 **PS: This is in beta. Reach out to support@shuffler.io if you have any trouble with this.
 **
-## App Certificates
-As of November 2023, it's now possible to mount folders into apps. This is in order for you to have better control of what Shuffle Apps can do, with the main reason being to manage certificates. 
-
-To mount in certificates, add the following environment variable to the "Orborus" container, but change the source and destination folder. The item BEFORE the colon (:) is the source folder on your machine, with the one AFTER the colon (:) being for the destination folder in the app itself.
-
-If you want more folders mounted, add them with a comma.
-```
-SHUFFLE_VOLUME_BINDS="/etc/ssl/certs:/usr/local/share/ca-certificates,srcfolder2:dstfolder2"
-```
-
-**PS: This is in beta. Reach out to support@shuffler.io if you have any trouble with this.
-**
 ## HTTPS
 
 HTTPS is enabled by default on port 3443 with a self-signed certificate for localhost. If you would like to change this, the only way (currently) is to add configure and rebuild the frontend. If you don't have HTTPS enabled, check [updating shuffle](#updating_shuffle) to get the latest configuration. Another workaround is to set up an [Nginx reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) you can control yourself. See further down for more details
@@ -655,6 +643,19 @@ After changing certificates, you can rebuild the entire frontend by running (./f
 ```
 
 Make sure that the output image is the same in your docker-compose.yml file. This should work seemlessly for you next.
+
+### App Certificates
+As of November 2023, it's now possible to mount folders into apps. This is in order for you to have better control of what Shuffle Apps can do, with the main reason being to manage certificates. 
+
+To mount in certificates, add the following environment variable to the "Orborus" container, but change the source and destination folder. The item BEFORE the colon (:) is the source folder on your machine, with the one AFTER the colon (:) being for the destination folder in the app itself.
+
+If you want more folders mounted, add them with a comma.
+```
+SHUFFLE_VOLUME_BINDS="/etc/ssl/certs:/usr/local/share/ca-certificates,srcfolder2:dstfolder2"
+```
+
+**PS: This is in beta. Reach out to support@shuffler.io if you have any trouble with this.
+**
 
 ### Using the Nginx Reverse Proxy for TLS/SSL
 If you intend to use Nginx as a Reverse Proxy, the main steps are below. [Here is a basic single-server architecture for it](https://jamboard.google.com/d/1zJU8yMzbsu-XWeZnch_5MoDwmMNkkN8ZmoGNLCaHPlU/edit?usp=sharing). The Docker version is further down.
@@ -780,7 +781,7 @@ registry-1.docker.io                            # Dockerhub registry (for apps)
 production.cloudflare.docker.com     # Protects of DockerHub
 ```
 
-### Incoming Domain Whitelisting
+## Incoming IP Whitelisting
 
 When using Shuffle in the cloud (*.shuffler.io), the incoming IP to your services by default will be be from our cloud functions. The range is not static, and may wary based on region. Here's a list (mostly IPv6 as of 2023):
 
@@ -794,7 +795,7 @@ India (in): TBA
 Test: 107.178.232.0/24
 ```
 
-### Proxy settings
+## Proxy settings
 
 The main proxy issues may arise with the "Backend", along with 3the "Orborus" container, which runs workflows. This has to do with how this server can contact the backend (Orborus), along with how apps can be downloaded (Worker), down to how apps engage with external systems (Apps).
 
@@ -938,7 +939,7 @@ Shuffle has and will not have any planned downtime for services on https://shuff
 curl https://shuffler.io/api/v1/getinfo -H "Authorization: Bearer apikey"
 ```
 
-## Database
+### Database
 
 To modify the database location, change "DB_LOCATION" in .env (root dir) to your new location.
 
@@ -965,7 +966,7 @@ To modify the database location, change "DB_LOCATION" in .env (root dir) to your
 
 PS: workflowqueue-* is based on the environment used for execution.
 
-## Database migration
+### Database migration
 
 With the change from 0.8 to 0.9 we're changing databases from Google's Datastore to Opensearch. This has to be done due to unforeseen errors with Datastore, including issues with scale, search and debugging. The next section will detail how you can go about migrating from 0.8.X to 0.9.0 without losing access to your workflows, apps, organizations, triggers, users etc.
 
@@ -1157,7 +1158,7 @@ As you will notice, app logs can be quite verbose (optional in a later build). I
 
 Please [notify me](https://twitter.com/frikkylikeme) if you need help debugging app executions ASAP, as I've done a lot of it, but it's more tricky than the other steps.
 
-## Hybrid docker image handling
+### Hybrid docker image handling
 
 We currently don't have a Docker Registry for Shuffle, meaning you need some minor configuration to get Orborus running remotely with the right containers. This only applies to containers not on dockerhub, as we automatically push PYTHON containers there when updated (not OpenAPI)
 
