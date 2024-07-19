@@ -41,7 +41,7 @@ Workflows are the backbone of Shuffle, empowering you to automate your daily tas
 
 If you would like to learn more about how to create, test and automate your tasks, read on. 
 
-## What you need to know
+### What you need to know
 We encourage everyone to have checked out our [Workflow Development Exercises](https://github.com/Shuffle/Shuffle-docs/blob/master/handbook/engineering/workflow_development_exercises.md) before becoming a creator. This makes sure you know the fundamentals of using Shuffle and can build _anything_. The items below that aren't linked do have documentation, but may be missing a video.
 
 1. Variables & nodes
@@ -59,11 +59,11 @@ We encourage everyone to have checked out our [Workflow Development Exercises](h
 13. [Liquid formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d)
 14. [HTTP & Rest APIs](https://shuffler.io/workflows/b8a3a70a-f3f9-459f-99b3-7a2723a1a4b8)
 
-## Finding relevant workflows
+### Finding relevant workflows
 You may often want to start with a template. To build a Workflow in Shuffle from scratch is much harder than having something to go off. That's why we always encourage you to [search public workflows](/search?tab=workflows) first.
 
 
-## Workflow Basics
+## Basics
 The following section describes the basics of a workflow. 
 
 ### Create
@@ -136,75 +136,6 @@ Most nodes use values that you can pass to them. These can be text specified by 
 
 ### Starting node
 The starting node is circular with a turquoise border. This node is the FIRST ACTION in an execution. The starting node is NOT a trigger, but rather the first action that a trigger sends data to. The starting node can be changed by clicking a different node, then the "SET STARTNODE" button in the top-right corner.
-
-## Conditionals
-
-### Conditions
-Conditions determine the flow of node execution within a workflow. A condition is defined on the branch/line between two nodes. Consequently, you require at least two nodes to set a condition within a workflow. By default, a branch has an implied true condition, resulting in the execution of a subsequent node.
-
-A node may have multiple branches flowing from it. These branch conditions are evaluated independently. Parallel execution of nodes will occur where multiple branch conditions leave a node evaluate as true. Additionally, a branch between two nodes may also have multiple conditions defined. Boolean logic is used to evaluate these conditions.
-
-**NOTE: Currently, defining multiple conditions has an implied AND. An OR condition is defined using multiple branches, each with a specified condition.**
-
-The configuration of conditions will be displayed on the right-hand side when the line between nodes is clicked. The design of the configuration options is similar to other nodes in Shuffle.
-
-The available set of values to use within a condition defined on a branch is the same as other nodes within Shuffle. Consequently, the condition can be passed the result from any previous node or a workflow variable or other execution argument.
-
-**PS: Conditions can NOT handle loops right now ($variable.#). Use the [Filter App action](#condition-loops) to learn more.**
-
-1. Click a branch / line
-![conditions-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-1.png?raw=true)
-
-2. Click "New condition"
-![conditions-example-2](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-2.png?raw=true)
-
-3. Configure the condition. Choose the value(s) you're looking for, and use the center piece ("DOES NOT EQUAL" in this example) to modify what you want. In the case of this image, it would NOT run, because "hello" (left side) equals "hello" (right side).
-![conditions-example-3](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-3.png?raw=true)
-
-4. Here's another example, where it would run IF the [execution argument](#execution-argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
-![conditions-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-4.png?raw=true)
-
-5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing-values)).
-![conditions-example-5](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-5.png?raw=true)
-
-### Condition Loops
-**PS: It is best to avoid loops within conditions by using the "Shuffle Workflow" trigger to run each item of a list in a [subflow](/docs/triggers#subflow). However, this will require additional workflows to be executed, which will result in more CPU and RAM usage**
-
-In this section, we'll be exploring how to use conditions for loops. As explained above, this is done using the "Filter List" action of the "Shuffle Tools" app. The goal if this app is to filter what DOES and DOESN'T fit your criteria within a list. This app action has the same functionality as a normal condition. These conditions are based on the "filter" mechanism of arrays in Javascript.
-
-Take the example of the list below. How would we use the app to only find the section that IS malicious (where "malicious" = true)?
-```
-[{"ip": "1.2.3.4", "malicious": true}, {"ip": "4.3.2.1", "malicious": false}, {"ip": "1.2.3.5", "malicious": true}]
-```
-
-1. Create a node that can handles the list.
-![condition-loop-1](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-1.png?raw=true)
-
-2. Add another node that uses the "Filter List" action
-![condition-loop-2](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-2.png?raw=true)
-
-3. Add the right information to the fields. The first field is the list itself. 
-**PS: DONT add # here. Pass the entire list, not one at a time.**
-```
-input_list: The ENTIRE list that we want to filter. In our case; "$repeat_list" 
-field: The field we want to validate. In our case this is "malicious" as we want to see if malicious is true or false
-check: How do you want to validate? In this case, we want it to check if EQUALS. Other options: Larger than, Less than, Is Empty, Contains, Starts With, Ends With, Files by extension
-value: the value we want the value to be. In our case, it's "true" as we only want it to be true.
-opposite: want to make it opposite? "equals" becomes "NOT equals" and "Larger than" becomes "Less than" etc.
-```
-![condition-loop-3](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-3.png?raw=true)
-
-4. Get the output! The data is returned as such:
-```
-{
-	"success": True,
-	"valid": [..],
-	"invalid": [..]
-}
-```
-
-The "valid" field will match our criteria, while the "invalid" part has everything that doesn't. In our case (below), there are 2 that ARE malicious, and 1 that isn't.
-![condition-loop-4](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-4.png?raw=true)
 
 ## Variables and Arguments
 
@@ -529,6 +460,76 @@ Having ran it, we get the correct response, as expected from their documentation
 
 And with that, we're done with the basic part of files in Shuffle. If something is unclear, please tell us.
 
+## Branches & Conditions
+
+### Conditions
+Conditions determine the flow of node execution within a workflow. A condition is defined on the branch/line between two nodes. Consequently, you require at least two nodes to set a condition within a workflow. By default, a branch has an implied true condition, resulting in the execution of a subsequent node.
+
+A node may have multiple branches flowing from it. These branch conditions are evaluated independently. Parallel execution of nodes will occur where multiple branch conditions leave a node evaluate as true. Additionally, a branch between two nodes may also have multiple conditions defined. Boolean logic is used to evaluate these conditions.
+
+**NOTE: Currently, defining multiple conditions has an implied AND. An OR condition is defined using multiple branches, each with a specified condition.**
+
+The configuration of conditions will be displayed on the right-hand side when the line between nodes is clicked. The design of the configuration options is similar to other nodes in Shuffle.
+
+The available set of values to use within a condition defined on a branch is the same as other nodes within Shuffle. Consequently, the condition can be passed the result from any previous node or a workflow variable or other execution argument.
+
+**PS: Conditions can NOT handle loops right now ($variable.#). Use the [Filter App action](#condition-loops) to learn more.**
+
+1. Click a branch / line
+![conditions-example-1](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-1.png?raw=true)
+
+2. Click "New condition"
+![conditions-example-2](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-2.png?raw=true)
+
+3. Configure the condition. Choose the value(s) you're looking for, and use the center piece ("DOES NOT EQUAL" in this example) to modify what you want. In the case of this image, it would NOT run, because "hello" (left side) equals "hello" (right side).
+![conditions-example-3](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-3.png?raw=true)
+
+4. Here's another example, where it would run IF the [execution argument](#execution-argument) contains "shuffle is cool". That also means it would run if you write "I don't think shuffle is cool.".
+![conditions-example-4](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-4.png?raw=true)
+
+5. Here's another way of writing the exact same condition as in step 4. Notice the difference? We didn't select the "execution argument" as a previous action, but use it as a static value (this is explained further in [passing values](#passing-values)).
+![conditions-example-5](https://github.com/frikky/shuffle-docs/blob/master/assets/conditions-example-5.png?raw=true)
+
+### Condition Loops
+**PS: It is best to avoid loops within conditions by using the "Shuffle Workflow" trigger to run each item of a list in a [subflow](/docs/triggers#subflow). However, this will require additional workflows to be executed, which will result in more CPU and RAM usage**
+
+In this section, we'll be exploring how to use conditions for loops. As explained above, this is done using the "Filter List" action of the "Shuffle Tools" app. The goal if this app is to filter what DOES and DOESN'T fit your criteria within a list. This app action has the same functionality as a normal condition. These conditions are based on the "filter" mechanism of arrays in Javascript.
+
+Take the example of the list below. How would we use the app to only find the section that IS malicious (where "malicious" = true)?
+```
+[{"ip": "1.2.3.4", "malicious": true}, {"ip": "4.3.2.1", "malicious": false}, {"ip": "1.2.3.5", "malicious": true}]
+```
+
+1. Create a node that can handles the list.
+![condition-loop-1](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-1.png?raw=true)
+
+2. Add another node that uses the "Filter List" action
+![condition-loop-2](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-2.png?raw=true)
+
+3. Add the right information to the fields. The first field is the list itself. 
+**PS: DONT add # here. Pass the entire list, not one at a time.**
+```
+input_list: The ENTIRE list that we want to filter. In our case; "$repeat_list" 
+field: The field we want to validate. In our case this is "malicious" as we want to see if malicious is true or false
+check: How do you want to validate? In this case, we want it to check if EQUALS. Other options: Larger than, Less than, Is Empty, Contains, Starts With, Ends With, Files by extension
+value: the value we want the value to be. In our case, it's "true" as we only want it to be true.
+opposite: want to make it opposite? "equals" becomes "NOT equals" and "Larger than" becomes "Less than" etc.
+```
+![condition-loop-3](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-3.png?raw=true)
+
+4. Get the output! The data is returned as such:
+```
+{
+	"success": True,
+	"valid": [..],
+	"invalid": [..]
+}
+```
+
+The "valid" field will match our criteria, while the "invalid" part has everything that doesn't. In our case (below), there are 2 that ARE malicious, and 1 that isn't.
+![condition-loop-4](https://github.com/frikky/shuffle-docs/blob/master/assets/condition-loop-4.png?raw=true)
+
+
 ## Exploring Executions
 Executions in Shuffle can be explored by clicking the button of the "Running" person on the bottom of your screen while inside a workflow. This will open up a side-bar where you can see a list of the last executions as well as dig into details on why something did or didn't work (debugging). It will not always notify you when a new execution has happened, as these run in the background, but will open up when you attempt re-running an execution.
 
@@ -592,6 +593,58 @@ The next part is a list of Action Results that were performed within the executi
 ![image](https://user-images.githubusercontent.com/5719530/193852036-513560ef-2a7b-4b66-9a6e-c79698534822.png)
 
 **PS: There's a handy Copy trick with JSON. By clicking the VALUE in JSON, it will copy the path to the Value itself (e.g. #nodename.success), while clicking the pink COPY ICON to the right of the value will copy the actual value (e.g. false in the image above)**
+
+## Collaboration features
+Workflows have additional features that may be helpful when you start scaling, or want to collaborate.
+
+### Suborg distribution
+**Beta:** Suborg distribution is a way you for you to build a workflow once, and use it in all your tenants. If you have special needs for one or more of your customers, this can additionally be added. 
+
+**Requirements:**
+1. Be in a parent organization
+2. Have a minimum of one sub-tenant
+3. Set up which sub-organizations you want to distribute a workflow to by going into the "Edit" button.
+
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/637a58e9-5e9a-4b65-9dbd-d4217350e6ec">
+
+**Usage:**
+1. A distributed workflow is identified by the tiny blue border around the workflow.
+
+<img width="279" alt="image" src="https://github.com/user-attachments/assets/775632be-d02e-4b5b-83a4-213924434665">
+
+2. While inside the workflow, you can swap between which organizations workflow you want to use.
+<img width="227" alt="image" src="https://github.com/user-attachments/assets/8191f017-18ab-4df2-9ec5-25be4e48465b">
+
+3. You may edit a child workflow, but the parent will override any changes to the nodes that are controlled by the parent on next save, except for:
+- New nodes (child-workflow nodes)
+- New branches (child-workflow branches)
+- Authentication
+
+### Workflow Revisions & Versioning
+Every workflow has backups by default. These are stored in a separated database index, and can be reverted to at any time. It will save a maximum of once per 60 seconds.
+
+Find the following icon on the bottom bar to find your backups:
+<img width="66" alt="image" src="https://github.com/user-attachments/assets/8426414a-d712-445b-a176-0a8c1fcb6163">
+
+Choose the backup you want to revert to. Your current configuration will also be saved, and you can go back and forth.
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/38ad3f03-cace-43a8-bf0d-e199e64cf196">
+
+
+### Authentication Groups
+**Beta:** Ever wanted to run a workflow multiple times for all customers, but in the same workflow? Check out [authentication groups](https://shuffler.io/docs/organizations#app-authentication-groups)!
+
+### Multiplayer
+**Beta:** Workflows on Shuffle cloud are multiplayer. What this means is that you can for most usecases be building the same workflow at the same time.
+
+### Forms
+TBA: See /workflows/<workflow_id>/run of any workflow. Configure Input fields in the edit window.
+
+### Github backups
+By going to the "Edit" panel for a workflow, you can input information about an individual workflow and how to store it. This will override any workflow backup configuration you may have made on the organization level. It will additionally be distributed to the same workflow in sub-organizations if specified.
+
+These backups are stored without images, but are formatted in a way that makes it easy to track changes on Github.
+
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/e40c03ab-9da2-4868-bd4b-a620788f76a3">
 
 
 ## API
