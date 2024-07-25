@@ -54,7 +54,15 @@ All use of Google's API's within the Shuffle ecosystem adheres to the [Google AP
 * Personal data: Cookies, Usage Data, Browser storage
 
 ### Data Location
-* As of 18.12.2021, all information is saved in [Google's europe-west2 location (London)](https://cloud.google.com/compute/docs/regions-zones). We intend to add more regions and data-storage options from Q4 2022.
+As of Q1 2023, we have added multiple datacenter locations around the world on the Google Cloud Platform infrastructure. [Google's europe-west2 location (London)](https://cloud.google.com/compute/docs/regions-zones) is our default region for everyone, but we move customers to the closest region for them. The following regions are available:
+
+1. europe-west2 (London, England - Default)
+2. europe-west3 (Frankfurt, Germany)
+3. us-west2 (California, US)
+4. na-northeast1 (Québec, Canada)
+5. asia-south1 (Mumbai, India)
+
+We may add more regions in the future. If you would like to retain your data in another region than the default one (even if the region doesn't exist), contact the Shuffle support team.
 
 ### Infrastructure Monitoring
 * Snyk: Monitors for Infrastructure, Code and Container vulnerabilities.
@@ -72,8 +80,7 @@ We use the third party payment processor [Stripe](https://stripe.com/us/privacy)
 5. Fiken: Accounting 
 6. Google Drive: General storage
 7. Discord: Community Communication
-8. Copper & Pipedrive: CRM
-9. Drift: Support Chat
+8. Drift: Support Chat
 
 ### User Data Management
 * Collected data: Email addresses, Domains, Organization names, Firstname, Lastname, Authentication keys
