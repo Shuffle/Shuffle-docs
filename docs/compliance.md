@@ -10,10 +10,10 @@ On top of Shuffle's commitment to securing how we use and protect your personal 
 - **Sharing of data with 3rd parties**: Shuffle does not share data with any 3rd parties, except our support partner [Infopercept](https://infopercept.com/). We do however have third party services where your data may be stored - all listed in the segmented details below.
 
 
-# SOC2
+## SOC2
 
 ### Find the SOC2 compliance requirements and fullfilment [here](https://docs.google.com/spreadsheets/d/1LItbuj-05ZT7bziS40oe9gHXhFgdJIsR/).
 
-# ISO 27001
+## ISO 27001
 
 ### Find the ISO 27001 compliance requirements and fullfilment [here](https://docs.google.com/spreadsheets/d/1WbPerP9CS557y-4yfdmDBtkQ9zuad-Mq/).
