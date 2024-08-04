@@ -14,10 +14,6 @@ On top of Shuffle's commitment to securing how we use and protect your personal 
 
 ### Find the SOC2 compliance requirements and fullfilment [here](https://docs.google.com/spreadsheets/d/1LItbuj-05ZT7bziS40oe9gHXhFgdJIsR/).
 
-[![SOC2 Logo](https://raw.githubusercontent.com/Shuffle/Shuffle-docs/master/assets/soc2_logo.jpg)](https://docs.google.com/spreadsheets/d/1LItbuj-05ZT7bziS40oe9gHXhFgdJIsR)
-
 # ISO 27001
 
 ### Find the ISO 27001 compliance requirements and fullfilment [here](https://docs.google.com/spreadsheets/d/1WbPerP9CS557y-4yfdmDBtkQ9zuad-Mq/).
-
-[![ISO Logo](https://raw.githubusercontent.com/Shuffle/Shuffle-docs/master/assets/iso_logo.png)](https://docs.google.com/spreadsheets/d/1WbPerP9CS557y-4yfdmDBtkQ9zuad-Mq/)
