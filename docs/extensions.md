@@ -812,7 +812,23 @@ For searching records from the ServicePilot app we need to write SQL query to se
 	
 	
 ### ELK
-TBD: Kibana forwarding & ElastAlert
+Intergrating Elastic with Shuffle will first require you to set up a webhook in Elastic. Below are the steps you will need to follow to ensure your alerts are forwaded into Shuffle immediately.
+
+1. Create a new workflow in Shuffle, bottom left on your screen head to the triggers tab and drag in the webhook into your workflow. Click on it and ensure that the webhook is started. Copy the provided webhook URI and head over to Elastic.
+   
+ ![image](https://github.com/user-attachments/assets/e708d1fd-8222-4c47-ac29-7a2d5f62024e)
+
+ ![image](https://github.com/user-attachments/assets/98799857-7640-4cf7-aec4-31224a186320)
+
+3. Follow Elastic's documentation on setting up the webhook [here](https://www.elastic.co/guide/en/kibana/current/webhook-action-type.html).
+   - When setting up the webhook in Elastic you will have to provide a url to send the info to. Provide the Shuffle webhook URI you copied in step 1 above
+   - You do not need to provide authentication in Elastic while setting up, but just incase you do, remember to do the same in your webhook in Shuffle
+
+4. To finish setting up your connector in Elastic you will be required to provide the body of the webhook connector, we will need to provide a JSON body for the connector. Copy and paste the below in the connector body
+    ```{"raw": {{context.alerts}}}```
+
+5. Go ahead and test your connector and then check your workflow executions in Shuffle if you have an incoming execution.
+
 	
 ### Cortex 
 TBD: Responder executions
