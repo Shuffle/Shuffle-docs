@@ -811,7 +811,7 @@ For searching records from the ServicePilot app we need to write SQL query to se
 **Finally, Click the excecution button and you should now start seeing data sent from ServicePilot into Shuffle which can be used inside workflow for further actions.**
 	
 	
-### ELK
+### ELK/Elastic
 Intergrating Elastic with Shuffle will first require you to set up a webhook in Elastic. Below are the steps you will need to follow to ensure your alerts are forwaded into Shuffle immediately.
 
 1. Create a new workflow in Shuffle, bottom left on your screen head to the triggers tab and drag in the webhook into your workflow. Click on it and ensure that the webhook is started. Copy the provided webhook URI and head over to Elastic.
