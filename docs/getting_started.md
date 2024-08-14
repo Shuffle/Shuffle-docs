@@ -1,5 +1,6 @@
-# Getting started 
-Getting started with Shuffle
+# Getting Started with Shuffle
+Welcome to the Shuffle documentation! This guide will help you get up and running with Shuffle quickly and effectively.
+
 
 ## Table of contents
 * [Introduction](#introduction)
@@ -11,15 +12,18 @@ Getting started with Shuffle
 * [Learn about Shuffle](#learn_about_shuffle)
 
 ## Overview
-Shuffle is the Open Source automation platform for the Security industry. Run it for free:
+Shuffle is an open-source automation platform designed specifically for the security industry. You can start using it for free with the following options:
 
-- [Open Source (onprem)](https://github.com/shuffle/shuffle/blob/main/.github/install-guide.md)
-- [Cloud Signup (SaaS)](https://shuffler.io)
+- **[Open Source (On-Premises)](https://github.com/shuffle/shuffle/blob/main/.github/install-guide.md)**  
+  Download and install Shuffle on your infrastructure.
+- **[Cloud Signup (SaaS)](https://shuffler.io)**  
+  Sign up for Shuffle's cloud-based service and get started quickly.
 
-**Relevant pages to get help:**
-
-- [Professional Services](https://shuffler.io/pricing)
-- [Training](https://shuffler.io/training)
+**Need help? Check out these resources:**
+- **[Professional Services](https://shuffler.io/professional-services)**  
+  Explore our professional services for advanced support and customization.
+- **[Training](https://shuffler.io/training)**  
+  Access training resources to get up to speed with Shuffle.
 
 ### Usecases
 [Usecases are a collection of Workflows](/usecases) that perform a task together. This can be things like handling SIEM alerts, or doing phishing analysis. 
