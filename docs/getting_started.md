@@ -64,18 +64,27 @@ Shuffle is the Open Source automation platform for the Security industry. Run it
 - [Learning Liquid Formatting](https://shuffler.io/workflows/0d604c52-1b3f-49d8-a57e-480baf07ab8d?queryID=5775af43ac103d34ff77f11d27ea5bed)
 - [JSON within Shuffle](https://shuffler.io/workflows/ee334515-0224-4a09-af8c-ebc60886f154?queryID=7571057f529c8a4a9aabd5800c0d2b29)
 
-### Shuffle Youtube Videos
-*Learn about Shuffle - in depth**
+### Shuffle YouTube Videos
+**Learn about Shuffle - in-depth**  
 Here's a training session we did on Shuffle.
 
-- 00:00 - 00:30: Introduction to Shuffle and what we're building
-- 00:30 - 02:00: Feature walkthrough of organizations, app creator and workflows
-- 02:00 - end: Real-time demo, creating use-cases for attendees
+- **00:00 - 00:30**: Introduction to Shuffle and what we're building
+- **00:30 - 02:00**: Feature walkthrough of organizations, app creator, and workflows
+- **02:00 - end**: Real-time demo, creating use-cases for attendees
 
 [![Shuffle the SOC walkthrough](https://img.youtube.com/vi/PNuXCixYwDc/0.jpg)](https://www.youtube.com/watch?v=PNuXCixYwDc)
 
-### Community Videos
-- **Understanding Shuffle**: Our friends over at [OpenSecure](http://opensecure.co) made some good videos to learn about Shuffle. Check them out here!
-- **What is SOAR?**: [Shuffle getting started understanding shuffle](https://www.youtube.com/watch?v=_riaZjLnoXo)
-- **Installing Shuffle**: [How to install Shuffle](https://www.youtube.com/watch?v=YDUKZojg0vk)
+## Community Videos
+
+### 1. Understanding Shuffle
+Our friends at [OpenSecure](https://www.youtube.com/watch?v=_riaZjLnoXo&t=317s) have created excellent videos to help you learn about Shuffle. Be sure to check them out!
+
+### 2. What is SOAR?
+Learn the basics of SOAR (Security Orchestration, Automation, and Response) and how Shuffle fits into this ecosystem.  
+**Watch now:** [Shuffle Getting Started - Understanding Shuffle](https://www.youtube.com/watch?v=_riaZjLnoXo)
+
+### 3. Installing Shuffle
+Ready to install Shuffle? Follow this step-by-step guide to get Shuffle up and running quickly.  
+**Watch now:** [How to Install Shuffle](https://www.youtube.com/watch?v=YDUKZojg0vk)
+
 
