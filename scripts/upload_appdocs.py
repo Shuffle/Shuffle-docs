@@ -20,7 +20,7 @@ def get_algolia_image(appname):
 
     return ""
 
-basedir = "../../OpenAPI-security-definitions/docs"
+basedir = "../../openapi-apps/docs"
 validurls = []
 for dirname in os.listdir(basedir):
     if "md" not in dirname:
