@@ -39,6 +39,9 @@ Shuffle is an open-source automation platform designed specifically for the secu
 * [2. Getting started with Shuffle](https://medium.com/@Frikkylikeme/getting-started-with-shuffle-an-open-source-soar-platform-part-2-1d7c67a64244)
 * [3. Creating your first app - Virustotal and TheHive](https://medium.com/@Frikkylikeme/integrating-shuffle-with-virustotal-and-thehive-open-source-soar-part-3-8e2e0d3396a9)
 * [4. On webhooks and loops - TheHive, Cortex and MISP](https://medium.com/swlh/indicators-and-webhooks-with-thehive-cortex-and-misp-open-source-soar-part-4-f70cde942e59)
+* [5. Deploying Shuffle :)](https://medium.com/@stasis_/soar-deploying-shuffle-ad26173525d2)
+* [6. Automation with Shuffle SOAR](https://medium.com/@Romser/final-part-configuring-shuffle-soar-28e3674ede22)
+* [7. Simplify Your SOAR Implementation with Shuffle](https://medium.com/@socfortress/simplify-your-soar-implementation-with-shuffle-and-seim-integration-d1d32728515e)
 
 ## Usage Models
 ![models](https://user-images.githubusercontent.com/5719530/167960847-53e81815-a240-4a26-abb9-96b9244be901.jpeg)
