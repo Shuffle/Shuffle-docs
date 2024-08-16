@@ -26,8 +26,9 @@ This roadmap is meant more as a guide than as the exact order of operations. It'
   
 * 1.4 - **Current release:** Realtime Workflow Collaboration (+support workflow support cloud->onprem), Workflow Generation based on text, MSSP Tenant & Workflow Management, Dynamic Authentication, Vaults, Improved Coding Editor with Code Generator & Shuffle Functions, Improved Trigger management and branding, Hybrid Workflow Access. Kubernetes support. Expected release Q2 2024.
   
-* **In Development:** API Standardization & Security Infrastructure as a Service: **Schemaless**, Focus on Usecase generation, Technology Partnerships, Developer Friendliness, Form & Message Queue Triggers, Mitre D3FEND and Att&ck, Sigma and Sublime email rules. AI for Documentation -> App generation + API action merging from forks. Auth Proxy tests and Multi-Tenant Workflows. Expected release: November-December 2024.
-* After next release: OASIS OpenC2 & CACAO support. Creator & Community earning re-initialization. Focus on App, Workflow, Detection and Response ruleset sharing. Add Yara+Sandbox autoscans, Ansible response playbooks and OSQuery asset mapping. Expansive Mitre Att&ck & D3FEND support. Support for JSON-schema & Postman Collections. Optimize Realtime Workflow Collaboration.
+* **In Development:** API Standardization & Security Infrastructure as a Service: **Schemaless**, Workflow & Usecase generation, Technology Partnerships, OpenID/SAML testing & management mechanisms, Developer Friendliness, Form & MQ Triggers, Mitre D3FEND and Att&ck tracking, automatic Sigma and Sublime detection mechanisms. AI for Documentation -> App generation + API action merging from forks. Auth Proxy tests and Multi-Tenant Workflows. Expected release: November-December 2024.
+
+* After next release: OASIS OpenC2 & CACAO support. Creator & Community earning re-initialization. Focus on App, Workflow, Detection and Response ruleset sharing. Add Yara+Sandbox autoscans, Ansible response playbooks and OSQuery asset mapping. Expansive Mitre Att&ck & D3FEND support. Support for JSON-schema & Postman Collections. Optimize Realtime Workflow Collaboration. 
     
 ## Blogposts
 * [Introducing Shuffle](https://medium.com/security-operation-capybara/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12)
