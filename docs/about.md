@@ -4,20 +4,18 @@ Shuffle started as a project in mid-2019 because of a few automation related pro
 [![Shuffle Overview PDF](https://raw.githubusercontent.com/Shuffle/Shuffle-docs/master/assets/Shuffle%20Overview.png)](https://raw.githubusercontent.com/Shuffle/Shuffle-docs/master/assets/Shuffle%20Overview.pdf)
 
 ## Mission
-To make every security operations center share their processes, automations and detections in a standardized way. Cybersecurity is not a competiton between companies, and shouldn't treated as such.
+To make every security operations center share their processes, automations and detections in a standardized way. Cybersecurity is not a competiton, and shouldn't treated as such.
 
 ## Open Source
 Focus for Shuffle has moved to an entirely open ecosystem. This includes, but is not limited to; the Shuffle product, open workflows, open apps, open standards (OpenAPI, Swagger).
 
 ## Roadmap
-This roadmap is meant more as a guide than as the exact order of operations. It's mainly focused on the Open Source side of Shuffle, but also focuses on the creator and growth aspects of Shuffle.
-
-- [Slides for 2022-2023](https://docs.google.com/presentation/d/1eqfeYOgfGV8srb_0Cox4ZDK_KuykiwB8LpxHHrTgw5o/edit?usp=sharing)
+The Roadmap is our high level guide to the future, and may be reorganized without notice according to more immediate needs. 
 
 * 0.1 - 0.5: Created basic features for automation, as well as use cases and frontend. This was before the project was open sourced.
-* 0.6 - Usability: High focus on the workflow and app editor, as well as bugfixing after open sourcing. 
-* 0.7 - Improve: First larger release of Shuffle. Focus on users, schedules, app authentication and a better overview in general through the admin view.
-* 0.8 - Integrate: Hybrid cloud features and file control 
+* 0.6 - Usability: High focus on the workflow and api editor, as well as bugfixing after open sourcing. 
+* 0.7 - Improve: First larger release of Shuffle. Focus on organizations, users, schedules, app authentication and a better overview in general through the admin view.
+* 0.8 - Integrate: Hybrid cloud features and file control/cross-workflow data management
 * 0.9 - Features: Search engine for apps, workflows, executions etc. GCP (Storage & Functions) integration usage for cloud.
 * 1.0 - Launch: Categorized apps, proper use-cases, and a real tutorial mapped to use-cases. Enterprise-ready (SSO/SAML, MFA, Reporting, Statistics, Replayability)
 * **1.1 - [Creator onboarding](https://github.com/Shuffle/Shuffle/releases/tag/1.1.0):** Workflow, App & Usecase discovery. Stability & Scalability everywhere with multi-region deployments. HUGE focus on on-boarding and workflow templates. Expected release Q4 2022.
