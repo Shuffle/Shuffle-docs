@@ -55,7 +55,7 @@ HTTP Method(s):
 * GET
 * POST
 
-PS: Data in the POST request will be the execution argument. If HTTP queries are present, these will be converted to JSON.
+PS: Data in the POST request will be the execution argument. If HTTP queries are present in the GET request, these will be converted to JSON.
 
 #### Authentication
 In later versions of Shuffle, you further have access to an authentication field. This field is based on the headers of the request, and any header added to this field will be **REQUIRED** from the sender of the webhook.
@@ -73,9 +73,9 @@ Once you have a service ready:
 
 ![Triggers-view-2](https://github.com/frikky/shuffle-docs/blob/master/assets/triggers-view-2.png?raw=true)
 
-Test it! Say your URI is: https://shuffler.io/functions/webhooks/webhook_336a7aa2-e785-47cc-85f4-31a4ab5b28b8 and you want to use {"test": "testing"} in your workflow:
+Test it! Say your URI is: https://shuffler.io/api/v1/webhooks/webhook_336a7aa2-e785-47cc-85f4-31a4ab5b28b8 and you want to use {"test": "testing"} in your workflow:
 ```bash
-curl -XPOST https://shuffler.io/functions/webhooks/webhook_336a7aa2-e785-47cc-85f4-31a4ab5b28b8 --data '{"test": "testing"}'
+curl -XPOST https://shuffler.io/api/v1/webhooks/webhook_336a7aa2-e785-47cc-85f4-31a4ab5b28b8 --data '{"test": "testing"}'
 ```
 
 ## Subflow 
