@@ -6,6 +6,7 @@ Documentation for Shuffle API. Change https://shuffler.io with your local domain
 * [Authentication](#authentication)
 * [Responses](#responses)
 * [Workflows](#workflow-api)
+* [Stats & Timelines](#stats-and-timelines)
 * [Triggers](#triggers)
 * [Apps](#app-api)
 * [App Authentication](#app-authentication)
@@ -17,6 +18,7 @@ Documentation for Shuffle API. Change https://shuffler.io with your local domain
 * [Priorities](#priorities)
 * [Environments](#environments)
 * [Integration Layer - Beta](#integration-layer)
+
 
 
 ## Introduction
@@ -60,7 +62,6 @@ Shuffle responses follow the response codes listed below. The data you can expec
 | 401    | Not authorized, or an error occurred. Usually contains a reason for the error. |
 | 405    | Method not allowed. We use GET/POST/PUT/DELETE |
 | 500    | A backend error occurred. |
-
 
 
 ## Workflow API
@@ -216,9 +217,6 @@ curl https://shuffler.io/api/v1/workflows/{workflow_id}/executions/{execution_id
 {"success": true}
 ```
 
-
-
-
 ## App API
 Apps are the building blocks used in [workflows](/docs/apps#workflows), as they contain the actions to be executed. First of all, there are two types of apps:
 
@@ -273,6 +271,84 @@ curl https://shuffler.io/api/v1/apps/upload -H "Authorization: Bearer APIKEY" -F
 **Success response** 
 ```
 {"success": true, "id": "798f1234c4fb8b4a6300da3c546af45a"}
+```
+
+
+## Stats and Timelines
+Stats and Timelines are a system built to help track changes to something over time. This is used both by internal systems in Shuffle, and is an option for you to use in Workflows or elsewhere to make timelines. Adding statistics was added in versions >1.4.3, and graphing of ANY value will be available soon. Graphs for default tracked information like App and Workflow utilisation is on the [statistics admin page for your Organisation](https://shuffler.io/admin?admin_tab=billing). 
+
+**PS: Statistics are visible to you for every 5th number counted. This means you need to count the number 1 five times, or any number higher than 5 one time for it to be visible.**
+
+### Get Stats
+Returns the statistics for an organisation
+
+Method: GET
+
+```
+curl https://shuffler.io/api/v1/orgs/{ORG_ID}/stats  -H "Authorization: Bearer APIKEY"
+```
+
+**Success response**
+```
+{
+  "org_id": "orgid",
+  "org_name": "orgname",
+  "last_cleared": 1722463229,
+  "daily_statistics": [
+    {
+      "date": "2024-06-27T10:38:56.488732Z",
+      "app_executions": 32,
+      "app_executions_failed": 0,
+      "subflow_executions": 10,
+      "workflow_executions": 10,
+      "workflow_executions_finished": 20,
+      "workflow_executions_failed": 0,
+      "org_sync_actions": 0,
+      "cloud_executions": 20,
+      "onprem_executions": 0,
+      "ai_executions": 0,
+      "api_usage": 0,
+      "app_usage": null,
+      "additions": [
+        {
+          "key": "app_executions_Cloud",
+          "value": 42
+        },
+        {
+          "key": "custom_sample_key",
+          "value": 10
+        }
+      ]
+    }
+  ],
+  "additions": [
+    {
+      "key": "app_executions_Cloud",
+      "value": 42
+    },
+    {
+      "key": "custom_sample_key",
+      "value": 123,
+      "daily_value": 113
+    }
+  ]
+}
+```
+
+### Count Stats for Custom key 
+Add a statistic to be added, e.g. for number of tickets found over time. Custom statistics are tracked under the key "custom_X", where "custom_" is appended unless supplied, and "X" is the key you supply. They can be found in the "additions" section of the Get Stats API response.
+
+Use the "Count Stats" action in Shuffle tools to do this in a Workflow 
+
+Method: POST
+
+```
+curl https://shuffler.io/api/v1/orgs/{ORG_ID}/stats  -H "Authorization: Bearer APIKEY" -d '{"key": "tickets", "value": 6}'
+```
+
+**Success response**
+```
+{"success": true, "reason": "Cache incremented by 6"}
 ```
 
 ## App Authentication
