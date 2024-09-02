@@ -179,7 +179,7 @@ Finally go back to shuffle and use SSO button to login.
 To use OpenID with Azure AD, Shuffle supports OpenID connect with the use of Client IDs and Client secrets. To set up OpenID Connect with Azure, we use "ID_token" authentication. This entails a few normal steps regarding app creation in Azure App Registration.
 
 1. Set up an app in Azure AD with ID tokens enabled
-Go to [app registrations and create a new app](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade). Make it use "Web" for redirect URI's and direct it to your Shuffle instance at /api/v1/openid_connect. From here, make sure to go to "authentication" and enable "ID Tokens"
+Go to [app registrations and create a new app](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade). Make it use "Web" for redirect URI's and direct it to your Shuffle instance at /api/v1/login_openid. From here, make sure to go to "authentication" and enable "ID Tokens"
 ![image](https://user-images.githubusercontent.com/5719530/169712651-24f481bc-7d90-4b09-b25f-cd1ec6c52c20.png)
 
 2. Get the Client ID, Client Secret and your Tenant
