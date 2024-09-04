@@ -76,7 +76,9 @@ After adding them, click "Save", saving the configuration. After saving, log out
 
 • Next page will be the SP information, this is where you should provide the Single Sign On URL, and SP Entity ID.
 
-	- ACS URL : https://10.67.0.70:3443/api/v1/login_sso
+	- ACS URL : 
+ 		- For Cloud : https://shuffler.io/api/v1/login_sso
+		- For On-prem: https://<your-ip>:3443/api/v1/login_sso	
 	- Entity ID : shuffle-saml
 	- Name ID: Basic Information > Primary Email
  ![image](https://github.com/yogeshgurjar127/Shuffle-docs/assets/118437260/7958a55b-c932-4b5c-8910-dfb42703b695)
