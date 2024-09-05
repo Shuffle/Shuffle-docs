@@ -200,10 +200,6 @@ User Input: Analyst decision for remediation actions, such as isolating a compro
 - If you hover above the start times for the executions you should see pop up info with regards to what the error is, errored out workflows start times are usually highlighted in red as shown in the image above
 - In label 3 as shown in the image a pop out takes you to the target workflow directly and 4 shows you the logs. 
 
-
-## Email - Gmail & Outlook
-Email triggers no longer exist, and should be handled with Email schedules instead: [Gmail](https://shuffler.io/workflows/e506060f-0c58-4f95-a0b8-f671103d78e5), [Outlook](https://shuffler.io/workflows/31d1a492-9fe0-4c4a-807d-b44d9cb81fc0)
-
 ## Pipelines
 
 A pipeline is a sequence of interconnected steps or stages that take input data, transform it through various operations, and produce an output. The data enters the pipeline at one end, undergoes transformations at each stage, and emerges as a refined output at the other end.
@@ -232,7 +228,7 @@ A pipeline is a sequence of interconnected steps or stages that take input data,
 - **Examples**: Databases, analytics systems, other applications.
 - **Function**: Stores or utilizes the processed data for analysis, reporting, or further action.
 
-## How Shuffle Uses Pipelines
+### How Shuffle Uses Pipelines
 
 In Shuffle, we are currently using Tenzir data pipelines.
 
@@ -279,7 +275,7 @@ To view and manage the downloaded Sigma rules:
 ![Global Enable Rule ](../assets/global_enable_rule.png)
 
 
-## Pipeline Example
+### Pipeline Example
 
 ![Pipeline Example ](../assets/pipeline_example.png)
 
@@ -297,3 +293,7 @@ To view and manage the downloaded Sigma rules:
 ![Kafka ](../assets/kafka.png)
 
 5. To stop a pipeline, simply click on the stop button. This will stop the pipeline and its execution. If you want to delete the pipeline, you can delete the pipeline trigger from the workflow.
+
+## Email - Gmail & Outlook
+Email triggers no longer exist, and should be handled with Email schedules instead: [Gmail](https://shuffler.io/workflows/e506060f-0c58-4f95-a0b8-f671103d78e5), [Outlook](https://shuffler.io/workflows/31d1a492-9fe0-4c4a-807d-b44d9cb81fc0)
+
