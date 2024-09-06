@@ -8,6 +8,7 @@ Documentation for triggers, running workflow executions
 * [Shuffle Subflow](#subflow)
 * [Schedule](#schedule)
 * [User Input](#user_input)
+* [Pipelines](#pipelines)
 * [Email](#email)
 
 ## Introduction
