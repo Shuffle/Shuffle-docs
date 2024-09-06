@@ -248,7 +248,7 @@ Additional features will be added in the future.
 
 To start using pipelines for detection, you need to set up or download Sigma rules. This can be done by:
 
-1. Visiting the Sigma page: [http://localhost:3000/detections/sigma](http://localhost:3000/detections/sigma)
+1. Visiting the Sigma page: [https://shuffler.io/detections/sigma](https://shuffler.io/detections/sigma)
 2. This will automatically download all the Sigma rules from a remote GitHub repository into the Tenzir node, making the pipeline ready for detection.
 
 ![download Rules](../assets/sigma_downlaod.png)
@@ -257,7 +257,7 @@ To start using pipelines for detection, you need to set up or download Sigma rul
 
 To view and manage the downloaded Sigma rules:
 
-1. Visit the Sigma page: [http://localhost:3000/detections/sigma](http://localhost:3000/detections/sigma)
+1. Visit the Sigma page: [https://shuffler.io/detections/sigma](https://shuffler.io/detections/sigma)
 
 ![Sigma Ui](../assets/sigma_ui.png)
 
@@ -285,7 +285,6 @@ To view and manage the downloaded Sigma rules:
 
 ![Syslog](../assets/syslog.png)
 
-
 3. For running detection rules, click on the Sigma rule search option. This will create a pipeline that takes the ingested logs and applies the Sigma rules that are downloaded and enabled. Whenever logs match the defined rules, the detected logs are sent, triggering the workflow run.
 
 4. For forwarding Kafka messages from a topic, click on the "follow Kafka queue" option. You will see a pop-up asking for Kafka-specific information that you need to provide, such as the topic name and bootstrap server address. Once you provide the required details, click submit and start. This will actively forward all incoming messages from your Kafka topic to the workflow.
@@ -293,6 +292,18 @@ To view and manage the downloaded Sigma rules:
 ![Kafka ](../assets/kafka.png)
 
 5. To stop a pipeline, simply click on the stop button. This will stop the pipeline and its execution. If you want to delete the pipeline, you can delete the pipeline trigger from the workflow.
+
+### Manual Sigma forwarding
+The reason manual forwarding may be necessary is e.g. if Shuffle doesn't have access to the location you are trying to reach. This makes Shuffle unable to handle rules dynamically, but allows for customization nonetheless. 
+
+1. Make sure you have a folder with the rules on the server you want to run detections on. Put them in the folder `/var/lib/tenzir/sigma_rules`
+2. Set up a sample workflow with a Webhook as the trigger in Shuffle. 
+3. Start the following Pipeline in Tenzir.
+
+```
+export | sigma /var/lib/tenzir/sigma_rules | to <webhook url>
+```
+4. Done :)
 
 ## Email - Gmail & Outlook
 Email triggers no longer exist, and should be handled with Email schedules instead: [Gmail](https://shuffler.io/workflows/e506060f-0c58-4f95-a0b8-f671103d78e5), [Outlook](https://shuffler.io/workflows/31d1a492-9fe0-4c4a-807d-b44d9cb81fc0)
