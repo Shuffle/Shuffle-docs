@@ -303,7 +303,7 @@ The reason manual forwarding may be necessary is e.g. if Shuffle doesn't have ac
 ```
 export | sigma /var/lib/tenzir/sigma_rules | to <webhook url>
 ```
-4. Done :)
+4. Check in Shuffle if any executions occurred
 
 ## Email - Gmail & Outlook
 Email triggers no longer exist, and should be handled with Email schedules instead: [Gmail](https://shuffler.io/workflows/e506060f-0c58-4f95-a0b8-f671103d78e5), [Outlook](https://shuffler.io/workflows/31d1a492-9fe0-4c4a-807d-b44d9cb81fc0)
