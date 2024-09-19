@@ -588,12 +588,36 @@ I have the function below, as specified in my api.yaml, that accepts the args I 
 ```
 
 ### Hotloading your app
+Uploading and testing an app can be done in multiple ways. When the necessary files and directory structure is set up, you may continue to upload the app.
+
+**Anywhere:**
+To use a custom app in your instance, you can to use the [Upload App API](https://shuffler.io/docs/API#upload-a-python-app).  When this has been ran, the app is available in your organisation in Shuffle. To test the app, run a workflow.
+
+After it has been uploaded once, we suggest you run the app on a local environment, and run the docker build command instead of the full upload to make testing easier. To do this: 
+1. Make sure the app is initially uploaded and ran in your environment once
+2. Find the docker image for the app: `docker images | grep <appname>`
+3. Hotload the app locally: `docker build . -t <imagename>`
+
+For cloud, this is the only option.
+
+**Onprem Only:**
 Once your app has been tested, you've created the necessary metadata files and directory structure under your shuffle-apps folder, there is no need to restart your containers!
 
 Shuffle has an app hot reloading feature in the GUI. Go to Apps on the top left hand tool bar of the GUI, and then look for a Double Arrow refresh.
-Give the system 20 or so seconds, and you'll see a pop up saying it was successful.
+Give the system 20 or so seconds, and you will see a pop up saying it was successful.
 
 Once complete, any workflows you have that use the existing app, you'll have to delete old versions of the app and re-add them in the workflow.
+
+
+### CI/CD for managing apps
+When you have working apps, it is important to have them tested. Due to apps not working standalone (yet), you need to test them through Shuffle. To make a CI/CD pipeline, we suggest the following:
+1. Make a Workflow in Shuffle that runs the app actions you want tested
+2. Make sure the CI/CD uploads a TEST version of the app (different name / version)
+3. Add any configuration mechanism in the CI/CD that you want, e.g. to check for vulnerabilities
+4. Run the workflow automatically with the API, then validate if step 3 worked properly from the execution. The best way to check if any error occured is with the `workflowexecution.workflow.validation.valid` boolean.  
+5. Use the production version of the app 
+
+Keep in mind these are just suggestions, and that it may not align with your company policies for how CI/CD is done.
 
 ### Publishing your app
 Just made an app and want others to get access to it? Here's how to get it in the hands of everyone:
