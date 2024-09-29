@@ -31,9 +31,9 @@ All monthly limits are per organization, including its sub-organizations.
 - **Bandwidth** - 10GB in and 10GB out of Shuffle 
 
 ### Scale, Enterprise & MSSP Plan
-- **App Executions** - Minimum 100.000 or 8 CPU cores
+- **App Executions** - Minimum 300.000 or 8 CPU cores
 - **Bandwidth** - 1000 GB in and 1000 GB out of Shuffle 
-- **Extended limits** - Varies based on agreement - by default $0.0042/app execution above normal limit, or $75 per CPU core supported above normal limit. Please [contact us](https://shuffler.io/contact) us for more information.
+- **Extended limits** - Varies based on agreement - by default $0.006/app execution above normal limit, or $120 per CPU core supported above normal limit. Please [contact us](https://shuffler.io/contact) us for more information.
 
 ## The system
 1. Use of the System. During the Term and provided that this Agreement has not been terminated by either party, and in consideration of the payment of the System Fees, Customer may access and use the System pursuant and subject to: (a) the terms of any outstanding Customer Order, including such features and functions as the Customer Order provides and any limitations on the number of Users, data volume and capacity as the Customer Order imposes; and (b) AUP and Shuffle’s other policies posted on its Website at shuffler.io, as such policies may be updated from time to time.
@@ -98,6 +98,9 @@ All monthly limits are per organization, including its sub-organizations.
 Customer shall defend, indemnify, and hold harmless Shuffle and each of the Shuffle Associates (as defined below) against any “Indemnified Claim,” meaning any third party claim, suit, or proceeding arising out of or related to Customer's alleged or actual use of, misuse of, or failure to use the System, including without limitation: (a) claims by Users or by Customer's employees, as well as by Customer’s own customers; (b) claims related to unauthorized disclosure or exposure of personally identifiable information or other private information, including Customer Data; (c) claims related to infringement or violation of a copyright, trademark, trade secret, or privacy or confidentiality right by written material, images, logos or other content uploaded to the System through Customer’s account, including without limitation by Customer Data; and (d) claims that use of the System through Customer’s account harasses, defames, or defrauds a third party or violates the CAN-Spam Act of 2003 or any other law or restriction on electronic advertising. Indemnified Claims include, without limitation, claims arising out of or related to Shuffle’s negligence. Customer’s obligations set forth in this Article 9 include retention and payment of attorneys and payment of court costs, as well as settlement at Customer’s expense and payment of judgments. Shuffle will have the right, not to be exercised unreasonably, to reject any settlement or compromise that requires that it admit wrongdoing or liability or subjects it to any ongoing affirmative obligations. (The “Shuffle Associates” are Shuffle’s officers, partners, directors, shareholders, parents, subsidiaries, agents, successors, and assigns.)
 
 ## Limitation of Liability
+
+Each Party (Shuffle and the Customer) shall be liable for any damage caused to the other Party resulting directly from a fault on its part but may not under any circumstances be held liable, regardless of the type of liability action taken, even if the Party has been informed of their possible occurrence, unless otherwise required by law, for any damage that is indirect and/or sometimes qualified as incidental, special, whether tangible or intangible, consequential or otherwise. In any event, the financial liability of each Party, all claims and all losses combined, shall be capped at the amount of three times the price paid by the Client over the Contract duration.
+
 1. Dollar Cap. VENDOR’S LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT WILL NOT EXCEED THE AMOUNT OF THE FEES ACTUALLY PAID BY CUSTOMER TO SHUFFLE IN A PERIOD OF TWELVE MONTHS IMMEDIATELY PRECEDING THE DATE ON WHICH CUSTOMER PRESENTS A CLAIM TO SHUFFLE WITH RESPECT TO SHUFFLE’S BREACH OF SHUFFLE’S OBLIGATIONS UNDER THIS AGREEMENT.
 
 2. Exclusion of Consequential Damages. IN NO EVENT WILL SHUFFLE BE LIABLE TO CUSTOMER FOR ANY CONSEQUENTIAL, INDIRECT, SPECIAL, INCIDENTAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO THIS AGREEMENT.
@@ -105,11 +108,40 @@ Customer shall defend, indemnify, and hold harmless Shuffle and each of the Shuf
 3. Clarifications & Disclaimers. THE LIABILITIES LIMITED BY THIS ARTICLE APPLY: (a) TO LIABILITY FOR NEGLIGENCE; (b) REGARDLESS OF THE FORM OF ACTION, WHETHER IN CONTRACT, TORT, STRICT PRODUCT LIABILITY, OR OTHERWISE; (c) EVEN IF SHUFFLE IS ADVISED IN ADVANCE OF THE POSSIBILITY OF THE DAMAGES IN QUESTION AND EVEN IF SUCH DAMAGES WERE FORESEEABLE; AND (d) EVEN IF CUSTOMER’S REMEDIES FAIL OF THEIR ESSENTIAL PURPOSE. If applicable law limits the application of the provisions of this Article, Shuffle’s liability will be limited to the maximum extent permissible. For the avoidance of doubt, Shuffle’s liability limits and other rights set forth in this Article apply likewise to Shuffle’s affiliates, licensors, suppliers, partners, advertisers, agents, sponsors, directors, officers, employees, consultants, and other representatives.
 
 ## Term and Termination
-1. Term. The term of this Agreement (the “Term”) shall commence on the Effective Date and continue for the initial term selected by the Customer in the online registration process or as specified in a Customer Order, if any. Following its expiration, the Term will renew for successive terms equal to the initial term specified in the Customer Order, unless either party refuses such renewal by written notice to the other party 30 or more days before the renewal date.
+
+1. Term. The term of this Agreement (the “Term”) shall commence on the Effective Date and continue for the initial term selected by the Customer in the online registration process or as specified in a Customer Order, if any. Following its expiration, the Term will renew for successive terms equal to the initial term specified in the Customer Order, unless either party refuses such renewal by written notice to the other party 30 or more days before the renewal date. In the event the agreed requirements for the software are unfulfilled by Shuffle, the Customer may terminate this agreement and payment obligations, not without paying for any services already provided. Following the initial term, the Customer may terminate this Agreement by giving not less than sixty (60) days' prior written notice to terminate this Agreement.
 
 2. Termination for Cause. Either party may terminate this Agreement or any Customer Order if the other party: (i) fails to cure any material breach (including, without limitation, Customer's failure to pay the Fees) of this Agreement within thirty (30) days after written notice of such breach; (ii) ceases operation without a successor; or (iii) seeks protection under any bankruptcy, receivership, trust deed, creditors arrangement, composition or comparable proceeding, or if any such proceeding is instituted against such party (and not dismissed within sixty (60) days thereafter).
 
 3. Effects of Termination. Upon termination of this Agreement, Shuffle shall discontinue Customer’s access to the System and Customer shall cease all use of the System and delete, destroy, or return all copies of the Documentation in its possession or control. The following provisions will survive termination or expiration of this Agreement: (a) any obligation of Customer to pay the Fees (unless the termination is by Customer for cause); (b) Sections: IP & Feedback, Confidential Information, Warranty Disclaimers, Indemnification, Limitation of Liability and Publicity; and (c) any other provision of this Agreement that must survive to fulfill its essential purpose. Data about the customer will be kept by Shuffle for one (1) year after termination. We do further offer instant permanent data removal upon request.
+
+## Other Conditions
+
+1. Any information exchanged with the Customer will be subject to a mutual confidentiality agreement.
+
+2. All intellectual property and documents obtained from the Customer will remain the sole property of the Customer. All documents obtained by the Customer from Shuffle will remain the property of Shuffle. Further rights may be applicable as per a mutual NDA.
+
+3. The software license for Shuffle will terminate when the agreement terminates. Access to materials provided by Shuffle will remain accessible, unless otherwise explicitly specified.
+
+4. Payment structure will be via Credit Card or Wire transfer, Monthly or Yearly subscription based. In the case of cancellation, you will retain access to all provided features for the extent of your subscription, and we do not do refunds if not explicitly specified.
+
+5. The Customer shall not disclose the pricing to any third party without prior written consent, except as required by law.
+
+6. Shuffle retains all intellectual property rights to the software we provide.
+
+7. Shuffle may display the Customer’s name or logo for showcase purposes.
+
+8. The agreement or subscription will automatically renew for successive periods of 1 year each (or 1 month each as per the subscription chosen), unless either party gives written termination notice to the other at least 60 days prior to the date of expiration. This automatic renewal will continue until either party provides termination notice, at which point the agreement will terminate at the end of the then-current term.
+
+9. Any work requested outside of or resulting from this project will be subject to a separate evaluation, analysis, and invoicing.
+
+10. In the event of any dispute, controversy, or claim arising out of or relating to this terms of service, or the breach, termination, or invalidity thereof, the parties agree to first attempt to resolve the dispute amicably through mediation. The mediation shall be conducted in accordance with the rules of The American Arbitration Association. If the dispute is not resolved within 30 days from the commencement of mediation, either party may initiate binding arbitration or pursue other available legal remedies.
+
+11. We have further terms for the Shuffle cloud platform available at https://shuffler.io/docs/terms_of_service.
+
+12. We collect and process data according to https://shuffler.io/docs/privacy_policy.
+
+13. This Agreement constitutes the entire agreement of the parties with regard to the subject matter hereof, and supersedes all previous written or oral representations, agreements and understandings between the parties, whether expressed or implied.
 
 ## Miscellaneous
 1. Independent Contractors. The parties are independent contractors and will so represent themselves in all regards. Neither party is the agent of the other, and neither may make commitments on the other’s behalf. The parties agree that no Shuffle employee or contractor will be an employee of Customer.
