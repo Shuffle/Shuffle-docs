@@ -235,21 +235,7 @@ networks:
 * Cloud: If you want access to on-premises resources and API's, [set up extra Environments](/docs/organizations#environments)
 
 ## Scaling Shuffle
-Orborus can run in Docker-swarm mode, and in early 2023, with Kubernetes. This makes the workflow executions A LOT faster, use less resources, and makes it more scalable across multiple servers. This [is a paid service](https://shuffler.io/pricing2), and requires the [Enterprise / Scale license](https://shuffler.io/pricing). There are ways to achieve the same by [using multiple environments without swarm](/docs/organizations#environments). All licenses can be found in your organization on [https://shuffler.io](https://shuffler.io/admin?admin_tab=billing) under the "Billing" tab, where you can freely re-download them at any time.
-
-To begin with, Let's sort out the pre-requisites:
-
-Our setup would end up looking like this:
-
-
-
-
-![Screenshot](https://github.com/0x0elliot/Shuffle-docs/assets/60684641/1a485fb8-53d7-40ac-bfcf-11c3dc69e98f)
-
-
-
-
-
+Orborus can run in Docker-swarm mode, and in early 2023, with Kubernetes. This makes the workflow executions A LOT faster, use less resources, making it more scalable both on a single, as well as across multiple servers. Since September 2024, this has been open sourced, and can be achieved with changing environment variables in the "Orborus" container for Shuffle. [Click here for Kubernetes details](https://github.com/Shuffle/Shuffle/tree/2.0.0/functions/kubernetes#instructions).
 
 Let's begin with setting up Docker, Docker Compose, and creating a Docker Swarm network with two manager nodes involves several steps. Below is a step-by-step guide to achieve this:
 
@@ -264,27 +250,12 @@ Install Docker Compose on both machines by following the official Docker Compose
 Docker Compose Installation Guide: https://docs.docker.com/compose/install/
 
 **Now, Let's begin with setting up the docker swarm network in Machine A:**
-
-You will be provided with a url to download the Worker image from Shuffle. Orborus does not need changing. 
-
-1. Download the new worker you were provided: (Bare in mind, "URL" is a place holder). You can find this URL in the admin->license section of [https://shuffler.io](https://shuffler.io/admin?admin_tab=billing) if you are in the Proof of Value stage, or a customer of Shuffle.
-```
-    wget URL # URL is the url provided by Shuffle
-    docker load -i shuffle-worker.tar.gz
-```
-
-2. Set Orborus to latest in your docker-compose.yml file
-```
-    image: ghcr.io/shuffle/shuffle-orborus:latest
-```
-
-3. Add and change environment variables for Orborus in the docker-compose.yml file. BASE_URL is the external URL of the server you're running Shuffle on (the one you visit Shuffle with in your browser):
+1. Add and change the following environment variables for Orborus in the docker-compose.yml file. `BASE_URL` is the external URL of the server you're running Shuffle on (the one you visit Shuffle with in your browser):
 ```
 # Required:
-    SHUFFLE_LOGS_DISABLED=true
-    SHUFFLE_SWARM_CONFIG=run
+    SHUFFLE_SWARM_CONFIG=run                  # Free since Shuffle 2.0.0-beta
+    SHUFFLE_LOGS_DISABLED=true                # Disables logs - required to scale.
     BASE_URL=http://YOUR-BACKEND-URL:5001     # YOUR-BACKEND-URL NEEDS to be replaced by the backend's public IP
-    SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker-scale:latest
 
 # Optional configuration:
     SHUFFLE_AUTO_IMAGE_DOWNLOAD=false                       # This should be set to false IF images are already downloaded
@@ -293,14 +264,13 @@ You will be provided with a url to download the Worker image from Shuffle. Orbor
     SHUFFLE_SCALE_REPLICAS=1                                # The amount of worker container replicas PER NODE  (since 1.2.0)
     SHUFFLE_APP_REPLICAS=1                                  # The amount of app container replicas PER NODE     (since 1.2.1)
     SHUFFLE_MAX_SWARM_NODES=1                               # The max amount of swarm nodes shuffle can use     (since 1.3.2)
-
 ```
 
-To make swarm work, Please make sure that [these ports are open](https://docs.docker.com/engine/swarm/swarm-tutorial/#open-protocols-and-ports-between-the-hosts) on both your machines (to at least, both of these machines internally): 2377, 7946 and 4789
+To make swarm work, Please make sure that [these ports are open](https://docs.docker.com/engine/swarm/swarm-tutorial/#open-protocols-and-ports-between-the-hosts) on all your machines (to at least, both of these machines internally): 2377, 7946 and 4789
 
 **It is recommended to make sure that these ports are ONLY open internally just to be sure that everything is secure.**
 
-4. When all is done, take down the stack and pull it back up AFTER initializing swarm:
+2. When step 1 is configured, take down the stack and pull it back up AFTER initializing swarm:
 ```
 docker swarm init
 docker-compose down
@@ -310,7 +280,7 @@ docker swarm join-token manager # copy the command given
 
 PS: In certain scenarios you may need extra configurations, e.g. for network MTU's, docker download locations, proxies etc. See more in the [production readiness](/docs/configuration#production_readiness) section.
 
-### Add the other machine (Machine B) on docker swarm:
+### Adding another machine to the swarm network:
 
 Again, Make sure docker works here. Then paste the output from the above last command. It adds the network in the docker swarm network as a manager (It is required to orchestrate the app containers).
 
