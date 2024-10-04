@@ -24,6 +24,8 @@ Shuffle is an open-source automation platform designed specifically for the secu
   Explore our professional services for advanced support and customization.
 - **[Training](https://shuffler.io/training)**  
   Access training resources to get up to speed with Shuffle.
+- **[Old Training Videos](https://drive.google.com/drive/folders/1MtVfkCXDMSZ9yBwLDiVb0lj1H-oAK5RZ?usp=sharing)**  
+  In case you would like to watch older on-demand training videos. The platform however has significantly improved since then and the [current training](https://shuffler.io/training) would be a better match.
 
 ### Usecases
 [Usecases are a collection of Workflows](/usecases) that perform a task together. This can be things like handling SIEM alerts, or doing phishing analysis. 
