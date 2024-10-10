@@ -996,10 +996,25 @@ curl -XDELETE https://shuffler.io/api/v1/orgs/{org_id} -H "Authorization: Bearer
 
 
 ## Integration Layer
-The Integration Layer of Shuffle is a way to interact with apps a new way. It utilizes Apps that are Categorized and Labeled, and gives access to API's for specific actions for each of those labels. Behind the scenes there is always a workflow for each of these, and Shuffle wants to give granular control of each individual Workflow if wanted. 
+The Integration Layer of Shuffle is a way to interact with apps a new way. It utilizes Apps that are Categorized and Labeled, and gives access to API's for specific actions for each of those labels. Behind the scenes there is always a workflow for each of these, and Shuffle wants to give granular control of each individual Workflow if wanted. The integration layer is based on [Shuffle's Schemaless translation technology](https://github.com/frikky/schemaless), built on top of LLMs, with the goal of making Shuffle be able to act as a Large **Action** Model (LAM).
 
 <img width="713" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/e806707d-9635-465b-8040-b3e26b1786a0">
 
+### Shufflepy
+The easiest way to try it out for developer is to [use the Shufflepy library](https://github.com/frikky/schemaless). 
+
+```python
+from shufflepy import Shuffle
+
+## If the config is not specified, the library will use `https://shuffler.io` as the default URL. You must specify an apikey. 
+
+shuffle = Shuffle(
+	"APIKEY",
+	url='https://shuffler.io',
+)
+
+shuffle.list_tickets("jira")
+```
 		
 ### Run a Category Action
 Runs the category action in a standardized format.
