@@ -237,6 +237,8 @@ networks:
 ## Scaling Shuffle
 Orborus can run in Docker-swarm mode, and in early 2023, with Kubernetes. This makes the workflow executions A LOT faster, use less resources, making it more scalable both on a single, as well as across multiple servers. Since September 2024, this has been open sourced, and can be achieved with changing environment variables in the "Orborus" container for Shuffle. [Click here for Kubernetes details](https://github.com/Shuffle/Shuffle/tree/2.0.0/functions/kubernetes#instructions).
 
+PS: This is only available on the **nightly** version of Shuffle until Shuffle 2.0 is released.
+
 Let's begin with setting up Docker, Docker Compose, and creating a Docker Swarm network with two manager nodes involves several steps. Below is a step-by-step guide to achieve this:
 
 **Step 1: Install Docker**
@@ -249,13 +251,21 @@ Docker Installation Guide: https://docs.docker.com/get-docker/
 Install Docker Compose on both machines by following the official Docker Compose installation guide.
 Docker Compose Installation Guide: https://docs.docker.com/compose/install/
 
-**Now, Let's begin with setting up the docker swarm network in Machine A:**
+**Step 3: Configure Orborus Environment Variables:**
 1. Add and change the following environment variables for Orborus in the docker-compose.yml file. `BASE_URL` is the external URL of the server you're running Shuffle on (the one you visit Shuffle with in your browser):
 ```
 # Required:
-    SHUFFLE_SWARM_CONFIG=run                  # Free since Shuffle 2.0.0-beta
-    SHUFFLE_LOGS_DISABLED=true                # Disables logs - required to scale.
-    BASE_URL=http://YOUR-BACKEND-URL:5001     # YOUR-BACKEND-URL NEEDS to be replaced by the backend's public IP
+    # Free since Shuffle 2.0.0-beta
+    - SHUFFLE_SWARM_CONFIG=run
+
+    # Ensures apps are not halting due to memory overloads      
+    - SHUFFLE_LOGS_DISABLED=true
+
+    # YOUR-BACKEND-URL NEEDS to be replaced by the backend's public IP        
+    - BASE_URL=http://YOUR-BACKEND-URL:5001
+
+    # Worker image choice
+    - SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker:nightly
 
 # Optional configuration:
     SHUFFLE_AUTO_IMAGE_DOWNLOAD=false                       # This should be set to false IF images are already downloaded
