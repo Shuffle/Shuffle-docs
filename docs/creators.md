@@ -136,3 +136,11 @@ TBD
 ## Tips and Tricks
 TBD
 
+## Unpublishing workflows
+If you want to unpublish a workflow that you had initially published, then;
+- Click on the search bar at the top.
+- Select the find public workflows.
+- In the new window utilize the find workflows search bar to find your workflow.
+- Click on it and select unpublish workflow.
+
+Note: You can only unpublish workflows that you published. 
