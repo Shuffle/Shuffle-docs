@@ -32,10 +32,14 @@ From the start, Shuffle has been a platform about integrations. We've focused on
 
 These integrations will typically entail third party services connecting to Shuffle with inbound Webhooks as triggers in a workflow.
 
-## OpenID & SAML/SSO - Single Signon
-Shuffle added Single Signon (SAML) from version 0.9.16 & OpenID since 1.0.0. This allows you to log into Shuffle from other sources, entirely controlled by your external environment. SSO is available for **onprem**, even without the Enterprise version of Shuffle cloud. It works by setting an Entrypoint (IdP) and X509 Certificate, both used to validate the requests. This can be added under /admin, and **only works for your PRIMARY organization**.
+## Single Signon
+Shuffle added Single Signon (SAML v1.0) from Shuffle version 0.9.16 & OpenID in Shuffle version 1.0.0. This allows you to log into Shuffle from other identity platforms, entirely controlled by you. SSO is available for **onprem AND cloud**. It works by setting an Entrypoint (IdP) and X509 Certificate, both used to validate who the requester is. This can be added in [your admin panel](/admin). 
 
-PS: We suggest setting up SSO for a sub-organization first to see if it works, avoiding the potential problem of locking yourself out. We are currently building a system to make it possible to use SSO in an optional way (version 1.4.0~) 
+### Testing SSO
+Shuffle has a "Test SSO" button on the admin page for an organization. If you are logged in, then click the Test account, this button will log you into a valid account from the SSO provider. 
+
+### Org Swapping behavior
+If an Organization requires SSO, it will FORCE you through the SSO login unless your session already has been through SSO for that organization. This may feel counter-intuitive at first, but is a required system as each organization is controlled for SSO individually, and there is no limit to how many organizations a user can have.
 
 ### Using ANY SSO platform 
 **ONPREM ONLY:** You will have to change the SSO_REDIRECT_URL variable in the .env file to match your front end server link i.e `SSO_REDIRECT_URL=http://<URL>:<PORT>` 
