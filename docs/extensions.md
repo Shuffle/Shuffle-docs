@@ -36,9 +36,6 @@ These integrations will typically entail third party services connecting to Shuf
 ## Single Signon
 Shuffle added Single Signon (SAML v1.0) from Shuffle version 0.9.16 & OpenID in Shuffle version 1.0.0. This allows you to log into Shuffle from other identity platforms, entirely controlled by you. SSO is available for **onprem AND cloud**. It works by setting an Entrypoint (IdP) and X509 Certificate, both used to validate who the requester is. This can be added in [your admin panel](/admin). 
 
-### Testing SSO
-Shuffle has a "Test SSO" button on the admin page for an organization. If you are logged in, then click the Test account, this button will log you into a valid account from the SSO provider. 
-
 ### Org Swapping behavior
 If an Organization requires SSO, it will FORCE you through the SSO login unless your session already has been through SSO for that organization. This may feel counter-intuitive at first, but is a required system as each organization is controlled for SSO individually, and there is no limit to how many organizations a user can have.
 
