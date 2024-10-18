@@ -214,11 +214,11 @@ As long as you can create an identity and acquire an Entrypoint (IdP) and X509, 
 
 Testing Single Sign-On (SSO) ensures that your SSO setup is functioning correctly. When you click the "Test SSO" button, you will be redirected to your SSO authentication page. After authentication, you will be redirected to `https://shuffler.io/workflows` if you are using the cloud version, or `https://frontend-url/workflows` if you are using the on-premises version. There are two test cases to verify the SSO feature:
 
-1. **User Change During Authentication**: If you log into your Shuffle account with username "A" and authenticate with username "B", your username will change to "B". If user "B" does not exist in the organization, they will be added. The video below demonstrates logging into Shuffle with "lalitdeore12@gmail.com" and authenticating with Azure username "lalitdeoretest@lalitdeore12gmail.onmicrosoft.com" (which has the email "lalit@shuffler.io"). After authentication, the username changes from "lalitdeore12@gmail.com" to "lalit@shuffler.io".
+1. **User Change During Authentication**: If you log into your Shuffle account with username "A" and authenticate with username "B", your user will change to "B". If user "B" does not exist in the organization, they will be added. The video below demonstrates logging into Shuffle with "lalitdeore12@gmail.com" and authenticating with Azure username "lalitdeoretest@lalitdeore12gmail.onmicrosoft.com" (which has the email "lalit@shuffler.io"). After authentication, the user changes from "lalitdeore12@gmail.com" to "lalit@shuffler.io".
 
 https://github.com/user-attachments/assets/8c3474a5-bfdd-4c68-bd59-0b7b1ddb2b0c
 
-2. **User Remains the Same During Authentication**: If you log into Shuffle with username "A" and authenticate with the same username "A", your user will not change. The video below shows logging into Shuffle with "lalitdeore12@gmail.com" and authenticating with the same user in Azure. After authentication, the user remains unchanged.
+2. **User Remains the Same During Authentication**: If you log into Shuffle with user "A" and authenticate with the same user "A", your user will not change. The video below shows logging into Shuffle with "lalitdeore12@gmail.com" and authenticating with the same user in Azure. After authentication, the user remains unchanged.
 
 https://github.com/user-attachments/assets/0a927283-d39e-4200-8ba3-654ef6f1b9c1
 
