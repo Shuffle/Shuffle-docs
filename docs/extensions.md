@@ -11,6 +11,7 @@ This is documentation for integrating and sending data from third-party services
   * [Keycloak - OpenID](#keycloak)
   * [Azure AD - OpenID](#azure-ad)
   * [Other SSO providers](#other)
+  * [Testing SSO](#sso-testing)
 * [KMS](#KMS)
 * [Native Actions](#native-actions)
 * [Webhooks](#webhooks)
@@ -34,9 +35,6 @@ These integrations will typically entail third party services connecting to Shuf
 
 ## Single Signon
 Shuffle added Single Signon (SAML v1.0) from Shuffle version 0.9.16 & OpenID in Shuffle version 1.0.0. This allows you to log into Shuffle from other identity platforms, entirely controlled by you. SSO is available for **onprem AND cloud**. It works by setting an Entrypoint (IdP) and X509 Certificate, both used to validate who the requester is. This can be added in [your admin panel](/admin). 
-
-### Testing SSO
-Shuffle has a "Test SSO" button on the admin page for an organization. If you are logged in, then click the Test account, this button will log you into a valid account from the SSO provider. 
 
 ### Org Swapping behavior
 If an Organization requires SSO, it will FORCE you through the SSO login unless your session already has been through SSO for that organization. This may feel counter-intuitive at first, but is a required system as each organization is controlled for SSO individually, and there is no limit to how many organizations a user can have.
@@ -201,13 +199,30 @@ The client secret and tenant ID can be found in the "Overview" tab:
 4. Put in your Tenant ID in the authorization URL
 The URL is as such: `https://login.microsoftonline.com/TENANT_ID/oauth2/v2.0/authorize`. The Token URL is not strictly required for ID Token auth.
 ![image](https://user-images.githubusercontent.com/5719530/169712857-fe49855e-da3a-4dca-9fde-59bdc60eaa4d.png)
+
+5. In the "Token Configuration" tab on the left, click "Add Optional Claim." Select the token type as "ID" and choose "email" as the claim, then click "Add."
+![token_configuration](https://github.com/user-attachments/assets/2f3b62b9-23a6-4404-a6c6-2dfd796a0b2d)
 	
-5. Done! Click save and log out. Try your new login based on your Azure AD configuration. 
+7. Done! Click save and log out. Try your new login based on your Azure AD configuration. 
 	
-PS: When the user is signed in, they have the access rights of a "user" in the designated organization, and will have a username according to the ID decided in O365. This can be changed by admins.
+PS: When a user signs in, they are granted the access rights of a "user" within the designated organization. The username will be derived from the email address listed in the Azure users list. Therefore, when creating or adding a new user in Azure, ensure that the email field in their profile is populated. If this email field is empty, the user will not be able to log in to the organization.
 	
 ### Other Platforms
 As long as you can create an identity and acquire an Entrypoint (IdP) and X509, paste them into the Shuffle fields, and it should work with any SAML/SSO provider.
+
+### Testing SSO
+
+Testing Single Sign-On (SSO) ensures that your SSO setup is functioning correctly. When you click the "Test SSO" button, you will be redirected to your SSO authentication page. After authentication, you will be redirected to `https://shuffler.io/workflows` if you are using the cloud version, or `https://frontend-url/workflows` if you are using the on-premises version. There are two test cases to verify the SSO feature:
+
+1. **User Change During Authentication**: If you log into your Shuffle account with username "A" and authenticate with username "B", your user will change to "B". If user "B" does not exist in the organization, they will be added. The video below demonstrates logging into Shuffle with "lalitdeore12@gmail.com" and authenticating with Azure username "lalitdeoretest@lalitdeore12gmail.onmicrosoft.com" (which has the email "lalit@shuffler.io"). After authentication, the user changes from "lalitdeore12@gmail.com" to "lalit@shuffler.io".
+
+https://github.com/user-attachments/assets/8c3474a5-bfdd-4c68-bd59-0b7b1ddb2b0c
+
+2. **User Remains the Same During Authentication**: If you log into Shuffle with user "A" and authenticate with the same user "A", your user will not change. The video below shows logging into Shuffle with "lalitdeore12@gmail.com" and authenticating with the same user in Azure. After authentication, the user remains unchanged.
+
+https://github.com/user-attachments/assets/0a927283-d39e-4200-8ba3-654ef6f1b9c1
+
+**Note**: Ensure that the "email" field is included in the SSO response from your SSO provider. If this field is empty, you may encounter errors. The email from your SSO provider will be assigned as the username in Shuffle.
 
 ## KMS
 Shuffle by default allows you to store authentication tokens within Shuffle itself, which are encrypted in the database. Since February 2024, we additionally support the use of external KMS systems to handle authentication, which is based on [Native Actions](https://shuffler.io/docs/extensions#native-actions) and [Schemaless](https://github.com/frikky/schemaless). Native Actions run in the background to perform the "Get KMS key" action, and the run of the app is NOT stored. 
