@@ -273,6 +273,13 @@ curl https://shuffler.io/api/v1/apps/upload -H "Authorization: Bearer APIKEY" -F
 {"success": true, "id": "798f1234c4fb8b4a6300da3c546af45a"}
 ```
 
+The ID returned is based on these fields being unique: 
+- Organization
+- App Name
+- App ID
+
+After an app is uploaded, the App cache for your Organization is cleared, meaning your apps will be loaded from the database directly. 
+If you want to see whether your app was uploaded or not, you can always check the app directly here (swap appid): https://shuffler.io/apps/{appid}
 
 ## Stats and Timelines
 Stats and Timelines are a system built to help track changes to something over time. This is used both by internal systems in Shuffle, and is an option for you to use in Workflows or elsewhere to make timelines. Adding statistics was added in versions >1.4.3, and graphing of ANY value will be available soon. Graphs for default tracked information like App and Workflow utilisation is on the [statistics admin page for your Organisation](https://shuffler.io/admin?admin_tab=billing). 
