@@ -289,7 +289,8 @@ self.start_time			# The start time for this function
 
 # Utility functions
 self.get_file(file_id) 			# Get a file from the backend 			
-self.set_files(file_id) 		# SETS multiple files, returns ids	
+self.set_files(files) 				# SETS multiple files, returns ids	
+self.update_file(file_id, "content") # Updates a file
 self.get_file_namespace(namespace) 	# Get ALL files for a namespace 		
 self.get_cache(key)			# Get an item from key:value store 	(v0.8.97)
 self.set_cache(key, value)		# SETS cache in the key:value store (v0.8.97)
