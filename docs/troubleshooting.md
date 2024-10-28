@@ -792,3 +792,5 @@ To build this app again, I would:
 sudo docker build -t shuffle-tools:1.2.0 .
 ```
 
+### Changing timestamps for an index from Unix to timestamps
+This may be necessary if you want to do additional modifications or exploration of an existing Index. [See this Issue on how it was fixed by a Shuffle user](https://github.com/Shuffle/Shuffle/issues/1531#issuecomment-2440021952).
