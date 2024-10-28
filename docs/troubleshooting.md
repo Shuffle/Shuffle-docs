@@ -34,7 +34,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 * [No module named 'xyz' in 'execute python' (Shuffle Tools)](#no-module-named-'xyz'-in-'execute-python'-(Shuffle-Tools))
 
 ## Debugging Executions
-Please check the [Debugging section in the Configuration documentation](/docs/configuration#Debugging)
+Please check the [Debugging section in the Configuration documentation](/docs/configuration#debugging)
 
 ## Resetting MFA
 MFA can be enabled for your account on the settings User page of an organization, or on your [settings page](https://shuffler.io/settings). If you have lost access to your account due to this however, follow these steps:
