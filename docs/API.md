@@ -248,14 +248,14 @@ curl -XDELETE https://shuffler.io/api/v1/apps/{app_id} -H "Authorization: Bearer
 ### Upload a python app 
 Uploads a python app. You should upload a zip file with the following like file structure. This has to be done for each individual version of the app. The app uploaded is available to everyone in the organization.
 
-To zip an app, go to the folder's version, e.g. shuffle-tools/1.2.0, then type in the following (\*nix):
+To zip an app, go to the appfolder, e.g. shuffle-tools, then type in the following to zip the version you want to upload (\*nix):
 ```
-zip app.zip -r appname/version/*
+zip app.zip -r version/*
 ```
 
 This will give you the following structure.
 ``` 
-App.zip
+app.zip
 ├── src
 │   ├── app.py
 ├── api.yaml
