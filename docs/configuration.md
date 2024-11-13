@@ -255,25 +255,27 @@ Docker Compose Installation Guide: https://docs.docker.com/compose/install/
 1. Add and change the following environment variables for Orborus in the docker-compose.yml file. `BASE_URL` is the external URL of the server you're running Shuffle on (the one you visit Shuffle with in your browser):
 ```
 # Required:
-    # Free since Shuffle 2.0.0-beta
-    - SHUFFLE_SWARM_CONFIG=run
+## Free since Shuffle 2.0.0-beta
+- SHUFFLE_SWARM_CONFIG=run
 
-    # Ensures apps are not halting due to memory overloads      
-    - SHUFFLE_LOGS_DISABLED=true
+## Ensures apps are not halting due to memory overloads      
+- SHUFFLE_LOGS_DISABLED=true
 
-    # YOUR-BACKEND-URL NEEDS to be replaced by the backend's public IP        
-    - BASE_URL=http://YOUR-BACKEND-URL:5001
+## YOUR-BACKEND-URL NEEDS to be replaced by the backend's public IP        
+- BASE_URL=http://YOUR-BACKEND-URL:5001
 
-    # Worker image choice
-    - SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker:nightly
+## Worker image choice
+- SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker:nightly
 
-# Optional configuration:
-    SHUFFLE_AUTO_IMAGE_DOWNLOAD=false                       # This should be set to false IF images are already downloaded
-    SHUFFLE_WORKER_SERVER_URL=http://shuffle-workers        # Internal Docker Worker URL (don't modify if not necessary)
-    SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions     # If you want a special network name in the executions
-    SHUFFLE_SCALE_REPLICAS=1                                # The amount of worker container replicas PER NODE  (since 1.2.0)
-    SHUFFLE_APP_REPLICAS=1                                  # The amount of app container replicas PER NODE     (since 1.2.1)
-    SHUFFLE_MAX_SWARM_NODES=1                               # The max amount of swarm nodes shuffle can use     (since 1.3.2)
+## Optional configuration:
+SHUFFLE_AUTO_IMAGE_DOWNLOAD=false                       # This should be set to false IF images are already downloaded
+SHUFFLE_WORKER_SERVER_URL=http://shuffle-workers        # Internal Docker Worker URL (don't modify if not necessary)
+SHUFFLE_SWARM_NETWORK_NAME=shuffle_swarm_executions     # If you want a special network name in the executions
+SHUFFLE_SCALE_REPLICAS=1                                # The amount of worker container replicas PER NODE  (since 1.2.0)
+SHUFFLE_APP_REPLICAS=1                                  # The amount of app container replicas PER NODE     (since 1.2.1)
+SHUFFLE_MAX_SWARM_NODES=1                               # The max amount of swarm nodes shuffle can use     (since 1.3.2)
+SHUFFLE_SKIPSSL_VERIFY=true                             # Stops Shuffle's internal services from validating TLS/SSL certificates. Good to use if BASE_URL is a domain.
+    
 ```
 
 To make swarm work, Please make sure that [these ports are open](https://docs.docker.com/engine/swarm/swarm-tutorial/#open-protocols-and-ports-between-the-hosts) on all your machines (to at least, both of these machines internally): 2377, 7946 and 4789
