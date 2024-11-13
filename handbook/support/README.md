@@ -65,7 +65,7 @@ Discord has various channels that need to be checked out periodically as users r
 
 ### Google Groups
 
-You will need to request access to the google groups channel. Once access is obtained, you will log into your gmail inbox and use the upper right hand corner to access the menu to click on [Google groups](https://groups.google.com/a/shuffler.io/g/shuffle-support). You have to be invited, so if you're lacking access, request it from frikky@shuffler.io.
+You will need to request access to the google groups channel. Once access is obtained, you will log into your gmail inbox and use the upper right hand corner to access the menu to click on [Google groups](https://groups.google.com/a/shuffler.io/g/shuffle-support). You have to be invited, so if you're lacking access, request it from Fredrik or anyone else with admin access.
 
 ![image](https://user-images.githubusercontent.com/58112539/197284935-e04a24ce-7ee6-4588-96f1-16a7887fca4c.png)
 
