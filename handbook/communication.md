@@ -27,7 +27,7 @@ More about how we use [Discord for moderation](https://github.com/Shuffle/Shuffl
 External communication most of the time takes place in emails and meetings. While we're small, please feel free to use the tool of your liking. 
 
 ## Questions
-If you have questions, please reach out to frikky@shuffler.io in an email or on Discord. 
+If you have questions, use the internal Whatsapp group or anyone on our team through Discord. 
 
 ## Extra
 We believe Gitlab is doing the best in the world at remote work and culture. Here are their guidelines, which very well fits with how we at Shuffle should communicate as well.
