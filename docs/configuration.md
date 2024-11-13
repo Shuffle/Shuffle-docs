@@ -261,8 +261,8 @@ Docker Compose Installation Guide: https://docs.docker.com/compose/install/
 ## Ensures apps are not halting due to memory overloads      
 - SHUFFLE_LOGS_DISABLED=true
 
-## YOUR-BACKEND-URL NEEDS to be replaced by the backend's public IP        
-- BASE_URL=http://YOUR-BACKEND-URL:5001
+## Your Shuffle URL NEEDS to be replaced by the backend's public IP. Otherwise Docker DNS: https://dockerlabs.collabnix.com/intermediate/networking/Configuring_DNS.html         
+- BASE_URL=http://YOUR-BACKEND-URL:3001
 
 ## Worker image choice
 - SHUFFLE_WORKER_IMAGE=ghcr.io/shuffle/shuffle-worker:nightly
