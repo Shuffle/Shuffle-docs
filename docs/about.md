@@ -41,4 +41,4 @@ These included, but were not limited to (no specific order):
 
 Regards,
 
-Fredrik Ødegårdstuen - [@frikkylikeme](https://twitter.com/Frikkylikeme) - [frikky@shuffler.io](mailto:frikky@shuffler.io)
+Fredrik Ødegårdstuen - [@frikkylikeme](https://twitter.com/Frikkylikeme) - [support@shuffler.io](mailto:support@shuffler.io)
