@@ -69,7 +69,7 @@ If you notice anything related to these questions, make sure to note it down so 
     - This indicates whether we have spoken with them in the past. 
     - If we have, make sure to read those messages, as context is gold when reaching out.
 
-3. Click the lead itself, directing you to https://shuffler.io. If the links don't work for you, then you don't have access and should email [frikky@shuffler](mailto:frikky@shuffler.io) asking for access. If you have support access, you will get temporary read access to that organization.
+3. Click the lead itself, directing you to https://shuffler.io. If the links don't work for you, request access from anyone in Shuffle management asking for access. If you have support access, you will get temporary read access to that organization.
     - Register on https://shuffler.io/register if you haven't
 
 4. Check the following for the lead and use what you learn to decipher if they did ok or not:
