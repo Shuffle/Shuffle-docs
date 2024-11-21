@@ -252,7 +252,7 @@ To start using pipelines for detection, you need to set up or download Sigma rul
 1. Visiting the Sigma page: [https://shuffler.io/detections/sigma](https://shuffler.io/detections/sigma)
 2. This will automatically download all the Sigma rules from a remote GitHub repository into the Tenzir node, making the pipeline ready for detection.
 
-![download Rules](../assets/sigma_downlaod.png)
+![Sigma rule](https://github.com/user-attachments/assets/0c245a06-d385-4321-a4aa-cbddd9cbe1dd)
 
 #### Managing the Sigma Rules
 
@@ -260,37 +260,35 @@ To view and manage the downloaded Sigma rules:
 
 1. Visit the Sigma page: [https://shuffler.io/detections/sigma](https://shuffler.io/detections/sigma)
 
-![Sigma Ui](../assets/sigma_ui.png)
+![Sigma Ui](https://github.com/user-attachments/assets/dabd95f6-8a54-4c41-8f85-dc496e77e79b)
 
 
    - To edit an existing rule, click on the edit icon, make your changes, and save.
 
-   ![Edit Sigma](../assets/edit_sigma.png)
-
+![Edit Sigma](https://github.com/user-attachments/assets/a153cae1-e161-413b-b7c2-9fc9fe932d52)
 
 2. You can disable or enable a particular rule file or globally enable or disable the rules.
 
+![Edit Sigma](https://github.com/user-attachments/assets/df1b14ab-b111-42e9-9f33-d01ff9f28ffe)
 
-![Disable Rule ](../assets/disable_rule.png)
-
-![Global Enable Rule ](../assets/global_enable_rule.png)
+![Global Enable Rule](https://github.com/user-attachments/assets/666bf44f-e7a1-42f8-a9c2-e14751d32112)
 
 
 ### Pipeline Example
 
-![Pipeline Example ](../assets/pipeline_example.png)
+![Pipeline Example](https://github.com/user-attachments/assets/67cb1427-e492-416a-88d1-630741cf9015)
 
 1. Drag the "pipeline" trigger from the left-hand side into the main view, and it should automatically connect to your starting node.
 
 2. To start the syslog listener, click on the syslog listener. This will start the listener at 192.168.1.100:5162 on your host machine. You can connect to this endpoint via the TCP protocol and send your syslog data.
 
-![Syslog](../assets/syslog.png)
+![Syslog](https://github.com/user-attachments/assets/4441137e-20cc-4b23-954f-2bef69e21ba5)
 
 3. For running detection rules, click on the Sigma rule search option. This will create a pipeline that takes the ingested logs and applies the Sigma rules that are downloaded and enabled. Whenever logs match the defined rules, the detected logs are sent, triggering the workflow run.
 
 4. For forwarding Kafka messages from a topic, click on the "follow Kafka queue" option. You will see a pop-up asking for Kafka-specific information that you need to provide, such as the topic name and bootstrap server address. Once you provide the required details, click submit and start. This will actively forward all incoming messages from your Kafka topic to the workflow.
 
-![Kafka ](../assets/kafka.png)
+![Kafka](https://github.com/user-attachments/assets/13264f6f-b5fb-48f2-a21d-0216e237333d)
 
 5. To stop a pipeline, simply click on the stop button. This will stop the pipeline and its execution. If you want to delete the pipeline, you can delete the pipeline trigger from the workflow.
 
