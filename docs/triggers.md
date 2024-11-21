@@ -241,7 +241,7 @@ In Shuffle, we are currently using Tenzir data pipelines.
 
 - **Kafka Forwarder**: Configures the pipeline to actively forward all messages from a specified topic to your workflow.
 
-![Features](../assets/pipeline_features.png)
+![Features](https://github.com/user-attachments/assets/3fdb2723-89e2-4f6b-9013-01ae3a644640)
 
 Additional features will be added in the future.
 
