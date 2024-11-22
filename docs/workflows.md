@@ -67,30 +67,31 @@ You may often want to start with a template. To build a Workflow in Shuffle from
 The following section describes the basics of a workflow. 
 
 ### Create
-Once logged in, creating a workflow can be done by going to the [workflows](/workflows) dashboard and clicking the "New" button next to "Workflows". It will ask you for a name and description. These can be changed at any time. 
+Once logged in, creating a workflow can be done by going to the [workflows](/workflows) dashboard and clicking  "New workflow" as highlighted in the picture below. It will ask you for a name and description. These can be changed at any time. 
 
-![Create workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/create-workflow.PNG?raw=true)
+![Create workflow1](https://github.com/user-attachments/assets/57b580b8-39fe-4f29-a0ae-b55c303565e3)
+
 
 If you lose your way or want to edit it at a later point, it can always be found at [/workflows](/workflows).
-
-![Edit workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/edit-workflow.PNG?raw=true)
 
 ### Edit
 Once a workflow is created, you will be presented with the following view: 
 
-![New workflow](https://github.com/frikky/shuffle-docs/blob/master/assets/new-workflow.PNG?raw=true)
+![New workflow](https://github.com/user-attachments/assets/e8f9ff36-80eb-4b09-98f2-f98e9e36962d)
 
 Workflows are entirely based on [apps](/docs/apps), [triggers](/docs/triggers), [variables](/docs/apps#variables) and [conditions](/docs/conditions). You have access to all of these in the bottom left of the screen. Apps and triggers are draggable, meaning you can drag and drop them into the main window. 
 
-To run your first workflow, find the app "Testing" on the left hand side, and drag it into the view. This will create a clickable node, which you can freely edit.  
+The workflow loads up with a default "change me" node in your main window, which can be edited or removed. You can drag apps from the left apps bar into your workflow's main window and click on them to edit and set them up. You can run executions using the play button and results are shown as in the picture below.
 
-![First node](https://github.com/frikky/shuffle-docs/blob/master/assets/first-node.PNG?raw=true)
+![First node](https://github.com/user-attachments/assets/b42e9569-336a-4225-97c6-fd4b17e9e25e)
 
-Clicking the node presents you with a new view. This is the view to configure the node. In our example case, the default name should be "testing_1", running with the environment "Shuffle" (default). 
 
-The default action for the "Testing" app is "hello_world". This can be changed by clicking the dropdown menu. More about editing an app's actions can be found [here](#edit actions)
+Clicking the node presents you with a new view. This is the view to configure the node. In our example case, the default name is "change_me". 
 
--![Node action options](https://github.com/frikky/shuffle-docs/blob/master/assets/node-action-options.PNG?raw=true)
+The default action for the "shuffle tools" app is the "repeat back to me" action which does exactly what it says. This can be changed by clicking the dropdown menu. More about editing an app's actions can be found [here](#edit actions)
+
+![Node setup](https://github.com/user-attachments/assets/21f235ce-3bb4-46de-a88e-7b51913d4d42)
+
 
 ### Save 
 Now that we have a working workflow, click the "save" button next to the big play button (or click CTRL+S). This presents you with a notification at the bottom of the screen that saving is in progress. Saving is required to make your latest edits available for execution.
