@@ -49,7 +49,7 @@ docker-compose up -d
 
 `From version v1.1 onwards, we will use ghcr.io/shuffle/* registry instead of ghcr.io/frikky/*`
 
-As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure and up to date as possible, do this as much as you please. To use a specific version of Shuffle, check out [specific version](/docs/configuration#specific_versioning). We recommend always sticking to the "latest" tag, and if you want experimental changes, use the "nightly" tag.
+As long as you use Docker, updating Shuffle is pretty straight forward. To make sure you're as secure and up to date as possible, do this as much as you please. To use a specific version of Shuffle, check out [specific version](/docs/configuration#specific-versioning). We recommend always sticking to the "latest" tag, and if you want experimental changes, use the "nightly" tag.
 
 While being in the main repository, here is how to update Shuffle:
 
@@ -76,10 +76,11 @@ Shuffle is by default configured to be easy to start using. This means we've had
 **Here are the things we'll dive into**
 
 - [Servers](#servers)
-- [Hybrid access](#hybrid_configuration)
-- [Environment Variables](#environment_variables)
+- [Hybrid Cloud Configuration](#hybrid-cloud-configuration)
+- [Environment Variables](#environment-variables)
 - [Disaster Recovery/High Availability](#Disaster_Recovery/High_Availability)
-- [Proxies](#proxy_configuration)
+- [Proxies](#proxy-configuration)
+- [Marketplace setup](#marketplace-setup)
 
 ### Servers
 
@@ -116,7 +117,7 @@ These are the Docker configurations for the two different servers described abov
 PS: The data below is based on [this docker-compose file](https://github.com/shuffle/Shuffle/blob/master/docker-compose.yml)
 
 **Orborus**
-Below is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the external Shuffle backend URL. It can be modified to reduce or increase load, to add proxies, and much more. See [environment variables](#environment_variables) for all options.
+Below is the Orborus configuration. make sure to change "BASE_URL" in the environment to match the external Shuffle backend URL. It can be modified to reduce or increase load, to add proxies, and much more. See [environment variables](#environment-variables) for all options.
 
 **PS**: Replace SHUFFLE-BACKEND with the IP of Shuffle backend in the specification below. Using Hostname MAY [cause issues](https://github.com/shuffle/Shuffle/issues/537) in certain environments.
 **PPS**: By default, the environments (executions) are NOT authenticated.
@@ -1351,7 +1352,6 @@ sudo podman-compose -f docker-compose.yml up
 ```
 
 
+### Marketplace Setup
 
-
-
-
+Using cloud marketplaces ([AWS Marketplace](https://aws.amazon.com/marketplace/), [Google Cloud Marketplace](https://console.cloud.google.com/marketplace), [Azure Marketplace](https://azuremarketplace.microsoft.com/)), you should be able to deploy Shuffle onprem with a few clicks. This is a great way to get started with Shuffle, as it's a fully managed service and test it out in your own environment without worrying about the setup. We are working with our cloud partners to get this up and running as soon as possible. 
