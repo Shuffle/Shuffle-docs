@@ -26,6 +26,7 @@ Documentation for configuring Shuffle. Most information is related to onprem and
 * [Known Bugs](#known-bugs)
 * [Shuffle Server Healthcheck](#shuffle-server-healthcheck)
 * [Using podman](#using-podman)
+* [Marketplace setup](#marketplace-setup)
 
 ## Introduction
 
@@ -80,7 +81,6 @@ Shuffle is by default configured to be easy to start using. This means we've had
 - [Environment Variables](#environment-variables)
 - [Disaster Recovery/High Availability](#Disaster_Recovery/High_Availability)
 - [Proxies](#proxy-configuration)
-- [Marketplace setup](#marketplace-setup)
 
 ### Servers
 
