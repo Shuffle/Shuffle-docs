@@ -1,6 +1,10 @@
 # Shuffle API 
 Documentation for Shuffle API. Change https://shuffler.io with your local domain/IP for on-premises usage.
 
+- If you're on the california region, Your base URL will be https://california.shuffler.io
+- If you're on the frankfurt region, Your base URL will be https://frankfurt.shuffler.io
+- If you're on the canada region, Your base URL will be https://ca.shuffler.io
+
 ## Table of contents
 * [Introduction](#introduction)
 * [Authentication](#authentication)
