@@ -61,15 +61,27 @@ By adding 86400 seconds to the string "now", before adding a date format, we get
 ### Create an epoch Unix timestamp 
 By using the string "now", and changing the date format to seconds, it will give you the epoch timestamp.
 
+
 **Expression:**
 ```
 {{ "now" | date: "%s" }}
 ```
 
 **Result:**
-... 
+``` 
 1643912690 
-... 
+``` 
+
+Example 2: Calculate a Time Range Using Epoch Timestamps:
+You can use epoch timestamps to calculate a time range. For instance, you can use mathematical operations like subtraction or addition to find timestamps for a specific range (e.g., 10 days).
+```
+TimeFrom={{ "now" | date: "%s" | minus: 864000 }}&TimeTo={{ "now" | date: "%s" }}
+```
+**Result:**
+If the current timestamp is 1643912690, the generated values would be:
+```
+TimeFrom=1643048690&TimeTo=1643912690
+```
 
 ### Get size of an array
 
