@@ -3,6 +3,7 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Table of contents
 * [Debugging Executions](#debugging_executions)
+* [Debugging in the non-scale mode](#debugging_in_the_non_scale_mode)
 * [Orborus backend connection problems](#orborus_backend_connection_problems)
 * [Load all apps locally](#load_all_apps_locally)
 * [Orborus can't connect to backend](#orborus_can_not_reach_backend)
@@ -35,6 +36,43 @@ Documentation for troubleshooting and debugging known issues in Shuffle.
 
 ## Debugging Executions
 Please check the [Debugging section in the Configuration documentation](/docs/configuration#debugging)
+
+## Debugging in the non scale mode
+
+If you're running Shuffle in the non-scale mode, you can get the worker logs like this:
+
+```bash
+while true; do
+    tools=$(docker container ls | grep -i worker | awk '{print $1}')
+    if [ ! -z "$tools" ]; then
+        echo "Found container: $tools"
+        echo "Container logs:"
+        docker logs --tail 10 "$tools"  # Show last 10 lines of logs
+        echo "----------------------------------------"
+    else
+        echo "No matching container found..."
+    fi
+    sleep 1
+done
+```
+
+Similarly, for any of the app logs, you can use the same command, but replace "worker" with the app name (this gives the shuffle tools logs):
+```bash
+while true; do
+    tools=$(docker container ls | grep -i tools_1 | awk '{print $1}')
+    if [ ! -z "$tools" ]; then
+        echo "Found container: $tools"
+        echo "Container logs:"
+        docker logs --tail 10 "$tools"  # Show last 10 lines of logs
+        echo "----------------------------------------"
+    else
+        echo "No matching container found..."
+    fi
+    sleep 1
+done
+```
+
+
 
 ## Resetting MFA
 MFA can be enabled for your account on the settings User page of an organization, or on your [settings page](https://shuffler.io/settings). If you have lost access to your account due to this however, follow these steps:
