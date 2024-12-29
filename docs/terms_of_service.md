@@ -3,7 +3,6 @@ Welcome to our terms and conditions. Just like with our [privacy policy](https:/
 
 ## Definitions
 The following capitalized terms shall have the following meanings whenever used in this Agreement.
-* “Aggregate Data” has the meaning ascribed to it in Section 4.7 hereof.
 * “AUP” means Shuffle’s acceptable use policy accessible farther down in this Terms of Service agreement.
 * “Cloud Services” means such software and software as a service (SAAS) integration services as Shuffle may provide from time to time via the System, including point-to-point data migration services and integration services for enterprise platforms, to customers on a subscription basis.
 * “Confidential Information” has the meaning ascribed to it in Section 7.
