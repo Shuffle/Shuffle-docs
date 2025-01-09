@@ -10,7 +10,7 @@ Documentation for the Admin view of Shuffle. Best used by administrators.
 * [Licensing](#licensing)
 * [User Management](#user_management)
 * [App Authentication](#app_authentication)
-* [Environments](#environments)
+* [Locations](#locations)
 * [Schedules](#schedules)
 * [Files](#files)
 * [Datastore](#datastore)
@@ -156,7 +156,7 @@ These are **NOT** editable outside of deletion as of november 2020, but we may a
 Shuffle supports the use of a KMS. [Please see the extension documentation for more](/docs/extensions#kms).
 
 ### App Authentication Groups
-App Authentication groups are a way for you to group authentications together, enabling a single workflow to run with multiple different authentication options and environments. When a workflow runs with authentication groups selected, the workflow execution will replicate and run multiple versions of the same workflow at the same time, where the relevant authentication is filled in in real-time. 
+App Authentication groups are a way for you to group authentications together, enabling a single workflow to run with multiple different authentication options and runtime locations. When a workflow runs with authentication groups selected, the workflow execution will replicate and run multiple versions of the same workflow at the same time, where the relevant authentication is filled in in real-time. 
 
 <img width="830" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/44e1d2f6-6e1c-4736-834a-a98e6419814e">
 
@@ -214,36 +214,42 @@ Inner level: parameters
 These parameters are specified exactly as a parameter within an action. The function's code needs to reflect it as well, as can be seen with this python function, taking an apikey and URL.
 ![App creation python code](https://github.com/frikky/shuffle-docs/blob/master/assets/admin_example-13.png?raw=true)
 
-## Environments
-Environments are a core part of Shuffle's open source build. Think of it as physical location where you want an agent of Shuffle running (Orborus). Orborus is the tool that keeps your workflow running. But Orborus needs to know what jobs to run. After all, we'd like it you to be able to run parts of a workflow in the cloud and parts of it in all your different datacenters. 
+## Locations
+Locations, previously Environments, are a core part of Shuffle's open source build. **Cloud does not require any configuration for this**, unless you are connecting to your on-premises datacenter/cloud VPC. Think of it as physical location where you want an agent of Shuffle running (Orborus) with access to the right locations.
 
 <img width="832" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/48acd5c4-0a86-4379-8f76-8d3b877ae5a4">
 
-The default environment is called "Shuffle" in your on-premises environment, and "Cloud" in your cloud environment. You can add as many as you want, but you'll only get access to "cloud" environments through cloud synchronization.  
+The default location is called "Shuffle" in your on-premises installation, and "Cloud" in the Shuffle SaaS. You can add as many as you want, and will get access to the additional "cloud" location through cloud synchronization onprem.  
 
-### Environment fields
+### Location fields
 * Name 						- The name to use. This is the identifier used by orborus. 
 * Orborus running	- Shows whether Orborus is running or not.
-* Type 						- Whether it's a cloud environment or not. Orborus can't attach to "cloud" environments.
-* Default					- Whether it's the default environment to use for new actions. You should set this to the environment you use the most.
-* Actions 				- Possible changes to an environment. Currently only archiving. You can't re-open an archived environment, and can't archive the default environment.
+* Type 						- Whether it's a cloud location or not. Orborus can't attach to "cloud" locations.
+* Default					- Whether it's the default location to use for new actions. You should set this to the location you use the most.
+* Actions 				- Possible changes to a location. You can't re-open an archived location, and can't archive the default location.
 * Archived				- Tells you whether it's archived. There's a toggle at the top to edit it.
 
 ### Orborus configuration
-If you would like to run Orborus towards a different environment, you will have to specify the environment variables "ENVIRONMENT_NAME", "ORG", "AUTH" and "BASE_URL". AUTH and ORG may not be required.
+If you would like to run Orborus towards a different location, you will have to specify the environment variables "ENVIRONMENT_NAME", "ORG", "AUTH" and "BASE_URL". AUTH and ORG may not be required. You can click the location to get a finished command.
 
-Below is an example, where the environment's name is "Hallo" and it's using `https://shuffler.io` as it's backend. This works on-premises as well if you change out the BASE_URL.
+Below is an example, where the locations's name is "Another env" and it's using `https://shuffler.io` as it's backend. This works on-premises as well if you change out the BASE_URL.
 ```
 docker run \
 	--volume /var/run/docker.sock:/var/run/docker.sock \
 	-e ENVIRONMENT_NAME="Another env" \
-	-e AUTH="Auth from the environment" \
+	-e AUTH="Auth from the location" \
 	-e ORG="Your org ID from the /admin UI top right" \
         -e DOCKER_API_VERSION=1.40 \
 	-e BASE_URL=https://shuffler.io \
 	ghcr.io/frikky/shuffle-orborus:nightly
 
 ```
+
+### Scaling Orborus
+By clicking the "Scale" or "K8s" tab, you will get relevant info related to scaling Shuffle the way you want. This IS available from cloud to onprem (hybrid).
+
+<img width="837" alt="image" src="https://github.com/user-attachments/assets/84eed978-e857-4965-87e3-813b0d5e964f" />
+
 
 ### Files
 You can learn more about files in this Youtube video:
