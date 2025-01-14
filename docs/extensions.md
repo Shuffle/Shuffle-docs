@@ -147,12 +147,12 @@ You now have a client. Click on settings and configure them as follows
 
 ![Valid redirect URI](https://user-images.githubusercontent.com/31187099/162692070-ccc54692-6793-4331-adc7-2356d0fd5397.jpg)
 
-For the Valid Redirect URI http://<URL>:<PORT>/api/v1/login_openid
--Backchannel Logout URL http://<URL>:<PORT>/*
+For the Valid Redirect URI https://shuffler.io/api/v1/login_openid
+-Backchannel Logout URL https://shuffler.io/*
 -Backchannel Logout Session toggled to ON
 
 Under the Fine Grain OpenID Connect Configuration
-Valid Request URIs http://<URL>:<PORT>/login?autologin=true
+Valid Request URIs https://shuffler.io/login?autologin=true
 
 ![Auto login = true](https://user-images.githubusercontent.com/31187099/162692186-6ac71b93-01be-4cb1-83f4-b7cb17758378.jpg?raw=true)
 
