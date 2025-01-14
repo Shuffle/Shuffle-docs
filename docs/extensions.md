@@ -138,20 +138,22 @@ Open ID SSO setup with Keycloak:
 - Hit save
 
 You now have a client. Click on settings and configure them as follows
--Your client ID
--Set up a name
--Client Protocol set to openid-connect
--Access Type set to public
--Standard Flow Enabled toggled to ON
--Direct access grants toggled to ON 
+- Your client ID
+- Set up a name
+- Client Protocol set to openid-connect
+- Access Type set to public
+- Standard Flow Enabled toggled to ON
+- Direct access grants toggled to ON 
 
 ![Valid redirect URI](https://user-images.githubusercontent.com/31187099/162692070-ccc54692-6793-4331-adc7-2356d0fd5397.jpg)
 
 For the Valid Redirect URI https://shuffler.io/api/v1/login_openid
--Backchannel Logout URL https://shuffler.io/*
--Backchannel Logout Session toggled to ON
 
-Under the Fine Grain OpenID Connect Configuration
+- Backchannel Logout URL https://shuffler.io/*
+- Backchannel Logout Session toggled to ON
+
+Under the Fine Grain OpenID Connect Configuration.
+
 Valid Request URIs https://shuffler.io/login?autologin=true
 
 ![Auto login = true](https://user-images.githubusercontent.com/31187099/162692186-6ac71b93-01be-4cb1-83f4-b7cb17758378.jpg?raw=true)
