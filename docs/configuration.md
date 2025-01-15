@@ -698,7 +698,7 @@ server {
 4. Restart everything: `docker-compose down; docker-compose up -d`
 
 ## Internal Certificate Authority
-By default, certificates are not being verified when outbound traffic goes from Shuffle. This is due to the massive use of self-signed certificates when using internal services. If you want to accept your Certificate Authority for all requests, there are a few ways to do this:
+By default, certificates are not being verified when outbound traffic goes from Shuffle. This is due to the massive use of self-signed certificates when using internal services. You may ignore certificate warnings by adding `SHUFFLE_SKIPSSL_VERIFY=true` to the environment of each relevant service - most notably used for Orborus.  If you want to accept your Certificate Authority for all requests, there are a few ways to do this:
 
 1. Docker Daemon level (recommended) - point to your cert: `$ dockerd --tlscacert=/path/to/custom-ca-cert.pem`
 2. Add it to every app (per-image configuration). You can do this by modifying the Dockerfile for an app and manually building it with the certificate in the Dockerfile of each Docker image. Restart Shuffle after this is done.
