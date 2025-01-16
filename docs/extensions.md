@@ -12,6 +12,7 @@ This is documentation for integrating and sending data from third-party services
   * [Azure AD - OpenID](#azure-ad)
   * [Other SSO providers](#other)
   * [Testing SSO](#sso-testing)
+* [Detection with Tenzir](#detection-with-tenzir)
 * [KMS](#KMS)
 * [Native Actions](#native-actions)
 * [Webhooks](#webhooks)
@@ -225,6 +226,24 @@ https://github.com/user-attachments/assets/8c3474a5-bfdd-4c68-bd59-0b7b1ddb2b0c
 https://github.com/user-attachments/assets/0a927283-d39e-4200-8ba3-654ef6f1b9c1
 
 **Note**: Ensure that the "email" field is included in the SSO response from your SSO provider. If this field is empty, you may encounter errors. The email from your SSO provider will be assigned as the username in Shuffle.
+
+## Detection Manager
+The Shuffle Detection Manager is a system introduced in beta in December 2024, allowing Shuffle to work with platforms like Tenzir and other systems to help with Detection Engineering. The goal of the system is not to replace actual detection systems themselves, but to offer a centralized way to control Detection rules across tenants and different tools. As an example, **below is a focus on Sigma rules with Tenzir**. The system is tested with Yara rules, Email detection rules and custom rule systems.  
+
+### Testing Tenzir + Sigma
+1. **Rule Manager:**      At least One Shuffle org
+2. **Job Handler:**       An Orborus instance running
+3. **Detection Handler:** A Tenzir instance running on the same server as Orborus **(no setup needed)**
+4. **Log Forwarder:**     Any system that can forward logs to Tenzir
+
+To test the Tenzir detection system, it is first important to ensure that your Orborus instance is attached to Shuffle, which can be found on the /admin?tab=Locations path. Below is a BAD instance, where Orborus both says "Stopped" AND Pipelines is crossed out. The first goal is to re-enable these.
+
+<img width="791" alt="A bad instance that is not running" src="https://github.com/user-attachments/assets/263975bf-7e07-4675-bc67-ac308e69ec76" />
+
+### Fixing the pipeline setup
+To solve the pipeline issue shown in the previous image, we have to do two things:
+1. Start Orborus and get it to the "Running" state
+2. Go to /detections/Sigma in the UI, and click "Connect" in the top-right corner.
 
 ## KMS
 Shuffle by default allows you to store authentication tokens within Shuffle itself, which are encrypted in the database. Since February 2024, we additionally support the use of external KMS systems to handle authentication, which is based on [Native Actions](https://shuffler.io/docs/extensions#native-actions) and [Schemaless](https://github.com/frikky/schemaless). Native Actions run in the background to perform the "Get KMS key" action, and the run of the app is NOT stored. 
