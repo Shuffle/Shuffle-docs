@@ -12,7 +12,7 @@ This is documentation for integrating and sending data from third-party services
   * [Azure AD - OpenID](#azure-ad)
   * [Other SSO providers](#other)
   * [Testing SSO](#sso-testing)
-* [Detection with Tenzir](#detection-with-tenzir)
+* [Detection Manager](#detection-manager)
 * [KMS](#KMS)
 * [Native Actions](#native-actions)
 * [Webhooks](#webhooks)
@@ -242,8 +242,22 @@ To test the Tenzir detection system, it is first important to ensure that your O
 
 ### Fixing the pipeline setup
 To solve the pipeline issue shown in the previous image, we have to do two things:
-1. Start Orborus and get it to the "Running" state
-2. Go to /detections/Sigma in the UI, and click "Connect" in the top-right corner.
+
+1. Start Orborus and get it to the "Running" state. To do this, click the Location in question and copy the command to one of your servers. After this has been done, you should see a the Red "Stopped" part change to a Green "Running" box as in the image below. If this does not occur, reach out to support@shuffler.io. 
+2. Go to /detections/Sigma in the UI, and click "Connect" in the top-right corner. Refresh the page after a minute or so, and the Pipeline system should be showing as green on the [Location page](https://shuffler.io/admin?tab=Locations) and in the top-right corner of the [Detection page](https://shuffler.io/detections/Sigma). If it does not, please reach out to support@shuffler.io.
+
+<img width="791" alt="image" src="https://github.com/user-attachments/assets/ba35c94c-cedc-4ae5-8b38-0855f7cd5c11" />
+
+Tenzir setup configuration:
+- **Adding a custom storage folder for Sigma rules:** Mount in the folder you want to control into the Orborus command. Then add the environment variable `SHUFFLE_STORAGE_FOLDER=/tmp/foldername` to Orborus. The default is `/tmp/`. 
+- **Connecting to an external Tenzir node:** Add the following environment variable to the Orborus command: ``. This requires that [the web API is enabled](https://docs.tenzir.com/rest-api) on the node.
+- **Control the Shuffle Tenzir node from Tenzir Cloud**: Go to [Tenzir Cloud](https://app.tenzir.com) and create a node configuration. Download the configuration file, then add the variables found in it to the following environment variables to Orborus: `TENZIR_PLUGINS__PLATFORM__API_KEY=<apikey>`, `TENZIR_PLUGINS__PLATFORM__CONTROL_ENDPOINT=<url>`, `TENZIR_PLUGINS__PLATFORM__TENANT_ID=<tenant>`
+
+### Running the Tenzir Detection pipeline
+To run the detection pipeline, 
+
+### Storing Tenzir logs in Opensearch
+TBD
 
 ## KMS
 Shuffle by default allows you to store authentication tokens within Shuffle itself, which are encrypted in the database. Since February 2024, we additionally support the use of external KMS systems to handle authentication, which is based on [Native Actions](https://shuffler.io/docs/extensions#native-actions) and [Schemaless](https://github.com/frikky/schemaless). Native Actions run in the background to perform the "Get KMS key" action, and the run of the app is NOT stored. 
