@@ -256,6 +256,9 @@ Tenzir setup configuration:
 ### Running the Tenzir Detection pipeline
 To run the detection pipeline, 
 
+### Running a sample Detection
+TBD
+
 ### Storing Tenzir logs in Opensearch
 TBD
 
