@@ -411,6 +411,13 @@ You can additionally add this do your docker compose with the following setting:
       - 11211:11211
 ```
 
+### Multi-server memcached
+You can run Memcached on multiple servers as well, but may run into key inconsistency. This should however not affect how things run in Shuffle, as we verify and fix request data. To do this, simply add multiple memcached instances to the environment variable, comma separated.
+
+Example:
+```
+- SHUFFLE_MEMCACHED=10.0.0.1:11211,10.0.0.2:11211,10.0.0.3:11211
+```
 
 If you need help with this, [please contact us](mailto:support@shuffler.io).
 
