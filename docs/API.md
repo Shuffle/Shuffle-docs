@@ -4,6 +4,7 @@ Documentation for Shuffle API. Change https://shuffler.io with your local domain
 - If you're on the california region, Your base URL will be https://california.shuffler.io
 - If you're on the frankfurt region, Your base URL will be https://frankfurt.shuffler.io
 - If you're on the canada region, Your base URL will be https://ca.shuffler.io
+- Likely regions in 2025/2026: Australia, India, Brazil
 
 ## Table of contents
 * [Introduction](#introduction)
@@ -251,6 +252,8 @@ curl -XDELETE https://shuffler.io/api/v1/apps/{app_id} -H "Authorization: Bearer
 
 ### Upload a python app 
 Uploads a python app. You should upload a zip file with the following like file structure. This has to be done for each individual version of the app. The app uploaded is available to everyone in the organization.
+
+If you need help with this section, [look into the Shuffle CLI utility as well](https://github.com/Shuffle/shufflecli). 
 
 To zip an app, go to the appfolder, e.g. shuffle-tools, then type in the following to zip the version you want to upload (\*nix):
 ```
