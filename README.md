@@ -22,3 +22,6 @@ High Availability Shuffle setup:
 
 Shuffle Cloud Hybrid Architecture
 ![Shuffle Cloud Hybrid Architecture](https://github.com/user-attachments/assets/bd2cd5b8-2808-4c29-b84c-755b055a7fe2)
+
+[Singul API utilization](https://singul.io)
+<img width="976" alt="Singul API usage for devs" src="https://github.com/user-attachments/assets/c11ccb74-c247-4e77-9e3c-37ca36c820ca" />
