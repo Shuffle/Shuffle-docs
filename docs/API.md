@@ -1020,14 +1020,10 @@ The easiest way to try it out for developer is to [use the Shufflepy library](ht
 ```python
 from shufflepy import Shuffle
 
-## If the config is not specified, the library will use `https://shuffler.io` as the default URL. You must specify an apikey. 
+## If the url is not specified, the library will use `https://shuffler.io` as the default URL. You must specify an apikey. 
 
-shuffle = Shuffle(
-	"APIKEY",
-	url='https://shuffler.io',
-)
-
-shuffle.list_tickets("jira")
+shuffle = Singul("APIKEY")
+resp = shuffle.list_tickets("jira")
 ```
 		
 ### Run a Category Action
