@@ -1,10 +1,11 @@
 # Shuffle API 
 Documentation for Shuffle API. Change https://shuffler.io with your local domain/IP for on-premises usage.
 
-- If you're on the california region, Your base URL will be https://california.shuffler.io
-- If you're on the frankfurt region, Your base URL will be https://frankfurt.shuffler.io
-- If you're on the canada region, Your base URL will be https://ca.shuffler.io
-- Likely regions in 2025/2026: Australia, India, Brazil
+- If you are onprem/self-hosted, the API url is the same as your frontend. 
+- If you are on the california region, your URL will be https://california.shuffler.io
+- If you are on the frankfurt region, your URL will be https://frankfurt.shuffler.io
+- If you are on the canada region, your URL will be https://ca.shuffler.io
+- Likely regions in 2025/2026: Japan (Tokyo, asia-northeast1), Australia (Sydney, australia-southeast1), India (Mumbai, asia-south1), Brazil (São Paulo, southamerica-east1). Shuffle Regions can be deployed quickly - if you need a specific region, [please check if Google Cloud Platform (GCP) supports it](https://cloud.google.com/about/locations#americas).
 
 ## Table of contents
 * [Introduction](#introduction)
