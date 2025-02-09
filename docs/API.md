@@ -7,6 +7,9 @@ Documentation for Shuffle API. Change https://shuffler.io with your local domain
 - If you are on the canada region, your URL will be https://ca.shuffler.io
 - Likely regions in 2025/2026: Japan (Tokyo, asia-northeast1), Australia (Sydney, australia-southeast1), India (Mumbai, asia-south1), Brazil (São Paulo, southamerica-east1). Shuffle Regions can be deployed quickly - if you need a specific region, [please check if Google Cloud Platform (GCP) supports it](https://cloud.google.com/about/locations#americas).
 
+Check your current location on the [/admin page](https://shuffler.io).
+<img width="1148" alt="image" src="https://github.com/user-attachments/assets/92408590-7ba0-4ecf-891f-4799eb8ffedf" />
+
 ## Table of contents
 * [Introduction](#introduction)
 * [Authentication](#authentication)
