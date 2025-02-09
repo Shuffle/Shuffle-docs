@@ -1,7 +1,6 @@
 # Shuffle API 
 Documentation for the Shuffle API. Change https://shuffler.io with your local domain/IP for on-premises usage.
 
-- If you are onprem/self-hosted, the API url is the same as your frontend. 
 - US (California): https://california.shuffler.io
 - Germany (Frankfurt): https://frankfurt.shuffler.io
 - Canada (Montréal): https://ca.shuffler.io
