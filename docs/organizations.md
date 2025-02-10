@@ -318,6 +318,7 @@ They are organization-wide, meaning if you dismiss them, they get dismissed for 
 - Actions where the result JSON contains `"success": false`
 - Actions where the result JSON contains `"status"` more than or equal to 300 (usually failed workflows)
 - Failed Liquid formatting
+- When a returned app parameter starts with "shuffle" and contains "error". Example: "shuffle variable error" for when a variable is not found.
 - **We may add more without warning in the future. They are only added for things that represent typical things you want to see**
 
 <img width="384" alt="image" src="https://github.com/Shuffle/Shuffle-docs/assets/5719530/ff16e86b-5db4-4300-97b4-4071a96b4aed">
