@@ -29,13 +29,18 @@ Shuffle is an open-source automation platform designed specifically for the secu
 - **[Old Training Videos](https://drive.google.com/drive/folders/1MtVfkCXDMSZ9yBwLDiVb0lj1H-oAK5RZ?usp=sharing)**  
   In case you would like to watch older on-demand training videos. The platform however has significantly improved since then and the [current training](https://shuffler.io/training) would be a better match.
 
-### Usecases
+## Workflow Development
+Workflows run the automated processes in Shuffle by connecting Triggers and Actions/APIs. 
+
+If you want some practice, check out our [default intro to Workflow development](https://github.com/Shuffle/shuffle-docs/blob/master/handbook/engineering/workflow_development.md)
+
+### Finding Usecases
 [Usecases are a collection of Workflows](/usecases) that perform a task together. This can be things like handling SIEM alerts, or doing phishing analysis. 
 
-### Workflows
+### Finding Workflows
 [Workflows](/docs/workflows) connect [Apps](/docs/apps) together to perform an action, typically getting and setting data with API's and using Shuffle's built in tools like Shuffle Tools to modify or format the data. They can be ran and stopped according to your needs, and typically have one starting point and multiple outputs. 
 
-### Apps
+### Finding Apps
 [Apps](/docs/apps) are API's or Python scripts, and can be [modified and built by anyone](https://shuffler.io/docs/app_creation). To use an existing public app in a Workflow, you must first activate it. Public apps can be forked, meaning you can have your own version of them.
 
 ### Blogposts
