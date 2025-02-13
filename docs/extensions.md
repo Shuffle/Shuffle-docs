@@ -251,6 +251,19 @@ To solve the pipeline issue shown in the previous image, we have to do two thing
 Tenzir setup configuration:
 - **Adding a custom storage folder for Sigma rules:** Mount in the folder you want to control into the Orborus command. Then add the environment variable `SHUFFLE_STORAGE_FOLDER=/tmp/foldername` to Orborus. The default is `/tmp/`. 
 - **Connecting to an external Tenzir node:** Add the following environment variable to the Orborus command: ``. This requires that [the web API is enabled](https://docs.tenzir.com/rest-api) on the node.
+
+```
+If ran locally with systemd:
+1. Open /etc/systemd/system/tenzir-node.service
+2. Find the line that says "ExecStart" and add ' --commands=web server --mode=dev --bind=0.0.0.0' to the end of it
+
+It should look like this: ExecStart=/opt/tenzir/bin/tenzir-node --commands=web server --mode=dev --bind=0.0.0.0
+
+3. Save and close the file.
+4. daemon-reload & systemctl restart tenzir-node
+5. Try to connect to it: curl http://localhost:5158/api/v0/ping
+```
+
 - **Control the Shuffle Tenzir node from Tenzir Cloud**: Go to [Tenzir Cloud](https://app.tenzir.com) and create a node configuration. Download the configuration file, then add the variables found in it to the following environment variables to Orborus: `TENZIR_PLUGINS__PLATFORM__API_KEY=<apikey>`, `TENZIR_PLUGINS__PLATFORM__CONTROL_ENDPOINT=<url>`, `TENZIR_PLUGINS__PLATFORM__TENANT_ID=<tenant>`
 
 ### Running the Tenzir Detection pipeline
