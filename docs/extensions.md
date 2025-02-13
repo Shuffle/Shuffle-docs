@@ -266,6 +266,9 @@ It should look like this: ExecStart=/opt/tenzir/bin/tenzir-node --commands=web s
 
 - **Control the Shuffle Tenzir node from Tenzir Cloud**: Go to [Tenzir Cloud](https://app.tenzir.com) and create a node configuration. Download the configuration file, then add the variables found in it to the following environment variables to Orborus: `TENZIR_PLUGINS__PLATFORM__API_KEY=<apikey>`, `TENZIR_PLUGINS__PLATFORM__CONTROL_ENDPOINT=<url>`, `TENZIR_PLUGINS__PLATFORM__TENANT_ID=<tenant>`
 
+### Mounting the Tenzir Sigma location into Orborus
+TBD
+
 ### Running the Tenzir Detection pipeline
 To run the detection pipeline, 
 
