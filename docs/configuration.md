@@ -57,7 +57,6 @@ While being in the main repository, here is how to update Shuffle:
 ```
 docker-compose down
 git pull
-docker pull frikky/shuffle:app_sdk    # Force update the App SDK
 docker-compose pull
 docker-compose up -d
 ```
